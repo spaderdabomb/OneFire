@@ -1,0 +1,34 @@
+{
+    "name": "UiControls",
+    "maps": [
+        {
+            "name": "GameSceneMap",
+            "id": "522b72aa-178f-4ebd-9bfb-963d595ab01b",
+            "actions": [
+                {
+                    "name": "ToggleOptions",
+                    "type": "Button",
+                    "id": "a9d3804d-422f-4373-af02-e4c15bfffe44",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "39f15204-3011-4ff8-9ce2-babd12868196",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleOptions",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

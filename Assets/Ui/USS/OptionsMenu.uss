@@ -1,0 +1,45 @@
+.options-tab {
+    font-size: 28px;
+    -unity-font-style: bold;
+    color: rgb(230, 230, 230);
+    flex-grow: 0;
+    max-height: none;
+}
+
+.options-menu {
+}
+
+.options-header-label {
+    font-size: 24px;
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+    color: rgb(230, 230, 230);
+}
+
+.options-standard-label {
+    -unity-font-style: bold;
+    font-size: 16px;
+    color: rgb(230, 230, 230);
+}
+
+.options-container {
+    border-left-color: rgba(255, 255, 255, 0.1);
+    border-right-color: rgba(255, 255, 255, 0.1);
+    border-top-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: rgba(255, 255, 255, 0);
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    flex-grow: 1;
+    align-self: stretch;
+}

@@ -1,0 +1,3 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" gen-cs-namespace="OneFireUi" gen-cs-file="f2e862c5ed70ee54c9b369b8e115bbf2">
+    <ui:VisualElement name="BaseInventoryUi" style="flex-grow: 1; flex-direction: row; justify-content: space-around; align-self: stretch;" />
+</ui:UXML>

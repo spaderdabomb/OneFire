@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2204bf128383ced4f8a374a536984a4c, type: 3}
+  m_Name: MainLibrary
+  m_EditorClassIdentifier: 
+  soundCategories:
+  - 
+  musicCategories:
+  - 
+  Sounds:
+  - {fileID: 11400000, guid: c87a3c7274aec84479b37ffefb457710, type: 2}
+  - {fileID: 11400000, guid: f18e61aeaec2ca543b2882a7f7dab8fb, type: 2}
+  - {fileID: 11400000, guid: ce6b06278563d384e94740f9d7f67ef8, type: 2}
+  - {fileID: 11400000, guid: 5c6c18f79a3972e4bacaee5d2da5d51d, type: 2}
+  - {fileID: 11400000, guid: a49ece268f03480428a643e80f28b217, type: 2}
+  - {fileID: 11400000, guid: 55ef1e6597340774cb2417249398b546, type: 2}
+  - {fileID: 11400000, guid: 3a58c0a1deab0b941ae1390e92e5972e, type: 2}
+  - {fileID: 11400000, guid: e032174676416494b8250ca44a425a81, type: 2}
+  - {fileID: 11400000, guid: 1588be8284ffb654f8f5b25bb2ed1fd4, type: 2}
+  - {fileID: 11400000, guid: f640320ab51caae40a713548e503b5e9, type: 2}
+  - {fileID: 11400000, guid: c072bf4161f7cf843a80f94010437a1b, type: 2}
+  - {fileID: 11400000, guid: 8d9a07963a4ed3049b87d324a1ce995f, type: 2}
+  - {fileID: 11400000, guid: 63f25f83cbe32a941b77414244869ac0, type: 2}
+  - {fileID: 11400000, guid: dc3ec41e104dc464796112bc995d04cd, type: 2}
+  - {fileID: 11400000, guid: 1c6fc446f2845b4469691edec7f6de60, type: 2}
+  - {fileID: 11400000, guid: 8d03c59a1016c6543b530ccc0ffcec73, type: 2}
+  - {fileID: 11400000, guid: 92acbb87b3876cd4ab5782564970c6ca, type: 2}
+  - {fileID: 11400000, guid: abfa6b9fbaffc874298809b95bc8b277, type: 2}
+  Music: []
+  useCustomNames: 0
+  generatedName: MainLibrary
+  musicEnum: MainLibraryMusic
+  musicEnumGenerated: MainLibraryMusic
+  musicNamespace: 
+  musicNamespaceGenerated: 
+  soundEnum: MainLibrarySounds
+  soundEnumGenerated: MainLibrarySounds
+  soundNamespace: 
+  soundNamespaceGenerated: 
+  soundCategoriesToList:
+  - name: 
+    files:
+    - {fileID: 11400000, guid: c87a3c7274aec84479b37ffefb457710, type: 2}
+    - {fileID: 11400000, guid: f18e61aeaec2ca543b2882a7f7dab8fb, type: 2}
+    - {fileID: 11400000, guid: ce6b06278563d384e94740f9d7f67ef8, type: 2}
+    - {fileID: 11400000, guid: 5c6c18f79a3972e4bacaee5d2da5d51d, type: 2}
+    - {fileID: 11400000, guid: a49ece268f03480428a643e80f28b217, type: 2}
+    - {fileID: 11400000, guid: 55ef1e6597340774cb2417249398b546, type: 2}
+    - {fileID: 11400000, guid: 3a58c0a1deab0b941ae1390e92e5972e, type: 2}
+    - {fileID: 11400000, guid: e032174676416494b8250ca44a425a81, type: 2}
+    - {fileID: 11400000, guid: 1588be8284ffb654f8f5b25bb2ed1fd4, type: 2}
+    - {fileID: 11400000, guid: f640320ab51caae40a713548e503b5e9, type: 2}
+    - {fileID: 11400000, guid: c072bf4161f7cf843a80f94010437a1b, type: 2}
+    - {fileID: 11400000, guid: 8d9a07963a4ed3049b87d324a1ce995f, type: 2}
+    - {fileID: 11400000, guid: 63f25f83cbe32a941b77414244869ac0, type: 2}
+    - {fileID: 11400000, guid: dc3ec41e104dc464796112bc995d04cd, type: 2}
+    - {fileID: 11400000, guid: 1c6fc446f2845b4469691edec7f6de60, type: 2}
+    - {fileID: 11400000, guid: 8d03c59a1016c6543b530ccc0ffcec73, type: 2}
+    - {fileID: 11400000, guid: 92acbb87b3876cd4ab5782564970c6ca, type: 2}
+    - {fileID: 11400000, guid: abfa6b9fbaffc874298809b95bc8b277, type: 2}
+    foldout: 1
+  musicCategoriesToList:
+  - name: 
+    files: []
+    foldout: 1
