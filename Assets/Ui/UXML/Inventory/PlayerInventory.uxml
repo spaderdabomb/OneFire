@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-file="53a75679e3391474686f02eea3703fc4" gen-cs-namespace="OneFireUI">
+    <ui:Template name="BaseInventoryUi" src="project://database/Assets/Ui/UXML/Inventory/BaseInventoryUi.uxml?fileID=9197481963319205126&amp;guid=d825a11bb25e4ec459a6ab25421dac51&amp;type=3#BaseInventoryUi" />
+    <Style src="project://database/Assets/Ui/USS/Inventory.uss?fileID=7433441132597879392&amp;guid=2bf4f725ae44ad14a844aa9e9b979001&amp;type=3#Inventory" />
+    <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
+    <ui:VisualElement name="InventoryUiRoot" style="flex-grow: 1; flex-direction: column; align-items: auto; align-self: stretch; justify-content: flex-start; flex-wrap: nowrap; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 650px; height: auto; flex-shrink: 1;">
+        <ui:Instance template="BaseInventoryUi" name="BaseInventoryUi" style="flex-grow: 1; justify-content: space-around; flex-shrink: 1;" />
+        <ui:VisualElement name="InventoryActionsContainer" style="flex-grow: 1; flex-direction: row; justify-content: center; align-self: auto; flex-shrink: 0; align-items: center;">
+            <ui:VisualElement name="LeftButtonGroup" style="flex-grow: 1; align-items: flex-end; align-self: stretch; justify-content: flex-start; flex-direction: row;">
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SortButton" class="inventory-button" style="align-items: center; flex-shrink: 1; align-self: center; justify-content: space-around;">
+                    <ui:VisualElement name="SortButtonIcon" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/Ui/MenuIcons/DropItemIcon.psd?fileID=2800000&amp;guid=62d8f2547c5f24e4d80f667e1f346034&amp;type=3#DropItemIcon&quot;); width: 64px; height: 64px;" />
+                    <ui:Label tabindex="-1" text="Sort" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SortButtonLabel" class="options-standard-label" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement name="RightButtonGroup" style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: stretch; align-self: stretch;">
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DropButton" class="inventory-button" style="align-items: center; flex-shrink: 1; align-self: center; justify-content: space-around;">
+                    <ui:VisualElement name="DropButtonIcon" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/Ui/MenuIcons/DropItemIcon.psd?fileID=2800000&amp;guid=62d8f2547c5f24e4d80f667e1f346034&amp;type=3#DropItemIcon&quot;); width: 64px; height: 64px;" />
+                    <ui:Label tabindex="-1" text="Drop" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DropButtonLabel" class="options-standard-label" />
+                </ui:Button>
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DiscardButton" class="inventory-button" style="align-items: center; flex-shrink: 1; align-self: center; justify-content: space-around;">
+                    <ui:VisualElement name="DiscardButtonIcon" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/Ui/MenuIcons/TrashIcon.psd?fileID=2800000&amp;guid=5d754536cb897e64fad843d22196b420&amp;type=3#TrashIcon&quot;); width: 64px; height: 64px;" />
+                    <ui:Label tabindex="-1" text="Discard" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DiscardButtonLabel" class="options-standard-label" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

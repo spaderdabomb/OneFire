@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb430cd2fe8c54396792d853c49513, type: 3}
+  m_Name: Armor
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 3872554cae06148d2a47a27992b74ee1, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: itemStatList
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[ItemData+IGenericItemStat, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|ItemData+FloatValue, Assembly-CSharp
+    - Name: itemStat
+      Entry: 10
+      Data: 0
+    - Name: value
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: itemStats
+      Entry: 7
+      Data: 2|ItemStats, Assembly-CSharp
+    - Name: statsDict
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[ItemStat, Assembly-CSharp],[System.Object,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 4|System.Collections.Generic.ObjectEqualityComparer`1[[ItemStat, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  itemID: de70b32e-c7c0-4578-90aa-70dade734b60
+  baseName: Tomato
+  displayName: Tomato
+  description: A tasty tomato
+  stackCount: 1
+  maxStackCount: 50
+  baseSellValue: 1
+  itemType: 1
+  itemRarity: 1
+  itemCategories: 4
+  item3DPrefab: {fileID: 0}
+  itemSprite: {fileID: 21300000, guid: e3fcea9b73ea22c4a96c6b7979735c0d, type: 3}
+  itemHeldPrefab: {fileID: 0}
