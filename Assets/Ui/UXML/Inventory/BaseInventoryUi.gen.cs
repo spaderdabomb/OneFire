@@ -9,11 +9,11 @@ namespace OneFireUi
 {
     partial class BaseInventoryUi
     {
-        private VisualElement baseInventoryUi;
+        private VisualElement baseInventoryRoot;
     
         protected void AssignQueryResults(VisualElement root)
         {
-            baseInventoryUi = root.Q<VisualElement>("BaseInventoryUi");
+            baseInventoryRoot = root.Q<VisualElement>("BaseInventoryRoot");
         }
     }
 }

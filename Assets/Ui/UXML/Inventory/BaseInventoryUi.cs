@@ -23,6 +23,7 @@ namespace OneFireUi
             this.inventoryCols = inventoryCols;
             AssignQueryResults(root);
             RegisterCallbacks();
+            InitInventorySlots();
         }
 
         public void RegisterCallbacks()
@@ -38,6 +39,43 @@ namespace OneFireUi
         public void OnGeometryChanged(GeometryChangedEvent evt)
         {
             root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+        }
+
+        private void InitInventorySlots()
+        {
+            // Init slots
+            inventorySlots = new List<BaseInventorySlotUi>();
+            Debug.Log(inventoryRows);
+            Debug.Log(inventoryCols);
+
+            for (int i = 0; i < inventoryRows; i++)
+            {
+                for (int j = 0; j < inventoryCols; j++)
+                {
+                    VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
+                    BaseInventorySlotUi inventorySlot = new BaseInventorySlotUi(inventoryAsset, j + i * inventoryCols, this);
+                    inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
+                    inventorySlots.Add(inventorySlot);
+                    Debug.Log($"Adding to bas{inventorySlot}");
+                    baseInventoryRoot.Add(inventoryAsset);
+                }
+            }
+
+            // Load item data
+            //DataManager.Instance.inventoryItemData = DataManager.Instance.Load(nameof(DataManager.Instance.inventoryItemData), DataManager.Instance.inventoryItemData);
+
+            //inventoryItemData = ES3.Load(nameof(inventoryItemData), defaultValue: inventoryItemData);
+            //for (int i = 0; i < DataManager.Instance.inventoryItemData.Length; i++)
+            //{
+            //    BaseItemData baseItem = DataManager.Instance.inventoryItemData[i];
+            //    if (baseItem != null)
+            //    {
+            //        ItemData itemDataAsset = ItemExtensions.GetItemData(baseItem.itemID);
+            //        ItemData newItem = itemDataAsset.GetItemDataInstantiated();
+            //        newItem.SetItemDataToBaseItemData(baseItem);
+            //        AddItem(newItem, inventorySlots[i]);
+            //    }
+            //}
         }
 
         public void SetCurrentSlot(BaseInventorySlotUi newSlot)

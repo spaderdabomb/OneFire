@@ -5,165 +5,166 @@ using UnityEngine;
 using static ItemData;
 using UnityEngine.UIElements;
 using OneFireUi;
+using Random = UnityEngine.Random;
+using OneFireUI;
+using UnityEngine.EventSystems;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
- /*   public VisualTreeAsset inventoryAsset;
+    public VisualTreeAsset inventoryAsset;
     public VisualTreeAsset inventorySlotAsset;
-    public VisualTreeAsset gearContainerAsset;
     public VisualTreeAsset gearSlotAsset;
 
-    private int inventoryRows;
-    private int inventoryCols;
+    public VisualElement InventoryContainer { get; private set; }
+
+    [SerializeField] private int playerInventoryRows;
+    [SerializeField] private int playerInventoryColumns;
+
     private Vector2 startMousePosition;
     private Vector2 startElementPosition;
     public float timeToShowTooltip = 0.5f;
-    [HideInInspector] public BaseInventorySlotUi CurrentHoverSlot { get; set; } = null;
-    [HideInInspector] public BaseInventorySlotUi CurrentDraggedSlot { get; set; } = null;
-    [HideInInspector] public bool IsHoveringSlot { get; set; } = false;
-    [HideInInspector] public float TimeSinceHoveringSlot { get; set; } = 0f;
+    [HideInInspector] public BaseInventorySlotUi CurrentHoverSlot { get; private set; } = null;
+    [HideInInspector] public BaseInventorySlotUi CurrentDraggedSlot { get; private set; } = null;
+    [HideInInspector] public bool IsHoveringSlot { get; private set; } = false;
+    [HideInInspector] public float TimeSinceHoveringSlot { get; private set; } = 0f;
 
+    public VisualElement GhostIcon { get; set; }
 
-    private Player player;
-    public Inventory inventory { get; private set; } = null;
-    public PopupMenuInventory popupMenuInventory { get; private set; } = null;
-    public VisualElement ghostIcon { get; set; }
+    public PlayerInventory PlayerInventory { get; private set; } = null;
 
-    public Dictionary<GearContainerType, GearContainer> gearContainerDict = new();
-    public Dictionary<GearContainerType, Dictionary<ItemType, GearSlotData>> gearContainerToDataDicts;
+    //public PopupMenuInventory popupMenuInventory { get; private set; } = null;
 
-    public Dictionary<ItemType, GearSlotData> handsSlotsDataDict = new();
-    public Dictionary<ItemType, GearSlotData> tackleSlotsDataDict = new();
-    public Dictionary<ItemType, GearSlotData> outfitSlotsDataDict = new();
-    public Dictionary<ItemType, GearSlotData> accessoriesSlotsDataDict = new();
-
-    private List<GearSlot> gearSlotsHighlighted = new List<GearSlot>();
+    public EquipmentInventory EquipmentInventory { get; private set; } = null;
+    private List<EquipmentInventorySlot> equipmentSlotsHighlighted = new List<EquipmentInventorySlot>();
 
     private void Awake()
     {
         Instance = this;
-        player = GameManager.Instance.player.GetComponent<Player>();
-        inventoryRows = GameManager.Instance.gameData.inventoryRows;
-        inventoryCols = GameManager.Instance.gameData.inventoryCols;
-
-        gearContainerToDataDicts = new()
-        {
-            { GearContainerType.Hands, handsSlotsDataDict },
-            { GearContainerType.Tackle, tackleSlotsDataDict },
-            { GearContainerType.Outfit, outfitSlotsDataDict },
-            { GearContainerType.Accessories, accessoriesSlotsDataDict }
-        };
     }
 
-    private void OnDisable()
+    //private void OnEnable()
+    //{
+    //    GhostIcon.RegisterCallback<PointerMoveEvent>(MoveDragHandler);
+    //    GhostIcon.RegisterCallback<PointerUpEvent>(EndDragHandler);
+    //}
+
+    //private void OnDisable()
+    //{
+    //    GhostIcon.UnregisterCallback<PointerMoveEvent>(MoveDragHandler);
+    //    GhostIcon.UnregisterCallback<PointerUpEvent>(EndDragHandler);
+    //}
+
+    private void Start()
     {
-        ghostIcon.UnregisterCallback<PointerMoveEvent>(MoveDragHandler);
-        ghostIcon.UnregisterCallback<PointerUpEvent>(EndDragHandler);
+        print("starting");
+        VisualElement playerInventoryRoot = UiManager.Instance.optionsMenuUi.inventoryMenu.GetPlayerInventoryRoot();
+        PlayerInventory = new PlayerInventory(playerInventoryRoot, playerInventoryRows, playerInventoryColumns);
     }
 
-    void Start()
-    {
-        VisualElement inventoryClone = inventoryAsset.CloneTree();
-        inventory = new Inventory(inventoryClone, inventoryRows, inventoryCols);
-        ghostIcon = UIGameManager.Instance.uiGameScene.GetGhostIconRef();
-        ghostIcon.RegisterCallback<PointerMoveEvent>(MoveDragHandler);
-        ghostIcon.RegisterCallback<PointerUpEvent>(EndDragHandler);
+    /*
 
-        popupMenuInventory = InitPopupMenu();
-        UIGameManager.Instance.uiGameScene.AddInventoryToPlayerInfo(inventoryClone);
-
-        foreach (GearContainerType gearContainerType in Enum.GetValues(typeof(GearContainerType)))
+        void Start()
         {
-            VisualElement gearContainerClone = gearContainerAsset.CloneTree();
-            gearContainerDict.Add(gearContainerType, new GearContainer(gearContainerClone, 1, GameManager.Instance.gameData.gearCols, gearContainerType));
-            UIGameManager.Instance.uiGameScene.AddElementToGearContainer(gearContainerClone);
+            VisualElement inventoryClone = inventoryAsset.CloneTree();
+            inventory = new Inventory(inventoryClone, inventoryRows, inventoryCols);
+            ghostIcon = UIGameManager.Instance.uiGameScene.GetGhostIconRef();
+            ghostIcon.RegisterCallback<PointerMoveEvent>(MoveDragHandler);
+            ghostIcon.RegisterCallback<PointerUpEvent>(EndDragHandler);
+
+            popupMenuInventory = InitPopupMenu();
+            UIGameManager.Instance.uiGameScene.AddInventoryToPlayerInfo(inventoryClone);
+
+            foreach (GearContainerType gearContainerType in Enum.GetValues(typeof(GearContainerType)))
+            {
+                VisualElement gearContainerClone = gearContainerAsset.CloneTree();
+                gearContainerDict.Add(gearContainerType, new GearContainer(gearContainerClone, 1, GameManager.Instance.gameData.gearCols, gearContainerType));
+                UIGameManager.Instance.uiGameScene.AddElementToGearContainer(gearContainerClone);
+            }
         }
-    }
 
-    private PopupMenuInventory InitPopupMenu()
-    {
-        VisualElement popupMenuAsset = UIGameManager.Instance.popupMenuInventory.CloneTree();
-        PopupMenuInventory newPopupMenuInventory = new PopupMenuInventory(popupMenuAsset);
-        UIGameManager.Instance.uiGameScene.root.Add(popupMenuAsset);
-        newPopupMenuInventory.root.style.position = Position.Absolute;
-        newPopupMenuInventory.root.style.display = DisplayStyle.Flex;
-
-        return newPopupMenuInventory;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        CheckHoveringTime();
-    }
-
-    private void CheckHoveringTime()
-    {
-        if (IsHoveringSlot)
+        private PopupMenuInventory InitPopupMenu()
         {
-            if (TimeSinceHoveringSlot > timeToShowTooltip)
-                ShowInventoryTooltip();
+            VisualElement popupMenuAsset = UIGameManager.Instance.popupMenuInventory.CloneTree();
+            PopupMenuInventory newPopupMenuInventory = new PopupMenuInventory(popupMenuAsset);
+            UIGameManager.Instance.uiGameScene.root.Add(popupMenuAsset);
+            newPopupMenuInventory.root.style.position = Position.Absolute;
+            newPopupMenuInventory.root.style.display = DisplayStyle.Flex;
+
+            return newPopupMenuInventory;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            CheckHoveringTime();
+        }
+
+        private void CheckHoveringTime()
+        {
+            if (IsHoveringSlot)
+            {
+                if (TimeSinceHoveringSlot > timeToShowTooltip)
+                    ShowInventoryTooltip();
+                else
+                    HideInventoryTooltip();
+
+                TimeSinceHoveringSlot += Time.deltaTime;
+            }
             else
+            {
+                TimeSinceHoveringSlot = 0f;
                 HideInventoryTooltip();
-
-            TimeSinceHoveringSlot += Time.deltaTime;
+            }
         }
-        else
+
+        public void ShowInventoryTooltip()
         {
-            TimeSinceHoveringSlot = 0f;
-            HideInventoryTooltip();
+            if (CurrentHoverSlot?.currentItemData == null)
+                return;
+
+            Vector2 positionDiff = CurrentHoverSlot.parentContainer.root.ChangeCoordinatesTo(popupMenuInventory.root.parent, CurrentHoverSlot.root.layout.position);
+            popupMenuInventory.root.style.display = DisplayStyle.Flex;
+            popupMenuInventory.root.style.left = positionDiff.x + 70f;
+            popupMenuInventory.root.style.top = positionDiff.y + 170f;
+
+            if (!popupMenuInventory.itemDataShowing)
+            {
+                popupMenuInventory.SetItemData(CurrentHoverSlot.currentItemData);
+            }
         }
-    }
 
-    public void ShowInventoryTooltip()
-    {
-        if (CurrentHoverSlot?.currentItemData == null)
-            return;
-
-        Vector2 positionDiff = CurrentHoverSlot.parentContainer.root.ChangeCoordinatesTo(popupMenuInventory.root.parent, CurrentHoverSlot.root.layout.position);
-        popupMenuInventory.root.style.display = DisplayStyle.Flex;
-        popupMenuInventory.root.style.left = positionDiff.x + 70f;
-        popupMenuInventory.root.style.top = positionDiff.y + 170f;
-
-        if (!popupMenuInventory.itemDataShowing)
+        public void HideInventoryTooltip()
         {
-            popupMenuInventory.SetItemData(CurrentHoverSlot.currentItemData);
+            popupMenuInventory.root.style.display = DisplayStyle.None;
+            popupMenuInventory.RemoveItemData();
         }
-    }
-
-    public void HideInventoryTooltip()
-    {
-        popupMenuInventory.root.style.display = DisplayStyle.None;
-        popupMenuInventory.RemoveItemData();
-    }
 
 
-    public ItemData InstantiateItem(ItemData itemData)
-    {
-        ItemData newItemData = Instantiate(itemData);
+        public ItemData InstantiateItem(ItemData itemData)
+        {
+            ItemData newItemData = Instantiate(itemData);
 
-        return newItemData;
-    }
+            return newItemData;
+        }
+    */
 
-    public void InstantiateItemSpawned(ItemData itemData)
-    {
-        GameObject newItemSpawned = Instantiate(itemData.item3DPrefab, GameManager.Instance.itemContainer.transform);
-        ItemSpawned newItemSpanwedInst = newItemSpawned.GetComponent<ItemSpawned>();
-        newItemSpanwedInst.InitItemData();
-        newItemSpanwedInst.SetStackCount(itemData.stackCount);
+    //public void InstantiateItemSpawned(ItemData itemData)
+    //{
+    //    GameObject newItemSpawned = Instantiate(itemData.item3DPrefab, PrefabManager.Instance.itemContainer.transform);
+    //    ItemSpawned newItemSpanwedInst = newItemSpawned.GetComponent<ItemSpawned>();
+    //    newItemSpanwedInst.InitItemData();
+    //    newItemSpanwedInst.SetStackCount(itemData.stackCount);
 
-        Transform playerTransform = player.transform;
-        Camera playerCamera = GameManager.Instance.playerMovement.playerCamera;
 
-        newItemSpawned.transform.position = playerCamera.transform.position + playerTransform.forward * 2;
-        Rigidbody newItemRb = newItemSpawned.GetComponent<Rigidbody>();
-        newItemRb.velocity = new Vector3(Random.Range(0f, 1f), Random.Range(0.5f, 2f), Random.Range(0f, 1f));
-        newItemRb.angularVelocity = new Vector3(Random.Range(0f, 10f), Random.Range(0f, 10f), Random.Range(0f, 10f));
-    }
+    //    newItemSpawned.transform.position = playerCamera.transform.position + playerCamera.transform.forward * 2;
+    //    Rigidbody newItemRb = newItemSpawned.GetComponent<Rigidbody>();
+    //    newItemRb.velocity = new Vector3(Random.Range(0f, 1f), Random.Range(0.5f, 2f), Random.Range(0f, 1f));
+    //    newItemRb.angularVelocity = new Vector3(Random.Range(0f, 10f), Random.Range(0f, 10f), Random.Range(0f, 10f));
+    //}
 
-    public void BeginDragHandler(PointerDownEvent evt, InventorySlot draggedInventorySlot)
+    public void BeginDragHandler(PointerDownEvent evt, BaseInventorySlotUi draggedInventorySlot)
     {
         // No item exists
         if (draggedInventorySlot.currentItemData == null || evt.button != 0)
@@ -173,12 +174,14 @@ public class InventoryManager : MonoBehaviour
         draggedInventorySlot.parentContainer.currentDraggedInventorySlot = draggedInventorySlot;
         CurrentDraggedSlot.SetTinted();
         CurrentDraggedSlot.SetHighlight();
-        SetAllValidSlotHighlights(CurrentDraggedSlot.currentItemData);
+        //SetAllValidSlotHighlights(CurrentDraggedSlot.currentItemData);
 
-        ShowGhostIcon(evt, draggedInventorySlot.currentItemData.itemSprite.texture, draggedInventorySlot.currentItemData.stackCount);
+        //ShowGhostIcon(evt, draggedInventorySlot.currentItemData.itemSprite.texture, draggedInventorySlot.currentItemData.stackCount);
 
         evt.StopPropagation();
     }
+
+    /*
 
     public void MoveDragHandler(PointerMoveEvent evt)
     {
@@ -347,4 +350,9 @@ public class InventoryManager : MonoBehaviour
     {
 
     }*/
+
+    public void DropItem(ItemData itemData)
+    {
+
+    }
 }

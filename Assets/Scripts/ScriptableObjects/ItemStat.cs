@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ItemStat", menuName = "Fishing Odyssey/Items/ItemStat")]
+[CreateAssetMenu(fileName = "ItemStat", menuName = "OneFire/ItemStats/ItemStat")]
 public class ItemStat : SerializedScriptableObject
 {
     public StatType statType;

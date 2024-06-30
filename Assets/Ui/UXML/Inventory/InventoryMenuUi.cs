@@ -7,18 +7,16 @@ namespace OneFireUi
     public partial class InventoryMenuUi
     {
         public VisualElement root;
-        public PlayerInventoryUi playerInventory;
         public InventoryMenuUi(VisualElement root)
         {
             this.root = root;
 
             AssignQueryResults(root);
-            InitInventory();
         }
 
-        public void InitInventory()
+        public VisualElement GetPlayerInventoryRoot()
         {
-            playerInventory = new PlayerInventoryUi(playerInventoryUi, 5, 8);
+            return playerInventory;
         }
     }
 }

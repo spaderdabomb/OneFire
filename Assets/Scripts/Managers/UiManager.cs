@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UIElements;
 
+[DefaultExecutionOrder(1)]
 public class UiManager : MonoBehaviour
 {
     public static UiManager Instance;
@@ -16,11 +17,11 @@ public class UiManager : MonoBehaviour
 
     private bool onFirstGuiUpdate = false;
 
-    [HideInInspector] VisualElement optionsRoot;
-    [HideInInspector] VisualElement gameSceneRoot;
+    private VisualElement optionsRoot;
+    private VisualElement gameSceneRoot;
 
-    [HideInInspector] OptionsMenuUi optionsMenuUi;
-    [HideInInspector] GameSceneUi gameSceneUi;
+    [HideInInspector] public OptionsMenuUi optionsMenuUi;
+    [HideInInspector] public GameSceneUi gameSceneUi;
 
     private void Awake()
     {

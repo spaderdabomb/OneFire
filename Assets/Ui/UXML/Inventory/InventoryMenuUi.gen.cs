@@ -33,7 +33,7 @@ namespace OneFireUi
         private TemplateContainer equipmentUi;
         private VisualElement rightGroup;
         private VisualElement inventoryContainer;
-        private TemplateContainer playerInventoryUi;
+        private TemplateContainer playerInventory;
     
         protected void AssignQueryResults(VisualElement root)
         {
@@ -61,7 +61,7 @@ namespace OneFireUi
             equipmentUi = root.Q<TemplateContainer>("EquipmentUi");
             rightGroup = root.Q<VisualElement>("RightGroup");
             inventoryContainer = root.Q<VisualElement>("InventoryContainer");
-            playerInventoryUi = root.Q<TemplateContainer>("PlayerInventoryUi");
+            playerInventory = root.Q<TemplateContainer>("PlayerInventory");
         }
     }
 }

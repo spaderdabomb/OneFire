@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-namespace="OneFireUi" gen-cs-file="ac4841d377a3fac49bba184536a571a5">
-    <ui:Template name="EquipmentUi" src="project://database/Assets/Ui/UXML/Inventory/EquipmentInventoryUi.uxml?fileID=9197481963319205126&amp;guid=4d159286384299949b4203a017c59567&amp;type=3#EquipmentInventoryUi" />
-    <ui:Template name="InventoryUi" src="project://database/Assets/Ui/UXML/Inventory/PlayerInventoryUi.uxml?fileID=9197481963319205126&amp;guid=7d2ed7315d44ef843b4d2d97bcb005d3&amp;type=3#PlayerInventoryUi" />
-    <ui:Template name="EquipmentInventorySlotUi" src="project://database/Assets/Ui/UXML/Inventory/EquipmentInventorySlotUi.uxml?fileID=9197481963319205126&amp;guid=02e19a4f0357da549ad5d6fa6722099b&amp;type=3#EquipmentInventorySlotUi" />
+    <ui:Template name="EquipmentInventorySlotUi" src="project://database/Assets/Ui/UXML/Inventory/EquipmentInventorySlot.uxml?fileID=9197481963319205126&amp;guid=02e19a4f0357da549ad5d6fa6722099b&amp;type=3#EquipmentInventorySlot" />
+    <ui:Template name="EquipmentUi" src="project://database/Assets/Ui/UXML/Inventory/EquipmentInventory.uxml?fileID=9197481963319205126&amp;guid=4d159286384299949b4203a017c59567&amp;type=3#EquipmentInventory" />
+    <ui:Template name="PlayerInventoryUi" src="project://database/Assets/Ui/UXML/Inventory/PlayerInventory.uxml?fileID=9197481963319205126&amp;guid=7d2ed7315d44ef843b4d2d97bcb005d3&amp;type=3#PlayerInventory" />
     <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
     <ui:VisualElement name="InventoryMenuUiRoot" style="flex-grow: 1; flex-direction: column; background-color: rgba(0, 0, 0, 0.39);">
         <ui:Label tabindex="-1" text="Inventory" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HeaderLabel" class="options-header-label" style="background-color: rgb(60, 40, 121); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; height: 40px; -unity-text-align: middle-center; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;" />
@@ -55,9 +55,9 @@
                 <ui:Instance template="EquipmentUi" name="EquipmentUi" />
             </ui:VisualElement>
             <ui:VisualElement name="RightGroup" style="flex-grow: 1; align-self: center; align-items: stretch; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;">
-                <ui:VisualElement name="InventoryContainer" class="options-container" style="flex-grow: 1; align-self: stretch;">
+                <ui:VisualElement name="InventoryContainer" class="options-container" style="flex-grow: 1; align-self: stretch; align-items: center;">
                     <ui:Label tabindex="-1" text="Backpack" parse-escape-sequences="true" display-tooltip-when-elided="true" class="options-standard-label" style="-unity-text-align: upper-center; font-size: 24px; margin-top: 20px;" />
-                    <ui:Instance template="InventoryUi" name="PlayerInventoryUi" style="width: 650px;" />
+                    <ui:Instance template="PlayerInventoryUi" name="PlayerInventory" style="flex-grow: 1;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
