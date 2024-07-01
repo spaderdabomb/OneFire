@@ -14,6 +14,11 @@ public class UiManager : MonoBehaviour
     [Header("Visual Element Assets")]
     public UIDocument optionsUIDocument;
     public UIDocument gameSceneUIDocument;
+    public VisualTreeAsset popupMenuInventory;
+    public VisualTreeAsset popupMenuInventoryStatsContainer;
+    public VisualTreeAsset ghostIcon;
+
+    public InteractPopup interactPopup;
 
     private bool onFirstGuiUpdate = false;
 

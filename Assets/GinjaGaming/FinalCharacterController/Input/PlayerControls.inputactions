@@ -241,7 +241,7 @@
             "id": "e757dc11-d0c6-4741-abac-4eed7052bd1f",
             "actions": [
                 {
-                    "name": "Gathering",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "d9ba9315-bc1d-4791-ad3e-9601169f85de",
                     "expectedControlType": "Button",
@@ -267,7 +267,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Gathering",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -285,5 +285,22 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keyboard&Mouse",
+            "bindingGroup": "Keyboard&Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": []
+        }
+    ]
 }

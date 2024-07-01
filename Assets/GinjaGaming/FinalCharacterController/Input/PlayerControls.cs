@@ -265,7 +265,7 @@ namespace GinjaGaming.FinalCharacterController
             ""id"": ""e757dc11-d0c6-4741-abac-4eed7052bd1f"",
             ""actions"": [
                 {
-                    ""name"": ""Gathering"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""d9ba9315-bc1d-4791-ad3e-9601169f85de"",
                     ""expectedControlType"": ""Button"",
@@ -291,7 +291,7 @@ namespace GinjaGaming.FinalCharacterController
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Gathering"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -309,7 +309,24 @@ namespace GinjaGaming.FinalCharacterController
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Keyboard&Mouse"",
+            ""bindingGroup"": ""Keyboard&Mouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": []
+        }
+    ]
 }");
             // PlayerLocomotionMap
             m_PlayerLocomotionMap = asset.FindActionMap("PlayerLocomotionMap", throwIfNotFound: true);
@@ -323,7 +340,7 @@ namespace GinjaGaming.FinalCharacterController
             m_ThirdPersonMap_ScrollCamera = m_ThirdPersonMap.FindAction("ScrollCamera", throwIfNotFound: true);
             // PlayerActionsMap
             m_PlayerActionsMap = asset.FindActionMap("PlayerActionsMap", throwIfNotFound: true);
-            m_PlayerActionsMap_Gathering = m_PlayerActionsMap.FindAction("Gathering", throwIfNotFound: true);
+            m_PlayerActionsMap_Interact = m_PlayerActionsMap.FindAction("Interact", throwIfNotFound: true);
             m_PlayerActionsMap_Attacking = m_PlayerActionsMap.FindAction("Attacking", throwIfNotFound: true);
         }
 
@@ -510,13 +527,13 @@ namespace GinjaGaming.FinalCharacterController
         // PlayerActionsMap
         private readonly InputActionMap m_PlayerActionsMap;
         private List<IPlayerActionsMapActions> m_PlayerActionsMapActionsCallbackInterfaces = new List<IPlayerActionsMapActions>();
-        private readonly InputAction m_PlayerActionsMap_Gathering;
+        private readonly InputAction m_PlayerActionsMap_Interact;
         private readonly InputAction m_PlayerActionsMap_Attacking;
         public struct PlayerActionsMapActions
         {
             private @PlayerControls m_Wrapper;
             public PlayerActionsMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Gathering => m_Wrapper.m_PlayerActionsMap_Gathering;
+            public InputAction @Interact => m_Wrapper.m_PlayerActionsMap_Interact;
             public InputAction @Attacking => m_Wrapper.m_PlayerActionsMap_Attacking;
             public InputActionMap Get() { return m_Wrapper.m_PlayerActionsMap; }
             public void Enable() { Get().Enable(); }
@@ -527,9 +544,9 @@ namespace GinjaGaming.FinalCharacterController
             {
                 if (instance == null || m_Wrapper.m_PlayerActionsMapActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_PlayerActionsMapActionsCallbackInterfaces.Add(instance);
-                @Gathering.started += instance.OnGathering;
-                @Gathering.performed += instance.OnGathering;
-                @Gathering.canceled += instance.OnGathering;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
                 @Attacking.started += instance.OnAttacking;
                 @Attacking.performed += instance.OnAttacking;
                 @Attacking.canceled += instance.OnAttacking;
@@ -537,9 +554,9 @@ namespace GinjaGaming.FinalCharacterController
 
             private void UnregisterCallbacks(IPlayerActionsMapActions instance)
             {
-                @Gathering.started -= instance.OnGathering;
-                @Gathering.performed -= instance.OnGathering;
-                @Gathering.canceled -= instance.OnGathering;
+                @Interact.started -= instance.OnInteract;
+                @Interact.performed -= instance.OnInteract;
+                @Interact.canceled -= instance.OnInteract;
                 @Attacking.started -= instance.OnAttacking;
                 @Attacking.performed -= instance.OnAttacking;
                 @Attacking.canceled -= instance.OnAttacking;
@@ -560,6 +577,24 @@ namespace GinjaGaming.FinalCharacterController
             }
         }
         public PlayerActionsMapActions @PlayerActionsMap => new PlayerActionsMapActions(this);
+        private int m_KeyboardMouseSchemeIndex = -1;
+        public InputControlScheme KeyboardMouseScheme
+        {
+            get
+            {
+                if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard&Mouse");
+                return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+            }
+        }
+        private int m_GamepadSchemeIndex = -1;
+        public InputControlScheme GamepadScheme
+        {
+            get
+            {
+                if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+                return asset.controlSchemes[m_GamepadSchemeIndex];
+            }
+        }
         public interface IPlayerLocomotionMapActions
         {
             void OnMovement(InputAction.CallbackContext context);
@@ -574,7 +609,7 @@ namespace GinjaGaming.FinalCharacterController
         }
         public interface IPlayerActionsMapActions
         {
-            void OnGathering(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
             void OnAttacking(InputAction.CallbackContext context);
         }
     }

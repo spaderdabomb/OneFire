@@ -8,7 +8,6 @@ public class PrefabManager : MonoBehaviour
     public static PrefabManager Instance;
 
     public GameObject player;
-    public GameObject itemContainer;
 
     private void Awake()
     {

@@ -15,7 +15,7 @@
                         </ui:VisualElement>
                         <ui:VisualElement name="PlayerEquipment" style="flex-grow: 1; margin-left: 5px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; align-items: flex-end;">
                             <ui:Label tabindex="-1" text="| Equipment" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EquipmentLabel" class="options-standard-label" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); position: relative; top: auto; left: auto; font-size: 12px;" />
-                            <ui:VisualElement name="PlayerEquipmentVlayout" style="flex-grow: 1; margin-left: 5px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; align-items: flex-end;">
+                            <ui:VisualElement name="PlayerEquipmentInventory" style="flex-grow: 1; margin-left: 5px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; align-items: flex-end;">
                                 <ui:Instance template="EquipmentInventorySlotUi" name="HeadSlot" />
                                 <ui:Instance template="EquipmentInventorySlotUi" name="BodySlot" />
                                 <ui:Instance template="EquipmentInventorySlotUi" name="LegsSlot" />

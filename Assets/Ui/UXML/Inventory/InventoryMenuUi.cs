@@ -18,5 +18,10 @@ namespace OneFireUi
         {
             return playerInventory;
         }
+
+        public VisualElement GetEquipmentInventoryRoot()
+        {
+            return playerEquipmentInventory;
+        }
     }
 }

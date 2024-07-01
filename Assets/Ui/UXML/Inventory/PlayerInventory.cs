@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace OneFireUI
 {
-    public partial class PlayerInventory : BaseInventoryUi
+    public partial class PlayerInventory : BaseInventory
     {
         public BaseItemData[] inventoryItemData;
         public PlayerInventory(VisualElement root, int inventoryRows, int inventoryCols) : base(root, inventoryRows, inventoryCols)
@@ -17,7 +17,7 @@ namespace OneFireUI
         //private void InitInventorySlots()
         //{
         //    // Init slots
-        //    inventorySlots = new List<BaseInventorySlotUi>();
+        //    inventorySlots = new List<BaseInventorySlot>();
         //    Debug.Log(inventoryRows);
         //    Debug.Log(inventoryCols);
 
@@ -26,7 +26,7 @@ namespace OneFireUI
         //        for (int j = 0; j < inventoryCols; j++)
         //        {
         //            VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
-        //            BaseInventorySlotUi inventorySlot = new BaseInventorySlotUi(inventoryAsset, j + i * inventoryCols, this);
+        //            BaseInventorySlot inventorySlot = new BaseInventorySlot(inventoryAsset, j + i * inventoryCols, this);
         //            inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
         //            inventorySlots.Add(inventorySlot);
         //            Debug.Log($"Adding to bas{inventorySlot}");
@@ -100,7 +100,7 @@ namespace OneFireUI
 
         }
 
-        public override bool CanMoveItem(BaseInventorySlotUi dragEndSlot, BaseInventorySlotUi dragBeginSlot)
+        public override bool CanMoveItem(BaseInventorySlot dragEndSlot, BaseInventorySlot dragBeginSlot)
         {
             // If base method can't move item, return false
             if (!base.CanMoveItem(dragEndSlot, dragBeginSlot))
@@ -133,10 +133,10 @@ namespace OneFireUI
             //return canMoveItem;
         }
 
-        public BaseInventorySlotUi GetCurrentSlotMouseOver(PointerMoveEvent evt)
+        public BaseInventorySlot GetCurrentSlotMouseOver(PointerMoveEvent evt)
         {
-            BaseInventorySlotUi currentSlot = null;
-            foreach (BaseInventorySlotUi slot in inventorySlots)
+            BaseInventorySlot currentSlot = null;
+            foreach (BaseInventorySlot slot in inventorySlots)
             {
                 if (slot.root.worldBound.Contains(evt.position))
                 {

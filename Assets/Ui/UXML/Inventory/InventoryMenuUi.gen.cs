@@ -20,7 +20,7 @@ namespace OneFireUi
         private VisualElement playerIcon;
         private VisualElement playerEquipment;
         private Label equipmentLabel;
-        private VisualElement playerEquipmentVlayout;
+        private VisualElement playerEquipmentInventory;
         private TemplateContainer headSlot;
         private TemplateContainer bodySlot;
         private TemplateContainer legsSlot;
@@ -48,7 +48,7 @@ namespace OneFireUi
             playerIcon = root.Q<VisualElement>("PlayerIcon");
             playerEquipment = root.Q<VisualElement>("PlayerEquipment");
             equipmentLabel = root.Q<Label>("EquipmentLabel");
-            playerEquipmentVlayout = root.Q<VisualElement>("PlayerEquipmentVlayout");
+            playerEquipmentInventory = root.Q<VisualElement>("PlayerEquipmentInventory");
             headSlot = root.Q<TemplateContainer>("HeadSlot");
             bodySlot = root.Q<TemplateContainer>("BodySlot");
             legsSlot = root.Q<TemplateContainer>("LegsSlot");

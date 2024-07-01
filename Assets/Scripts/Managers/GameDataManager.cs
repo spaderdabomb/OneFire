@@ -8,6 +8,7 @@ public class GameDataManager : MonoBehaviour
 
     [Header("Colors")]
     public Color standardUiTintColor;
+    public Color standardInteractTextColor;
 
     private void Awake()
     {

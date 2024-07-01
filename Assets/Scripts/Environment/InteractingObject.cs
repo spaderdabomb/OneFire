@@ -1,14 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using GinjaGaming.FinalCharacterController;
+using JSAM;
 
 public abstract class InteractingObject : MonoBehaviour
 {
-    private PlayerInteract playerInteract;
+    protected PlayerInteract playerInteract;
     protected abstract string DisplayString { get; set; }
+
     protected virtual void Start()
     {
-        playerInteract = PrefabManager.Instance.player.GetComponent<PlayerInteract>();
+        playerInteract = GameObjectManager.Instance.playerInteract;
     }
 
     public string GetDisplayString()

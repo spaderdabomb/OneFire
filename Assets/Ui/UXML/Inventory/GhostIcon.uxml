@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
+    <ui:VisualElement name="GhostIconRoot" style="flex-grow: 0; width: 50px; height: 50px; position: absolute;">
+        <ui:VisualElement name="GhostIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=4584671053970592468&amp;guid=fab0d96aa6140ed45a5be0cbdf45131a&amp;type=3#console.warnicon&quot;);" />
+        <ui:Label tabindex="-1" text="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GhostIconLabel" class="options-standard-label" style="position: absolute; top: 24px; left: 29px;" />
+    </ui:VisualElement>
+</ui:UXML>

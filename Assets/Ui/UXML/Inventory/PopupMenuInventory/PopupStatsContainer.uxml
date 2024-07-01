@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" gen-cs-file="036dd14cc35c9744b82c204c084c5a0a" editor-extension-mode="False">
+    <ui:VisualElement name="PopupStatsContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement name="statsContainerBg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: space-between; align-items: center; padding-top: 5px; padding-bottom: 5px; background-image: url(&apos;project://database/Assets/Art/UI/UIMenus/PopupMenu/PopupStatsBg.psd?fileID=2800000&amp;guid=34fb216be0d6f25488a5b1696cd34326&amp;type=3#PopupStatsBg&apos;);">
+            <ui:Label tabindex="-1" text="Req. Fishing Lv." display-tooltip-when-elided="true" name="statDisplayNameLabel" class="menu-label-standard" style="font-size: 14px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0; flex-wrap: nowrap; white-space: normal; -unity-text-align: middle-left;" />
+            <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="statValueLabel" class="menu-label-standard" style="font-size: 14px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 15px; margin-top: 0; margin-bottom: 0; flex-wrap: nowrap; white-space: normal; -unity-text-align: middle-right;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

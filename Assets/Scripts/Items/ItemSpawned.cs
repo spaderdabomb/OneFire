@@ -4,14 +4,18 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.Events;
+using Sirenix.OdinInspector;
+using System;
+using JSAM;
 
 public class ItemSpawned : InteractingObject
 {
     public ItemData itemDataAsset;
-    public ItemData itemData;
+    [ReadOnly] public ItemData itemData;
 
     private bool itemDataInitialized = false;
 
+    public Action<string> StackCountChanged;
     private string displayString = string.Empty;
     protected override string DisplayString
     {
@@ -20,18 +24,6 @@ public class ItemSpawned : InteractingObject
         {
             displayString = value;
             StackCountChanged?.Invoke(displayString);
-        }
-    }
-
-    public UnityAction<string> StackCountChanged;
-
-
-    private void OnValidate()
-    {
-        if (gameObject.layer != LayerMask.NameToLayer("Item"))
-        {
-            gameObject.layer = LayerMask.NameToLayer("Item");
-            print($"Item {itemData.displayName} does not have a default layer assigned, assigning to 'item'");
         }
     }
 
@@ -57,5 +49,30 @@ public class ItemSpawned : InteractingObject
     {
         itemData.stackCount = newStackCount;
         DisplayString = itemData.displayName + " x" + itemData.stackCount.ToString();
+    }
+
+    public void PickUpItem()
+    {
+        int itemsRemaining = InventoryManager.Instance.PlayerInventory.TryAddItem(itemData);
+
+        if (itemsRemaining < itemData.stackCount)
+        {
+            AudioManager.PlaySound(MainLibrarySounds.ItemPickup);
+        }
+
+        if (itemsRemaining == 0)
+        {
+            playerInteract.RemoveInteractingObject(gameObject);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnValidate()
+    {
+        if (gameObject.layer != LayerMask.NameToLayer("Item"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("Item");
+            print($"Item {itemData.displayName} does not have a default layer assigned, assigning to 'item'");
+        }
     }
 }

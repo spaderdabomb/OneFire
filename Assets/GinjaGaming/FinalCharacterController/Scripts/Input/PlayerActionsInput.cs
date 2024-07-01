@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,11 @@ namespace GinjaGaming.FinalCharacterController
         #region Class Variables
         private PlayerLocomotionInput _playerLocomotionInput;
         private PlayerState _playerState;
-        public bool GatherPressed { get; private set; }
+        public bool InteractPressed { get; private set; }
         public bool AttackPressed { get; private set; }
+
+        public event Action onInteract;
+        public void Interact() => onInteract?.Invoke();
         #endregion
 
         #region Startup
@@ -54,13 +58,13 @@ namespace GinjaGaming.FinalCharacterController
                 _playerState.CurrentPlayerMovementState == PlayerMovementState.Jumping ||
                 _playerState.CurrentPlayerMovementState == PlayerMovementState.Falling)
             {
-                GatherPressed = false;
+                InteractPressed = false;
             }
         }
 
-        public void SetGatherPressedFalse()
+        public void SetInteractPressedFalse()
         {
-            GatherPressed = false;
+            InteractPressed = false;
         }
 
         public void SetAttackPressedFalse() 
@@ -70,12 +74,13 @@ namespace GinjaGaming.FinalCharacterController
         #endregion
 
         #region Input Callbacks
-        public void OnGathering(InputAction.CallbackContext context)
+        public void OnInteract(InputAction.CallbackContext context)
         {
             if (!context.performed)
                 return;
 
-            GatherPressed = true;
+            InteractPressed = true;
+            Interact();
         }
 
         public void OnAttacking(InputAction.CallbackContext context)

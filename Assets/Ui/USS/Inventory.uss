@@ -7,7 +7,7 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.02);
+    background-color: rgba(255, 255, 255, 0.39);
     border-top-width: 2px;
     border-right-width: 2px;
     border-bottom-width: 2px;
@@ -59,4 +59,12 @@
     border-bottom-left-radius: 5px;
     align-items: center;
     justify-content: flex-start;
+}
+
+.inventory-slot:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.inventory-slot {
+    background-color: rgba(255, 255, 255, 0.01);
 }
