@@ -10,7 +10,7 @@ namespace OneFireUI
     partial class PlayerInventory
     {
         private VisualElement inventoryUiRoot;
-        private TemplateContainer baseInventoryUi;
+        private VisualElement inventoryContainer;
         private VisualElement inventoryActionsContainer;
         private VisualElement leftButtonGroup;
         private Button sortButton;
@@ -27,7 +27,7 @@ namespace OneFireUI
         protected void AssignQueryResults(VisualElement root)
         {
             inventoryUiRoot = root.Q<VisualElement>("InventoryUiRoot");
-            baseInventoryUi = root.Q<TemplateContainer>("BaseInventoryUi");
+            inventoryContainer = root.Q<VisualElement>("InventoryContainer");
             inventoryActionsContainer = root.Q<VisualElement>("InventoryActionsContainer");
             leftButtonGroup = root.Q<VisualElement>("LeftButtonGroup");
             sortButton = root.Q<Button>("SortButton");

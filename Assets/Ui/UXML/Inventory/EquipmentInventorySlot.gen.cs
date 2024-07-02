@@ -10,12 +10,16 @@ namespace OneFireUi
     partial class EquipmentInventorySlot
     {
         private VisualElement equipmentInventorySlotUi;
-        private TemplateContainer baseInventorySlotUi;
+        private VisualElement baseInventorySlotRoot;
+        private VisualElement slotIcon;
+        private Label slotLabel;
     
         protected void AssignQueryResults(VisualElement root)
         {
             equipmentInventorySlotUi = root.Q<VisualElement>("EquipmentInventorySlotUi");
-            baseInventorySlotUi = root.Q<TemplateContainer>("BaseInventorySlotUi");
+            baseInventorySlotRoot = root.Q<VisualElement>("BaseInventorySlotRoot");
+            slotIcon = root.Q<VisualElement>("SlotIcon");
+            slotLabel = root.Q<Label>("SlotLabel");
         }
     }
 }
