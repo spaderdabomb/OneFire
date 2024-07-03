@@ -18,16 +18,13 @@ namespace OneFireUI
         private void InitInventorySlots()
         {
             // Init slots
-            inventorySlots = new List<BaseInventorySlot>();
-            Debug.Log(inventoryRows);
-            Debug.Log(inventoryCols);
-
+            inventorySlots = new List<InventorySlot>();
             for (int i = 0; i < inventoryRows; i++)
             {
                 for (int j = 0; j < inventoryCols; j++)
                 {
                     VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
-                    BaseInventorySlot inventorySlot = new BaseInventorySlot(inventoryAsset, j + i * inventoryCols, this);
+                    InventorySlot inventorySlot = new InventorySlot(inventoryAsset, j + i * inventoryCols, this);
                     inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
                     inventorySlots.Add(inventorySlot);
                     inventoryContainer.Add(inventoryAsset);
@@ -100,7 +97,7 @@ namespace OneFireUI
 
         }
 
-        public override bool CanMoveItem(BaseInventorySlot dragEndSlot, BaseInventorySlot dragBeginSlot)
+        public override bool CanMoveItem(InventorySlot dragEndSlot, InventorySlot dragBeginSlot)
         {
             // If base method can't move item, return false
             if (!base.CanMoveItem(dragEndSlot, dragBeginSlot))
@@ -108,35 +105,29 @@ namespace OneFireUI
                 return false;
             }
 
-            return true;
+            // If beginning slot is not a gear slot or we're dragging to an empty slot, return true
+            if (dragBeginSlot is not EquipmentSlot || dragEndSlot.currentItemData == null)
+                return true;
 
-            //// If beginning slot is not a gear slot or we're dragging to an empty slot, return true
-            //if (dragBeginSlot is not GearSlot || dragEndSlot.currentItemData == null)
-            //    return true;
+            // Gear slot checks
+            EquipmentSlot dragBeginGearSlot = (EquipmentSlot)dragBeginSlot;
 
+            // Swapping from gear container to inventory container
+            bool canMoveItem = true;
+            bool isSwappingNonIdenticalItem = (dragBeginGearSlot.currentItemData != null && dragBeginGearSlot.currentItemData.itemID != dragEndSlot.currentItemData.itemID);
+            if (isSwappingNonIdenticalItem)
+            {
+                bool validItemType = dragBeginGearSlot.itemType == dragEndSlot.currentItemData.itemType;
+                canMoveItem = validItemType;
+            }
 
-            //// Gear slot checks
-            //GearSlot dragBeginGearSlot = (GearSlot)dragBeginSlot;
-
-            //// Swapping from gear container to inventory container
-            //bool canMoveItem = true;
-            //bool isSwappingNonIdenticalItem = (dragBeginGearSlot.currentItemData != null && dragBeginGearSlot.currentItemData.itemID != dragEndSlot.currentItemData.itemID);
-            //if (isSwappingNonIdenticalItem)
-            //{
-            //    bool validItemType = dragBeginGearSlot.itemType == dragEndSlot.currentItemData.itemType;
-            //    bool validHandsType = InventoryManager.Instance.IsValidHandsSlotItem(dragEndSlot.currentItemData);
-            //    bool isHandsContainer = dragBeginGearSlot.gearContainer.gearContainerType == GearContainerType.Hands;
-
-            //    canMoveItem = validItemType || (validHandsType && isHandsContainer);
-            //}
-
-            //return canMoveItem;
+            return canMoveItem;
         }
 
-        public BaseInventorySlot GetCurrentSlotMouseOver(PointerMoveEvent evt)
+        public InventorySlot GetCurrentSlotMouseOver(PointerMoveEvent evt)
         {
-            BaseInventorySlot currentSlot = null;
-            foreach (BaseInventorySlot slot in inventorySlots)
+            InventorySlot currentSlot = null;
+            foreach (InventorySlot slot in inventorySlots)
             {
                 if (slot.root.worldBound.Contains(evt.position))
                 {

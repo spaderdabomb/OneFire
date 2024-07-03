@@ -4,7 +4,7 @@ using JSAM;
 
 namespace OneFireUi
 {
-    public partial class BaseInventorySlot : IUiToolkitElement
+    public partial class InventorySlot : IUiToolkitElement
     {
         public VisualElement root;
         public ItemData currentItemData;
@@ -16,7 +16,12 @@ namespace OneFireUi
         private Color iconTintColorDefault;
         private Color slotContainerColorDefault;
 
-        public BaseInventorySlot(VisualElement root, int slotIndex, BaseInventory parentContainer)
+        protected VisualElement SlotBackingIcon
+        {
+            get { return slotBackingIcon; }
+        }
+
+        public InventorySlot(VisualElement root, int slotIndex, BaseInventory parentContainer)
         {
             this.root = root;
             this.slotIndex = slotIndex;
@@ -41,7 +46,7 @@ namespace OneFireUi
         {
             labelColorDefault = slotLabel.resolvedStyle.color;
             iconTintColorDefault = slotIcon.resolvedStyle.unityBackgroundImageTintColor;
-            slotContainerColorDefault = baseInventorySlotRoot.resolvedStyle.unityBackgroundImageTintColor;
+            slotContainerColorDefault = inventorySlotRoot.resolvedStyle.unityBackgroundImageTintColor;
             root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
         }
 
@@ -99,27 +104,24 @@ namespace OneFireUi
         {
             slotIcon.style.unityBackgroundImageTintColor = GameDataManager.Instance.standardUiTintColor;
             slotLabel.style.color = GameDataManager.Instance.standardUiTintColor;
-            baseInventorySlotRoot.style.unityBackgroundImageTintColor = GameDataManager.Instance.standardUiTintColor;
-
-            Debug.Log("setting tint");
-
+            inventorySlotRoot.style.unityBackgroundImageTintColor = GameDataManager.Instance.standardUiTintColor;
         }
 
         public void ResetTint()
         {
             slotIcon.style.unityBackgroundImageTintColor = iconTintColorDefault;
             slotLabel.style.color = labelColorDefault;
-            baseInventorySlotRoot.style.unityBackgroundImageTintColor = slotContainerColorDefault;
+            inventorySlotRoot.style.unityBackgroundImageTintColor = slotContainerColorDefault;
         }
 
         public void SetHighlight()
         {
-            baseInventorySlotRoot.AddToClassList("inventory-slot-highlighted");
+            inventorySlotRoot.AddToClassList("inventory-slot-highlighted");
         }
 
         public void ResetHighlight()
         {
-            baseInventorySlotRoot.RemoveFromClassList("inventory-slot-highlighted");
+            inventorySlotRoot.RemoveFromClassList("inventory-slot-highlighted");
         }
 
         public void PointerEnterSlot(PointerEnterEvent evt)

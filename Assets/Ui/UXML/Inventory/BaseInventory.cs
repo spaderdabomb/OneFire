@@ -5,15 +5,15 @@ using UnityEngine.UIElements;
 
 namespace OneFireUi
 {
-    public class BaseInventory : IUiToolkitElement
+    public class BaseInventory
     {
         public VisualElement root;
         public int inventoryRows;
         public int inventoryCols;
         public bool readOnly = false;
-        public List<BaseInventorySlot> inventorySlots;
-        public BaseInventorySlot currentDraggedInventorySlot { get; set; } = null;
-        public BaseInventorySlot currentHoverSlot { get; set; } = null;
+        public List<InventorySlot> inventorySlots;
+        public InventorySlot currentDraggedInventorySlot { get; set; } = null;
+        public InventorySlot currentHoverSlot { get; set; } = null;
 
         public string inventoryID;
         public BaseInventory(VisualElement root, int inventoryRows, int inventoryCols)
@@ -21,25 +21,9 @@ namespace OneFireUi
             this.root = root;
             this.inventoryRows = inventoryRows;
             this.inventoryCols = inventoryCols;
-            RegisterCallbacks();
         }
 
-        public void RegisterCallbacks()
-        {
-            root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-        }
-
-        public void UnregisterCallbacks()
-        {
-            
-        }
-
-        public void OnGeometryChanged(GeometryChangedEvent evt)
-        {
-            root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-        }
-
-        public void SetCurrentSlot(BaseInventorySlot newSlot)
+        public void SetCurrentSlot(InventorySlot newSlot)
         {
             currentHoverSlot = newSlot;
         }
@@ -55,7 +39,7 @@ namespace OneFireUi
             int itemsRemaining = 0;
             while (itemsRemainingBool)
             {
-                BaseInventorySlot inventorySlot = inventorySlots[slotIndex];
+                InventorySlot inventorySlot = inventorySlots[slotIndex];
                 itemsRemaining = AddItem(itemData, inventorySlot);
                 itemsRemainingBool = (itemsRemaining > 0) ? true : false;
 
@@ -69,19 +53,19 @@ namespace OneFireUi
             return itemsRemaining;
         }
 
-        public int AddItem(ItemData itemData, BaseInventorySlot addSlot)
+        public int AddItem(ItemData itemData, InventorySlot addSlot)
         {
             int numItemsRemaining = addSlot.AddItemToSlot(itemData);
 
             return numItemsRemaining;
         }
 
-        public void RemoveItem(BaseInventorySlot removeSlot)
+        public void RemoveItem(InventorySlot removeSlot)
         {
             removeSlot.RemoveItemFromSlot();
         }
 
-        public virtual bool CanMoveItem(BaseInventorySlot dragEndSlot, BaseInventorySlot dragBeginSlot)
+        public virtual bool CanMoveItem(InventorySlot dragEndSlot, InventorySlot dragBeginSlot)
         {
             bool isSameSlotIndex = dragEndSlot.slotIndex == dragBeginSlot.slotIndex;
             bool isSameParentContainer = dragEndSlot.parentContainer == dragBeginSlot.parentContainer;
@@ -89,7 +73,7 @@ namespace OneFireUi
             return (isSameSlotIndex && isSameParentContainer) ? false : true;
         }
 
-        public void MoveItem(BaseInventorySlot dragEndSlot, BaseInventorySlot dragBeginSlot)
+        public void MoveItem(InventorySlot dragEndSlot, InventorySlot dragBeginSlot)
         {
             /*        if (!CanMoveItem(dragEndSlot, dragBeginSlot))
                         return;*/
@@ -124,7 +108,7 @@ namespace OneFireUi
             }
         }
 
-        public void SwapItems(BaseInventorySlot dragEndSlot, BaseInventorySlot dragBeginSlot)
+        public void SwapItems(InventorySlot dragEndSlot, InventorySlot dragBeginSlot)
         {
             if (dragBeginSlot.currentItemData != null && dragEndSlot.currentItemData != null)
             {

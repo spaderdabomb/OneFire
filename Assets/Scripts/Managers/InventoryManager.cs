@@ -15,8 +15,6 @@ public class InventoryManager : SerializedMonoBehaviour
     public static InventoryManager Instance;
 
     public VisualTreeAsset inventorySlotAsset;
-    public VisualTreeAsset equipmentSlotAsset;
-
     public VisualElement InventoryContainer { get; private set; }
 
     [SerializeField] private int playerInventoryRows;
@@ -28,8 +26,8 @@ public class InventoryManager : SerializedMonoBehaviour
 
     private Vector2 startMousePosition;
     public float timeToShowTooltip = 0.5f;
-    [HideInInspector] public BaseInventorySlot CurrentHoverSlot { get; private set; } = null;
-    [HideInInspector] public BaseInventorySlot CurrentDraggedSlot { get; private set; } = null;
+    [HideInInspector] public InventorySlot CurrentHoverSlot { get; private set; } = null;
+    [HideInInspector] public InventorySlot CurrentDraggedSlot { get; private set; } = null;
     [HideInInspector] public bool IsHoveringSlot { get; private set; } = false;
     [HideInInspector] public float TimeSinceHoveringSlot { get; private set; } = 0f;
 
@@ -39,7 +37,7 @@ public class InventoryManager : SerializedMonoBehaviour
     public EquipmentInventory EquipmentInventory { get; private set; } = null;
     public PopupMenuInventory popupMenuInventory { get; private set; } = null;
 
-    private List<EquipmentInventorySlot> equipmentSlotsHighlighted = new List<EquipmentInventorySlot>();
+    private List<EquipmentSlot> equipmentSlotsHighlighted = new List<EquipmentSlot>();
 
     private void Awake()
     {
@@ -68,7 +66,6 @@ public class InventoryManager : SerializedMonoBehaviour
         VisualElement popupMenuAsset = UiManager.Instance.popupMenuInventory.CloneTree();
         PopupMenuInventory newPopupMenuInventory = new PopupMenuInventory(popupMenuAsset);
         UiManager.Instance.optionsMenuUi.root.Add(popupMenuAsset);
-        print("Need to add popup menu to inventory");
         newPopupMenuInventory.root.style.position = Position.Absolute;
         newPopupMenuInventory.root.style.display = DisplayStyle.Flex;
 
@@ -95,26 +92,24 @@ public class InventoryManager : SerializedMonoBehaviour
 
     public void ShowInventoryTooltip()
     {
-/*        if (CurrentHoverSlot?.currentItemData == null)
+        if (CurrentHoverSlot?.currentItemData == null)
             return;
 
         Vector2 positionDiff = CurrentHoverSlot.parentContainer.root.ChangeCoordinatesTo(popupMenuInventory.root.parent, CurrentHoverSlot.root.layout.position);
         popupMenuInventory.root.style.display = DisplayStyle.Flex;
         popupMenuInventory.root.style.left = positionDiff.x + 70f;
-        popupMenuInventory.root.style.top = positionDiff.y + 170f;*/
+        popupMenuInventory.root.style.top = positionDiff.y + 170f;
 
-        // TODO: here
-
-/*        if (!popupMenuInventory.itemDataShowing)
+        if (!popupMenuInventory.itemDataShowing)
         {
             popupMenuInventory.SetItemData(CurrentHoverSlot.currentItemData);
-        }*/
+        }
     }
 
     public void HideInventoryTooltip()
     {
-/*        popupMenuInventory.root.style.display = DisplayStyle.None;
-        popupMenuInventory.RemoveItemData();*/
+        popupMenuInventory.root.style.display = DisplayStyle.None;
+        popupMenuInventory.RemoveItemData();
     }
 
     //public void InstantiateItemSpawned(ItemData itemData)
@@ -131,7 +126,7 @@ public class InventoryManager : SerializedMonoBehaviour
     //    newItemRb.angularVelocity = new Vector3(Random.Range(0f, 10f), Random.Range(0f, 10f), Random.Range(0f, 10f));
     //}
 
-    public void BeginDragHandler(PointerDownEvent evt, BaseInventorySlot draggedInventorySlot)
+    public void BeginDragHandler(PointerDownEvent evt, InventorySlot draggedInventorySlot)
     {
         // No item exists
         if (draggedInventorySlot.currentItemData == null || evt.button != 0)
@@ -151,13 +146,8 @@ public class InventoryManager : SerializedMonoBehaviour
 
     public void MoveDragHandler(PointerMoveEvent evt)
     {
-        print("Moving");
-
         if (!GhostIcon.root.HasPointerCapture(evt.pointerId))
             return;
-
-        print("Capturing");
-
 
         Vector2 displacement = new Vector2(evt.position.x, evt.position.y) - startMousePosition;
         GhostIcon.root.style.left = GhostIcon.StartDragPosition.x + displacement.x;
@@ -165,7 +155,7 @@ public class InventoryManager : SerializedMonoBehaviour
 
         CurrentHoverSlot = GetHoverSlotFromDrag(evt);
         CurrentHoverSlot?.parentContainer.SetCurrentSlot(CurrentHoverSlot);
-        UpdateCurrentGearHoverSlot(evt);
+        UpdateCurrentEquipmentHoverSlot(evt);
     }
 
     public void EndDragHandler(PointerUpEvent evt)
@@ -193,35 +183,25 @@ public class InventoryManager : SerializedMonoBehaviour
         PlayerInventory.currentDraggedInventorySlot = null;
     }
 
-    private BaseInventorySlot GetHoverSlotFromDrag(PointerMoveEvent evt)
+    private InventorySlot GetHoverSlotFromDrag(PointerMoveEvent evt)
     {
-        EquipmentInventorySlot currentGearSlot = UpdateCurrentGearHoverSlot(evt);
-        BaseInventorySlot currentInventorySlot = PlayerInventory.GetCurrentSlotMouseOver(evt);
+        EquipmentSlot currentEquipmentSlot = UpdateCurrentEquipmentHoverSlot(evt);
+        InventorySlot currentInventorySlot = PlayerInventory.GetCurrentSlotMouseOver(evt);
         PlayerInventory.currentHoverSlot = currentInventorySlot;
-        // BaseInventorySlot currentSlot = currentGearSlot != null ? currentGearSlot : currentInventorySlot;
-        BaseInventorySlot currentSlot = currentInventorySlot;
-        Debug.Log("need to get equipment slot");
+        InventorySlot currentSlot = currentEquipmentSlot != null ? currentEquipmentSlot : currentInventorySlot;
 
         return currentSlot;
     }
 
-    private EquipmentInventorySlot UpdateCurrentGearHoverSlot(PointerMoveEvent evt)
+    private EquipmentSlot UpdateCurrentEquipmentHoverSlot(PointerMoveEvent evt)
     {
-        EquipmentInventorySlot currentGearSlot = null;
-        Debug.Log("Need to change UpdateCurrentGearHoverSlot");
-/*        foreach (EquipmentInventory currentGearContainer in gearContainerDict.Values)
-        {
-            GearSlot tempGearSlot = currentGearContainer.GetCurrentSlotMouseOver(evt);
-            if (tempGearSlot != null)
-                currentGearSlot = tempGearSlot;
+        EquipmentSlot tempEquipmentSlot = EquipmentInventory.GetCurrentSlotMouseOver(evt);
+        EquipmentInventory.SetCurrentSlot(tempEquipmentSlot);
 
-            currentGearContainer.SetCurrentSlot(tempGearSlot);
-        }*/
-
-        return currentGearSlot;
+        return tempEquipmentSlot;
     }
 
-    public void UpdateCurrentHoverSlot(BaseInventorySlot newHoverSlot, bool isHovering)
+    public void UpdateCurrentHoverSlot(InventorySlot newHoverSlot, bool isHovering)
     {
         if (isHovering)
         {
@@ -236,39 +216,22 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
 
-    public bool IsValidHandsSlotItem(ItemData itemData)
-    {
-        return (itemData.itemCategories == ItemCategory.Wieldable) ||
-               (itemData.itemCategories == ItemCategory.Consumable);
-    }
-
     public void SetAllValidSlotHighlights(ItemData itemData)
     {
-        Debug.Log("need to highlight gear slots");
-/*        foreach (GearContainer gearContainer in gearContainerDict.Values)
+        foreach (EquipmentSlot equipmentSlot in EquipmentInventory.equipmentSlots)
         {
-            foreach (GearSlot gearSlot in gearContainer.gearSlots)
+            if (equipmentSlot.itemType == itemData.itemType)
             {
-                bool isHandsContainer = gearSlot.gearContainer.gearContainerType == GearContainerType.Hands;
-                if (gearSlot.itemType == itemData.itemType || (isHandsContainer && IsValidHandsSlotItem(itemData)))
-                {
-                    gearSlot.SetHighlight();
-                    gearSlotsHighlighted.Add(gearSlot);
-                }
+                equipmentSlot.SetHighlight();
+                equipmentSlotsHighlighted.Add(equipmentSlot);
             }
-        }*/
+        }
     }
 
     public void ResetAllValidSlotHighlights()
     {
-        Debug.Log("need to reset highlight gear slots");
-
-        /*        foreach (GearSlot gearSlot in gearSlotsHighlighted)
-                {
-                    gearSlot.ResetHighlight();
-                }
-
-                gearSlotsHighlighted.Clear();*/
+        equipmentSlotsHighlighted.ForEach(slot => slot.ResetHighlight());
+        equipmentSlotsHighlighted.Clear();
     }
 
     public BaseItemData[] GetAllInventorySlotData()

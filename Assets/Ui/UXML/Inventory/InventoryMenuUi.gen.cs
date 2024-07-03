@@ -21,11 +21,6 @@ namespace OneFireUi
         private VisualElement playerEquipment;
         private Label equipmentLabel;
         private VisualElement playerEquipmentInventory;
-        private TemplateContainer headSlot;
-        private TemplateContainer bodySlot;
-        private TemplateContainer legsSlot;
-        private TemplateContainer glovesSlot;
-        private TemplateContainer bootsSlot;
         private VisualElement statsLayout;
         private VisualElement statsHeader;
         private Label statsHeaderLabel;
@@ -49,11 +44,6 @@ namespace OneFireUi
             playerEquipment = root.Q<VisualElement>("PlayerEquipment");
             equipmentLabel = root.Q<Label>("EquipmentLabel");
             playerEquipmentInventory = root.Q<VisualElement>("PlayerEquipmentInventory");
-            headSlot = root.Q<TemplateContainer>("HeadSlot");
-            bodySlot = root.Q<TemplateContainer>("BodySlot");
-            legsSlot = root.Q<TemplateContainer>("LegsSlot");
-            glovesSlot = root.Q<TemplateContainer>("GlovesSlot");
-            bootsSlot = root.Q<TemplateContainer>("BootsSlot");
             statsLayout = root.Q<VisualElement>("StatsLayout");
             statsHeader = root.Q<VisualElement>("StatsHeader");
             statsHeaderLabel = root.Q<Label>("StatsHeaderLabel");

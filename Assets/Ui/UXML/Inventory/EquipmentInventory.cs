@@ -7,7 +7,7 @@ namespace OneFireUi
 {
     public partial class EquipmentInventory : BaseInventory
     {
-        public List<EquipmentInventorySlot> equipmentSlots = new();
+        public List<EquipmentSlot> equipmentSlots = new();
         public List<EquipmentSlotData> equipmentSlotData = new();
         public List<ItemType> equipmentSlotKeys = new();
         public EquipmentInventory(VisualElement root, int inventoryRows, int inventoryCols) : base(root, inventoryRows, inventoryCols)
@@ -32,23 +32,66 @@ namespace OneFireUi
 
         private void InitEquipmentSlots()
         {
-            // Init slots
-            Debug.Log("equipment");
-
-            inventorySlots = new List<BaseInventorySlot>();
+            inventorySlots = new List<InventorySlot>();
             for (int i = 0; i < inventoryRows; i++)
             {
-                Debug.Log("slot");
-
-                VisualElement gearSlotClone = InventoryManager.Instance.equipmentSlotAsset.CloneTree();
+                VisualElement slotClone = InventoryManager.Instance.inventorySlotAsset.CloneTree();
                 EquipmentSlotData tempEquipementSlotData = i >= equipmentSlotData.Count ? null : equipmentSlotData[i];
                 ItemType tempItemType = i >= equipmentSlotKeys.Count ? ItemType.None : equipmentSlotKeys[i];
-                EquipmentInventorySlot newEquipmentSlot = new EquipmentInventorySlot(gearSlotClone, i, this, tempEquipementSlotData, tempItemType);
+                EquipmentSlot newEquipmentSlot = new EquipmentSlot(slotClone, i, this, tempEquipementSlotData, tempItemType);
                 newEquipmentSlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, newEquipmentSlot));
                 equipmentSlots.Add(newEquipmentSlot);
                 inventorySlots.Add(newEquipmentSlot);
-                root.Add(gearSlotClone);
+                root.Add(slotClone);
             }
+
+/*            // Init persistent data
+            BaseItemData[] baseItemData = DataManager.Instance.LoadGearContainerData(gearContainerType);
+            for (int i = 0; i < baseItemData.Length; i++)
+            {
+                BaseItemData baseItem = baseItemData[i];
+                if (baseItem != null)
+                {
+                    ItemData itemDataAsset = ItemExtensions.GetItemData(baseItem.itemID);
+                    ItemData newItem = itemDataAsset.GetItemDataInstantiated();
+                    newItem.SetItemDataToBaseItemData(baseItem);
+                    AddItem(newItem, inventorySlots[i]);
+                }
+            }*/
+        }
+
+        public EquipmentSlot GetCurrentSlotMouseOver(PointerMoveEvent evt)
+        {
+            EquipmentSlot currentSlot = null;
+            foreach (EquipmentSlot slot in equipmentSlots)
+            {
+                if (slot.root.worldBound.Contains(evt.position))
+                {
+                    currentSlot = slot;
+                    break;
+                }
+            }
+
+            return currentSlot;
+        }
+
+        public void SetCurrentSlot(EquipmentSlot newGearSlot)
+        {
+            currentHoverSlot = newGearSlot;
+        }
+
+        public override bool CanMoveItem(InventorySlot dragEndSlot, InventorySlot dragBeginSlot)
+        {
+            if (!base.CanMoveItem(dragEndSlot, dragBeginSlot))
+            {
+                return false;
+            }
+
+            EquipmentSlot dragEndGearSlot = (EquipmentSlot)dragEndSlot;
+
+            bool validItemType = dragEndGearSlot.itemType == dragBeginSlot.currentItemData.itemType;
+
+            return validItemType;
         }
     }
 }

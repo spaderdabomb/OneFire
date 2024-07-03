@@ -7,19 +7,19 @@ using UnityEngine.UIElements;
 
 namespace OneFireUi
 {
-    partial class EquipmentInventorySlot
+    partial class InventorySlot
     {
-        private VisualElement equipmentInventorySlotUi;
-        private VisualElement baseInventorySlotRoot;
+        private VisualElement inventorySlotRoot;
         private VisualElement slotIcon;
         private Label slotLabel;
+        private VisualElement slotBackingIcon;
     
         protected void AssignQueryResults(VisualElement root)
         {
-            equipmentInventorySlotUi = root.Q<VisualElement>("EquipmentInventorySlotUi");
-            baseInventorySlotRoot = root.Q<VisualElement>("BaseInventorySlotRoot");
+            inventorySlotRoot = root.Q<VisualElement>("InventorySlotRoot");
             slotIcon = root.Q<VisualElement>("SlotIcon");
             slotLabel = root.Q<Label>("SlotLabel");
+            slotBackingIcon = root.Q<VisualElement>("SlotBackingIcon");
         }
     }
 }

@@ -1,2 +1,20 @@
-﻿<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" gen-cs-namespace="OneFireUi" gen-cs-file="1164be5ec82087648830a4d0dadc9e83">
-</engine:UXML>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-file="1164be5ec82087648830a4d0dadc9e83">
+    <ui:VisualElement name="PopupContainer" class="popup-container">
+        <ui:VisualElement name="PopupHeader" class="popup-container-header">
+            <ui:Label tabindex="-1" text="ItemName" display-tooltip-when-elided="true" name="ItemNameLabel" class="item-name-label" />
+            <ui:VisualElement name="ItemTypeIcon" class="item-type-icon" />
+        </ui:VisualElement>
+        <ui:VisualElement name="DividerHeader" class="divider" />
+        <ui:Label tabindex="-1" text="A common fishing rod used to catch standard fish in the grassy biome" display-tooltip-when-elided="true" name="ItemDescriptionLabel" class="popup-container__item-description-label" />
+        <ui:VisualElement name="DividerStats" class="divider-stats" />
+        <ui:VisualElement name="StatsListContainer" class="popup-container__stats-container" />
+        <ui:VisualElement name="DividerBottom" class="divider" />
+        <ui:VisualElement name="PopupBottomContainer" class="popup-container__bottom-container">
+            <ui:VisualElement name="ShopSellContainer" class="shop-sell-container">
+                <ui:VisualElement name="ShopSellIcon" class="shop-sell-icon" />
+                <ui:Label tabindex="-1" text="100" display-tooltip-when-elided="true" name="ShopSellLabel" class="popup-container__item-description-label" style="font-size: 15px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; flex-wrap: nowrap; white-space: normal;" />
+            </ui:VisualElement>
+            <ui:Label tabindex="-1" text="Consumable" display-tooltip-when-elided="true" name="ItemTypeLabel" class="popup-container__item-description-label" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
