@@ -12,7 +12,7 @@ public class UiManager : MonoBehaviour
     public static UiManager Instance;
 
     [Header("Visual Element Assets")]
-    public UIDocument optionsUIDocument;
+    public UIDocument uiManagerDocument;
     public UIDocument gameSceneUIDocument;
     public VisualTreeAsset popupMenuInventory;
     public VisualTreeAsset popupMenuInventoryStatsContainer;
@@ -22,10 +22,10 @@ public class UiManager : MonoBehaviour
 
     private bool onFirstGuiUpdate = false;
 
-    private VisualElement optionsRoot;
+    private VisualElement uiGameManagerRoot;
     private VisualElement gameSceneRoot;
 
-    [HideInInspector] public OptionsMenuUi optionsMenuUi;
+    [HideInInspector] public UiGameManager uiGameManager;
     [HideInInspector] public GameSceneUi gameSceneUi;
 
     private void Awake()
@@ -38,22 +38,13 @@ public class UiManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
 
-    private void OnEnable()
-    {
-        optionsRoot = optionsUIDocument.rootVisualElement;
-        optionsRoot.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-        optionsMenuUi = new OptionsMenuUi(optionsRoot);
+        uiGameManagerRoot = uiManagerDocument.rootVisualElement;
+        uiGameManager = new UiGameManager(uiGameManagerRoot);
 
         gameSceneRoot = gameSceneUIDocument.rootVisualElement;
         gameSceneRoot.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
         gameSceneUi = new GameSceneUi(gameSceneRoot);
-    }
-
-    private void OnDisable()
-    {
-
     }
 
     private void OnGeometryChanged(GeometryChangedEvent evt)
@@ -61,21 +52,21 @@ public class UiManager : MonoBehaviour
         if (!onFirstGuiUpdate)
         {
             onFirstGuiUpdate = true;
-        }
+        }   
     }
 
     public void ToggleOptionsMenu()
     {
-        if (optionsMenuUi.root.style.display == DisplayStyle.None)
+        if (optionsMenuUi.rootElement.style.display == DisplayStyle.None)
         {
-            optionsMenuUi.root.style.display = DisplayStyle.Flex;
-            gameSceneUi.root.style.display = DisplayStyle.None;
+            optionsMenuUi.rootElement.style.display = DisplayStyle.Flex;
+            gameSceneUi.rootElement.style.display = DisplayStyle.None;
             SetPlayerInMenuOptions(MenuType.Options);
         }
         else
         {
-            optionsMenuUi.root.style.display = DisplayStyle.None;
-            gameSceneUi.root.style.display = DisplayStyle.Flex;
+            optionsMenuUi.rootElement.style.display = DisplayStyle.None;
+            gameSceneUi.rootElement.style.display = DisplayStyle.Flex;
             SetPlayerInMenuOptions(MenuType.GameScene);
         }
     }

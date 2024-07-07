@@ -8,6 +8,12 @@ using UnityEngine.InputSystem;
 public class UiInputManager : MonoBehaviour, UiControls.IGameSceneMapActions
 {
     public UiControls uiControls { get; private set; }
+    public InventoryControlsInput inventoryControlsInput;
+
+    private void Awake()
+    {
+        inventoryControlsInput = GetComponent<InventoryControlsInput>();
+    }
 
     private void OnEnable()
     {

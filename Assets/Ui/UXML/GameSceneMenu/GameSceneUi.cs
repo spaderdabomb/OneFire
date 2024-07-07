@@ -6,11 +6,18 @@ namespace OneFireUi
     public partial class GameSceneUi
     {
         public VisualElement root;
+        public VisualElement rootElement;
         public GameSceneUi(VisualElement root)
         {
-            this.root = root;
-
             AssignQueryResults(root);
+
+            this.root = root;
+            rootElement = gameSceneRoot;
+        }
+
+        public VisualElement GetHotbarInventoryRoot()
+        {
+            return playerHotbarInventory;
         }
     }
 }

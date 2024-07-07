@@ -21,7 +21,7 @@ namespace OneFireUi
         {
             UiManager.Instance.optionsMenuUi.root.Add(root);
 
-            root.style.display = DisplayStyle.None;
+            root.style.visibility = Visibility.Hidden;
             root.style.position = Position.Absolute;
         }
 
@@ -50,12 +50,12 @@ namespace OneFireUi
         public void ShowGhostIcon(PointerDownEvent evt, Texture2D bgTexture, int stackCount)
         {
             root.style.position = Position.Absolute;
-            root.style.display = DisplayStyle.Flex;
+            root.style.visibility = Visibility.Visible;
             ghostIcon.style.backgroundImage = bgTexture;
             SetGhostIconLabel(stackCount.ToString());
 
-            float positionLeft = root.WorldToLocal(evt.position).x - root.resolvedStyle.width / 2;
-            float positionTop = root.WorldToLocal(evt.position).y - root.resolvedStyle.height / 2;
+            float positionLeft = root.WorldToLocal(evt.position).x - ghostIconRoot.resolvedStyle.width / 2;
+            float positionTop = root.WorldToLocal(evt.position).y - ghostIconRoot.resolvedStyle.height / 2;
             root.style.left = positionLeft;
             root.style.top = positionTop;
             StartDragPosition = new Vector2(positionLeft, positionTop);
@@ -67,7 +67,23 @@ namespace OneFireUi
         {
             root.style.left = 0f;
             root.style.top = 0f;
-            root.style.display = DisplayStyle.None;
+            root.style.visibility = Visibility.Hidden;
+        }
+
+        public void SetPickingModeIgnore()
+        {
+            root.pickingMode = PickingMode.Ignore;
+            ghostIcon.pickingMode = PickingMode.Ignore;
+            ghostIconRoot.pickingMode = PickingMode.Ignore;
+            ghostIconLabel.pickingMode = PickingMode.Ignore;
+        }
+
+        public void SetPickingModePosition()
+        {
+            root.pickingMode = PickingMode.Position;
+            ghostIcon.pickingMode = PickingMode.Position;
+            ghostIconRoot.pickingMode = PickingMode.Position;
+            ghostIconLabel.pickingMode = PickingMode.Position;
         }
     }
 }

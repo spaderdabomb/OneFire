@@ -101,6 +101,7 @@ MonoBehaviour:
   itemType: 6
   itemRarity: 1
   itemCategories: 16
-  item3DPrefab: {fileID: 0}
+  item3DPrefab: {fileID: 8646145082966382363, guid: 3dbad6ceabe53db4682c077746535130,
+    type: 3}
   itemSprite: {fileID: 21300000, guid: 9d3a7059774525c4a9ea1516773c1ea7, type: 3}
   itemHeldPrefab: {fileID: 0}

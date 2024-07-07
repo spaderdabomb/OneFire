@@ -9,11 +9,15 @@ namespace OneFireUi
 {
     partial class GameSceneUi
     {
-    
+        private VisualElement gameSceneRoot;
+        private VisualElement bottomContainer;
+        private TemplateContainer playerHotbarInventory;
     
         protected void AssignQueryResults(VisualElement root)
         {
-        
+            gameSceneRoot = root.Q<VisualElement>("GameSceneRoot");
+            bottomContainer = root.Q<VisualElement>("BottomContainer");
+            playerHotbarInventory = root.Q<TemplateContainer>("PlayerHotbarInventory");
         }
     }
 }

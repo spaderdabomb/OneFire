@@ -1,0 +1,4 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False" gen-cs-file="e95e5f0608db37c4283de785141aa104">
+    <ui:Template name="OptionsMenuUi" src="project://database/Assets/Ui/UXML/OptionsMenu/OptionsMenuUi.uxml?fileID=9197481963319205126&amp;guid=9cf5e93641d840743bdefc561fe31708&amp;type=3#OptionsMenuUi" />
+    <ui:Instance template="OptionsMenuUi" name="OptionsMenuUi" style="flex-grow: 1;" />
+</ui:UXML>

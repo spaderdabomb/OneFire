@@ -12,7 +12,13 @@ namespace OneFireUI
         public PlayerInventory(VisualElement root, int inventoryRows, int inventoryCols) : base(root, inventoryRows, inventoryCols)
         {
             AssignQueryResults(root);
+            InitMenuButtons();
             InitInventorySlots();
+        }
+
+        private void InitMenuButtons()
+        {
+
         }
 
         private void InitInventorySlots()
@@ -50,7 +56,7 @@ namespace OneFireUI
 
         public void TrySplitItem(bool splitHalf)
         {
-            if (!ItemExistsInCurrentSlot())
+            if (!ItemExistsInHoverSlot())
                 return;
 
             ItemData newItemData = currentHoverSlot.currentItemData.CloneItemData();
@@ -69,27 +75,6 @@ namespace OneFireUI
             newItemData.stackCount = newStackCount;
 
             AddItem(newItemData, inventorySlots[firstSlot]);
-        }
-
-        public void DropItem()
-        {
-            if (!ItemExistsInCurrentSlot())
-                return;
-
-            InventoryManager.Instance.DropItem(currentHoverSlot.currentItemData);
-            RemoveItem(currentHoverSlot);
-            AudioManager.PlaySound(MainLibrarySounds.ItemDrop);
-        }
-
-        public bool ItemExistsInCurrentSlot()
-        {
-            if (currentHoverSlot == null)
-                return false;
-
-            if (currentHoverSlot.currentItemData == null)
-                return false;
-
-            return true;
         }
 
         public void GetItemAtIndex()
@@ -124,19 +109,14 @@ namespace OneFireUI
             return canMoveItem;
         }
 
-        public InventorySlot GetCurrentSlotMouseOver(PointerMoveEvent evt)
+        public bool IsPointerOverDropButton(PointerUpEvent evt)
         {
-            InventorySlot currentSlot = null;
-            foreach (InventorySlot slot in inventorySlots)
-            {
-                if (slot.root.worldBound.Contains(evt.position))
-                {
-                    currentSlot = slot;
-                    break;
-                }
-            }
+            return dropButton.worldBound.Contains(evt.position);
+        }
 
-            return currentSlot;
+        public bool IsPointerOverDiscardButton(PointerUpEvent evt)
+        {
+            return discardButton.worldBound.Contains(evt.position);
         }
 
         public void SaveData()

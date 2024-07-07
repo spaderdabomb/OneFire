@@ -94,6 +94,11 @@ namespace OneFireUi
             slotFilled = false;
         }
 
+        public bool ContainsItem()
+        {
+            return currentItemData != null;
+        }
+
         private void SetSlotUI()
         {
             slotIcon.style.backgroundImage = currentItemData.itemSprite.texture;
@@ -126,6 +131,9 @@ namespace OneFireUi
 
         public void PointerEnterSlot(PointerEnterEvent evt)
         {
+            if (InventoryManager.Instance.IsDragging)
+                return;
+
             InventoryManager.Instance.UpdateCurrentHoverSlot(this, true);
             parentContainer.currentHoverSlot = this;
             AudioManager.PlaySound(MainLibrarySounds.WoodenTick);

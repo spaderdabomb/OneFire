@@ -9,14 +9,22 @@ using Random = UnityEngine.Random;
 using OneFireUI;
 using UnityEngine.EventSystems;
 using Sirenix.OdinInspector;
+using static UnityEngine.Rendering.DebugUI;
+using static UnityEditor.Rendering.FilterWindow;
+using JSAM;
 
 public class InventoryManager : SerializedMonoBehaviour
 {
     public static InventoryManager Instance;
 
+    public event Action<ItemData> OnDroppedItem;
+    public void DroppedItem(ItemData itemData) => OnDroppedItem?.Invoke(itemData);
+
     public VisualTreeAsset inventorySlotAsset;
     public VisualElement InventoryContainer { get; private set; }
 
+    [SerializeField] private int playerHotbarRows;
+    [SerializeField] private int playerHotbarColumns;
     [SerializeField] private int playerInventoryRows;
     [SerializeField] private int playerInventoryColumns;
     [SerializeField] private int equipmentInventoryRows;
@@ -26,15 +34,17 @@ public class InventoryManager : SerializedMonoBehaviour
 
     private Vector2 startMousePosition;
     public float timeToShowTooltip = 0.5f;
-    [HideInInspector] public InventorySlot CurrentHoverSlot { get; private set; } = null;
-    [HideInInspector] public InventorySlot CurrentDraggedSlot { get; private set; } = null;
-    [HideInInspector] public bool IsHoveringSlot { get; private set; } = false;
-    [HideInInspector] public float TimeSinceHoveringSlot { get; private set; } = 0f;
-
+    [field: SerializeField] public InventorySlot CurrentHoverSlot { get; private set; } = null;
+    [field: SerializeField] public InventorySlot DragEndSlot { get; private set; } = null;
+    [field: SerializeField] public InventorySlot DragStartSlot { get; private set; } = null;
+    public bool IsHoveringSlot { get; private set; } = false;
+    public bool IsDragging { get; private set; } = false;
+    public float TimeSinceHoveringSlot { get; private set; } = 0f;
 
     public GhostIcon GhostIcon { get; set; }
     public PlayerInventory PlayerInventory { get; private set; } = null;
     public EquipmentInventory EquipmentInventory { get; private set; } = null;
+    public PlayerHotbarInventory HotbarInventory { get; private set; } = null;
     public PopupMenuInventory popupMenuInventory { get; private set; } = null;
 
     private List<EquipmentSlot> equipmentSlotsHighlighted = new List<EquipmentSlot>();
@@ -48,8 +58,12 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         VisualElement playerInventoryRoot = UiManager.Instance.optionsMenuUi.inventoryMenu.GetPlayerInventoryRoot();
         VisualElement equipmentInventoryRoot = UiManager.Instance.optionsMenuUi.inventoryMenu.GetEquipmentInventoryRoot();
+        VisualElement hotbarInventoryRoot = UiManager.Instance.gameSceneUi.GetHotbarInventoryRoot();
+
         PlayerInventory = new PlayerInventory(playerInventoryRoot, playerInventoryRows, playerInventoryColumns);
         EquipmentInventory = new EquipmentInventory(equipmentInventoryRoot, equipmentInventoryRows, equipmentInventoryColumns);
+        HotbarInventory = new PlayerHotbarInventory(hotbarInventoryRoot, playerHotbarRows, playerHotbarColumns);
+
         popupMenuInventory = InitPopupMenu();
 
         VisualElement ghostIconAsset = UiManager.Instance.ghostIcon.CloneTree();
@@ -112,31 +126,20 @@ public class InventoryManager : SerializedMonoBehaviour
         popupMenuInventory.RemoveItemData();
     }
 
-    //public void InstantiateItemSpawned(ItemData itemData)
-    //{
-    //    GameObject newItemSpawned = Instantiate(itemData.item3DPrefab, PrefabManager.Instance.itemContainer.transform);
-    //    ItemSpawned newItemSpanwedInst = newItemSpawned.GetComponent<ItemSpawned>();
-    //    newItemSpanwedInst.InitItemData();
-    //    newItemSpanwedInst.SetStackCount(itemData.stackCount);
-
-
-    //    newItemSpawned.transform.position = playerCamera.transform.position + playerCamera.transform.forward * 2;
-    //    Rigidbody newItemRb = newItemSpawned.GetComponent<Rigidbody>();
-    //    newItemRb.velocity = new Vector3(Random.Range(0f, 1f), Random.Range(0.5f, 2f), Random.Range(0f, 1f));
-    //    newItemRb.angularVelocity = new Vector3(Random.Range(0f, 10f), Random.Range(0f, 10f), Random.Range(0f, 10f));
-    //}
-
     public void BeginDragHandler(PointerDownEvent evt, InventorySlot draggedInventorySlot)
     {
         // No item exists
         if (draggedInventorySlot.currentItemData == null || evt.button != 0)
             return;
 
-        CurrentDraggedSlot = draggedInventorySlot;
+        IsDragging = true;
+        DragEndSlot = draggedInventorySlot;
+        DragStartSlot = draggedInventorySlot;
+        DragStartSlot.SetTinted();
+        DragStartSlot.SetHighlight();
+
         draggedInventorySlot.parentContainer.currentDraggedInventorySlot = draggedInventorySlot;
-        CurrentDraggedSlot.SetTinted();
-        CurrentDraggedSlot.SetHighlight();
-        SetAllValidSlotHighlights(CurrentDraggedSlot.currentItemData);
+        EquipmentInventory.SetAllValidSlotHighlights(DragStartSlot.currentItemData);
 
         startMousePosition = evt.position;
         GhostIcon.ShowGhostIcon(evt, draggedInventorySlot.currentItemData.itemSprite.texture, draggedInventorySlot.currentItemData.stackCount);
@@ -152,10 +155,6 @@ public class InventoryManager : SerializedMonoBehaviour
         Vector2 displacement = new Vector2(evt.position.x, evt.position.y) - startMousePosition;
         GhostIcon.root.style.left = GhostIcon.StartDragPosition.x + displacement.x;
         GhostIcon.root.style.top = GhostIcon.StartDragPosition.y + displacement.y;
-
-        CurrentHoverSlot = GetHoverSlotFromDrag(evt);
-        CurrentHoverSlot?.parentContainer.SetCurrentSlot(CurrentHoverSlot);
-        UpdateCurrentEquipmentHoverSlot(evt);
     }
 
     public void EndDragHandler(PointerUpEvent evt)
@@ -163,42 +162,58 @@ public class InventoryManager : SerializedMonoBehaviour
         if (!GhostIcon.root.HasPointerCapture(evt.pointerId))
             return;
 
-        if (CurrentHoverSlot != null)
+        DragEndSlot = GetHoverSlotFromDrag(evt);
+        DragEndSlot?.parentContainer.SetCurrentSlot(DragEndSlot);
+
+        if (DragEndSlot != null)
         {
-            bool canMoveItem = CurrentHoverSlot.parentContainer.CanMoveItem(CurrentHoverSlot, CurrentDraggedSlot);
+            bool canMoveItem = DragEndSlot.parentContainer.CanMoveItem(DragEndSlot, DragStartSlot);
             if (canMoveItem)
             {
-                CurrentHoverSlot.parentContainer.MoveItem(CurrentHoverSlot, CurrentDraggedSlot);
+                DragEndSlot.parentContainer.MoveItem(DragEndSlot, DragStartSlot);
             }
         }
+
+        if (IsDroppingItem(evt))
+            DropItem();
 
         GhostIcon.root.ReleasePointer(evt.pointerId);
         evt.StopPropagation();
         GhostIcon.HideGhostIcon();
 
-        CurrentDraggedSlot.ResetTint();
-        CurrentDraggedSlot.ResetHighlight();
-        ResetAllValidSlotHighlights();
-        CurrentDraggedSlot = null;
+        DragStartSlot.ResetTint();
+        DragStartSlot.ResetHighlight();
+        EquipmentInventory.ResetAllValidSlotHighlights();
+        DragStartSlot = null;
+        DragEndSlot = null;
         PlayerInventory.currentDraggedInventorySlot = null;
+        IsDragging = false;
     }
 
-    private InventorySlot GetHoverSlotFromDrag(PointerMoveEvent evt)
+    VisualElement FindElementBehind(VisualElement currentElement, Vector2 position)
     {
-        EquipmentSlot currentEquipmentSlot = UpdateCurrentEquipmentHoverSlot(evt);
+        VisualElement elementBehind = null;
+        if (GhostIcon.root.panel != null)
+        {
+            GhostIcon.SetPickingModeIgnore();
+            elementBehind = UiManager.Instance.optionsMenuUi.root.panel.Pick(position);
+            GhostIcon.SetPickingModePosition();
+        }
+
+        return elementBehind;
+    }
+
+    private InventorySlot GetHoverSlotFromDrag(PointerUpEvent evt)
+    {
+        EquipmentSlot currentEquipmentSlot = (EquipmentSlot)EquipmentInventory.GetCurrentSlotMouseOver(evt);
+        EquipmentInventory.SetCurrentSlot(currentEquipmentSlot);
+
         InventorySlot currentInventorySlot = PlayerInventory.GetCurrentSlotMouseOver(evt);
-        PlayerInventory.currentHoverSlot = currentInventorySlot;
+        PlayerInventory.SetCurrentSlot(currentInventorySlot);
+
         InventorySlot currentSlot = currentEquipmentSlot != null ? currentEquipmentSlot : currentInventorySlot;
 
         return currentSlot;
-    }
-
-    private EquipmentSlot UpdateCurrentEquipmentHoverSlot(PointerMoveEvent evt)
-    {
-        EquipmentSlot tempEquipmentSlot = EquipmentInventory.GetCurrentSlotMouseOver(evt);
-        EquipmentInventory.SetCurrentSlot(tempEquipmentSlot);
-
-        return tempEquipmentSlot;
     }
 
     public void UpdateCurrentHoverSlot(InventorySlot newHoverSlot, bool isHovering)
@@ -216,22 +231,24 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
 
-    public void SetAllValidSlotHighlights(ItemData itemData)
+    private bool IsDroppingItem(PointerUpEvent evt)
     {
-        foreach (EquipmentSlot equipmentSlot in EquipmentInventory.equipmentSlots)
-        {
-            if (equipmentSlot.itemType == itemData.itemType)
-            {
-                equipmentSlot.SetHighlight();
-                equipmentSlotsHighlighted.Add(equipmentSlot);
-            }
-        }
+        var hoverElement = FindElementBehind(GhostIcon.root, evt.position);
+        bool pointerOverDropButton = PlayerInventory.IsPointerOverDropButton(evt);
+        bool hoveringDropArea = hoverElement == UiManager.Instance.optionsMenuUi.GetRootElement();
+
+        return hoveringDropArea || pointerOverDropButton; ;
     }
 
-    public void ResetAllValidSlotHighlights()
+    public void DropItem()
     {
-        equipmentSlotsHighlighted.ForEach(slot => slot.ResetHighlight());
-        equipmentSlotsHighlighted.Clear();
+        InventorySlot tempSlot = IsDragging ? DragStartSlot : CurrentHoverSlot;
+        if (!tempSlot.ContainsItem())
+            return;
+
+        DroppedItem(tempSlot.currentItemData);
+        tempSlot.parentContainer.RemoveItem(tempSlot);
+        AudioManager.PlaySound(MainLibrarySounds.ItemDrop);
     }
 
     public BaseItemData[] GetAllInventorySlotData()
@@ -250,11 +267,6 @@ public class InventoryManager : SerializedMonoBehaviour
     }
 
     public void SetAllInventorySlotData()
-    {
-
-    }
-
-    public void DropItem(ItemData itemData)
     {
 
     }

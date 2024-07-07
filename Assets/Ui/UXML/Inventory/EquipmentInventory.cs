@@ -10,6 +10,7 @@ namespace OneFireUi
         public List<EquipmentSlot> equipmentSlots = new();
         public List<EquipmentSlotData> equipmentSlotData = new();
         public List<ItemType> equipmentSlotKeys = new();
+        private List<EquipmentSlot> equipmentSlotsHighlighted = new List<EquipmentSlot>();
         public EquipmentInventory(VisualElement root, int inventoryRows, int inventoryCols) : base(root, inventoryRows, inventoryCols)
         {
             AssignQueryResults(root);
@@ -60,26 +61,6 @@ namespace OneFireUi
             }*/
         }
 
-        public EquipmentSlot GetCurrentSlotMouseOver(PointerMoveEvent evt)
-        {
-            EquipmentSlot currentSlot = null;
-            foreach (EquipmentSlot slot in equipmentSlots)
-            {
-                if (slot.root.worldBound.Contains(evt.position))
-                {
-                    currentSlot = slot;
-                    break;
-                }
-            }
-
-            return currentSlot;
-        }
-
-        public void SetCurrentSlot(EquipmentSlot newGearSlot)
-        {
-            currentHoverSlot = newGearSlot;
-        }
-
         public override bool CanMoveItem(InventorySlot dragEndSlot, InventorySlot dragBeginSlot)
         {
             if (!base.CanMoveItem(dragEndSlot, dragBeginSlot))
@@ -92,6 +73,24 @@ namespace OneFireUi
             bool validItemType = dragEndGearSlot.itemType == dragBeginSlot.currentItemData.itemType;
 
             return validItemType;
+        }
+
+        public void SetAllValidSlotHighlights(ItemData itemData)
+        {
+            foreach (EquipmentSlot equipmentSlot in equipmentSlots)
+            {
+                if (equipmentSlot.itemType == itemData.itemType)
+                {
+                    equipmentSlot.SetHighlight();
+                    equipmentSlotsHighlighted.Add(equipmentSlot);
+                }
+            }
+        }
+
+        public void ResetAllValidSlotHighlights()
+        {
+            equipmentSlotsHighlighted.ForEach(slot => slot.ResetHighlight());
+            equipmentSlotsHighlighted.Clear();
         }
     }
 }

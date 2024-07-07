@@ -1,2 +1,9 @@
-﻿<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" gen-cs-namespace="OneFireUi" gen-cs-file="2e00390f4648d9e4aad4217e605d46c1">
-</engine:UXML>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" gen-cs-namespace="OneFireUi" gen-cs-file="2e00390f4648d9e4aad4217e605d46c1" editor-extension-mode="False">
+    <ui:Template name="PlayerHotbarInventory" src="project://database/Assets/Ui/UXML/Inventory/PlayerHotbarInventory.uxml?fileID=9197481963319205126&amp;guid=1291554ade99d7c4a82a8d870b788b19&amp;type=3#PlayerHotbarInventory" />
+    <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
+    <ui:VisualElement name="GameSceneRoot" style="flex-grow: 1;">
+        <ui:VisualElement name="BottomContainer" style="flex-grow: 1; justify-content: flex-end; align-self: stretch;">
+            <ui:Instance template="PlayerHotbarInventory" name="PlayerHotbarInventory" style="margin-bottom: 10px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -34,6 +34,9 @@ namespace GinjaGaming.FinalCharacterController
         private void PickUpItem()
         {
             int objectIndex = GetBestInteractingObjectIndex();
+            if (objectIndex == -1)
+                return;
+
             GameObject currentInteractingObject = interactingObjects[objectIndex];
             if (currentInteractingObject.GetComponent<ItemSpawned>() != null)
             {

@@ -28,6 +28,11 @@ namespace OneFireUi
             currentHoverSlot = newSlot;
         }
 
+        public bool ItemExistsInHoverSlot()
+        {
+            return currentHoverSlot != null && currentHoverSlot.currentItemData != null;
+        }
+
         // Returns number of remaining items in stack
         public int TryAddItem(ItemData itemData)
         {
@@ -143,6 +148,21 @@ namespace OneFireUi
             }
 
             return slotIndex;
+        }
+
+        public virtual InventorySlot GetCurrentSlotMouseOver(PointerUpEvent evt)
+        {
+            InventorySlot currentSlot = null;
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.root.worldBound.Contains(evt.position))
+                {
+                    currentSlot = slot;
+                    break;
+                }
+            }
+
+            return currentSlot;
         }
     }
 }
