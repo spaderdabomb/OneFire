@@ -14,6 +14,7 @@ public class GameObjectManager : MonoBehaviour
 
     [Header("Containers")]
     public GameObject itemContainer;
+    public GameObject structureContainer;
 
     private void Awake()
     {
@@ -39,10 +40,10 @@ public class GameObjectManager : MonoBehaviour
 
     public void SpawnItem(ItemData itemData)
     {
-        GameObject newItemSpawned = Instantiate(itemData.item3DPrefab, itemContainer.transform);
-        ItemSpawned newItemSpanwedInst = newItemSpawned.GetComponent<ItemSpawned>();
-        newItemSpanwedInst.InitItemData();
-        newItemSpanwedInst.SetStackCount(itemData.stackCount);
+        ItemData itemDataCloned = itemData.CloneItemData();
+        GameObject newItemSpawned = Instantiate(itemDataCloned.item3DPrefab, itemContainer.transform);
+        WorldItem newItemSpanwedInst = newItemSpawned.GetComponent<WorldItem>();
+        newItemSpanwedInst.InitItemData(itemDataCloned);
 
         float speedScaleFactor = 2f;
         float angularSpeed = 7f;

@@ -35,6 +35,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d03c59a1016c6543b530ccc0ffcec73, type: 2}
   - {fileID: 11400000, guid: 92acbb87b3876cd4ab5782564970c6ca, type: 2}
   - {fileID: 11400000, guid: abfa6b9fbaffc874298809b95bc8b277, type: 2}
+  - {fileID: 11400000, guid: 49206ca9643e7994bb036b9bcdefc59b, type: 2}
   Music: []
   useCustomNames: 0
   generatedName: MainLibrary
@@ -67,6 +68,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8d03c59a1016c6543b530ccc0ffcec73, type: 2}
     - {fileID: 11400000, guid: 92acbb87b3876cd4ab5782564970c6ca, type: 2}
     - {fileID: 11400000, guid: abfa6b9fbaffc874298809b95bc8b277, type: 2}
+    - {fileID: 11400000, guid: 49206ca9643e7994bb036b9bcdefc59b, type: 2}
     foldout: 1
   musicCategoriesToList:
   - name: 

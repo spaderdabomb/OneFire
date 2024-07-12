@@ -9,7 +9,7 @@ namespace OneFireUI
     public partial class PlayerInventory : BaseInventory
     {
         public BaseItemData[] inventoryItemData;
-        public PlayerInventory(VisualElement root, int inventoryRows, int inventoryCols) : base(root, inventoryRows, inventoryCols)
+        public PlayerInventory(VisualElement root, int numInventorySlots) : base(root, numInventorySlots)
         {
             AssignQueryResults(root);
             InitMenuButtons();
@@ -25,16 +25,13 @@ namespace OneFireUI
         {
             // Init slots
             inventorySlots = new List<InventorySlot>();
-            for (int i = 0; i < inventoryRows; i++)
+            for (int i = 0; i < numInventorySlots; i++)
             {
-                for (int j = 0; j < inventoryCols; j++)
-                {
-                    VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
-                    InventorySlot inventorySlot = new InventorySlot(inventoryAsset, j + i * inventoryCols, this);
-                    inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
-                    inventorySlots.Add(inventorySlot);
-                    inventoryContainer.Add(inventoryAsset);
-                }
+                VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
+                InventorySlot inventorySlot = new InventorySlot(inventoryAsset, i, this);
+                inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
+                inventorySlots.Add(inventorySlot);
+                inventoryContainer.Add(inventoryAsset);
             }
 
             // Load item data
@@ -107,6 +104,15 @@ namespace OneFireUI
             }
 
             return canMoveItem;
+        }
+
+        public void AddSlotsToContainer(VisualElement containerRoot)
+        {
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                slot.root.parent.Remove(slot.root);
+                containerRoot.Add(slot.root);
+            }
         }
 
         public bool IsPointerOverDropButton(PointerUpEvent evt)

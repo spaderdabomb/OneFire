@@ -19,9 +19,9 @@ namespace OneFireUi
 
         public void InitLayout()
         {
-            UiManager.Instance.optionsMenuUi.root.Add(root);
+            UiManager.Instance.uiGameManager.root.Add(root);
 
-            root.style.visibility = Visibility.Hidden;
+            HideGhostIcon();
             root.style.position = Position.Absolute;
         }
 

@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" gen-cs-namespace="OneFireUi" gen-cs-file="2e00390f4648d9e4aad4217e605d46c1" editor-extension-mode="False">
+    <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
+    <ui:VisualElement name="GameSceneRoot" style="flex-grow: 1;">
+        <ui:VisualElement name="BottomContainer" style="flex-grow: 1; justify-content: flex-end; align-self: stretch;" />
+    </ui:VisualElement>
+</ui:UXML>

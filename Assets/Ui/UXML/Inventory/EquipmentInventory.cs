@@ -11,7 +11,7 @@ namespace OneFireUi
         public List<EquipmentSlotData> equipmentSlotData = new();
         public List<ItemType> equipmentSlotKeys = new();
         private List<EquipmentSlot> equipmentSlotsHighlighted = new List<EquipmentSlot>();
-        public EquipmentInventory(VisualElement root, int inventoryRows, int inventoryCols) : base(root, inventoryRows, inventoryCols)
+        public EquipmentInventory(VisualElement root, int numInventorySlots) : base(root, numInventorySlots)
         {
             AssignQueryResults(root);
             InitEquipmentInventory();
@@ -34,7 +34,7 @@ namespace OneFireUi
         private void InitEquipmentSlots()
         {
             inventorySlots = new List<InventorySlot>();
-            for (int i = 0; i < inventoryRows; i++)
+            for (int i = 0; i < numInventorySlots; i++)
             {
                 VisualElement slotClone = InventoryManager.Instance.inventorySlotAsset.CloneTree();
                 EquipmentSlotData tempEquipementSlotData = i >= equipmentSlotData.Count ? null : equipmentSlotData[i];

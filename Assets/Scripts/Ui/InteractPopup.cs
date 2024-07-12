@@ -30,11 +30,11 @@ public class InteractPopup : MonoBehaviour
         }
     }
 
-    public void ShowPopup(string objectTextStr, Color keyBindColor)
+    public void ShowPopup(string objectPretextStr, string objectTextStr, Color keyBindColor)
     {
         gameObject.SetActive(true);
         string keybindHexColor = "#" + ColorUtility.ToHtmlStringRGBA(keyBindColor);
-        keyBindLabel.text = "[" + "<color=" + keybindHexColor + ">" + currentInputKey + "</color>" + "] Pick up";
+        keyBindLabel.text = "[" + "<color=" + keybindHexColor + ">" + currentInputKey + "</color>" + "] " + objectPretextStr;
         interactObjectText.text = objectTextStr;
     }
 

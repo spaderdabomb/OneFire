@@ -15,6 +15,12 @@ namespace OneFireUi
             this.root = root;
             rootElement = optionsUiRoot;
 
+            Init();
+        }
+
+        private void Init()
+        {
+            root.style.display = DisplayStyle.None;
             InitInventoryMenu();
         }
 

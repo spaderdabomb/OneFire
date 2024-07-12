@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False" gen-cs-file="0bc180ded655a564ebd7132148e4e7e3">
+    <Style src="project://database/Assets/Ui/USS/Inventory.uss?fileID=7433441132597879392&amp;guid=2bf4f725ae44ad14a844aa9e9b979001&amp;type=3#Inventory" />
+    <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
+    <ui:VisualElement name="ChestMenuRoot" style="flex-grow: 1; flex-direction: row; align-items: center;">
+        <ui:VisualElement name="ChestContainerRoot" class="options-menu-bg options-container" style="flex-grow: 0; justify-content: space-around; align-self: center; align-items: stretch; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+            <ui:Label tabindex="-1" text="Chest" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ChestHeaderLabel" class="options-header-label" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+            <ui:VisualElement name="ChestContainer" class="inventory-container" style="flex-grow: 0; flex-direction: row; width: 480px; flex-wrap: wrap; height: auto; flex-shrink: 0; justify-content: center; align-self: center; align-items: stretch;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.59); width: 200px; height: 300px; justify-content: center; align-items: center; align-self: center;">
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="AllRightButton" class="inventory-button">
+                <ui:VisualElement name="AllRightIcon" style="flex-grow: 1;" />
+                <ui:Label tabindex="-1" text="All -&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AllRightLabel" class="options-standard-label" />
+            </ui:Button>
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="AllLeftButton" class="inventory-button">
+                <ui:VisualElement name="AllLeftIcon" style="flex-grow: 1;" />
+                <ui:Label tabindex="-1" text="&lt;- All" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AllLeftLabel" class="options-standard-label" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="PlayerContainerRoot" class="options-menu-bg options-container" style="flex-grow: 0; justify-content: space-around; align-self: center; align-items: stretch; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+            <ui:Label tabindex="-1" text="Player" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayerHeaderLabel" class="options-header-label" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+            <ui:VisualElement name="PlayerContainer" class="inventory-container" style="flex-grow: 0; flex-direction: row; width: 480px; flex-wrap: wrap; height: auto; flex-shrink: 0; justify-content: center; align-self: center; align-items: stretch;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -12,6 +12,7 @@ using Sirenix.OdinInspector;
 using static UnityEngine.Rendering.DebugUI;
 using static UnityEditor.Rendering.FilterWindow;
 using JSAM;
+using System.Linq;
 
 public class InventoryManager : SerializedMonoBehaviour
 {
@@ -23,12 +24,11 @@ public class InventoryManager : SerializedMonoBehaviour
     public VisualTreeAsset inventorySlotAsset;
     public VisualElement InventoryContainer { get; private set; }
 
-    [SerializeField] private int playerHotbarRows;
-    [SerializeField] private int playerHotbarColumns;
-    [SerializeField] private int playerInventoryRows;
-    [SerializeField] private int playerInventoryColumns;
-    [SerializeField] private int equipmentInventoryRows;
-    [SerializeField] private int equipmentInventoryColumns;
+    [SerializeField] private int playerHotbarSlots;
+    [SerializeField] private int playerInventorySlots;
+    [SerializeField] private int equipmentInventorySlots;
+
+    [SerializeField] private VisualTreeAsset chestInventoryAsset;
 
     public Dictionary<ItemType, EquipmentSlotData> equipmentSlotDataDict = new();
 
@@ -44,7 +44,8 @@ public class InventoryManager : SerializedMonoBehaviour
     public GhostIcon GhostIcon { get; set; }
     public PlayerInventory PlayerInventory { get; private set; } = null;
     public EquipmentInventory EquipmentInventory { get; private set; } = null;
-    public PlayerHotbarInventory HotbarInventory { get; private set; } = null;
+    public PlayerHotbarInventory PlayerHotbarInventory { get; private set; } = null;
+    public Dictionary<string, ChestInventory> ChestInventoryDict { get; private set; } = null;
     public PopupMenuInventory popupMenuInventory { get; private set; } = null;
 
     private List<EquipmentSlot> equipmentSlotsHighlighted = new List<EquipmentSlot>();
@@ -56,13 +57,15 @@ public class InventoryManager : SerializedMonoBehaviour
 
     private void Start()
     {
-        VisualElement playerInventoryRoot = UiManager.Instance.optionsMenuUi.inventoryMenu.GetPlayerInventoryRoot();
-        VisualElement equipmentInventoryRoot = UiManager.Instance.optionsMenuUi.inventoryMenu.GetEquipmentInventoryRoot();
-        VisualElement hotbarInventoryRoot = UiManager.Instance.gameSceneUi.GetHotbarInventoryRoot();
+        VisualElement playerInventoryRoot = UiManager.Instance.uiGameManager.OptionsMenuUi.inventoryMenu.GetPlayerInventoryRoot();
+        VisualElement equipmentInventoryRoot = UiManager.Instance.uiGameManager.OptionsMenuUi.inventoryMenu.GetEquipmentInventoryRoot();
+        VisualElement hotbarInventoryRoot = UiManager.Instance.uiGameManager.GetPlayerHotbarInventoryRoot();
 
-        PlayerInventory = new PlayerInventory(playerInventoryRoot, playerInventoryRows, playerInventoryColumns);
-        EquipmentInventory = new EquipmentInventory(equipmentInventoryRoot, equipmentInventoryRows, equipmentInventoryColumns);
-        HotbarInventory = new PlayerHotbarInventory(hotbarInventoryRoot, playerHotbarRows, playerHotbarColumns);
+        PlayerInventory = new PlayerInventory(playerInventoryRoot, playerInventorySlots);
+        EquipmentInventory = new EquipmentInventory(equipmentInventoryRoot, equipmentInventorySlots);
+        PlayerHotbarInventory = new PlayerHotbarInventory(hotbarInventoryRoot, playerHotbarSlots);
+
+        ChestInventoryDict = new();
 
         popupMenuInventory = InitPopupMenu();
 
@@ -75,11 +78,36 @@ public class InventoryManager : SerializedMonoBehaviour
         CheckHoveringTime();
     }
 
+    public void OpenChestInventory(ChestData chestData)
+    {
+        /*        foreach (KeyValuePair<string, ChestInventory> kvp in ChestInventoryDict)
+                {
+                    if (chestData.id == kvp.Key)
+                    {
+                        kvp.Value.ShowInventory();
+                        break;
+                    }
+                }*/
+
+        // bool chestExists = ChestInventoryDict
+
+        UiManager.Instance.uiGameManager.ShowInteractMenu();
+        MakeChestInventory(chestData);
+    }
+
+    private void MakeChestInventory(ChestData chestData)
+    {
+        
+        VisualElement chestElement = chestInventoryAsset.CloneTree();
+        ChestInventory chestInventory = new ChestInventory(chestElement, chestData.numSlots);
+        UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Add(chestElement);
+    }
+
     private PopupMenuInventory InitPopupMenu()
     {
         VisualElement popupMenuAsset = UiManager.Instance.popupMenuInventory.CloneTree();
         PopupMenuInventory newPopupMenuInventory = new PopupMenuInventory(popupMenuAsset);
-        UiManager.Instance.optionsMenuUi.root.Add(popupMenuAsset);
+        UiManager.Instance.uiGameManager.OptionsMenuUi.root.Add(popupMenuAsset);
         newPopupMenuInventory.root.style.position = Position.Absolute;
         newPopupMenuInventory.root.style.display = DisplayStyle.Flex;
 
@@ -163,7 +191,7 @@ public class InventoryManager : SerializedMonoBehaviour
             return;
 
         DragEndSlot = GetHoverSlotFromDrag(evt);
-        DragEndSlot?.parentContainer.SetCurrentSlot(DragEndSlot);
+        DragEndSlot?.parentContainer.SetCurrentHoverSlot(DragEndSlot);
 
         if (DragEndSlot != null)
         {
@@ -196,7 +224,7 @@ public class InventoryManager : SerializedMonoBehaviour
         if (GhostIcon.root.panel != null)
         {
             GhostIcon.SetPickingModeIgnore();
-            elementBehind = UiManager.Instance.optionsMenuUi.root.panel.Pick(position);
+            elementBehind = UiManager.Instance.uiGameManager.OptionsMenuUi.root.panel.Pick(position);
             GhostIcon.SetPickingModePosition();
         }
 
@@ -205,13 +233,19 @@ public class InventoryManager : SerializedMonoBehaviour
 
     private InventorySlot GetHoverSlotFromDrag(PointerUpEvent evt)
     {
-        EquipmentSlot currentEquipmentSlot = (EquipmentSlot)EquipmentInventory.GetCurrentSlotMouseOver(evt);
-        EquipmentInventory.SetCurrentSlot(currentEquipmentSlot);
+        EquipmentSlot equipmentSlot = (EquipmentSlot)EquipmentInventory.GetCurrentSlotMouseOver(evt);
+        EquipmentInventory.SetCurrentHoverSlot(equipmentSlot);
 
-        InventorySlot currentInventorySlot = PlayerInventory.GetCurrentSlotMouseOver(evt);
-        PlayerInventory.SetCurrentSlot(currentInventorySlot);
+        InventorySlot playerInventorySlot = PlayerInventory.GetCurrentSlotMouseOver(evt);
+        PlayerInventory.SetCurrentHoverSlot(playerInventorySlot);
 
-        InventorySlot currentSlot = currentEquipmentSlot != null ? currentEquipmentSlot : currentInventorySlot;
+        InventorySlot hotbarSlot = PlayerHotbarInventory.GetCurrentSlotMouseOver(evt);
+        PlayerHotbarInventory.SetCurrentHoverSlot(hotbarSlot);
+
+        List<InventorySlot> slotsToCheck = new List<InventorySlot>() { equipmentSlot, playerInventorySlot, hotbarSlot};
+        InventorySlot currentSlot = slotsToCheck.FirstOrDefault(item => item != null);
+
+        // InventorySlot currentSlot = equipmentSlot != null ? equipmentSlot : playerInventorySlot;
 
         return currentSlot;
     }
@@ -235,7 +269,7 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         var hoverElement = FindElementBehind(GhostIcon.root, evt.position);
         bool pointerOverDropButton = PlayerInventory.IsPointerOverDropButton(evt);
-        bool hoveringDropArea = hoverElement == UiManager.Instance.optionsMenuUi.GetRootElement();
+        bool hoveringDropArea = hoverElement == UiManager.Instance.uiGameManager.OptionsMenuUi.GetRootElement();
 
         return hoveringDropArea || pointerOverDropButton; ;
     }
@@ -264,6 +298,24 @@ public class InventoryManager : SerializedMonoBehaviour
         }
 
         return baseItemDataArray;
+    }
+
+    public int TryAddItem(ItemData itemData)
+    {
+        int itemsRemaining = PlayerHotbarInventory.TryAddItem(itemData);
+
+        // Added some items to hotbar
+        if (itemsRemaining > 0)
+        {
+            ItemData playerInventoryItemData = itemData.CloneItemData();
+            playerInventoryItemData.stackCount = itemsRemaining;
+
+            itemsRemaining = PlayerInventory.TryAddItem(playerInventoryItemData);
+        }
+
+        // No items added to hotbar
+
+        return itemsRemaining;
     }
 
     public void SetAllInventorySlotData()

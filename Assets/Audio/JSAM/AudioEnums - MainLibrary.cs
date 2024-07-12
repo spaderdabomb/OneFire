@@ -16,7 +16,8 @@
         ConfirmTick,
         DialogueNext,
         SelectSuppressed,
-        WoodenTick
+        WoodenTick,
+        InventoryFull
     }
     public enum MainLibraryMusic {
     }

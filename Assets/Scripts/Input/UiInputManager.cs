@@ -33,6 +33,13 @@ public class UiInputManager : MonoBehaviour, UiControls.IGameSceneMapActions
     {
         if (!context.performed) return;
 
-        UiManager.Instance.ToggleOptionsMenu();
+        UiManager.Instance.uiGameManager.ToggleOptionsMenu();
+    }
+
+    public void OnEscPressed(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        UiManager.Instance.uiGameManager.ExitCurrentMenu();
     }
 }

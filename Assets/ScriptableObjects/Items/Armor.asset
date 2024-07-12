@@ -95,6 +95,7 @@ MonoBehaviour:
   baseName: Armor
   displayName: Armor
   description: Some basic armor
+  interactDescription: Pick up
   stackCount: 1
   maxStackCount: 1
   baseSellValue: 1
@@ -104,4 +105,5 @@ MonoBehaviour:
   item3DPrefab: {fileID: 8646145082966382363, guid: 3dbad6ceabe53db4682c077746535130,
     type: 3}
   itemSprite: {fileID: 21300000, guid: 9d3a7059774525c4a9ea1516773c1ea7, type: 3}
-  itemHeldPrefab: {fileID: 0}
+  itemHeldPrefab: {fileID: 8646145082966382363, guid: 3dbad6ceabe53db4682c077746535130,
+    type: 3}

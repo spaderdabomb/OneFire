@@ -8,22 +8,20 @@ namespace OneFireUi
     public class BaseInventory
     {
         public VisualElement root;
-        public int inventoryRows;
-        public int inventoryCols;
+        public int numInventorySlots;
         public bool readOnly = false;
         public List<InventorySlot> inventorySlots;
         public InventorySlot currentDraggedInventorySlot { get; set; } = null;
         public InventorySlot currentHoverSlot { get; set; } = null;
 
         public string inventoryID;
-        public BaseInventory(VisualElement root, int inventoryRows, int inventoryCols)
+        public BaseInventory(VisualElement root, int numInventorySlots)
         {
             this.root = root;
-            this.inventoryRows = inventoryRows;
-            this.inventoryCols = inventoryCols;
+            this.numInventorySlots = numInventorySlots;
         }
 
-        public void SetCurrentSlot(InventorySlot newSlot)
+        public void SetCurrentHoverSlot(InventorySlot newSlot)
         {
             currentHoverSlot = newSlot;
         }

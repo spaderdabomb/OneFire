@@ -64,7 +64,8 @@ MonoBehaviour:
   baseName: Tomato
   displayName: Tomato
   description: A ripe tomato
-  stackCount: 30
+  interactDescription: Pick up
+  stackCount: 0
   maxStackCount: 50
   baseSellValue: 1
   itemType: 0
@@ -73,4 +74,5 @@ MonoBehaviour:
   item3DPrefab: {fileID: 87292891544641332, guid: 62e3b25f784587943b6dfb4219d7daa7,
     type: 3}
   itemSprite: {fileID: 21300000, guid: e3fcea9b73ea22c4a96c6b7979735c0d, type: 3}
-  itemHeldPrefab: {fileID: 0}
+  itemHeldPrefab: {fileID: 87292891544641332, guid: 62e3b25f784587943b6dfb4219d7daa7,
+    type: 3}

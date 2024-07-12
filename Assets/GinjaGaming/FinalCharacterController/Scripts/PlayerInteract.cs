@@ -38,9 +38,13 @@ namespace GinjaGaming.FinalCharacterController
                 return;
 
             GameObject currentInteractingObject = interactingObjects[objectIndex];
-            if (currentInteractingObject.GetComponent<ItemSpawned>() != null)
+            if (currentInteractingObject.GetComponent<WorldItem>() != null)
             {
-                currentInteractingObject.GetComponent<ItemSpawned>().PickUpItem();
+                currentInteractingObject.GetComponent<WorldItem>().PickUpItem();
+            }
+            else if (currentInteractingObject.GetComponent<WorldStructure>() != null)
+            {
+                currentInteractingObject.GetComponent<WorldStructure>().InteractWithStructure();
             }
         }
 
@@ -59,8 +63,9 @@ namespace GinjaGaming.FinalCharacterController
             if (interactingObjects.Count > 0)
             {
                 currentInteractObjectIndex = GetBestInteractingObjectIndex();
-                string interactingObjectStr = interactingObjects[currentInteractObjectIndex].GetComponent<InteractingObject>().GetDisplayString();
-                interactPopup.ShowPopup(interactingObjectStr, GameDataManager.Instance.standardInteractTextColor);
+                string interactingObjectPretext = interactingObjects[currentInteractObjectIndex].GetComponent<InteractingObject>().DisplayPretext;
+                string interactingObjectName = interactingObjects[currentInteractObjectIndex].GetComponent<InteractingObject>().DisplayString;
+                interactPopup.ShowPopup(interactingObjectPretext, interactingObjectName, GameDataManager.Instance.standardInteractTextColor);
             }
             else if (interactPopup.gameObject.activeSelf)
             {

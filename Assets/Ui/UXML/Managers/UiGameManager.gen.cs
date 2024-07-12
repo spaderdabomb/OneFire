@@ -8,9 +8,15 @@ using UnityEngine.UIElements;
 partial class UiGameManager
 {
     private TemplateContainer optionsMenuUi;
+    private TemplateContainer gameSceneUi;
+    private TemplateContainer playerInteractionMenu;
+    private TemplateContainer playerHotbarInventory;
     
     protected void AssignQueryResults(VisualElement root)
     {
         optionsMenuUi = root.Q<TemplateContainer>("OptionsMenuUi");
+        gameSceneUi = root.Q<TemplateContainer>("GameSceneUi");
+        playerInteractionMenu = root.Q<TemplateContainer>("PlayerInteractionMenu");
+        playerHotbarInventory = root.Q<TemplateContainer>("PlayerHotbarInventory");
     }
 }

@@ -2,7 +2,7 @@
     <ui:Template name="EquipmentUi" src="project://database/Assets/Ui/UXML/Inventory/EquipmentInventory.uxml?fileID=9197481963319205126&amp;guid=4d159286384299949b4203a017c59567&amp;type=3#EquipmentInventory" />
     <ui:Template name="PlayerInventoryUi" src="project://database/Assets/Ui/UXML/Inventory/PlayerInventory.uxml?fileID=9197481963319205126&amp;guid=7d2ed7315d44ef843b4d2d97bcb005d3&amp;type=3#PlayerInventory" />
     <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
-    <ui:VisualElement name="InventoryMenuUiRoot" style="flex-grow: 1; flex-direction: column; background-color: rgba(0, 0, 0, 0.39);">
+    <ui:VisualElement name="InventoryMenuUiRoot" class="options-menu-bg">
         <ui:Label tabindex="-1" text="Inventory" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HeaderLabel" class="options-header-label" style="background-color: rgb(60, 40, 121); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; height: 40px; -unity-text-align: middle-center; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;" />
         <ui:VisualElement name="HorizontalLayout" style="flex-grow: 1; flex-direction: row; justify-content: space-around; align-self: stretch; margin-left: 10px; margin-right: 10px;">
             <ui:VisualElement name="LeftGroup" style="flex-grow: 1; flex-direction: row; align-self: stretch; justify-content: space-between; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;">
@@ -14,8 +14,7 @@
                         </ui:VisualElement>
                         <ui:VisualElement name="PlayerEquipment" style="flex-grow: 1; margin-left: 5px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; align-items: flex-end;">
                             <ui:Label tabindex="-1" text="| Equipment" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EquipmentLabel" class="options-standard-label" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); position: relative; top: auto; left: auto; font-size: 12px;" />
-                            <ui:VisualElement name="PlayerEquipmentInventory" style="flex-grow: 1; margin-left: 5px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; align-items: flex-end;">
-                            </ui:VisualElement>
+                            <ui:VisualElement name="PlayerEquipmentInventory" style="flex-grow: 1; margin-left: 5px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; align-items: flex-end;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="StatsLayout" class="options-container" style="margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">

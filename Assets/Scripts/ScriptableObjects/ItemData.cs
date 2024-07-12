@@ -17,6 +17,7 @@ public class ItemData : SerializedScriptableObject
     public string baseName;
     public string displayName;
     public string description;
+    public string interactDescription;
 
     public int stackCount;
     public int maxStackCount = 50;
@@ -35,6 +36,15 @@ public class ItemData : SerializedScriptableObject
     [Header("Stats")]
     public List<IGenericItemStat> itemStatList;
     [HideInInspector] public ItemStats itemStats;
+
+    private void OnValidate()
+    {
+        if (!PrefabUtility.IsPartOfPrefabAsset(item3DPrefab))
+            Debug.LogError($"{this} {item3DPrefab} is a GameObject - set to prefab!");
+
+        if (!PrefabUtility.IsPartOfPrefabAsset(itemHeldPrefab))
+            Debug.LogError($"{this} {itemHeldPrefab} is a GameObject - set to prefab!");
+    }
 
     private void OnEnable()
     {

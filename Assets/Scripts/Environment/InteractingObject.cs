@@ -5,35 +5,31 @@ using UnityEngine;
 using UnityEngine.Events;
 using GinjaGaming.FinalCharacterController;
 using JSAM;
+using Sirenix.OdinInspector;
 
-public abstract class InteractingObject : MonoBehaviour
+public class InteractingObject : MonoBehaviour
 {
-    protected PlayerInteract playerInteract;
-    protected abstract string DisplayString { get; set; }
+    [HideInInspector] public PlayerInteract playerInteract;
+    public string DisplayString { get; set; } = string.Empty;
+    public string DisplayPretext { get; set; } = string.Empty;
 
-    protected virtual void Start()
+    private void Start()
     {
         playerInteract = GameObjectManager.Instance.playerInteract;
-    }
 
-    public string GetDisplayString()
-    {
-        return DisplayString;
+        if (playerInteract == null)
+            Debug.LogError($"Player interact {playerInteract} is null");
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Interact"))
-        {
             playerInteract.AddInteractingObject(gameObject);
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Interact"))
-        {
             playerInteract.RemoveInteractingObject(gameObject);
-        }
     }
 }

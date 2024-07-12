@@ -6,11 +6,13 @@ using System.Collections.Generic;
 public partial class PlayerHotbarInventory : BaseInventory
 {   
     public VisualElement TemplateRoot { get; private set; }
-    public PlayerHotbarInventory(VisualElement root, int inventoryRows, int inventoryCols) : base(root, inventoryRows, inventoryCols)
+    public PlayerHotbarInventory(VisualElement root, int numInventorySlots) : base(root, numInventorySlots)
     {
         TemplateRoot = root;
         AssignQueryResults(root);
         Init();
+
+        root.pickingMode = PickingMode.Ignore;
     }
 
     public void Init()
@@ -19,16 +21,13 @@ public partial class PlayerHotbarInventory : BaseInventory
 
         // Init slots
         inventorySlots = new List<InventorySlot>();
-        for (int i = 0; i < inventoryRows; i++)
+        for (int i = 0; i < numInventorySlots; i++)
         {
-            for (int j = 0; j < inventoryCols; j++)
-            {
-                VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
-                InventorySlot inventorySlot = new InventorySlot(inventoryAsset, j + i * inventoryCols, this);
-                inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
-                inventorySlots.Add(inventorySlot);
-                playerHotbarRoot.Add(inventoryAsset);
-            }
+            VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
+            InventorySlot inventorySlot = new InventorySlot(inventoryAsset, i, this);
+            inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
+            inventorySlots.Add(inventorySlot);
+            playerHotbarRoot.Add(inventoryAsset);
         }
     }
 }

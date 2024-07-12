@@ -39,7 +39,9 @@ namespace OneFireUi
 
         public void UnregisterCallbacks()
         {
-            throw new System.NotImplementedException();
+            root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+            root.UnregisterCallback<PointerEnterEvent>(PointerEnterSlot);
+            root.UnregisterCallback<PointerLeaveEvent>(PointerLeaveSlot);
         }
 
         public void OnGeometryChanged(GeometryChangedEvent evt)

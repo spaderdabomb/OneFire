@@ -35,6 +35,15 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EscPressed"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc1fcc5d-27c3-46ca-a830-5bffb516a489"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,6 +57,17 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
                     ""action"": ""ToggleOptions"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""659198a6-6442-4d28-8029-42897fcfb9d0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscPressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -57,6 +77,7 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
         // GameSceneMap
         m_GameSceneMap = asset.FindActionMap("GameSceneMap", throwIfNotFound: true);
         m_GameSceneMap_ToggleOptions = m_GameSceneMap.FindAction("ToggleOptions", throwIfNotFound: true);
+        m_GameSceneMap_EscPressed = m_GameSceneMap.FindAction("EscPressed", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -119,11 +140,13 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_GameSceneMap;
     private List<IGameSceneMapActions> m_GameSceneMapActionsCallbackInterfaces = new List<IGameSceneMapActions>();
     private readonly InputAction m_GameSceneMap_ToggleOptions;
+    private readonly InputAction m_GameSceneMap_EscPressed;
     public struct GameSceneMapActions
     {
         private @UiControls m_Wrapper;
         public GameSceneMapActions(@UiControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @ToggleOptions => m_Wrapper.m_GameSceneMap_ToggleOptions;
+        public InputAction @EscPressed => m_Wrapper.m_GameSceneMap_EscPressed;
         public InputActionMap Get() { return m_Wrapper.m_GameSceneMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -136,6 +159,9 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
             @ToggleOptions.started += instance.OnToggleOptions;
             @ToggleOptions.performed += instance.OnToggleOptions;
             @ToggleOptions.canceled += instance.OnToggleOptions;
+            @EscPressed.started += instance.OnEscPressed;
+            @EscPressed.performed += instance.OnEscPressed;
+            @EscPressed.canceled += instance.OnEscPressed;
         }
 
         private void UnregisterCallbacks(IGameSceneMapActions instance)
@@ -143,6 +169,9 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
             @ToggleOptions.started -= instance.OnToggleOptions;
             @ToggleOptions.performed -= instance.OnToggleOptions;
             @ToggleOptions.canceled -= instance.OnToggleOptions;
+            @EscPressed.started -= instance.OnEscPressed;
+            @EscPressed.performed -= instance.OnEscPressed;
+            @EscPressed.canceled -= instance.OnEscPressed;
         }
 
         public void RemoveCallbacks(IGameSceneMapActions instance)
@@ -163,5 +192,6 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
     public interface IGameSceneMapActions
     {
         void OnToggleOptions(InputAction.CallbackContext context);
+        void OnEscPressed(InputAction.CallbackContext context);
     }
 }
