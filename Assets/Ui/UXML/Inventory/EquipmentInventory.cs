@@ -11,7 +11,7 @@ namespace OneFireUi
         public List<EquipmentSlotData> equipmentSlotData = new();
         public List<ItemType> equipmentSlotKeys = new();
         private List<EquipmentSlot> equipmentSlotsHighlighted = new List<EquipmentSlot>();
-        public EquipmentInventory(VisualElement root, int numInventorySlots) : base(root, numInventorySlots)
+        public EquipmentInventory(VisualElement root, int numInventorySlots, string inventoryId) : base(root, numInventorySlots, inventoryId)
         {
             AssignQueryResults(root);
             InitEquipmentInventory();

@@ -41,7 +41,7 @@ public class InventoryControlsInput : MonoBehaviour, InventoryControls.IInventor
         if (!context.performed)
             return;
 
-        InventoryManager.Instance.PlayerInventory.TrySplitItem(true);
+        InventoryManager.Instance.TrySplitItem(true);
     }
 
     public void OnSplitItemOne(InputAction.CallbackContext context)

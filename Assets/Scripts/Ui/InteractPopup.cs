@@ -20,11 +20,11 @@ public class InteractPopup : MonoBehaviour
     {
         playerInput = new();
 
-        if (InputManager.Instance.playerInput.currentControlScheme == "Keyboard&Mouse")
+        if (InputManager.Instance.playerInputDummy.currentControlScheme == "Keyboard&Mouse")
         {
             currentInputKey = playerInput.PlayerActionsMap.Interact.GetBindingDisplayString();
         }
-        else if (InputManager.Instance.playerInput.currentControlScheme == "Gamepad")
+        else if (InputManager.Instance.playerInputDummy.currentControlScheme == "Gamepad")
         {
             currentInputKey = playerInput.PlayerActionsMap.Interact.GetBindingDisplayString(InputBinding.MaskByGroup("Gamepad"));
         }

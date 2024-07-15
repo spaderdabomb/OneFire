@@ -1,4 +1,5 @@
 using GinjaGaming.FinalCharacterController;
+using OneFireUI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,10 @@ using PlayerInputManager = GinjaGaming.FinalCharacterController.PlayerInputManag
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
-    public PlayerInput playerInput;
+
+    public PlayerInput playerInputDummy;
+    public UiInputManager uiInputManager;
+    public InventoryControlsInput inventoryControlsInput;
 
     public PlayerActionsInput playerActionsInput;
     public LastInputSystem lastInputSystem { get; private set; } = LastInputSystem.KeyboardMouse;
@@ -31,23 +35,31 @@ public class InputManager : MonoBehaviour
     {
         // Subscribe to Input changed event
         InputSystem.onDeviceChange += OnDeviceChange;
-        playerInput = GetComponent<PlayerInput>();
+        playerInputDummy = GetComponent<PlayerInput>();
+    }
 
+    private void Start()
+    {
+        SetGameSceneControls();
     }
 
     private void Update()
     {
-        string currentControlScheme = playerInput.currentControlScheme;
+        string currentControlScheme = playerInputDummy.currentControlScheme;
     }
 
     public void SetGameSceneControls()
     {
         PlayerInputManager.Instance.EnableControls();
+        uiInputManager.uiControls.Enable();
+        inventoryControlsInput.InventoryControls.Disable();
     }
 
     public void SetMenuControls()
     {
         PlayerInputManager.Instance.DisableControls();
+        uiInputManager.uiControls.Enable();
+        inventoryControlsInput.InventoryControls.Enable();
     }
 
     private void OnDeviceChange(InputDevice device, InputDeviceChange change)

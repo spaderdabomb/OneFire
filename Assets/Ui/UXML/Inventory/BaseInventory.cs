@@ -1,24 +1,48 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace OneFireUi
 {
-    public class BaseInventory
+    public class BaseInventory : IPersistentData
     {
         public VisualElement root;
+
         public int numInventorySlots;
         public bool readOnly = false;
+
         public List<InventorySlot> inventorySlots;
+        public BaseItemData[] inventoryItemData;
+
         public InventorySlot currentDraggedInventorySlot { get; set; } = null;
         public InventorySlot currentHoverSlot { get; set; } = null;
 
-        public string inventoryID;
-        public BaseInventory(VisualElement root, int numInventorySlots)
+        public string InventoryId { get; private set; }
+        public BaseInventory(VisualElement root, int numInventorySlots, string inventoryId)
         {
             this.root = root;
             this.numInventorySlots = numInventorySlots;
+            this.InventoryId = inventoryId;
+
+            InitInventorySlots();
+            LoadData();
+            AddToSaveable();
+        }
+
+        private void InitInventorySlots()
+        {
+            // Init slots
+            inventorySlots = new List<InventorySlot>();
+            for (int i = 0; i < numInventorySlots; i++)
+            {
+                VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
+                InventorySlot inventorySlot = new InventorySlot(inventoryAsset, i, this);
+                inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
+                inventorySlots.Add(inventorySlot);
+            }
         }
 
         public void SetCurrentHoverSlot(InventorySlot newSlot)
@@ -124,6 +148,29 @@ namespace OneFireUi
             }
         }
 
+        public void TrySplitItem(bool splitHalf)
+        {
+            if (!ItemExistsInHoverSlot())
+                return;
+
+            ItemData newItemData = currentHoverSlot.currentItemData.CloneItemData();
+            int firstSlot = GetFirstFreeSlot(newItemData, mergeSameItems: false);
+            if (firstSlot == -1 || currentHoverSlot.currentItemData.stackCount == 1)
+                return;
+
+            int newStackCount;
+            if (splitHalf)
+                newStackCount = Mathf.CeilToInt(currentHoverSlot.currentItemData.stackCount / 2f);
+            else
+                newStackCount = 1;
+
+            int oldStackCount = currentHoverSlot.currentItemData.stackCount - newStackCount;
+            currentHoverSlot.SetStackCount(oldStackCount);
+            newItemData.stackCount = newStackCount;
+
+            AddItem(newItemData, inventorySlots[firstSlot]);
+        }
+
         public int GetFirstFreeSlot(ItemData itemData, bool mergeSameItems = true)
         {
             int slotIndex = -1;
@@ -161,6 +208,50 @@ namespace OneFireUi
             }
 
             return currentSlot;
+        }
+
+        private BaseItemData[] GetInventorySlotData()
+        {
+            BaseItemData[] baseItemDataArray = new BaseItemData[inventorySlots.Count];
+            for (int i = 0; i < inventorySlots.Count; i++)
+            {
+                if (inventorySlots[i].currentItemData != null)
+                {
+                    BaseItemData baseItemData = new BaseItemData(inventorySlots[i].currentItemData);
+                    baseItemDataArray[i] = baseItemData;
+                }
+            }
+
+            return baseItemDataArray;
+        }
+
+        public void AddToSaveable()
+        {
+            PersistentDataManager.Instance.AddToPersistentDataList(this);
+        }
+
+        public void LoadData()
+        {
+            inventoryItemData = new BaseItemData[numInventorySlots];
+            inventoryItemData = ES3.Load(InventoryId, defaultValue: inventoryItemData);
+
+            for (int i = 0; i < inventoryItemData.Length; i++)
+            {
+                BaseItemData baseItem = inventoryItemData[i];
+                if (baseItem != null)
+                {
+                    ItemData itemDataAsset = ItemExtensions.GetItemData(baseItem.itemID);
+                    ItemData newItem = itemDataAsset.GetItemDataInstantiated();
+                    newItem.SetItemDataToBaseItemData(baseItem);
+                    AddItem(newItem, inventorySlots[i]);
+                }
+            }
+        }
+
+        public void SaveData()
+        {
+            inventoryItemData = GetInventorySlotData();
+            ES3.Save(InventoryId, inventoryItemData);
         }
     }
 }

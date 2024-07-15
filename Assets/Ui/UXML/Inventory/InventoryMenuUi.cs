@@ -4,7 +4,7 @@ using OneFireUI;
 
 namespace OneFireUi
 {
-    public partial class InventoryMenuUi
+    public partial class InventoryMenuUi: ITabMenu
     {
         public VisualElement root;
         public InventoryMenuUi(VisualElement root)
@@ -22,6 +22,11 @@ namespace OneFireUi
         public VisualElement GetEquipmentInventoryRoot()
         {
             return playerEquipmentInventory;
+        }
+
+        public void ShowMenu()
+        {
+            InventoryManager.Instance.PlayerInventory.ShowPlayerInventory();
         }
     }
 }

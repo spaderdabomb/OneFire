@@ -8,70 +8,16 @@ namespace OneFireUI
 {
     public partial class PlayerInventory : BaseInventory
     {
-        public BaseItemData[] inventoryItemData;
-        public PlayerInventory(VisualElement root, int numInventorySlots) : base(root, numInventorySlots)
+        public PlayerInventory(VisualElement root, int numInventorySlots, string inventoryId) : base(root, numInventorySlots, inventoryId)
         {
             AssignQueryResults(root);
             InitMenuButtons();
-            InitInventorySlots();
+            AddSlotsToContainer(inventoryContainer);
         }
 
         private void InitMenuButtons()
         {
 
-        }
-
-        private void InitInventorySlots()
-        {
-            // Init slots
-            inventorySlots = new List<InventorySlot>();
-            for (int i = 0; i < numInventorySlots; i++)
-            {
-                VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
-                InventorySlot inventorySlot = new InventorySlot(inventoryAsset, i, this);
-                inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
-                inventorySlots.Add(inventorySlot);
-                inventoryContainer.Add(inventoryAsset);
-            }
-
-            // Load item data
-            //DataManager.Instance.inventoryItemData = DataManager.Instance.Load(nameof(DataManager.Instance.inventoryItemData), DataManager.Instance.inventoryItemData);
-
-            //inventoryItemData = ES3.Load(nameof(inventoryItemData), defaultValue: inventoryItemData);
-            //for (int i = 0; i < DataManager.Instance.inventoryItemData.Length; i++)
-            //{
-            //    BaseItemData baseItem = DataManager.Instance.inventoryItemData[i];
-            //    if (baseItem != null)
-            //    {
-            //        ItemData itemDataAsset = ItemExtensions.GetItemData(baseItem.itemID);
-            //        ItemData newItem = itemDataAsset.GetItemDataInstantiated();
-            //        newItem.SetItemDataToBaseItemData(baseItem);
-            //        AddItem(newItem, inventorySlots[i]);
-            //    }
-            //}
-        }
-
-        public void TrySplitItem(bool splitHalf)
-        {
-            if (!ItemExistsInHoverSlot())
-                return;
-
-            ItemData newItemData = currentHoverSlot.currentItemData.CloneItemData();
-            int firstSlot = GetFirstFreeSlot(newItemData, mergeSameItems: false);
-            if (firstSlot == -1 || currentHoverSlot.currentItemData.stackCount == 1)
-                return;
-
-            int newStackCount;
-            if (splitHalf)
-                newStackCount = Mathf.CeilToInt(currentHoverSlot.currentItemData.stackCount / 2f);
-            else
-                newStackCount = 1;
-
-            int oldStackCount = currentHoverSlot.currentItemData.stackCount - newStackCount;
-            currentHoverSlot.SetStackCount(oldStackCount);
-            newItemData.stackCount = newStackCount;
-
-            AddItem(newItemData, inventorySlots[firstSlot]);
         }
 
         public void GetItemAtIndex()
@@ -106,11 +52,17 @@ namespace OneFireUI
             return canMoveItem;
         }
 
+        public void ShowPlayerInventory()
+        {
+            inventoryContainer.Clear();
+            AddSlotsToContainer(inventoryContainer);
+        }
+
         public void AddSlotsToContainer(VisualElement containerRoot)
         {
             foreach (InventorySlot slot in inventorySlots)
             {
-                slot.root.parent.Remove(slot.root);
+                slot.root.parent?.Remove(slot.root);
                 containerRoot.Add(slot.root);
             }
         }
@@ -123,11 +75,6 @@ namespace OneFireUI
         public bool IsPointerOverDiscardButton(PointerUpEvent evt)
         {
             return discardButton.worldBound.Contains(evt.position);
-        }
-
-        public void SaveData()
-        {
-            ES3.Save(nameof(inventoryItemData), inventoryItemData);
         }
     }
 }

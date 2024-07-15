@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False" gen-cs-file="0bc180ded655a564ebd7132148e4e7e3">
+    <ui:Template name="ExitButton" src="project://database/Assets/Ui/UXML/OptionsMenu/ExitButton.uxml?fileID=9197481963319205126&amp;guid=ac3d562c420e30545b9209d50be0708c&amp;type=3#ExitButton" />
     <Style src="project://database/Assets/Ui/USS/Inventory.uss?fileID=7433441132597879392&amp;guid=2bf4f725ae44ad14a844aa9e9b979001&amp;type=3#Inventory" />
     <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
     <ui:VisualElement name="ChestMenuRoot" style="flex-grow: 1; flex-direction: row; align-items: center;">
@@ -20,5 +21,6 @@
             <ui:Label tabindex="-1" text="Player" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayerHeaderLabel" class="options-header-label" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
             <ui:VisualElement name="PlayerContainer" class="inventory-container" style="flex-grow: 0; flex-direction: row; width: 480px; flex-wrap: wrap; height: auto; flex-shrink: 0; justify-content: center; align-self: center; align-items: stretch;" />
         </ui:VisualElement>
+        <ui:Instance template="ExitButton" name="ExitButton" style="flex-grow: 1;" />
     </ui:VisualElement>
 </ui:UXML>

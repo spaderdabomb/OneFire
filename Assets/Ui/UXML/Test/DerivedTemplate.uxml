@@ -1,7 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-file="2793ef7d1f9c8ba4ba5645d92b3af0a9">
-    <ui:Template name="BaseTemplate" src="project://database/Assets/Ui/UXML/Test/BaseTemplate.uxml?fileID=9197481963319205126&amp;guid=60b3fb37f496aed4992c7c1cd5a306c5&amp;type=3#BaseTemplate" />
-    <ui:VisualElement class="derived-element">
-        <ui:Label text="Derived Label" name="DerivedLabel" style="color: rgb(255, 255, 255); margin-top: 5px;" />
-    </ui:VisualElement>
-    <ui:Instance template="BaseTemplate" name="BaseTemplate" />
-</ui:UXML>

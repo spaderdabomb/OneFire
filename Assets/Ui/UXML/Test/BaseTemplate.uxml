@@ -1,5 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-file="2ec0857106729dd4689042bebedd6b59">
-    <ui:VisualElement class="base-element">
-        <ui:Label text="Base Label" name="BaseLabel" style="color: rgb(255, 255, 255);" />
-    </ui:VisualElement>
-</ui:UXML>

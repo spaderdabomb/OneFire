@@ -5,14 +5,14 @@
 // -----------------------
 using UnityEngine.UIElements;
 
-partial class DerivedTemplate
+partial class ExitButton
 {
-    private Label derivedLabel;
-    private TemplateContainer baseTemplate;
+    private VisualElement exitButtonContainer;
+    private Button exitButton;
     
     protected void AssignQueryResults(VisualElement root)
     {
-        derivedLabel = root.Q<Label>("DerivedLabel");
-        baseTemplate = root.Q<TemplateContainer>("BaseTemplate");
+        exitButtonContainer = root.Q<VisualElement>("ExitButtonContainer");
+        exitButton = root.Q<Button>("ExitButton");
     }
 }

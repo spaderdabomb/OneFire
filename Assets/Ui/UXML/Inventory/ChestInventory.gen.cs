@@ -21,6 +21,7 @@ partial class ChestInventory
     private VisualElement playerContainerRoot;
     private Label playerHeaderLabel;
     private VisualElement playerContainer;
+    private TemplateContainer exitButton;
     
     protected void AssignQueryResults(VisualElement root)
     {
@@ -38,5 +39,6 @@ partial class ChestInventory
         playerContainerRoot = root.Q<VisualElement>("PlayerContainerRoot");
         playerHeaderLabel = root.Q<Label>("PlayerHeaderLabel");
         playerContainer = root.Q<VisualElement>("PlayerContainer");
+        exitButton = root.Q<TemplateContainer>("ExitButton");
     }
 }

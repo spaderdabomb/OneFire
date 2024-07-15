@@ -1,0 +1,5 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" gen-cs-file="ca0848aadb8924049894cafc51071d8f">
+    <ui:VisualElement name="ExitButtonContainer" style="flex-grow: 1; align-items: flex-start; align-self: flex-start;">
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="ExitButton" class="options-exit-button" />
+    </ui:VisualElement>
+</ui:UXML>

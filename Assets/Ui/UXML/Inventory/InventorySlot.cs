@@ -24,6 +24,7 @@ namespace OneFireUi
         public InventorySlot(VisualElement root, int slotIndex, BaseInventory parentContainer)
         {
             this.root = root;
+            this.root.userData = this;
             this.slotIndex = slotIndex;
             this.parentContainer = parentContainer;
             AssignQueryResults(root);

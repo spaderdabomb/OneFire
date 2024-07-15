@@ -45,7 +45,7 @@ public partial class UiGameManager
         if (PlayerInteractionMenu.root.style.display == DisplayStyle.Flex)
             return;
 
-        OptionsMenuUi.root.style.display = DisplayStyle.Flex;
+        OptionsMenuUi.ShowOptionsMenu();
         GameSceneUi.root.style.display = DisplayStyle.None;
         SetPlayerInMenuOptions(MenuType.Options);
     }

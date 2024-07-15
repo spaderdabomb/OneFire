@@ -22,6 +22,7 @@ namespace OneFireUi
         private VisualElement objectiveMenuUi;
         private VisualElement achievementsMenuUi;
         private VisualElement settingsMenuUi;
+        private TemplateContainer exitButtonUXML;
     
         protected void AssignQueryResults(VisualElement root)
         {
@@ -38,6 +39,7 @@ namespace OneFireUi
             objectiveMenuUi = root.Q<VisualElement>("ObjectiveMenuUi");
             achievementsMenuUi = root.Q<VisualElement>("AchievementsMenuUi");
             settingsMenuUi = root.Q<VisualElement>("SettingsMenuUi");
+            exitButtonUXML = root.Q<TemplateContainer>("ExitButtonUXML");
         }
     }
 }

@@ -5,22 +5,21 @@ using System.Collections.Generic;
 
 public partial class ChestInventory : BaseInventory
 {
-    public ChestInventory(VisualElement root, int numInventorySlots) : base(root, numInventorySlots)
+    private ExitButton chestExitButton;
+    public ChestInventory(VisualElement root, int numInventorySlots, string inventoryId) : base(root, numInventorySlots, inventoryId)
     {
         AssignQueryResults(root);
         RegisterCallbacks();
         InitInventory();
         ShowInventory();
+        InitMenu();
+
+        root.pickingMode = PickingMode.Ignore;
     }
 
     private void RegisterCallbacks()
     {
         root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-    }
-
-    private void UnregisterCallbacks()
-    {
-        root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
     }
 
     private void InitInventory()
@@ -38,6 +37,11 @@ public partial class ChestInventory : BaseInventory
         }
     }
 
+    private void InitMenu()
+    {
+        chestExitButton = new ExitButton(exitButton);
+    }
+
     public void OnGeometryChanged(GeometryChangedEvent evt)
     {
         if (inventorySlots.Count > 0)
@@ -46,7 +50,7 @@ public partial class ChestInventory : BaseInventory
         if (InventoryManager.Instance.PlayerInventory.inventorySlots.Count > 0)
             playerContainer.style.width = inventorySlots[0].root.resolvedStyle.width * 8;
 
-        Debug.Log(InventoryManager.Instance.PlayerInventory.inventorySlots[0].root.resolvedStyle.width);
+        root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
     }
 
     public void ShowInventory()
