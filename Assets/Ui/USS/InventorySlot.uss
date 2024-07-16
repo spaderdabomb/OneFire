@@ -21,6 +21,10 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
 }
 
 .inventory-slot {
@@ -46,6 +50,10 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
 }
 
 .inventory-slot-label {
@@ -61,6 +69,8 @@
 .inventory-slot-icon {
     font-size: 16px;
     background-image: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=4584671053970592468&guid=fab0d96aa6140ed45a5be0cbdf45131a&type=3#console.warnicon");
+    width: 80%;
+    height: 80%;
 }
 
 .inventory-slot-highlighted {
