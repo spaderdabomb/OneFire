@@ -12,12 +12,13 @@ public class ItemStat : SerializedScriptableObject
 
 public enum StatType
 {
-    None,
-    ObjectivesRequired,
-    FishingLevelRequired,
-    FishingBonus,
-    FishingMethod,
-    Speed,
+    None = 0,
+    ObjectivesRequired = 1,
+    FishingLevelRequired = 2, 
+    FishingBonus = 3,
+    FishingMethod = 4,
+    Speed = 5,
+    Armor = 6,
 }
 
 public class ItemStats

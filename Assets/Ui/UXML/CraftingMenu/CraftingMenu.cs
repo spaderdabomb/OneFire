@@ -1,9 +1,9 @@
 using UnityEngine.UIElements;
 using UnityEngine;
 
-public partial class BaseCraftingMenu
+public partial class CraftingMenu
 {   
-    public BaseCraftingMenu(VisualElement root)
+    public CraftingMenu(VisualElement root)
     {
         AssignQueryResults(root);
     }

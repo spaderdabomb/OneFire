@@ -1,11 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False" gen-cs-file="e95e5f0608db37c4283de785141aa104">
     <ui:Template name="OptionsMenuUi" src="project://database/Assets/Ui/UXML/OptionsMenu/OptionsMenuUi.uxml?fileID=9197481963319205126&amp;guid=9cf5e93641d840743bdefc561fe31708&amp;type=3#OptionsMenuUi" />
     <ui:Template name="GameSceneUi" src="project://database/Assets/Ui/UXML/GameScene/GameSceneUi.uxml?fileID=9197481963319205126&amp;guid=18b8d8571e4cf134ca5b58e6d9ac6276&amp;type=3#GameSceneUi" />
-    <ui:Template name="PlayerHotbarInventory" src="project://database/Assets/Ui/UXML/Inventory/PlayerHotbarInventory.uxml?fileID=9197481963319205126&amp;guid=1291554ade99d7c4a82a8d870b788b19&amp;type=3#PlayerHotbarInventory" />
     <ui:Template name="PlayerInteractionMenu" src="project://database/Assets/Ui/UXML/GameScene/PlayerInteractionMenu.uxml?fileID=9197481963319205126&amp;guid=19afdb7b49e8e2240b88074deb8e95ce&amp;type=3#PlayerInteractionMenu" />
+    <ui:Template name="PlayerHotbarInventory" src="project://database/Assets/Ui/UXML/Inventory/PlayerHotbarInventory.uxml?fileID=9197481963319205126&amp;guid=1291554ade99d7c4a82a8d870b788b19&amp;type=3#PlayerHotbarInventory" />
     <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
+    <Style src="project://database/Assets/Ui/USS/Standard.uss?fileID=7433441132597879392&amp;guid=c99aa736163923f459f7fe4fc8ffa1c9&amp;type=3#Standard" />
     <ui:Instance template="OptionsMenuUi" name="OptionsMenuUi" style="flex-grow: 1; position: absolute; display: none; justify-content: center; align-self: center; flex-shrink: 0; align-items: center; flex-basis: auto; width: 100%; height: 100%;" />
     <ui:Instance template="GameSceneUi" name="GameSceneUi" style="flex-grow: 1; display: flex; flex-shrink: 0; position: absolute; width: 100%; height: 100%;" />
-    <ui:Instance template="PlayerInteractionMenu" name="PlayerInteractionMenu" class="options-dim-bg" style="display: none; flex-grow: 1; position: absolute; flex-shrink: 0; width: 100%; height: 100%; justify-content: center; align-items: center; align-self: center;" />
+    <ui:Instance template="PlayerInteractionMenu" name="PlayerInteractionMenu" class="dim-bg" style="display: none; flex-grow: 1; position: absolute; flex-shrink: 0; width: 100%; height: 100%; justify-content: center; align-items: center; align-self: center;" />
     <ui:Instance template="PlayerHotbarInventory" name="PlayerHotbarInventory" style="position: absolute; flex-basis: auto; flex-grow: 1; flex-shrink: 0; align-self: stretch; justify-content: flex-end; width: 100%; height: 100%; display: flex;" />
 </ui:UXML>

@@ -44,6 +44,15 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleCraftingMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ca1e8ee-4eae-4ad0-ae78-918e674eb5ea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +77,17 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
                     ""action"": ""EscPressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""651ef646-3d49-440b-a3f1-955d8ca9cc93"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleCraftingMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +98,7 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
         m_GameSceneMap = asset.FindActionMap("GameSceneMap", throwIfNotFound: true);
         m_GameSceneMap_ToggleOptions = m_GameSceneMap.FindAction("ToggleOptions", throwIfNotFound: true);
         m_GameSceneMap_EscPressed = m_GameSceneMap.FindAction("EscPressed", throwIfNotFound: true);
+        m_GameSceneMap_ToggleCraftingMenu = m_GameSceneMap.FindAction("ToggleCraftingMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,12 +162,14 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
     private List<IGameSceneMapActions> m_GameSceneMapActionsCallbackInterfaces = new List<IGameSceneMapActions>();
     private readonly InputAction m_GameSceneMap_ToggleOptions;
     private readonly InputAction m_GameSceneMap_EscPressed;
+    private readonly InputAction m_GameSceneMap_ToggleCraftingMenu;
     public struct GameSceneMapActions
     {
         private @UiControls m_Wrapper;
         public GameSceneMapActions(@UiControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @ToggleOptions => m_Wrapper.m_GameSceneMap_ToggleOptions;
         public InputAction @EscPressed => m_Wrapper.m_GameSceneMap_EscPressed;
+        public InputAction @ToggleCraftingMenu => m_Wrapper.m_GameSceneMap_ToggleCraftingMenu;
         public InputActionMap Get() { return m_Wrapper.m_GameSceneMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -162,6 +185,9 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
             @EscPressed.started += instance.OnEscPressed;
             @EscPressed.performed += instance.OnEscPressed;
             @EscPressed.canceled += instance.OnEscPressed;
+            @ToggleCraftingMenu.started += instance.OnToggleCraftingMenu;
+            @ToggleCraftingMenu.performed += instance.OnToggleCraftingMenu;
+            @ToggleCraftingMenu.canceled += instance.OnToggleCraftingMenu;
         }
 
         private void UnregisterCallbacks(IGameSceneMapActions instance)
@@ -172,6 +198,9 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
             @EscPressed.started -= instance.OnEscPressed;
             @EscPressed.performed -= instance.OnEscPressed;
             @EscPressed.canceled -= instance.OnEscPressed;
+            @ToggleCraftingMenu.started -= instance.OnToggleCraftingMenu;
+            @ToggleCraftingMenu.performed -= instance.OnToggleCraftingMenu;
+            @ToggleCraftingMenu.canceled -= instance.OnToggleCraftingMenu;
         }
 
         public void RemoveCallbacks(IGameSceneMapActions instance)
@@ -193,5 +222,6 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
     {
         void OnToggleOptions(InputAction.CallbackContext context);
         void OnEscPressed(InputAction.CallbackContext context);
+        void OnToggleCraftingMenu(InputAction.CallbackContext context);
     }
 }

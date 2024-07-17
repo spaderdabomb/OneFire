@@ -28,7 +28,7 @@ MonoBehaviour:
   interactDescription: Open
   health: 100
   baseSellValue: 1
-  itemDataAsset: {fileID: 0}
+  itemDataAsset: {fileID: 11400000, guid: b00849b8f885ef941a1f267b1c0d52a5, type: 2}
   item3DPrefab: {fileID: 3714119430091773529, guid: f0af6e0b7e72f8242b0dc453dfbc94e2,
     type: 3}
   numSlots: 24

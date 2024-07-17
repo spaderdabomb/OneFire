@@ -13,7 +13,7 @@ using static UnityEngine.GraphicsBuffer;
 public class ItemData : SerializedScriptableObject
 {
     [Header("Details")]
-    [ReadOnly] public string itemID = Guid.NewGuid().ToString();
+    public string itemID = Guid.NewGuid().ToString();
     public string baseName;
     public string displayName;
     public string description;
@@ -22,7 +22,7 @@ public class ItemData : SerializedScriptableObject
     public int stackCount;
     public int maxStackCount = 50;
     public int baseSellValue = 1;
-
+    
     [Header("Classification")]
     public ItemType itemType = ItemType.None;
     public ItemRarity itemRarity = ItemRarity.None;
@@ -39,6 +39,9 @@ public class ItemData : SerializedScriptableObject
 
     private void OnValidate()
     {
+        if (itemID == null || itemID == String.Empty)
+            itemID = Guid.NewGuid().ToString();
+
         if (!PrefabUtility.IsPartOfPrefabAsset(item3DPrefab))
             Debug.LogError($"{this} {item3DPrefab} is a GameObject - set to prefab!");
 
@@ -112,6 +115,9 @@ public class ItemData : SerializedScriptableObject
         Body = 6,
         Legs = 7,
         Cape = 8,
+        // Structures
+        Workbench = 9,
+        Chest = 10,
     }
 
     [Flags]
@@ -125,6 +131,7 @@ public class ItemData : SerializedScriptableObject
         Outfit = 16,
         Accessory = 32,
         Tackle = 64,
+        Structure = 128,
     }
 }
 

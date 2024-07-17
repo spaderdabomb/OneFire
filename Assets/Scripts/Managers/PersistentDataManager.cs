@@ -48,7 +48,6 @@ public class PersistentDataManager : MonoBehaviour
         foreach (var persistable in persistentData)
         {
             persistable.SaveData();
-            print($"persistable save: {persistable}");
         }
     }
 

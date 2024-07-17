@@ -37,7 +37,7 @@ public partial class UiGameManager
         if (OptionsMenuUi.root.style.display == DisplayStyle.None)
             ShowOptionsMenu();
         else
-            HideOptionsMenu();
+            ShowGameSceneMenu();
     }
 
     public void ShowOptionsMenu()
@@ -50,11 +50,24 @@ public partial class UiGameManager
         SetPlayerInMenuOptions(MenuType.Options);
     }
 
-    public void HideOptionsMenu()
+    public void ShowGameSceneMenu()
     {
         OptionsMenuUi.root.style.display = DisplayStyle.None;
         GameSceneUi.root.style.display = DisplayStyle.Flex;
         SetPlayerInMenuOptions(MenuType.GameScene);
+    }
+
+    public void ToggleInteractMenu()
+    {
+        if (PlayerInteractionMenu.root.style.display == DisplayStyle.None)
+        {
+            ShowInteractMenu();
+            CraftingManager.Instance.ShowCraftingMenu();
+        }
+        else
+        {
+            ShowGameSceneMenu();
+        }
     }
 
     public void ShowInteractMenu()

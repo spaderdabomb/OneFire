@@ -10,9 +10,6 @@ public class StructureData : SerializedScriptableObject
 {
     [Header("Details")]
     [ReadOnly] public string id = Guid.NewGuid().ToString();
-    public string baseName;
-    public string displayName;
-    public string description;
     public string interactDescription;
 
     [Header("Quantities")]

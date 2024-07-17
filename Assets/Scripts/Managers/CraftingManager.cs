@@ -22,4 +22,8 @@ public class CraftingManager : SerializedMonoBehaviour
 
     }
 
+    public void ShowCraftingMenu()
+    {
+
+    }
 }

@@ -5,7 +5,7 @@
 // -----------------------
 using UnityEngine.UIElements;
 
-partial class BaseCraftingMenu
+partial class CraftingMenu
 {
     private VisualElement craftingMenuRoot;
     private VisualElement craftingMenuContainer;
@@ -20,9 +20,16 @@ partial class BaseCraftingMenu
     private Label requiredMaterialsHeader;
     private VisualElement craftingButtonsContainer;
     private VisualElement selectAmountContainer;
+    private VisualElement ownedContainer;
+    private Label ownedLabel;
+    private Label ownedQuantityLabel;
+    private VisualElement craftAmountContainer;
     private Button minusButton;
     private Label craftAmountLabel;
     private Button plusButton;
+    private VisualElement timeContainer;
+    private VisualElement timeIcon;
+    private Label timeQuantityLabel;
     private Button maxButton;
     private Button craftButton;
     
@@ -41,9 +48,16 @@ partial class BaseCraftingMenu
         requiredMaterialsHeader = root.Q<Label>("RequiredMaterialsHeader");
         craftingButtonsContainer = root.Q<VisualElement>("CraftingButtonsContainer");
         selectAmountContainer = root.Q<VisualElement>("SelectAmountContainer");
+        ownedContainer = root.Q<VisualElement>("OwnedContainer");
+        ownedLabel = root.Q<Label>("OwnedLabel");
+        ownedQuantityLabel = root.Q<Label>("OwnedQuantityLabel");
+        craftAmountContainer = root.Q<VisualElement>("CraftAmountContainer");
         minusButton = root.Q<Button>("MinusButton");
         craftAmountLabel = root.Q<Label>("CraftAmountLabel");
         plusButton = root.Q<Button>("PlusButton");
+        timeContainer = root.Q<VisualElement>("TimeContainer");
+        timeIcon = root.Q<VisualElement>("TimeIcon");
+        timeQuantityLabel = root.Q<Label>("TimeQuantityLabel");
         maxButton = root.Q<Button>("MaxButton");
         craftButton = root.Q<Button>("CraftButton");
     }

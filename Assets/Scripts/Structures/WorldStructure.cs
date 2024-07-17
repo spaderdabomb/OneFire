@@ -33,7 +33,7 @@ public class WorldStructure : MonoBehaviour
     public void SetDisplay()
     {
         InteractingObject.DisplayPretext = structureData.interactDescription;
-        InteractingObject.DisplayString = structureData.displayName;
+        InteractingObject.DisplayString = structureData.itemDataAsset.displayName;
     }
 
     private void OnValidate()
@@ -41,7 +41,7 @@ public class WorldStructure : MonoBehaviour
         if (gameObject.layer != LayerMask.NameToLayer("Structure"))
         {
             gameObject.layer = LayerMask.NameToLayer("Structure");
-            print($"Structure {structureData.displayName} does not have a default layer assigned, assigning to 'Structure'");
+            print($"Structure {structureData.itemDataAsset.displayName} does not have a default layer assigned, assigning to 'Structure'");
         }
     }
 }

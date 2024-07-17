@@ -42,4 +42,11 @@ public class UiInputManager : MonoBehaviour, UiControls.IGameSceneMapActions
 
         UiManager.Instance.uiGameManager.ExitCurrentMenu();
     }
+
+    public void OnToggleCraftingMenu(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        UiManager.Instance.uiGameManager.ToggleInteractMenu();
+    }
 }
