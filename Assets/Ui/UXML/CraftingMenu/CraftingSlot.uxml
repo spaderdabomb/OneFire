@@ -1,0 +1,5 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" gen-cs-file="bb5aa4ee3c33b8b44b1be8210faed79b">
+    <ui:VisualElement name="CraftingSlot" class="crafting-slot" style="width: 100px; height: 100px;">
+        <ui:VisualElement name="SlotIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=4584671053970592468&amp;guid=fab0d96aa6140ed45a5be0cbdf45131a&amp;type=3#console.warnicon&quot;); flex-shrink: 0; align-self: stretch; justify-content: space-around; align-items: center;" />
+    </ui:VisualElement>
+</ui:UXML>
