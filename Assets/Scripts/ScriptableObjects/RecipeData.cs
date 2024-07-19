@@ -7,18 +7,16 @@ using UnityEngine;
 public class RecipeData : SerializedScriptableObject
 {
     [Header("Details")]
-    [ReadOnly] public string id = Guid.NewGuid().ToString();
-    public string baseName;
-    public string displayName;
-    public string description;
+    public string id = Guid.NewGuid().ToString();
 
     [Header("Classification")]
     public ItemData itemResult;
-    public ItemData[] recipe;
+    public Dictionary<ItemData, int> recipe;
 
     private void OnValidate()
     {
-
+        if (id == null || id == String.Empty)
+            id = Guid.NewGuid().ToString();
     }
 }
 

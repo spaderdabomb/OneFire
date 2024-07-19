@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04d518b0d6df954fb791d88f4d659d1, type: 3}
+  m_Name: Workbench
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  id: e23058f7-98ee-4bd8-bccd-80dbf17836cc
+  interactDescription: Craft
+  health: 100
+  baseSellValue: 1
+  itemDataAsset: {fileID: 11400000, guid: 3f524754b55c4ca41a59008e4461e5fc, type: 2}
+  item3DPrefab: {fileID: 991390102720173739, guid: ef499ffb4cd74f943800c80d5a728b91,
+    type: 3}
+  recipesAvailable:
+  - {fileID: 11400000, guid: 3c580645b7f29294e8028cef22f5058a, type: 2}
+  - {fileID: 11400000, guid: 966a3d3f42f71034d95ca33c9848bbf9, type: 2}

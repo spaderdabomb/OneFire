@@ -24,5 +24,8 @@ public class StructureData : SerializedScriptableObject
     {
         if (!PrefabUtility.IsPartOfPrefabAsset(item3DPrefab)) 
             Debug.LogError($"{this} {item3DPrefab} is a GameObject - set to prefab!");
+
+        if (id == null || id == String.Empty)
+            id = Guid.NewGuid().ToString();
     }
 }

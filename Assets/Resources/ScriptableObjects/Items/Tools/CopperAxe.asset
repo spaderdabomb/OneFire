@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb430cd2fe8c54396792d853c49513, type: 3}
+  m_Name: CopperAxe
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: itemStatList
+      Entry: 7
+      Data: 0|Unity.Plastic.Antlr3.Runtime.Misc.ListStack`1[[ItemData+IGenericItemStat,
+        Assembly-CSharp]], Unity.Plastic.Antlr3.Runtime
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: itemStats
+      Entry: 7
+      Data: 1|ItemStats, Assembly-CSharp
+    - Name: statsDict
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[ItemStat, Assembly-CSharp],[System.Object,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[ItemStat, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  itemID: 6ef23dca-1b76-4fcc-9f80-7981c0c91f2d
+  baseName: CopperAxe
+  displayName: Copper Axe
+  description: Better than that potato looking axe
+  interactDescription: Pick up
+  stackCount: 1
+  maxStackCount: 1
+  baseSellValue: 1
+  itemType: 11
+  itemRarity: 1
+  itemCategories: 265
+  item3DPrefab: {fileID: 2803106725327420191, guid: 3dff1ae1818c5b6489f295ecf2bee1fc,
+    type: 3}
+  itemSprite: {fileID: 21300000, guid: b1d46d38b2b4b934fb22c6f327be0602, type: 3}
+  itemHeldPrefab: {fileID: 2803106725327420191, guid: 3dff1ae1818c5b6489f295ecf2bee1fc,
+    type: 3}

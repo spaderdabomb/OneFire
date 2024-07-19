@@ -8,5 +8,7 @@ public partial class PlayerInteractionMenu
     {
         AssignQueryResults(root);
         this.root = root;
+
+        root.style.display = DisplayStyle.None;
     }
 }

@@ -116,8 +116,11 @@ public class ItemData : SerializedScriptableObject
         Legs = 7,
         Cape = 8,
         // Structures
-        Workbench = 9,
+        CraftingStation = 9,
         Chest = 10,
+        // Tools
+        Axe = 11,
+        Pickaxe = 12,
     }
 
     [Flags]
@@ -132,6 +135,7 @@ public class ItemData : SerializedScriptableObject
         Accessory = 32,
         Tackle = 64,
         Structure = 128,
+        Tool = 256,
     }
 }
 

@@ -12,6 +12,8 @@ public class CraftingManager : SerializedMonoBehaviour
     [SerializeField] private VisualTreeAsset craftingContainerAsset;
     [SerializeField] private VisualTreeAsset craftingMenuAsset;
 
+    public CraftingMenu PlayerCraftingMenu { get; private set; } = null;
+
     private void Awake()
     {
         Instance = this;
@@ -24,6 +26,10 @@ public class CraftingManager : SerializedMonoBehaviour
 
     public void ShowCraftingMenu()
     {
+        VisualElement craftingMenuClone = craftingMenuAsset.CloneTree();
+        PlayerCraftingMenu = new CraftingMenu(craftingMenuClone);
 
+        UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Clear();
+        UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Add(craftingMenuClone);
     }
 }

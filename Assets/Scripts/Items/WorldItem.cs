@@ -8,7 +8,7 @@ using Sirenix.OdinInspector;
 using System;
 using JSAM;
 
-[RequireComponent(typeof(InteractingObject))]
+[RequireComponent(typeof(InteractingObject), typeof(Rigidbody), typeof(BoxCollider))]
 public class WorldItem : MonoBehaviour
 {
     public ItemData itemDataAsset;
