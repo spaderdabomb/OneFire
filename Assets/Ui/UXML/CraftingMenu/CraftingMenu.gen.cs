@@ -16,8 +16,8 @@ partial class CraftingMenu
     private VisualElement slotPreviewContainer;
     private VisualElement slotPreviewIcon;
     private Label slotPreviewLabel;
-    private VisualElement requiredMateialsContainer;
     private Label requiredMaterialsHeader;
+    private VisualElement requiredMaterialsContainer;
     private VisualElement craftingButtonsContainer;
     private VisualElement selectAmountContainer;
     private VisualElement ownedContainer;
@@ -32,6 +32,11 @@ partial class CraftingMenu
     private Label timeQuantityLabel;
     private Button maxButton;
     private Button craftButton;
+    private VisualElement craftProgressContainer;
+    private ProgressBar progressBar;
+    private VisualElement timeLeftContainer;
+    private VisualElement singleTimeIcon;
+    private Label singleTimeQuantityLabel;
     
     protected void AssignQueryResults(VisualElement root)
     {
@@ -44,8 +49,8 @@ partial class CraftingMenu
         slotPreviewContainer = root.Q<VisualElement>("SlotPreviewContainer");
         slotPreviewIcon = root.Q<VisualElement>("SlotPreviewIcon");
         slotPreviewLabel = root.Q<Label>("SlotPreviewLabel");
-        requiredMateialsContainer = root.Q<VisualElement>("RequiredMateialsContainer");
         requiredMaterialsHeader = root.Q<Label>("RequiredMaterialsHeader");
+        requiredMaterialsContainer = root.Q<VisualElement>("RequiredMaterialsContainer");
         craftingButtonsContainer = root.Q<VisualElement>("CraftingButtonsContainer");
         selectAmountContainer = root.Q<VisualElement>("SelectAmountContainer");
         ownedContainer = root.Q<VisualElement>("OwnedContainer");
@@ -60,5 +65,10 @@ partial class CraftingMenu
         timeQuantityLabel = root.Q<Label>("TimeQuantityLabel");
         maxButton = root.Q<Button>("MaxButton");
         craftButton = root.Q<Button>("CraftButton");
+        craftProgressContainer = root.Q<VisualElement>("CraftProgressContainer");
+        progressBar = root.Q<ProgressBar>("ProgressBar");
+        timeLeftContainer = root.Q<VisualElement>("TimeLeftContainer");
+        singleTimeIcon = root.Q<VisualElement>("SingleTimeIcon");
+        singleTimeQuantityLabel = root.Q<Label>("SingleTimeQuantityLabel");
     }
 }

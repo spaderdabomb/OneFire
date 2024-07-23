@@ -47,6 +47,6 @@ public class UiInputManager : MonoBehaviour, UiControls.IGameSceneMapActions
     {
         if (!context.performed) return;
 
-        UiManager.Instance.uiGameManager.ToggleInteractMenu();
+        UiManager.Instance.uiGameManager.ToggleCraftingMenu(CraftingManager.Instance.playerCraftingStationData);
     }
 }

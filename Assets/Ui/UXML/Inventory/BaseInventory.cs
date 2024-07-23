@@ -1,3 +1,4 @@
+using OneFireUI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -85,6 +86,25 @@ namespace OneFireUi
             int numItemsRemaining = addSlot.AddItemToSlot(itemData);
 
             return numItemsRemaining;
+        }
+
+        public int SubtractItemFromInventory(ItemData itemData, int itemQuantity)
+        {
+            int itemsRemaining = itemQuantity;
+            foreach (var slot in inventorySlots)
+            {
+                if (!slot.ContainsItem()) continue;
+                if (slot.currentItemData.itemID == itemData.itemID)
+                {
+                    itemsRemaining = slot.SubtractItemFromSlot(itemData, itemsRemaining);
+                    if (itemsRemaining > 0)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return itemsRemaining;
         }
 
         public void RemoveItem(InventorySlot removeSlot)

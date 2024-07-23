@@ -9,7 +9,7 @@ using UnityEngine;
 public class StructureData : SerializedScriptableObject
 {
     [Header("Details")]
-    [ReadOnly] public string id = Guid.NewGuid().ToString();
+    public string id = Guid.NewGuid().ToString();
     public string interactDescription;
 
     [Header("Quantities")]

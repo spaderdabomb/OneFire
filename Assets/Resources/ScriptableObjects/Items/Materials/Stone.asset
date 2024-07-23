@@ -65,7 +65,7 @@ MonoBehaviour:
   displayName: Stone
   description: A small stone
   interactDescription: Pick up
-  stackCount: 1
+  stackCount: 5
   maxStackCount: 50
   baseSellValue: 1
   itemType: 0

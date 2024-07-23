@@ -100,7 +100,6 @@ public class InventoryManager : SerializedMonoBehaviour
         VisualElement chestElement = chestInventoryAsset.CloneTree();
         ChestInventory chestInventory = new ChestInventory(chestElement, chestData.numSlots, chestData.id);
         ChestInventoryDict.Add(chestData.id, chestInventory);
-        UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Add(chestElement);
     }
 
     private PopupMenuInventory InitPopupMenu()
@@ -316,4 +315,74 @@ public class InventoryManager : SerializedMonoBehaviour
     {
 
     }
+
+    public void ConsumeItem(ItemData itemData, int itemQuantity)
+    {
+        int itemsRemaining = ConsumeItemFromInventory(itemData, itemQuantity, PlayerInventory);
+        if (itemsRemaining > 0)
+        {
+            itemsRemaining = ConsumeItemFromInventory(itemData, itemsRemaining, PlayerHotbarInventory);
+        }
+
+        if (itemsRemaining > 0)
+        {
+            foreach (var chest in ChestInventoryDict)
+            {
+                ChestInventory chestInventory = chest.Value;
+                itemsRemaining = ConsumeItemFromInventory(itemData, itemsRemaining, chestInventory);
+            }
+        }
+
+        if (itemsRemaining > 0)
+        {
+            Debug.LogError($"Could not consume {itemQuantity} {itemData} in all inventories, crafting issue occurred");
+        }
+    }
+
+    public int ConsumeItemFromInventory(ItemData itemData, int itemQuantity, BaseInventory inventory)
+    {
+        int itemsRemaining = inventory.SubtractItemFromInventory(itemData, itemQuantity);
+
+        return itemsRemaining;
+    }
+
+    #region Get item quantities
+    public int GetNumItemInInventory(ItemData itemData, BaseInventory inventory)
+    {
+        int totalItems = 0;
+
+        foreach (var slot in inventory.inventorySlots)
+        {
+            if (!slot.ContainsItem()) continue;
+            if (slot.currentItemData.itemID == itemData.itemID)
+            {
+                totalItems += slot.currentItemData.stackCount;
+            }
+        }
+
+        return totalItems;
+    }
+
+    public int GetNumItemInChests(ItemData itemData)
+    {
+        int totalItems = 0;
+
+        foreach (var chest in ChestInventoryDict)
+        {
+            ChestInventory chestInventory = chest.Value;
+            totalItems += GetNumItemInInventory(itemData, chestInventory);
+        }
+
+        return totalItems;
+    }
+
+    public int GetNumItemOwned(ItemData itemData)
+    {
+        int totalItems = GetNumItemInInventory(itemData, PlayerInventory);
+        totalItems += GetNumItemInInventory(itemData, PlayerHotbarInventory);
+        totalItems += GetNumItemInChests(itemData);
+
+        return totalItems;
+    }
+    #endregion
 }

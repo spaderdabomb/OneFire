@@ -5,10 +5,10 @@ using static UiManager;
 
 public partial class UiGameManager
 {
-    public OptionsMenuUi OptionsMenuUi;
-    public GameSceneUi GameSceneUi;
-    public PlayerHotbarInventory PlayerHotbarInventory;
-    public PlayerInteractionMenu PlayerInteractionMenu;
+    public OptionsMenuUi OptionsMenuUi { get; private set; }
+    public GameSceneUi GameSceneUi { get; private set; }
+    public PlayerHotbarInventory PlayerHotbarInventory { get; private set; }
+    public PlayerInteractionMenu PlayerInteractionMenu { get; private set; }
 
     public VisualElement root;
     public UiGameManager(VisualElement root)
@@ -52,6 +52,7 @@ public partial class UiGameManager
 
     public void ShowGameSceneMenu()
     {
+        PlayerInteractionMenu.root.style.display = DisplayStyle.None;
         OptionsMenuUi.root.style.display = DisplayStyle.None;
         GameSceneUi.root.style.display = DisplayStyle.Flex;
         SetPlayerInMenuOptions(MenuType.GameScene);
@@ -60,14 +61,29 @@ public partial class UiGameManager
     public void ToggleInteractMenu()
     {
         if (PlayerInteractionMenu.root.style.display == DisplayStyle.None)
-        {
             ShowInteractMenu();
-            CraftingManager.Instance.ShowCraftingMenu();
-        }
         else
-        {
             ShowGameSceneMenu();
-        }
+    }
+
+    public void ToggleCraftingMenu(CraftingStationData craftingStationData)
+    {
+        if (PlayerInteractionMenu.root.style.display == DisplayStyle.None)
+            ShowCraftingMenu(craftingStationData);
+        else
+            CloseCraftingMenu(craftingStationData);
+    }
+
+    public void ShowCraftingMenu(CraftingStationData craftingStationData)
+    {
+        ShowInteractMenu();
+        CraftingManager.Instance.ShowCraftingMenu(craftingStationData);
+    }
+
+    public void CloseCraftingMenu(CraftingStationData craftingStationData)
+    {
+        CraftingManager.Instance.CloseCraftingMenu(craftingStationData);
+        ShowGameSceneMenu();
     }
 
     public void ShowInteractMenu()

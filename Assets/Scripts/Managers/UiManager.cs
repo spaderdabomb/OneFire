@@ -47,5 +47,6 @@ public class UiManager : MonoBehaviour
         Options = 1,
         Map = 2,
         Interact = 3,
+        Crafting = 4,
     }
 }

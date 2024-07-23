@@ -11,6 +11,7 @@ public class RecipeData : SerializedScriptableObject
 
     [Header("Classification")]
     public ItemData itemResult;
+    public float timeToCraft;
     public Dictionary<ItemData, int> recipe;
 
     private void OnValidate()

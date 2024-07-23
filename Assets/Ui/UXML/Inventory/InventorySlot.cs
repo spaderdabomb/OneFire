@@ -83,6 +83,29 @@ namespace OneFireUi
             return itemsRemaining;
         }
 
+        public int SubtractItemFromSlot(ItemData itemData, int itemQuantity)
+        {
+            int itemsRemaining = -1;
+
+            if (itemData.itemID != currentItemData.itemID)
+            {
+                Debug.Log($"Trying to subtract {itemData} from slot with {currentItemData}, returning");
+                return itemsRemaining;
+            }
+
+            if (itemQuantity < currentItemData.stackCount)
+            {
+                SetStackCount(currentItemData.stackCount - itemQuantity);
+            }
+            else
+            {
+                itemsRemaining = itemQuantity - currentItemData.stackCount;
+                RemoveItemFromSlot();
+            }
+
+            return itemsRemaining;
+        }
+
         public void SetStackCount(int newCount)
         {
             currentItemData.stackCount = newCount;

@@ -227,6 +227,10 @@ MonoBehaviour:
     type: 3}
   craftingMenuAsset: {fileID: 9197481963319205126, guid: 0f350307044bf5845862c4d816190507,
     type: 3}
+  materialContainerAsset: {fileID: 9197481963319205126, guid: 66000e52e45f97c47b2ad526ab693fc9,
+    type: 3}
+  playerCraftingStationData: {fileID: 11400000, guid: 63f75408d984fd142aeb67a40357b5fe,
+    type: 2}
 --- !u!1001 &160166535
 PrefabInstance:
   m_ObjectHideFlags: 0

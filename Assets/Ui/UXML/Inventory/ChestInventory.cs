@@ -10,7 +10,7 @@ public partial class ChestInventory : BaseInventory
     {
         AssignQueryResults(root);
         RegisterCallbacks();
-        InitInventory();
+        AddSlotsToContainer(chestContainer);
         ShowInventory();
         InitMenu();
 
@@ -20,21 +20,6 @@ public partial class ChestInventory : BaseInventory
     private void RegisterCallbacks()
     {
         root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-    }
-
-    private void InitInventory()
-    {
-        chestContainer.Clear();
-
-        inventorySlots = new List<InventorySlot>();
-        for (int i = 0; i < numInventorySlots; i++)
-        {
-            VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
-            InventorySlot inventorySlot = new InventorySlot(inventoryAsset, i, this);
-            inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
-            inventorySlots.Add(inventorySlot);
-            chestContainer.Add(inventoryAsset);
-        }
     }
 
     private void InitMenu()
@@ -53,8 +38,18 @@ public partial class ChestInventory : BaseInventory
         root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
     }
 
+    public void AddSlotsToContainer(VisualElement containerRoot)
+    {
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            slot.root.parent?.Remove(slot.root);
+            containerRoot.Add(slot.root);
+        }
+    }
+
     public void ShowInventory()
     {
+        UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Add(root);
         ShowPlayerInventory();
     }
 
@@ -62,10 +57,5 @@ public partial class ChestInventory : BaseInventory
     {
         playerContainer.Clear();
         InventoryManager.Instance.PlayerInventory.AddSlotsToContainer(playerContainer);
-    }
-
-    public void HideInventory()
-    {
-
     }
 }

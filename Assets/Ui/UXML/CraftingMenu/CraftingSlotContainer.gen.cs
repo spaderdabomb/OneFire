@@ -7,10 +7,10 @@ using UnityEngine.UIElements;
 
 partial class CraftingSlotContainer
 {
-    private VisualElement craftingSlotContainer;
+    private VisualElement slotContainer;
     
     protected void AssignQueryResults(VisualElement root)
     {
-        craftingSlotContainer = root.Q<VisualElement>("CraftingSlotContainer");
+        slotContainer = root.Q<VisualElement>("SlotContainer");
     }
 }
