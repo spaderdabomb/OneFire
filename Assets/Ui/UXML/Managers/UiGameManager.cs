@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEngine;
 using OneFireUi;
-using static UiManager;
+using System;
 
 public partial class UiGameManager
 {
@@ -9,8 +10,12 @@ public partial class UiGameManager
     public GameSceneUi GameSceneUi { get; private set; }
     public PlayerHotbarInventory PlayerHotbarInventory { get; private set; }
     public PlayerInteractionMenu PlayerInteractionMenu { get; private set; }
+    public List<IGameMenu> GameMenus { get; private set; }
+    public Dictionary<MenuType, IGameMenu> GameMenuDict { get; private set; }
 
     public VisualElement root;
+    public Action OnShowInteractMenu;
+    public Action OnHideInteractMenu;
     public UiGameManager(VisualElement root)
     {
         AssignQueryResults(root);
@@ -25,6 +30,13 @@ public partial class UiGameManager
         OptionsMenuUi = new OptionsMenuUi(optionsMenuUi);
         GameSceneUi = new GameSceneUi(gameSceneUi);
         PlayerInteractionMenu = new PlayerInteractionMenu(playerInteractionMenu);
+
+        GameMenus = new List<IGameMenu>() { OptionsMenuUi, PlayerInteractionMenu };
+        GameMenuDict = new Dictionary<MenuType, IGameMenu>
+        {
+            { MenuType.Options, OptionsMenuUi },
+            { MenuType.Interact, PlayerInteractionMenu },
+        };
     }
 
     public VisualElement GetPlayerHotbarInventoryRoot()
@@ -34,63 +46,77 @@ public partial class UiGameManager
 
     public void ToggleOptionsMenu()
     {
-        if (OptionsMenuUi.root.style.display == DisplayStyle.None)
+        if (!IsMenuOpen() && !OptionsMenuUi.IsOpen())
             ShowOptionsMenu();
         else
-            ShowGameSceneMenu();
+            ExitCurrentMenu();
     }
 
     public void ShowOptionsMenu()
     {
-        if (PlayerInteractionMenu.root.style.display == DisplayStyle.Flex)
-            return;
-
-        OptionsMenuUi.ShowOptionsMenu();
+        OptionsMenuUi.ShowMenu();
         GameSceneUi.root.style.display = DisplayStyle.None;
-        SetPlayerInMenuOptions(MenuType.Options);
-    }
-
-    public void ShowGameSceneMenu()
-    {
-        PlayerInteractionMenu.root.style.display = DisplayStyle.None;
-        OptionsMenuUi.root.style.display = DisplayStyle.None;
-        GameSceneUi.root.style.display = DisplayStyle.Flex;
-        SetPlayerInMenuOptions(MenuType.GameScene);
-    }
-
-    public void ToggleInteractMenu()
-    {
-        if (PlayerInteractionMenu.root.style.display == DisplayStyle.None)
-            ShowInteractMenu();
-        else
-            ShowGameSceneMenu();
+        SetInputSettings(MenuType.Options);
     }
 
     public void ToggleCraftingMenu(CraftingStationData craftingStationData)
     {
-        if (PlayerInteractionMenu.root.style.display == DisplayStyle.None)
-            ShowCraftingMenu(craftingStationData);
+        bool menuOpen = ToggleInteractMenu();
+        if (menuOpen)
+            CraftingManager.Instance.ShowCraftingMenu(craftingStationData);
+    }
+
+    public bool ToggleInteractMenu()
+    {
+        if (!IsMenuOpen() && !PlayerInteractionMenu.IsOpen())
+        {
+            ShowInteractMenu();
+            return true;
+        }
         else
-            CloseCraftingMenu(craftingStationData);
-    }
-
-    public void ShowCraftingMenu(CraftingStationData craftingStationData)
-    {
-        ShowInteractMenu();
-        CraftingManager.Instance.ShowCraftingMenu(craftingStationData);
-    }
-
-    public void CloseCraftingMenu(CraftingStationData craftingStationData)
-    {
-        CraftingManager.Instance.CloseCraftingMenu(craftingStationData);
-        ShowGameSceneMenu();
+        {
+            ExitCurrentMenu();
+            return false;
+        }
     }
 
     public void ShowInteractMenu()
     {
-        PlayerInteractionMenu.root.style.display = DisplayStyle.Flex;
+        PlayerInteractionMenu.ShowMenu();
+
         GameSceneUi.root.style.display = DisplayStyle.None;
-        SetPlayerInMenuOptions(MenuType.Interact);
+        SetInputSettings(MenuType.Interact);
+    }
+
+    public bool IsMenuOpen()
+    {
+        foreach (var menu in GameMenus)
+        {
+            if (menu.IsOpen())
+                return true;
+        }
+
+        return false;
+    }
+
+    public IGameMenu GetMenuOpen()
+    {
+        foreach (var menu in GameMenus)
+        {
+            if (menu.IsOpen())
+                return menu;
+        }
+
+        return null;
+    }
+
+    public void ExitCurrentMenu()
+    {
+        PlayerInteractionMenu.HideMenu();
+        OptionsMenuUi.HideMenu();
+
+        GameSceneUi.root.style.display = DisplayStyle.Flex;
+        SetInputSettings(MenuType.GameScene);
     }
 
     public void SetCursorStateVisible(bool newState)
@@ -107,26 +133,26 @@ public partial class UiGameManager
         }
     }
 
-    public void ExitCurrentMenu()
+    public void SetInputSettings(MenuType menuType)
     {
-        PlayerInteractionMenu.root.style.display = DisplayStyle.None;
-        OptionsMenuUi.root.style.display = DisplayStyle.None;
-        GameSceneUi.root.style.display = DisplayStyle.Flex;
-        SetPlayerInMenuOptions(MenuType.GameScene);
-    }
-
-    public void SetPlayerInMenuOptions(MenuType menuType)
-    {
-
-        if (menuType == MenuType.Options || menuType == MenuType.Map || menuType == MenuType.Interact)
-        {
-            InputManager.Instance.SetMenuControls();
-            SetCursorStateVisible(true);
-        }
-        else if (menuType == MenuType.GameScene)
+        if (menuType == MenuType.GameScene)
         {
             InputManager.Instance.SetGameSceneControls();
             SetCursorStateVisible(false);
         }
+        else
+        {
+            InputManager.Instance.SetMenuControls();
+            SetCursorStateVisible(true);
+        }
     }
+}
+
+public interface IGameMenu
+{
+    public MenuType MenuType { get; set; }
+    public bool IsOpen();
+    public void HideMenu();
+    public void ShowMenu();
+    public bool ToggleMenu();
 }

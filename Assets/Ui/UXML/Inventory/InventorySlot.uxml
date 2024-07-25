@@ -2,8 +2,8 @@
     <Style src="project://database/Assets/Ui/USS/Inventory.uss?fileID=7433441132597879392&amp;guid=2bf4f725ae44ad14a844aa9e9b979001&amp;type=3#Inventory" />
     <Style src="project://database/Assets/Ui/USS/InventorySlot.uss?fileID=7433441132597879392&amp;guid=d360fa236a66adb47a78743100616810&amp;type=3#InventorySlot" />
     <ui:VisualElement name="InventorySlotRoot" class="inventory-slot">
-        <ui:VisualElement name="SlotIcon" class="inventory-slot-icon" />
+        <ui:VisualElement name="SlotIcon" class="inventory-slot-icon" style="width: auto; height: auto; flex-grow: 1; background-image: none; align-items: center; justify-content: center; align-self: stretch;" />
         <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SlotLabel" class="inventory-slot-label" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; position: absolute; top: 46px; left: 22px; width: 40px;" />
-        <ui:VisualElement name="SlotBackingIcon" class="inventory-slot-backing-icon" />
+        <ui:VisualElement name="SlotBackingIcon" class="inventory-slot-backing-icon" style="background-image: none; display: none; top: 0; left: 0;" />
     </ui:VisualElement>
 </ui:UXML>

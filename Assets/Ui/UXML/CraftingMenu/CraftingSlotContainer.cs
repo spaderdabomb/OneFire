@@ -34,5 +34,4 @@ public partial class CraftingSlotContainer
             slotContainer.Add(craftingSlotClone);
         }
     }
-
 }

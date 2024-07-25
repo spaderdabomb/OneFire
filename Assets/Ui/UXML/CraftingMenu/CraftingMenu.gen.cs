@@ -37,6 +37,7 @@ partial class CraftingMenu
     private VisualElement timeLeftContainer;
     private VisualElement singleTimeIcon;
     private Label singleTimeQuantityLabel;
+    private Button cancelCraftButton;
     
     protected void AssignQueryResults(VisualElement root)
     {
@@ -70,5 +71,6 @@ partial class CraftingMenu
         timeLeftContainer = root.Q<VisualElement>("TimeLeftContainer");
         singleTimeIcon = root.Q<VisualElement>("SingleTimeIcon");
         singleTimeQuantityLabel = root.Q<Label>("SingleTimeQuantityLabel");
+        cancelCraftButton = root.Q<Button>("CancelCraftButton");
     }
 }

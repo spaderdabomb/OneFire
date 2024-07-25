@@ -60,7 +60,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  itemID: 48321e0c-adde-402a-ab74-f62603292bbb
+  itemID: b5e8a4e7-49d7-40a3-838a-f6eecf440784
   baseName: PlayerCrafting
   displayName: PlayerCrafting
   description: Player Crafting
@@ -71,8 +71,8 @@ MonoBehaviour:
   itemType: 9
   itemRarity: 1
   itemCategories: 128
-  item3DPrefab: {fileID: 991390102720173739, guid: 72e29de196c720c4abb52c101e481c78,
+  item3DPrefab: {fileID: 991390102720173739, guid: c63d83aa17235ee45a58a65b023b7e2e,
     type: 3}
   itemSprite: {fileID: 21300000, guid: 735852ab2539a994194c5e76a8ad2fa3, type: 3}
-  itemHeldPrefab: {fileID: 991390102720173739, guid: 72e29de196c720c4abb52c101e481c78,
+  itemHeldPrefab: {fileID: 991390102720173739, guid: c63d83aa17235ee45a58a65b023b7e2e,
     type: 3}

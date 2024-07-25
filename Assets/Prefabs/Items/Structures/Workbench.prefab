@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 1587535514094896086}
   - component: {fileID: 950025995372722331}
   - component: {fileID: 3113255204892858526}
-  - component: {fileID: 4774341371831300573}
   - component: {fileID: 3442985040932331369}
-  - component: {fileID: 7475206349861878754}
-  - component: {fileID: 8219190016367877881}
+  - component: {fileID: -8981598449727235332}
   - component: {fileID: 6818187899406089247}
-  m_Layer: 10
+  - component: {fileID: -7127217377999224608}
+  m_Layer: 8
   m_Name: Workbench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,9 +30,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991390102720173739}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000025182217, y: -0.53400326, z: 0.00000015938555, w: 0.8454824}
+  m_LocalRotation: {x: 0, y: -0.53400564, z: 0, w: 0.8454809}
   m_LocalPosition: {x: -4.5154114, y: -3.4884415, z: -6.1314697}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,28 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4774341371831300573
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991390102720173739}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2365714483016850128, guid: c67cb8b50e87bfc408c6b4f8c227c838, type: 3}
 --- !u!54 &3442985040932331369
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,37 +110,31 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7475206349861878754
-MonoBehaviour:
+--- !u!65 &-8981598449727235332
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991390102720173739}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 828201e8bb578274ea479739aa13e356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInteract: {fileID: 0}
---- !u!114 &8219190016367877881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991390102720173739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78fae8d7136bf7c489e5e295b90c0761, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  structureDataAsset: {fileID: 11400000, guid: 05f5526e13e3e744382a41933f935ccc, type: 2}
-  structureData: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 1.8515289, y: 0.83301073, z: 0.93837297}
+  m_Center: {x: -0.009518058, y: 0.41649273, z: -0.008104161}
 --- !u!114 &6818187899406089247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +148,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInteract: {fileID: 0}
+--- !u!114 &-7127217377999224608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991390102720173739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be9ca01d071ac3940be6665a3522b95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataAsset: {fileID: 11400000, guid: 3f524754b55c4ca41a59008e4461e5fc, type: 2}
+  itemData: {fileID: 0}

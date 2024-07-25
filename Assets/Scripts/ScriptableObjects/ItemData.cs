@@ -47,6 +47,15 @@ public class ItemData : SerializedScriptableObject
 
         if (!PrefabUtility.IsPartOfPrefabAsset(itemHeldPrefab))
             Debug.LogError($"{this} {itemHeldPrefab} is a GameObject - set to prefab!");
+
+        if (item3DPrefab.GetComponent<WorldItem>() == null)
+            Debug.LogError($"{this} {item3DPrefab} does not contain a WorldItem component!");
+
+        if (string.IsNullOrEmpty(itemID) || itemID == Guid.Empty.ToString())
+            itemID = Guid.NewGuid().ToString();
+
+        if (!ItemRegistry.Register(this))
+            Debug.LogError($"Duplicate itemID found for {baseName}. Please regenerate the ID.");
     }
 
     private void OnEnable()
@@ -181,7 +190,7 @@ public static class ItemExtensions
             return null;
 
         ItemData spawnedItemData = ScriptableObject.Instantiate(originalItemData);
-        Debug.Log(spawnedItemData.stackCount);
+
         return spawnedItemData;
     }
 

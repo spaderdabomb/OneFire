@@ -60,7 +60,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  itemID: 48321e0c-adde-402a-ab74-f62603292bbb
+  itemID: dfeb5717-ef18-40dc-916a-591d1d48d9e8
   baseName: Workbench
   displayName: Workbench
   description: A basic bench for crafting
@@ -71,8 +71,8 @@ MonoBehaviour:
   itemType: 9
   itemRarity: 1
   itemCategories: 128
-  item3DPrefab: {fileID: 991390102720173739, guid: ef499ffb4cd74f943800c80d5a728b91,
+  item3DPrefab: {fileID: 991390102720173739, guid: 5fc90dc61bc74dc4fa97b103bf476fd1,
     type: 3}
   itemSprite: {fileID: 21300000, guid: 735852ab2539a994194c5e76a8ad2fa3, type: 3}
-  itemHeldPrefab: {fileID: 991390102720173739, guid: ef499ffb4cd74f943800c80d5a728b91,
+  itemHeldPrefab: {fileID: 991390102720173739, guid: 5fc90dc61bc74dc4fa97b103bf476fd1,
     type: 3}

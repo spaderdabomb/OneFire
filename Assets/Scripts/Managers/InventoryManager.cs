@@ -149,6 +149,9 @@ public class InventoryManager : SerializedMonoBehaviour
 
     public void HideInventoryTooltip()
     {
+        if (popupMenuInventory == null)
+            return;
+
         popupMenuInventory.root.style.display = DisplayStyle.None;
         popupMenuInventory.RemoveItemData();
     }
@@ -233,7 +236,7 @@ public class InventoryManager : SerializedMonoBehaviour
     private InventorySlot GetHoverSlotFromDrag(PointerUpEvent evt)
     {
         var hoverElement = FindElementBehind(GhostIcon.root, evt.position);
-        object currentObj = hoverElement.GetFirstAncestorOfType<TemplateContainer>().userData;
+        object currentObj = hoverElement?.GetFirstAncestorOfType<TemplateContainer>().userData;
 
         return currentObj is InventorySlot ? (InventorySlot)currentObj : null;
     }
@@ -275,6 +278,9 @@ public class InventoryManager : SerializedMonoBehaviour
 
     public void TrySplitItem(bool splitHalf)
     {
+        if (CurrentHoverSlot == null)
+            return;
+        
         CurrentHoverSlot.parentContainer.TrySplitItem(splitHalf);
     }
 

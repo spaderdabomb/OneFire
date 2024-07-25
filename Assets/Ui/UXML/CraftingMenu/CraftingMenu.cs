@@ -75,6 +75,7 @@ public partial class CraftingMenu
         plusButton.clickable.clicked += IncrementNumItemsToCraft;
         minusButton.clickable.clicked += DecrementNumItemsToCraft;
         maxButton.clickable.clicked += SetMaxItemsToCraft;
+        cancelCraftButton.clickable.clicked += CancelCrafting;
     }
 
     private void UnregisterCallbacks()
@@ -83,6 +84,7 @@ public partial class CraftingMenu
         plusButton.clickable.clicked -= IncrementNumItemsToCraft;
         minusButton.clickable.clicked -= DecrementNumItemsToCraft;
         maxButton.clickable.clicked -= SetMaxItemsToCraft;
+        cancelCraftButton.clickable.clicked -= CancelCrafting;
     }
 
     public void Update()
@@ -215,20 +217,36 @@ public partial class CraftingMenu
     private void FinishCraftingItem()
     {
         RecipeData recipeData = GetCurrentRecipe();
-        singleCraftTimeRemaining = recipeData.timeToCraft;
+        AddOrSpawnItem(recipeData.itemResult);
 
-        ItemData clonedItemData = recipeData.itemResult.CloneItemData();
-        InventoryManager.Instance.TryAddItem(clonedItemData);
+        NumItemsToCraft -= 1;
+        _itemsRemainingToCraft -= 1;
 
-        if (NumItemsToCraft <= 1)
+        EndCraftingInterface();
+    }
+
+    private void AddOrSpawnItem(ItemData itemData)
+    {
+        ItemData clonedItemData = itemData.CloneItemData();
+        int itemsRemaining = InventoryManager.Instance.TryAddItem(clonedItemData);
+        if (itemsRemaining > 0)
+        {
+            ItemData spawnedItemData = clonedItemData.CloneItemData();
+            GameObjectManager.Instance.SpawnItem(spawnedItemData);
+        }
+    }
+
+    private void EndCraftingInterface()
+    {
+        if (_itemsRemainingToCraft <= 0)
         {
             craftButton.style.display = DisplayStyle.Flex;
             craftProgressContainer.style.display = DisplayStyle.None;
             isCrafting = false;
         }
 
-        NumItemsToCraft -= 1;
-        _itemsRemainingToCraft -= 1;
+        RecipeData recipeData = GetCurrentRecipe();
+        singleCraftTimeRemaining = recipeData.timeToCraft;
 
         ownedQuantityLabel.text = InventoryManager.Instance.GetNumItemOwned(recipeData.itemResult).ToString();
         SetCraftButtonState();
@@ -243,7 +261,7 @@ public partial class CraftingMenu
         {
             ItemData clonedItemData = materialContainer.ItemData.CloneItemData();
             clonedItemData.stackCount = materialContainer.ItemQuantity * recipeQuantity;
-            InventoryManager.Instance.TryAddItem(clonedItemData);
+            AddOrSpawnItem(clonedItemData);
         }
     }
 
@@ -304,6 +322,16 @@ public partial class CraftingMenu
     private RecipeData GetCurrentRecipe()
     {
         return CraftingSlotContainer.CraftingSlots[selectedIndex].recipeData;
+    }
+
+    public void CancelCrafting()
+    {
+        ReturnMaterials(_itemsRemainingToCraft);
+
+        NumItemsToCraft = 1;
+        _itemsRemainingToCraft = 0;
+
+        EndCraftingInterface();
     }
 
     public string ConvertSecondsToString(float seconds)

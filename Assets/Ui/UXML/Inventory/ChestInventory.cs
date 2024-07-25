@@ -49,6 +49,7 @@ public partial class ChestInventory : BaseInventory
 
     public void ShowInventory()
     {
+        UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Clear();
         UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Add(root);
         ShowPlayerInventory();
     }

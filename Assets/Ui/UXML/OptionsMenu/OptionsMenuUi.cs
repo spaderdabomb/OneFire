@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace OneFireUi
 {
-    public partial class OptionsMenuUi
+    public partial class OptionsMenuUi : IGameMenu
     {
         public VisualElement root;
         public VisualElement rootElement;
@@ -11,6 +11,9 @@ namespace OneFireUi
 
         private ITabMenu[] tabMenus;
         private ExitButton exitButton;
+
+        MenuType IGameMenu.MenuType { get; set; } = MenuType.Options;
+
         public OptionsMenuUi(VisualElement root)
         {
             AssignQueryResults(root);
@@ -44,7 +47,17 @@ namespace OneFireUi
             return optionsUiRoot;
         }
 
-        public void ShowOptionsMenu()
+        public bool IsOpen()
+        {
+            return root.style.display == DisplayStyle.Flex;
+        }
+
+        public void HideMenu()
+        {
+            root.style.display = DisplayStyle.None;
+        }
+
+        public void ShowMenu()
         {
             root.style.display = DisplayStyle.Flex;
 
@@ -53,10 +66,24 @@ namespace OneFireUi
                 menu.ShowMenu();
             }
         }
-    }
 
-    public interface ITabMenu
-    {
-        void ShowMenu();
+        public bool ToggleMenu()
+        {
+            if (root.style.display == DisplayStyle.None)
+            {
+                ShowMenu();
+                return true;
+            }
+            else
+            {
+                HideMenu();
+                return false;
+            }
+        }
     }
+}
+
+public interface ITabMenu
+{
+    void ShowMenu();
 }

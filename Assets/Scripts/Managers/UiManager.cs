@@ -40,13 +40,13 @@ public class UiManager : MonoBehaviour
         uiGameManagerRoot = uiManagerDocument.rootVisualElement;
         uiGameManager = new UiGameManager(uiGameManagerRoot);
     }
+}
 
-    public enum MenuType
-    {
-        GameScene = 0,
-        Options = 1,
-        Map = 2,
-        Interact = 3,
-        Crafting = 4,
-    }
+public enum MenuType
+{
+    GameScene = 0,
+    Options = 1,
+    Map = 2,
+    Interact = 3,
+    Crafting = 4,
 }

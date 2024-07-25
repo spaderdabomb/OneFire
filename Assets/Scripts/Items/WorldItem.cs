@@ -72,6 +72,8 @@ public class WorldItem : MonoBehaviour
 
     private void OnValidate()
     {
+        GetComponent<Rigidbody>().isKinematic = false;
+
         if (gameObject.layer != LayerMask.NameToLayer("Item"))
         {
             gameObject.layer = LayerMask.NameToLayer("Item");

@@ -231,6 +231,7 @@ MonoBehaviour:
     type: 3}
   playerCraftingStationData: {fileID: 11400000, guid: 63f75408d984fd142aeb67a40357b5fe,
     type: 2}
+  menuShowing: 0
 --- !u!1001 &160166535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -678,7 +679,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1258214600}
     m_Modifications:
     - target: {fileID: 465202496416591914, guid: 6b0d7c4a5cdfc2d499e5a59c20613065,
         type: 3}
@@ -708,17 +709,17 @@ PrefabInstance:
     - target: {fileID: 465202496416951306, guid: 6b0d7c4a5cdfc2d499e5a59c20613065,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 465202496416951306, guid: 6b0d7c4a5cdfc2d499e5a59c20613065,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 465202496416951306, guid: 6b0d7c4a5cdfc2d499e5a59c20613065,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 465202496416951306, guid: 6b0d7c4a5cdfc2d499e5a59c20613065,
         type: 3}
@@ -1059,6 +1060,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &847891597 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 465202496416951306, guid: 6b0d7c4a5cdfc2d499e5a59c20613065,
+    type: 3}
+  m_PrefabInstance: {fileID: 455934461}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &884698196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1251,6 +1258,7 @@ Transform:
   - {fileID: 2053921450}
   - {fileID: 543450652977374499}
   - {fileID: 374651092713427682}
+  - {fileID: 847891597}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1289868517
@@ -1790,17 +1798,17 @@ PrefabInstance:
     - target: {fileID: 321673858646865718, guid: aa0dc18b8b0e3924a831420e4edc1397,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 495.62314
+      value: 494.54
       objectReference: {fileID: 0}
     - target: {fileID: 321673858646865718, guid: aa0dc18b8b0e3924a831420e4edc1397,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.75
+      value: 33.168
       objectReference: {fileID: 0}
     - target: {fileID: 321673858646865718, guid: aa0dc18b8b0e3924a831420e4edc1397,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 499.4199
+      value: 499.78
       objectReference: {fileID: 0}
     - target: {fileID: 321673858646865718, guid: aa0dc18b8b0e3924a831420e4edc1397,
         type: 3}
@@ -1839,6 +1847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1765473728890251610, guid: aa0dc18b8b0e3924a831420e4edc1397,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1765473728890251610, guid: aa0dc18b8b0e3924a831420e4edc1397,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.6000006
       objectReference: {fileID: 0}
@@ -1851,6 +1864,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ThirdPersonController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213313510310394569, guid: aa0dc18b8b0e3924a831420e4edc1397,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8213313510310394569, guid: aa0dc18b8b0e3924a831420e4edc1397,
         type: 3}
@@ -2603,21 +2621,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1258214600}
     m_Modifications:
-    - target: {fileID: 2520278818907944488, guid: 3dff1ae1818c5b6489f295ecf2bee1fc,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 868c6548eb0c64c4eac33737be8d80b4, type: 2}
     - target: {fileID: 2803106725327420191, guid: 3dff1ae1818c5b6489f295ecf2bee1fc,
         type: 3}
       propertyPath: m_Name
       value: StoneAxe
       objectReference: {fileID: 0}
-    - target: {fileID: 8118817785145457786, guid: 3dff1ae1818c5b6489f295ecf2bee1fc,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 868c6548eb0c64c4eac33737be8d80b4, type: 2}
     - target: {fileID: 8527554613855759586, guid: 3dff1ae1818c5b6489f295ecf2bee1fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2995,4 +3003,3 @@ SceneRoots:
   - {fileID: 1403908999}
   - {fileID: 1669804814}
   - {fileID: 352826088}
-  - {fileID: 455934461}

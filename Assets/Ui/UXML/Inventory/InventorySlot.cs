@@ -109,7 +109,11 @@ namespace OneFireUi
         public void SetStackCount(int newCount)
         {
             currentItemData.stackCount = newCount;
-            slotLabel.text = newCount.ToString();
+
+            if (newCount > 1)
+                slotLabel.text = newCount.ToString();
+            else
+                slotLabel.text = string.Empty;
         }
 
         public void RemoveItemFromSlot()
@@ -128,7 +132,7 @@ namespace OneFireUi
         private void SetSlotUI()
         {
             slotIcon.style.backgroundImage = currentItemData.itemSprite.texture;
-            slotLabel.text = currentItemData.stackCount.ToString();
+            SetStackCount(currentItemData.stackCount);
         }
 
         public void SetTinted()

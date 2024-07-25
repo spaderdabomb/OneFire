@@ -1,20 +1,21 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-file="1164be5ec82087648830a4d0dadc9e83">
-    <ui:VisualElement name="PopupContainer" class="popup-container">
-        <ui:VisualElement name="PopupHeader" class="popup-container-header">
-            <ui:Label tabindex="-1" text="ItemName" display-tooltip-when-elided="true" name="ItemNameLabel" class="item-name-label" />
-            <ui:VisualElement name="ItemTypeIcon" class="item-type-icon" />
+    <Style src="project://database/Assets/Ui/USS/Standard.uss?fileID=7433441132597879392&amp;guid=c99aa736163923f459f7fe4fc8ffa1c9&amp;type=3#Standard" />
+    <ui:VisualElement name="PopupContainer" class="popup-container menu-container" style="width: 320px; height: auto; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; background-color: rgba(30, 30, 30, 0.86);">
+        <ui:VisualElement name="PopupHeader" class="popup-container-header menu-header-label" style="flex-direction: row; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0; border-bottom-left-radius: 0; padding-bottom: 0; padding-top: 0;">
+            <ui:Label tabindex="-1" text="ItemName" display-tooltip-when-elided="true" name="ItemNameLabel" class="item-name-label menu-standard-label" style="font-size: 16px; -unity-text-align: upper-left; flex-grow: 1;" />
+            <ui:VisualElement name="ItemTypeIcon" class="item-type-icon" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=4584671053970592468&amp;guid=fab0d96aa6140ed45a5be0cbdf45131a&amp;type=3#console.warnicon&quot;); justify-content: space-around; align-self: stretch; align-items: stretch; flex-grow: 0; -unity-background-scale-mode: scale-to-fit; width: 24px; height: 24px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
         </ui:VisualElement>
-        <ui:VisualElement name="DividerHeader" class="divider" />
-        <ui:Label tabindex="-1" text="A common fishing rod used to catch standard fish in the grassy biome" display-tooltip-when-elided="true" name="ItemDescriptionLabel" class="popup-container__item-description-label" />
-        <ui:VisualElement name="DividerStats" class="divider-stats" />
+        <ui:VisualElement name="DividerHeader" class="divider" style="background-color: rgb(230, 230, 230); height: 2px;" />
+        <ui:Label tabindex="-1" text="A common fishing rod used to catch standard fish in the grassy biome" display-tooltip-when-elided="true" name="ItemDescriptionLabel" class="popup-container__item-description-label menu-standard-label" style="flex-wrap: nowrap; white-space: normal; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;" />
+        <ui:VisualElement name="DividerStats" class="divider-stats" style="height: 1px; background-color: rgb(230, 230, 230);" />
         <ui:VisualElement name="StatsListContainer" class="popup-container__stats-container" />
         <ui:VisualElement name="DividerBottom" class="divider" />
-        <ui:VisualElement name="PopupBottomContainer" class="popup-container__bottom-container">
-            <ui:VisualElement name="ShopSellContainer" class="shop-sell-container">
-                <ui:VisualElement name="ShopSellIcon" class="shop-sell-icon" />
-                <ui:Label tabindex="-1" text="100" display-tooltip-when-elided="true" name="ShopSellLabel" class="popup-container__item-description-label" style="font-size: 15px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; flex-wrap: nowrap; white-space: normal;" />
+        <ui:VisualElement name="PopupBottomContainer" class="popup-container__bottom-container" style="flex-direction: row; align-self: stretch; justify-content: space-between; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;">
+            <ui:VisualElement name="ShopSellContainer" class="shop-sell-container" style="flex-direction: row; justify-content: flex-start; align-self: center; flex-grow: 1;">
+                <ui:VisualElement name="ShopSellIcon" class="shop-sell-icon" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=4584671053970592468&amp;guid=fab0d96aa6140ed45a5be0cbdf45131a&amp;type=3#console.warnicon&quot;); width: 24px; height: 24px; align-self: center;" />
+                <ui:Label tabindex="-1" text="100" display-tooltip-when-elided="true" name="ShopSellLabel" class="popup-container__item-description-label menu-standard-label" style="font-size: 15px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; flex-wrap: nowrap; white-space: normal;" />
             </ui:VisualElement>
-            <ui:Label tabindex="-1" text="Consumable" display-tooltip-when-elided="true" name="ItemTypeLabel" class="popup-container__item-description-label" />
+            <ui:Label tabindex="-1" text="Consumable" display-tooltip-when-elided="true" name="ItemTypeLabel" class="popup-container__item-description-label menu-standard-label" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

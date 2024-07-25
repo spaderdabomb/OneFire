@@ -8,6 +8,9 @@ public partial class CraftingSlot
     public RecipeData recipeData;
     private CraftingSlotContainer parentContainer;
 
+    private static string slotBaseStyle = "crafting-slot";
+    private static string slotSelectedStyle = "crafting-slot-selected";
+
     private int slotIndex;
     public CraftingSlot(VisualElement root, RecipeData recipeData, int slotIndex, CraftingSlotContainer parentContainer)
     {
@@ -24,6 +27,7 @@ public partial class CraftingSlot
 
     private void Init()
     {
+        root.style.alignSelf = Align.FlexStart;
         slotIcon.style.backgroundImage = recipeData.itemResult.itemSprite.texture;
     }
 
@@ -54,5 +58,15 @@ public partial class CraftingSlot
     public void ClickedSlot(PointerDownEvent evt)
     {
         parentContainer.parentMenu.RecipeSelected(slotIndex);
+        craftingSlot.ClearClassList();
+        craftingSlot.AddToClassList(slotSelectedStyle);
+
+        foreach (var slot in parentContainer.CraftingSlots)
+        {
+            if (slot == this) continue; 
+
+            slot.craftingSlot.ClearClassList();
+            slot.craftingSlot.AddToClassList(slotBaseStyle);
+        }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UIElements;
 
+[DefaultExecutionOrder(2)]
 public class CraftingManager : SerializedMonoBehaviour
 {
     public static CraftingManager Instance;
@@ -22,13 +23,24 @@ public class CraftingManager : SerializedMonoBehaviour
         Instance = this;
     }
 
+    private void OnEnable()
+    {
+        UiManager.Instance.uiGameManager.OnHideInteractMenu += CloseCraftingMenu;
+    }
+
+    private void OnDisable()
+    {
+        UiManager.Instance.uiGameManager.OnHideInteractMenu -= CloseCraftingMenu;
+    }
+
     private void Start()
     {
-
+        VisualElement craftingMenuClone = craftingMenuAsset.CloneTree();
+        PlayerCraftingMenu = new CraftingMenu(craftingMenuClone, playerCraftingStationData);
     }
     private void Update()
     {
-        if (PlayerCraftingMenu != null && menuShowing)
+        if (PlayerCraftingMenu != null)
         {
             PlayerCraftingMenu.Update();
         }
@@ -37,17 +49,17 @@ public class CraftingManager : SerializedMonoBehaviour
     public void ShowCraftingMenu(CraftingStationData craftingStationData)
     {
         menuShowing = true;
-        VisualElement craftingMenuClone = craftingMenuAsset.CloneTree();
-        PlayerCraftingMenu = new CraftingMenu(craftingMenuClone, craftingStationData);
+/*        VisualElement craftingMenuClone = craftingMenuAsset.CloneTree();
+        PlayerCraftingMenu = new CraftingMenu(craftingMenuClone, craftingStationData);*/
 
         UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Clear();
-        UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Add(craftingMenuClone);
+        UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Add(PlayerCraftingMenu.root);
     }
 
-    public void CloseCraftingMenu(CraftingStationData craftingStationData)
+    public void CloseCraftingMenu()
     {
-        PlayerCraftingMenu.root.parent.Remove(PlayerCraftingMenu.root);
-        PlayerCraftingMenu = null;
+/*        PlayerCraftingMenu.root.parent.Remove(PlayerCraftingMenu.root);
+        PlayerCraftingMenu = null;*/
         menuShowing = false;
     }
 }
