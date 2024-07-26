@@ -2066,6 +2066,7 @@ MonoBehaviour:
   equipmentInventorySlots: 5
   chestInventoryAsset: {fileID: 9197481963319205126, guid: 895dd4dcee2754540b6a290c6463ed07,
     type: 3}
+  popupOffset: {x: 5, y: 0}
   timeToShowTooltip: 0.5
 --- !u!1 &1669804811
 GameObject:

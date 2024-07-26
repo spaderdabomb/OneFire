@@ -54,12 +54,14 @@ public class CraftingManager : SerializedMonoBehaviour
 
         UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Clear();
         UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Add(PlayerCraftingMenu.root);
+        InventoryManager.Instance.PlayerHotbarInventory.HideMenu();
     }
 
     public void CloseCraftingMenu()
     {
-/*        PlayerCraftingMenu.root.parent.Remove(PlayerCraftingMenu.root);
-        PlayerCraftingMenu = null;*/
+        /*        PlayerCraftingMenu.root.parent.Remove(PlayerCraftingMenu.root);
+                PlayerCraftingMenu = null;*/
+        InventoryManager.Instance.PlayerHotbarInventory.ShowMenu();
         menuShowing = false;
     }
 }

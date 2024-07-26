@@ -5,11 +5,9 @@ using System.Collections.Generic;
 
 public partial class PlayerHotbarInventory : BaseInventory
 {   
-    public VisualElement TemplateRoot { get; private set; }
     public PlayerHotbarInventory(VisualElement root, int numInventorySlots, string inventoryId) : base(root, numInventorySlots, inventoryId)
     {
         AssignQueryResults(root);
-        TemplateRoot = root;
         root.userData = this;
         root.pickingMode = PickingMode.Ignore;
 
@@ -29,5 +27,19 @@ public partial class PlayerHotbarInventory : BaseInventory
             slot.root.parent?.Remove(slot.root);
             containerRoot.Add(slot.root);
         }
+    }
+
+    public void ShowMenu()
+    {
+        root.style.display = DisplayStyle.Flex;
+        Debug.Log("Showing menu");
+
+    }
+
+    public void HideMenu()
+    {
+        root.style.display = DisplayStyle.None;
+        Debug.Log("Hiding menu");
+
     }
 }

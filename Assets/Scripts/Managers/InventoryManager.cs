@@ -29,6 +29,7 @@ public class InventoryManager : SerializedMonoBehaviour
     [SerializeField] private int equipmentInventorySlots;
 
     [SerializeField] private VisualTreeAsset chestInventoryAsset;
+    [SerializeField] private Vector2 popupOffset = Vector2.zero;
 
     public Dictionary<ItemType, EquipmentSlotData> equipmentSlotDataDict = new();
 
@@ -106,7 +107,7 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         VisualElement popupMenuAsset = UiManager.Instance.popupMenuInventory.CloneTree();
         PopupMenuInventory newPopupMenuInventory = new PopupMenuInventory(popupMenuAsset);
-        UiManager.Instance.uiGameManager.OptionsMenuUi.root.Add(popupMenuAsset);
+        PlayerHotbarInventory.root.Add(popupMenuAsset);
         newPopupMenuInventory.root.style.position = Position.Absolute;
         newPopupMenuInventory.root.style.display = DisplayStyle.Flex;
 
@@ -136,10 +137,9 @@ public class InventoryManager : SerializedMonoBehaviour
         if (CurrentHoverSlot?.currentItemData == null)
             return;
 
-        Vector2 positionDiff = CurrentHoverSlot.parentContainer.root.ChangeCoordinatesTo(popupMenuInventory.root.parent, CurrentHoverSlot.root.layout.position);
         popupMenuInventory.root.style.display = DisplayStyle.Flex;
-        popupMenuInventory.root.style.left = positionDiff.x + 70f;
-        popupMenuInventory.root.style.top = positionDiff.y + 170f;
+        popupMenuInventory.root.style.left = CurrentHoverSlot.mousePosition.x + popupOffset.x;
+        popupMenuInventory.root.style.top = CurrentHoverSlot.mousePosition.y + popupOffset.y;
 
         if (!popupMenuInventory.itemDataShowing)
         {

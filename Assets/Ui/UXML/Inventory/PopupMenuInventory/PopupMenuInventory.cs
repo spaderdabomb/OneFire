@@ -14,6 +14,8 @@ public partial class PopupMenuInventory
     {
         this.root = root;
         AssignQueryResults(root);
+        this.root.pickingMode = PickingMode.Ignore;
+        this.root.style.translate = new Translate(Length.Percent(0), Length.Percent(-100));
     }
 
     public void SetItemData(ItemData newItemData)

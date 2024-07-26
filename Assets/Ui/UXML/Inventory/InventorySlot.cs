@@ -11,6 +11,7 @@ namespace OneFireUi
         public BaseInventory parentContainer;
         public int slotIndex;
         public bool slotFilled = false;
+        public Vector2 mousePosition;
 
         private Color labelColorDefault;
         private Color iconTintColorDefault;
@@ -36,6 +37,7 @@ namespace OneFireUi
             root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
             root.RegisterCallback<PointerEnterEvent>(PointerEnterSlot);
             root.RegisterCallback<PointerLeaveEvent>(PointerLeaveSlot);
+            root.RegisterCallback<PointerMoveEvent>(PointerMoveInSlot);
         }
 
         public void UnregisterCallbacks()
@@ -173,6 +175,11 @@ namespace OneFireUi
         {
             InventoryManager.Instance.UpdateCurrentHoverSlot(this, false);
             parentContainer.currentHoverSlot = null;
+        }
+
+        public void PointerMoveInSlot(PointerMoveEvent evt)
+        {
+            mousePosition = evt.position;
         }
     }
 }

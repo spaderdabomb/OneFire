@@ -8,7 +8,6 @@ public partial class UiGameManager
 {
     public OptionsMenuUi OptionsMenuUi { get; private set; }
     public GameSceneUi GameSceneUi { get; private set; }
-    public PlayerHotbarInventory PlayerHotbarInventory { get; private set; }
     public PlayerInteractionMenu PlayerInteractionMenu { get; private set; }
     public List<IGameMenu> GameMenus { get; private set; }
     public Dictionary<MenuType, IGameMenu> GameMenuDict { get; private set; }
