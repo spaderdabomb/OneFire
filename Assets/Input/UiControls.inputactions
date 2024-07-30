@@ -68,6 +68,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ObjectPlacementMap",
+            "id": "8910d009-3840-43c9-b1fd-b4439044e8e6",
+            "actions": [
+                {
+                    "name": "PlaceObject",
+                    "type": "Button",
+                    "id": "db84f024-cd5c-4d22-afe7-f0fefc314757",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c4a323fb-a435-4c37-adea-394e8734b991",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

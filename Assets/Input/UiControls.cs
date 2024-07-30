@@ -90,6 +90,34 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ObjectPlacementMap"",
+            ""id"": ""8910d009-3840-43c9-b1fd-b4439044e8e6"",
+            ""actions"": [
+                {
+                    ""name"": ""PlaceObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""db84f024-cd5c-4d22-afe7-f0fefc314757"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c4a323fb-a435-4c37-adea-394e8734b991"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -99,6 +127,9 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
         m_GameSceneMap_ToggleOptions = m_GameSceneMap.FindAction("ToggleOptions", throwIfNotFound: true);
         m_GameSceneMap_EscPressed = m_GameSceneMap.FindAction("EscPressed", throwIfNotFound: true);
         m_GameSceneMap_ToggleCraftingMenu = m_GameSceneMap.FindAction("ToggleCraftingMenu", throwIfNotFound: true);
+        // ObjectPlacementMap
+        m_ObjectPlacementMap = asset.FindActionMap("ObjectPlacementMap", throwIfNotFound: true);
+        m_ObjectPlacementMap_PlaceObject = m_ObjectPlacementMap.FindAction("PlaceObject", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,10 +249,60 @@ public partial class @UiControls: IInputActionCollection2, IDisposable
         }
     }
     public GameSceneMapActions @GameSceneMap => new GameSceneMapActions(this);
+
+    // ObjectPlacementMap
+    private readonly InputActionMap m_ObjectPlacementMap;
+    private List<IObjectPlacementMapActions> m_ObjectPlacementMapActionsCallbackInterfaces = new List<IObjectPlacementMapActions>();
+    private readonly InputAction m_ObjectPlacementMap_PlaceObject;
+    public struct ObjectPlacementMapActions
+    {
+        private @UiControls m_Wrapper;
+        public ObjectPlacementMapActions(@UiControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PlaceObject => m_Wrapper.m_ObjectPlacementMap_PlaceObject;
+        public InputActionMap Get() { return m_Wrapper.m_ObjectPlacementMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ObjectPlacementMapActions set) { return set.Get(); }
+        public void AddCallbacks(IObjectPlacementMapActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ObjectPlacementMapActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ObjectPlacementMapActionsCallbackInterfaces.Add(instance);
+            @PlaceObject.started += instance.OnPlaceObject;
+            @PlaceObject.performed += instance.OnPlaceObject;
+            @PlaceObject.canceled += instance.OnPlaceObject;
+        }
+
+        private void UnregisterCallbacks(IObjectPlacementMapActions instance)
+        {
+            @PlaceObject.started -= instance.OnPlaceObject;
+            @PlaceObject.performed -= instance.OnPlaceObject;
+            @PlaceObject.canceled -= instance.OnPlaceObject;
+        }
+
+        public void RemoveCallbacks(IObjectPlacementMapActions instance)
+        {
+            if (m_Wrapper.m_ObjectPlacementMapActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IObjectPlacementMapActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ObjectPlacementMapActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ObjectPlacementMapActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ObjectPlacementMapActions @ObjectPlacementMap => new ObjectPlacementMapActions(this);
     public interface IGameSceneMapActions
     {
         void OnToggleOptions(InputAction.CallbackContext context);
         void OnEscPressed(InputAction.CallbackContext context);
         void OnToggleCraftingMenu(InputAction.CallbackContext context);
+    }
+    public interface IObjectPlacementMapActions
+    {
+        void OnPlaceObject(InputAction.CallbackContext context);
     }
 }
