@@ -199,4 +199,18 @@ public static class ItemExtensions
         ItemData spawnedData = ScriptableObject.Instantiate(data);
         return spawnedData;
     }
+
+    public static StructureData GetStructureFromItem(this ItemData itemData)
+    {
+        foreach (var structureKVP in StructureRegistry.structureDictionary)
+        {
+            if (itemData.itemID == structureKVP.Value.itemDataAsset.itemID)
+            {
+                return structureKVP.Value;
+            }
+        }
+
+        Debug.LogError($"Unable to find {itemData} in stuctures; is there a mismatch in registries?");
+        return null;
+    }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using Unity.VisualScripting;
 using System.Linq;
-public partial class CraftingMenu
+public partial class CraftingMenu : IPersistentData
 {
     public CraftingSlotContainer CraftingSlotContainer { get; private set; }
     public CraftingStationData craftingStationData;
@@ -13,10 +13,13 @@ public partial class CraftingMenu
     public CraftingStationData playerCraftingStationData;
     public List<MaterialContainer> materialContainers;
 
+    public string fullId { get; private set; }
+
     private float totalCraftTimeRemaining = 0f;
     private float singleCraftTimeRemaining = 0f;
     private int selectedIndex = -1;
     private bool isCrafting = false;
+    private bool loaded = false;
 
     private int _itemsRemainingToCraft = 0;
     private int _numItemsToCraft;
@@ -51,22 +54,28 @@ public partial class CraftingMenu
         }
     }
 
-    public CraftingMenu(VisualElement root, CraftingStationData craftingStationData)
+    public CraftingMenu(VisualElement root, CraftingStationData craftingStationData, string fullId)
     {
         AssignQueryResults(root);
 
         this.root = root;
         this.craftingStationData = craftingStationData;
+        this.fullId = fullId;
 
-        Init();
         RegisterCallbacks();
         ShowMenu();
     }
 
-    private void Init()
+    public void InitCraftingStation(CraftingStationData craftingStationData)
     {
         materialContainers = new();
         CraftingSlotContainer = new CraftingSlotContainer(craftingSlotContainer, craftingStationData, this);
+
+        if (!loaded)
+        {
+            AddToSaveable();
+            LoadData();
+        }
     }
 
     private void RegisterCallbacks()
@@ -132,6 +141,21 @@ public partial class CraftingMenu
     private void ShowMenu()
     {
         rightContainer.style.display = DisplayStyle.None;
+    }
+
+    private int GetRecipeIdxFromItem(ItemData itemData)
+    {
+        for (int i = 0; i < craftingStationData.recipesAvailable.Length; i++)
+        {
+            RecipeData recipe = craftingStationData.recipesAvailable[i];
+            if (recipe.itemResult.itemID == itemData.itemID)
+            {
+                return i;
+            }
+        }
+
+        Debug.LogError($"Unable to find {itemData} in recipe list, data mismatch");
+        return -1;
     }
 
     public void RecipeSelected(int recipeIndex)
@@ -209,6 +233,23 @@ public partial class CraftingMenu
         {
             InventoryManager.Instance.ConsumeItem(itemData.Key, itemData.Value * itemsToConsume);
         }
+
+        UpdateRequiredMaterials();
+        isCrafting = true;
+    }
+
+    public void ResumeCraftingItem(SaveableCraftingStation saveableCraftingStation)
+    {
+        ItemData clonedItemData = ItemExtensions.GetItemData(saveableCraftingStation.itemInProgress.itemID);
+        int recipeIndex = GetRecipeIdxFromItem(clonedItemData);
+        RecipeSelected(recipeIndex);
+
+        NumItemsToCraft = saveableCraftingStation.itemsRemaining;
+        _itemsRemainingToCraft = NumItemsToCraft;
+        singleCraftTimeRemaining = saveableCraftingStation.timeRemaining;
+
+        craftButton.style.display = DisplayStyle.None;
+        craftProgressContainer.style.display = DisplayStyle.Flex;
 
         UpdateRequiredMaterials();
         isCrafting = true;
@@ -350,5 +391,45 @@ public partial class CraftingMenu
             float hours = seconds / 3600f;
             return Mathf.Ceil(hours).ToString("F0") + "h";
         }
+    }
+
+    public void AddToSaveable()
+    {
+        PersistentDataManager.Instance.AddToPersistentDataList(this);
+    }
+
+    public void LoadData()
+    {
+        SaveableCraftingStation defaultCraftingStation = new SaveableCraftingStation(fullId, null, 0, 0f);
+        SaveableCraftingStation saveableCraftingStation = ES3.Load(fullId, defaultValue: defaultCraftingStation);
+        if (saveableCraftingStation.itemInProgress != null)
+        {
+            ResumeCraftingItem(saveableCraftingStation);
+        }
+
+        loaded = true;
+    }
+
+    public void SaveData()
+    {
+        BaseItemData baseItemData = new BaseItemData(GetCurrentRecipe().itemResult);
+        SaveableCraftingStation saveableCraftingStation = new SaveableCraftingStation(fullId, baseItemData, _itemsRemainingToCraft, singleCraftTimeRemaining);
+        ES3.Save(fullId, saveableCraftingStation);
+    }
+}
+
+public class SaveableCraftingStation
+{
+    public string fullId;
+    public BaseItemData itemInProgress;
+    public int itemsRemaining;
+    public float timeRemaining;
+
+    public SaveableCraftingStation(string fullId, BaseItemData itemInProgress, int itemsRemaining, float timeRemaining)
+    {
+        this.fullId = fullId;
+        this.itemInProgress = itemInProgress;
+        this.itemsRemaining = itemsRemaining;
+        this.timeRemaining = timeRemaining;
     }
 }

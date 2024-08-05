@@ -17,7 +17,8 @@
         DialogueNext,
         SelectSuppressed,
         WoodenTick,
-        InventoryFull
+        InventoryFull,
+        PlaceStructure
     }
     public enum MainLibraryMusic {
     }

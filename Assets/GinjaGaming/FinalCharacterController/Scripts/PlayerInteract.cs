@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace GinjaGaming.FinalCharacterController
 {
+    [DefaultExecutionOrder(-1)]
     public class PlayerInteract : MonoBehaviour
     {
         public List<GameObject> interactingObjects;

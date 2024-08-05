@@ -24,6 +24,7 @@ public partial class CraftingSlotContainer
 
     private void Init()
     {
+        slotContainer.Clear();
         CraftingSlots = new CraftingSlot[craftingStationData.recipesAvailable.Length];
 
         for (int i = 0; i < CraftingSlots.Length; i++)

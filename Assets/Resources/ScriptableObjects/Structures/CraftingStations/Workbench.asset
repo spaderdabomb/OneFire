@@ -21,13 +21,16 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  id: e23058f7-98ee-4bd8-bccd-80dbf17836cc
+  id: 36d42d58-5864-49c3-9edc-bc054271aa3a
   interactDescription: Craft
   health: 100
   baseSellValue: 1
   itemDataAsset: {fileID: 11400000, guid: 3f524754b55c4ca41a59008e4461e5fc, type: 2}
-  item3DPrefab: {fileID: 991390102720173739, guid: ef499ffb4cd74f943800c80d5a728b91,
+  structurePrefab: {fileID: 991390102720173739, guid: ef499ffb4cd74f943800c80d5a728b91,
+    type: 3}
+  structurePreviewPrefab: {fileID: 2260532198610870705, guid: 80b0352ce80131647aaaa6b9d88f027d,
     type: 3}
   recipesAvailable:
   - {fileID: 11400000, guid: 3c580645b7f29294e8028cef22f5058a, type: 2}
   - {fileID: 11400000, guid: 966a3d3f42f71034d95ca33c9848bbf9, type: 2}
+  - {fileID: 11400000, guid: 692cd106e252b5140805fb9dc8c4b6d8, type: 2}

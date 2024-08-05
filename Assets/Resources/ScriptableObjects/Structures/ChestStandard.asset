@@ -21,14 +21,13 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  id: 2a189a9c-72fc-44ab-a85d-be21bf7c8ae1
-  baseName: Chest
-  displayName: Chest
-  description: A standard chest
+  id: ab7beb9b-6b98-4ee8-8437-866ba1e67453
   interactDescription: Open
   health: 100
   baseSellValue: 1
   itemDataAsset: {fileID: 11400000, guid: b00849b8f885ef941a1f267b1c0d52a5, type: 2}
-  item3DPrefab: {fileID: 3714119430091773529, guid: f0af6e0b7e72f8242b0dc453dfbc94e2,
+  structurePrefab: {fileID: 3714119430091773529, guid: f0af6e0b7e72f8242b0dc453dfbc94e2,
+    type: 3}
+  structurePreviewPrefab: {fileID: 7482144632492101684, guid: 34921cc2e52121e449665f93a7148432,
     type: 3}
   numSlots: 24

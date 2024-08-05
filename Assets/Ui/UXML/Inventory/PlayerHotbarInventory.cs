@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public partial class PlayerHotbarInventory : BaseInventory
 {   
-    public PlayerHotbarInventory(VisualElement root, int numInventorySlots, string inventoryId) : base(root, numInventorySlots, inventoryId)
+    public PlayerHotbarInventory(VisualElement root, int numInventorySlots, string inventoryId, bool selectable): base(root, numInventorySlots, inventoryId, selectable)
     {
         AssignQueryResults(root);
         root.userData = this;
@@ -32,14 +32,10 @@ public partial class PlayerHotbarInventory : BaseInventory
     public void ShowMenu()
     {
         root.style.display = DisplayStyle.Flex;
-        Debug.Log("Showing menu");
-
     }
 
     public void HideMenu()
     {
         root.style.display = DisplayStyle.None;
-        Debug.Log("Hiding menu");
-
     }
 }

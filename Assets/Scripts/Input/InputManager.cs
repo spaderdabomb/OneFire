@@ -14,12 +14,10 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     public PlayerInput playerInputDummy;
-    public UiInputManager uiInputManager;
-    public InventoryControlsInput inventoryControlsInput;
-
     public PlayerActionsInput playerActionsInput;
     public LastInputSystem lastInputSystem { get; private set; } = LastInputSystem.KeyboardMouse;
 
+    [SerializeField] StructurePlacer structurePlacer;
     [SerializeField] private InputActionAsset[] inputActionAssets;
     private Dictionary<string, ActionCallbacks> callbackMap = new Dictionary<string, ActionCallbacks>();
 
@@ -62,15 +60,17 @@ public class InputManager : MonoBehaviour
     public void SetGameSceneControls()
     {
         PlayerInputManager.Instance.EnableControls();
-        uiInputManager.uiControls.Enable();
-        inventoryControlsInput.InventoryControls.Disable();
+        EnableInputAsset("UiControls");
+        structurePlacer.SetCraftingInputState();
+        DisableInputAsset("InventoryControls");
     }
 
     public void SetMenuControls()
     {
         PlayerInputManager.Instance.DisableControls();
-        uiInputManager.uiControls.Enable();
-        inventoryControlsInput.InventoryControls.Enable();
+        EnableInputAsset("UiControls");
+        EnableInputAsset("InventoryControls");
+        DisableActionMap("UiControls", "ObjectPlacementMap");
     }
 
     private void OnDeviceChange(InputDevice device, InputDeviceChange change)
@@ -138,6 +138,7 @@ public class InputManager : MonoBehaviour
         {
             InputActionMap actionMap = asset.FindActionMap(actionMapName);
             if (actionMap != null) actionMap.Enable();
+            else Debug.LogError($"{actionMapName} in {assetName} is null, did you name it correctly?");
         }
     }
 
@@ -148,6 +149,7 @@ public class InputManager : MonoBehaviour
         {
             InputActionMap actionMap = asset.FindActionMap(actionMapName);
             if (actionMap != null) actionMap.Disable();
+            else Debug.LogError($"{actionMapName} in {assetName} is null, did you name it correctly?");
         }
     }
 
@@ -195,6 +197,28 @@ public class InputManager : MonoBehaviour
             }
         }
         Debug.LogWarning($"No callbacks registered for action '{actionName}'.");
+    }
+
+    public bool IsActionMapEnabled(string assetName, string actionMapName)
+    {
+        InputActionAsset asset = FindInputAsset(assetName);
+        if (asset != null)
+        {
+            InputActionMap actionMap = asset.FindActionMap(actionMapName);
+            if (actionMap != null)
+            {
+                return actionMap.enabled;
+            }
+            else
+            {
+                Debug.LogError($"{actionMapName} in {assetName} is null, did you name it correctly?");
+            }
+        }
+        else
+        {
+            Debug.LogError($"{assetName} not found.");
+        }
+        return false;
     }
 
     private InputActionAsset FindInputAsset(string assetName)

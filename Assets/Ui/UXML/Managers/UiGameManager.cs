@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using OneFireUi;
 using System;
+using UnityEngine.InputSystem;
 
 public partial class UiGameManager
 {
@@ -20,6 +21,7 @@ public partial class UiGameManager
         AssignQueryResults(root);
         this.root = root;
         Init();
+        RegisterCallbacks();
     }
 
     private void Init()
@@ -38,9 +40,29 @@ public partial class UiGameManager
         };
     }
 
+    private void RegisterCallbacks()
+    {
+        InputManager.Instance.RegisterCallback("ToggleOptions", OnToggleOptions);
+        InputManager.Instance.RegisterCallback("EscPressed", OnEscPressed);
+        InputManager.Instance.RegisterCallback("ToggleCraftingMenu", OnToggleCraftingMenu);
+
+    }
+
+    private void UnregisterCallbacks()
+    {
+        InputManager.Instance.UnregisterCallback("OptionsToggled");
+        InputManager.Instance.UnregisterCallback("EscPressed");
+        InputManager.Instance.UnregisterCallback("ToggleCraftingMenu");
+    }
+
     public VisualElement GetPlayerHotbarInventoryRoot()
     {
         return playerHotbarInventory;
+    }
+
+    private void OnToggleOptions(InputAction.CallbackContext context)
+    {
+        ToggleOptionsMenu();
     }
 
     public void ToggleOptionsMenu()
@@ -58,11 +80,16 @@ public partial class UiGameManager
         SetInputSettings(MenuType.Options);
     }
 
-    public void ToggleCraftingMenu(CraftingStationData craftingStationData)
+    private void OnToggleCraftingMenu(InputAction.CallbackContext context)
+    {
+        ToggleCraftingMenu(CraftingManager.Instance.playerCraftingStationData, CraftingManager.Instance.playerCraftingStationId);
+    }
+
+    public void ToggleCraftingMenu(CraftingStationData craftingStationData, int instanceId)
     {
         bool menuOpen = ToggleInteractMenu();
         if (menuOpen)
-            CraftingManager.Instance.ShowCraftingMenu(craftingStationData);
+            CraftingManager.Instance.ShowCraftingMenu(craftingStationData, instanceId);
     }
 
     public bool ToggleInteractMenu()
@@ -107,6 +134,11 @@ public partial class UiGameManager
         }
 
         return null;
+    }
+
+    public void OnEscPressed(InputAction.CallbackContext context)
+    {
+        ExitCurrentMenu();
     }
 
     public void ExitCurrentMenu()

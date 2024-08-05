@@ -13,10 +13,15 @@ using static UnityEngine.Rendering.DebugUI;
 using static UnityEditor.Rendering.FilterWindow;
 using JSAM;
 using System.Linq;
+using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
+[DefaultExecutionOrder(-2)]
 public class InventoryManager : SerializedMonoBehaviour
 {
     public static InventoryManager Instance;
+
+    [HideInInspector] public Action<ItemData> OnHotbarItemSelectedChanged;  
 
     public event Action<ItemData> OnDroppedItem;
     public void DroppedItem(ItemData itemData) => OnDroppedItem?.Invoke(itemData);
@@ -46,7 +51,7 @@ public class InventoryManager : SerializedMonoBehaviour
     public PlayerInventory PlayerInventory { get; private set; } = null;
     public EquipmentInventory EquipmentInventory { get; private set; } = null;
     public PlayerHotbarInventory PlayerHotbarInventory { get; private set; } = null;
-    [SerializeField] public Dictionary<string, ChestInventory> ChestInventoryDict { get; private set; } = null;
+    [SerializeField] public Dictionary<int, ChestInventory> ChestInventoryDict { get; private set; } = null;
     public PopupMenuInventory popupMenuInventory { get; private set; } = null;
 
     private List<EquipmentSlot> equipmentSlotsHighlighted = new List<EquipmentSlot>();
@@ -62,9 +67,9 @@ public class InventoryManager : SerializedMonoBehaviour
         VisualElement equipmentInventoryRoot = UiManager.Instance.uiGameManager.OptionsMenuUi.inventoryMenu.GetEquipmentInventoryRoot();
         VisualElement hotbarInventoryRoot = UiManager.Instance.uiGameManager.GetPlayerHotbarInventoryRoot();
 
-        PlayerInventory = new PlayerInventory(playerInventoryRoot, playerInventorySlots, "PlayerInventory");
-        EquipmentInventory = new EquipmentInventory(equipmentInventoryRoot, equipmentInventorySlots, "EquipmentInventory");
-        PlayerHotbarInventory = new PlayerHotbarInventory(hotbarInventoryRoot, playerHotbarSlots, "PlayerHotbarInventory");
+        PlayerInventory = new PlayerInventory(playerInventoryRoot, playerInventorySlots, "PlayerInventory", false);
+        EquipmentInventory = new EquipmentInventory(equipmentInventoryRoot, equipmentInventorySlots, "EquipmentInventory", false);
+        PlayerHotbarInventory = new PlayerHotbarInventory(hotbarInventoryRoot, playerHotbarSlots, "PlayerHotbarInventory", true);
 
         ChestInventoryDict = new();
 
@@ -74,33 +79,62 @@ public class InventoryManager : SerializedMonoBehaviour
         GhostIcon = new GhostIcon(ghostIconAsset);
     }
 
+    private void OnEnable()
+    {
+        InputManager.Instance.RegisterCallback("DropItem", OnDropItem);
+        InputManager.Instance.RegisterCallback("SplitItemHalf", OnTrySplitItem);
+        InputManager.Instance.RegisterCallback("SelectSlot0", OnSelectSlot0);
+        InputManager.Instance.RegisterCallback("SelectSlot1", OnSelectSlot1);
+        InputManager.Instance.RegisterCallback("SelectSlot2", OnSelectSlot2);
+        InputManager.Instance.RegisterCallback("SelectSlot3", OnSelectSlot3);
+        InputManager.Instance.RegisterCallback("SelectSlot4", OnSelectSlot4);
+        InputManager.Instance.RegisterCallback("SelectSlot5", OnSelectSlot5);
+        InputManager.Instance.RegisterCallback("SelectSlot6", OnSelectSlot6);
+        InputManager.Instance.RegisterCallback("SelectSlot7", OnSelectSlot7);
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.UnregisterCallback("DropItem");
+        InputManager.Instance.UnregisterCallback("SplitItemHalf");
+        InputManager.Instance.RegisterCallback("SelectSlot0");
+        InputManager.Instance.RegisterCallback("SelectSlot1");
+        InputManager.Instance.RegisterCallback("SelectSlot2");
+        InputManager.Instance.RegisterCallback("SelectSlot3");
+        InputManager.Instance.RegisterCallback("SelectSlot4");
+        InputManager.Instance.RegisterCallback("SelectSlot5");
+        InputManager.Instance.RegisterCallback("SelectSlot6");
+        InputManager.Instance.RegisterCallback("SelectSlot7");
+    }
+
     void Update()
     {
         CheckHoveringTime();
     }
 
-    public void OpenChestInventory(ChestData chestData)
+    public void OpenChestInventory(ChestData chestData, int instanceId)
     {
         UiManager.Instance.uiGameManager.ShowInteractMenu();
 
-        foreach (KeyValuePair<string, ChestInventory> kvp in ChestInventoryDict)
+        foreach (KeyValuePair<int, ChestInventory> kvp in ChestInventoryDict)
         {
-            if (chestData.id == kvp.Key)
+            if (instanceId == kvp.Key)
             {
                 kvp.Value.ShowInventory();
                 return;
             }
         }
 
-        MakeChestInventory(chestData);
+        MakeChestInventory(chestData, instanceId);
     }
 
-    private void MakeChestInventory(ChestData chestData)
+    private void MakeChestInventory(ChestData chestData, int instanceId)
     {
         
         VisualElement chestElement = chestInventoryAsset.CloneTree();
-        ChestInventory chestInventory = new ChestInventory(chestElement, chestData.numSlots, chestData.id);
-        ChestInventoryDict.Add(chestData.id, chestInventory);
+        string fullId = chestData.itemDataAsset.baseName + "_" + chestData.id + "_" + instanceId;
+        ChestInventory chestInventory = new ChestInventory(chestElement, chestData.numSlots, fullId);
+        ChestInventoryDict.Add(instanceId, chestInventory);
     }
 
     private PopupMenuInventory InitPopupMenu()
@@ -165,7 +199,7 @@ public class InventoryManager : SerializedMonoBehaviour
         IsDragging = true;
         DragEndSlot = draggedInventorySlot;
         DragStartSlot = draggedInventorySlot;
-        DragStartSlot.SetTinted();
+        DragStartSlot.SetHoverStyle();
         DragStartSlot.SetHighlight();
 
         draggedInventorySlot.parentContainer.currentDraggedInventorySlot = draggedInventorySlot;
@@ -211,7 +245,7 @@ public class InventoryManager : SerializedMonoBehaviour
         evt.StopPropagation();
         GhostIcon.HideGhostIcon();
 
-        DragStartSlot.ResetTint();
+        DragStartSlot.ResetStyle();
         DragStartSlot.ResetHighlight();
         EquipmentInventory.ResetAllValidSlotHighlights();
         DragStartSlot = null;
@@ -265,6 +299,11 @@ public class InventoryManager : SerializedMonoBehaviour
         return hoveringDropArea || pointerOverDropButton; ;
     }
 
+    private void OnDropItem(InputAction.CallbackContext context)
+    {
+        DropItem();
+    }
+
     public void DropItem()
     {
         InventorySlot tempSlot = IsDragging ? DragStartSlot : CurrentHoverSlot;
@@ -274,6 +313,11 @@ public class InventoryManager : SerializedMonoBehaviour
         DroppedItem(tempSlot.currentItemData);
         tempSlot.parentContainer.RemoveItem(tempSlot);
         AudioManager.PlaySound(MainLibrarySounds.ItemDrop);
+    }
+
+    private void OnTrySplitItem(InputAction.CallbackContext context)
+    {
+        TrySplitItem(true);
     }
 
     public void TrySplitItem(bool splitHalf)
@@ -351,6 +395,48 @@ public class InventoryManager : SerializedMonoBehaviour
 
         return itemsRemaining;
     }
+
+    #region Player Hotbar Callbacks
+    private void OnSelectSlot7(InputAction.CallbackContext context)
+    {
+        PlayerHotbarInventory.SetSelectedIndex(7);
+    }
+
+    private void OnSelectSlot6(InputAction.CallbackContext context)
+    {
+        PlayerHotbarInventory.SetSelectedIndex(6);
+    }
+
+    private void OnSelectSlot5(InputAction.CallbackContext context)
+    {
+        PlayerHotbarInventory.SetSelectedIndex(5);
+    }
+
+    private void OnSelectSlot4(InputAction.CallbackContext context)
+    {
+        PlayerHotbarInventory.SetSelectedIndex(4);
+    }
+
+    private void OnSelectSlot3(InputAction.CallbackContext context)
+    {
+        PlayerHotbarInventory.SetSelectedIndex(3);
+    }
+
+    private void OnSelectSlot2(InputAction.CallbackContext context)
+    {
+        PlayerHotbarInventory.SetSelectedIndex(2);
+    }
+
+    private void OnSelectSlot1(InputAction.CallbackContext context)
+    {
+        PlayerHotbarInventory.SetSelectedIndex(1);
+    }
+
+    private void OnSelectSlot0(InputAction.CallbackContext context)
+    {
+        PlayerHotbarInventory.SetSelectedIndex(0);
+    }
+    #endregion
 
     #region Get item quantities
     public int GetNumItemInInventory(ItemData itemData, BaseInventory inventory)

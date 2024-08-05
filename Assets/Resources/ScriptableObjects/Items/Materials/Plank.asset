@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb430cd2fe8c54396792d853c49513, type: 3}
-  m_Name: Logs
+  m_Name: Plank
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -60,19 +60,19 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  itemID: 8d4de6fd-e3bb-4bb3-9860-70c9e2653b6f
-  baseName: Logs
-  displayName: Logs
-  description: Some logs
+  itemID: 0880d8fa-cf2a-49db-849b-18318437361b
+  baseName: Planks
+  displayName: Planks
+  description: Sturdy wooden plank
   interactDescription: Pick up
-  stackCount: 5
+  stackCount: 20
   maxStackCount: 50
   baseSellValue: 1
   itemType: 0
   itemRarity: 1
   itemCategories: 0
-  item3DPrefab: {fileID: 6665069075805903950, guid: 2f2337b6c09331b44a27678a0ed67132,
+  item3DPrefab: {fileID: 6125688561331272100, guid: 5d1e553be521b1c47844db7d3ac35bf9,
     type: 3}
-  itemSprite: {fileID: 21300000, guid: 34e17a467d5bbe3479de8a537a4ff10e, type: 3}
-  itemHeldPrefab: {fileID: 6665069075805903950, guid: 2f2337b6c09331b44a27678a0ed67132,
+  itemSprite: {fileID: 21300000, guid: af113db3b1ebe024a8f2e0eff8fd654e, type: 3}
+  itemHeldPrefab: {fileID: 6125688561331272100, guid: 5d1e553be521b1c47844db7d3ac35bf9,
     type: 3}

@@ -13,7 +13,7 @@ public class InteractingObject : MonoBehaviour
     public string DisplayString { get; set; } = string.Empty;
     public string DisplayPretext { get; set; } = string.Empty;
 
-    private void Start()
+    private void Awake()
     {
         playerInteract = GameObjectManager.Instance.playerInteract;
 

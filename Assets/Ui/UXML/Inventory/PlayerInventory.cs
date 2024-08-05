@@ -8,7 +8,7 @@ namespace OneFireUI
 {
     public partial class PlayerInventory : BaseInventory
     {
-        public PlayerInventory(VisualElement root, int numInventorySlots, string inventoryId) : base(root, numInventorySlots, inventoryId)
+        public PlayerInventory(VisualElement root, int numInventorySlots, string inventoryId, bool selectable) : base(root, numInventorySlots, inventoryId, selectable)
         {
             AssignQueryResults(root);
             InitMenuButtons();
@@ -16,11 +16,6 @@ namespace OneFireUI
         }
 
         private void InitMenuButtons()
-        {
-
-        }
-
-        public void GetItemAtIndex()
         {
 
         }

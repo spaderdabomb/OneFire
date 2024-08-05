@@ -1,27 +1,169 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using OneFireUi;
+using UnityEngine.Rendering;
+using JSAM;
 
 public class StructurePlacer : MonoBehaviour
 {
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private LayerMask placementSurfaceMask;
+    [SerializeField] private float forwardOffset = 2f;
+    [SerializeField] GameObject structureBuildEffectPrefab;
 
+    private GameObject previewStructure = null;
     private Vector3 currentPlacementPosition = Vector3.zero;
+    private ItemData currentItemData = null;
+
+    private bool inPlacementMode = false;
+    private float upwardOffset = 100f; // How high up to start the downward raycast
+    private float maxDistance = 1000f; // Maximum raycast distance
 
     private void Awake()
     {
         if (playerCamera == null)
-            Debug.LogError($"Player camera not assigned to {this}");
+            Debug.LogError($"{playerCamera} not assigned to {this}");
+
+        if (structureBuildEffectPrefab == null)
+            Debug.LogError($"{structureBuildEffectPrefab} not assigned to {this}");
     }
 
-    public void PlaceObject()
+    private void OnEnable()
     {
-
+        InputManager.Instance.RegisterCallback("PlaceObject", OnPlaceObject);
+        InventoryManager.Instance.OnHotbarItemSelectedChanged += TryEnterPlacementMode;
     }
 
-    public void EnterPlacementMode(GameObject gameObject)
+    private void OnDisable()
     {
+        InputManager.Instance.UnregisterCallback("PlaceObject");
+        InventoryManager.Instance.OnHotbarItemSelectedChanged -= TryEnterPlacementMode;
+    }
 
+    private void Start()
+    {
+        InventorySlot slot = InventoryManager.Instance.PlayerHotbarInventory.GetSelectedSlot();
+        TryEnterPlacementMode(slot.currentItemData);
+    }
+
+    private void Update()
+    {
+        if (!inPlacementMode)
+            return;
+
+        UpdateCurrentPlacementPosition();
+
+        Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
+        previewStructure.transform.position = currentPlacementPosition;
+        previewStructure.transform.rotation = rotation;
+    }
+
+    private void UpdateCurrentPlacementPosition()
+    {
+        RaycastHit hitInfo;
+        if (PerformRaycast(out hitInfo))
+        {
+            currentPlacementPosition = hitInfo.point;
+        }
+    }
+
+    private bool PerformRaycast(out RaycastHit hitInfo)
+    {
+        Vector3 cameraForward = playerCamera.transform.forward;
+        cameraForward.y = 0;
+        cameraForward.Normalize();
+
+        Vector3 startPos = playerCamera.transform.position + (cameraForward * forwardOffset);
+        startPos.y += upwardOffset;
+        Vector3 direction = Vector3.down;
+
+        return Physics.Raycast(startPos, direction, out hitInfo, maxDistance, placementSurfaceMask);
+    }
+
+    private void OnPlaceObject(InputAction.CallbackContext context)
+    {
+        if (!inPlacementMode)
+        {
+            Debug.LogError("Trying to place object while not in placement mode, adjust action map settings");
+            return;
+        }
+
+        SpawnStructure();
+    }
+
+    public void TryEnterPlacementMode(ItemData itemData)
+    {
+        if (itemData == null || !itemData.itemCategories.HasFlag(ItemData.ItemCategory.Structure))
+        {
+            ExitPreviewMode();
+            return;
+        }
+
+        EnterPlacementMode(itemData);
+    }
+
+    public void EnterPlacementMode(ItemData itemData)
+    {
+        InputManager.Instance.EnableActionMap("UiControls", "ObjectPlacementMap");
+        currentItemData = itemData;
+        GameObject previewPrefab = currentItemData.GetStructureFromItem().structurePreviewPrefab;
+        SetPreviewMode(previewPrefab);
+        inPlacementMode = true;
+    }
+
+    public void SpawnStructure()
+    {
+        if (currentItemData == null)
+        {
+            Debug.LogError("Trying to spawn null item as structure");
+            return;
+        }
+
+        GameObject structurePrefab = currentItemData.GetStructureFromItem().structurePrefab;
+        Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
+        GameObject spawnedStructure = Instantiate(structurePrefab, currentPlacementPosition, rotation, GameObjectManager.Instance.structureContainer.transform);
+
+/*        if (spawnedStructure.GetComponent<WorldStructure>().structureDataAsset.GetType() == typeof(ChestData))
+        {
+            GameObjectManager.Instance.AddChest(spawnedStructure.GetComponent<WorldStructure>());
+        }*/
+
+        GameObjectManager.Instance.AddWorldStructure(spawnedStructure.GetComponent<WorldStructure>());
+
+        Instantiate(structureBuildEffectPrefab, spawnedStructure.transform);
+        AudioManager.PlaySound(MainLibrarySounds.PlaceStructure);
+
+        InventorySlot slot = InventoryManager.Instance.PlayerHotbarInventory.GetSelectedSlot();
+        InventoryManager.Instance.PlayerHotbarInventory.RemoveItem(slot);
+
+        ExitPreviewMode();
+    }
+
+    private void ExitPreviewMode()
+    {
+        Destroy(previewStructure);
+        previewStructure = null;
+        InputManager.Instance.DisableActionMap("UiControls", "ObjectPlacementMap");
+        inPlacementMode = false;
+    }
+
+    public void SetCraftingInputState()
+    {
+        if (inPlacementMode)
+            InputManager.Instance.EnableActionMap("UiControls", "ObjectPlacementMap");
+        else
+            InputManager.Instance.DisableActionMap("UiControls", "ObjectPlacementMap");
+    }
+
+    private void SetPreviewMode(GameObject obj)
+    {
+        UpdateCurrentPlacementPosition();
+        Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
+
+        previewStructure = Instantiate(obj, currentPlacementPosition, rotation, GameObjectManager.Instance.structureContainer.transform);
     }
 }

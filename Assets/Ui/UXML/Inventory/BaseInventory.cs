@@ -13,7 +13,9 @@ namespace OneFireUi
         public VisualElement root;
 
         public int numInventorySlots;
+        public int selectedIndex = -1;
         public bool readOnly = false;
+        public bool selectable = false;
 
         public List<InventorySlot> inventorySlots;
         public BaseItemData[] inventoryItemData;
@@ -22,13 +24,15 @@ namespace OneFireUi
         public InventorySlot currentHoverSlot { get; set; } = null;
 
         public string InventoryId { get; private set; }
-        public BaseInventory(VisualElement root, int numInventorySlots, string inventoryId)
+        public BaseInventory(VisualElement root, int numInventorySlots, string inventoryId, bool selectable = false)
         {
             this.root = root;
             this.numInventorySlots = numInventorySlots;
             this.InventoryId = inventoryId;
+            this.selectable = selectable;
 
             InitInventorySlots();
+            SetSelectedIndex(0);
             LoadData();
             AddToSaveable();
         }
@@ -40,7 +44,7 @@ namespace OneFireUi
             for (int i = 0; i < numInventorySlots; i++)
             {
                 VisualElement inventoryAsset = InventoryManager.Instance.inventorySlotAsset.CloneTree();
-                InventorySlot inventorySlot = new InventorySlot(inventoryAsset, i, this);
+                InventorySlot inventorySlot = new InventorySlot(inventoryAsset, i, this, selectable);
                 inventorySlot.root.RegisterCallback<PointerDownEvent>(evt => InventoryManager.Instance.BeginDragHandler(evt, inventorySlot));
                 inventorySlots.Add(inventorySlot);
             }
@@ -272,6 +276,32 @@ namespace OneFireUi
         {
             inventoryItemData = GetInventorySlotData();
             ES3.Save(InventoryId, inventoryItemData);
+        }
+
+        public void SetSelectedIndex(int newIndex)
+        {
+            if (!selectable)
+                return;
+
+            selectedIndex = newIndex;
+            for (int i = 0; i < inventorySlots.Count; i++)
+            {
+                InventorySlot slot = inventorySlots[i];
+                if (selectedIndex == i)
+                    slot.SetSelected();
+                else
+                    slot.SetUnselected();
+            }
+
+            InventoryManager.Instance.OnHotbarItemSelectedChanged.Invoke(inventorySlots[selectedIndex].currentItemData);
+        }
+
+        public InventorySlot GetSelectedSlot()
+        {
+            if (!selectable)
+                return null;
+
+            return inventorySlots[selectedIndex];
         }
     }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e04d518b0d6df954fb791d88f4d659d1, type: 3}
-  m_Name: Workbench
+  m_Name: PlayerCrafting
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,13 +21,15 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  id: 84cb775c-33e2-4add-95a0-d2d14a34df59
-  baseName: Workbench
-  displayName: Workbench
-  description: For crafting basic items
-  interactDescription: Craft
-  health: 100
-  baseSellValue: 1
-  itemDataAsset: {fileID: 11400000, guid: 3f524754b55c4ca41a59008e4461e5fc, type: 2}
-  item3DPrefab: {fileID: 991390102720173739, guid: ef499ffb4cd74f943800c80d5a728b91,
+  id: 6b159f9a-faf5-4ae9-8c17-2e1732aeb3f8
+  interactDescription: 
+  health: 0
+  baseSellValue: 0
+  itemDataAsset: {fileID: 11400000, guid: 8290e648be290d945a232ab871ce865e, type: 2}
+  structurePrefab: {fileID: 991390102720173739, guid: 72e29de196c720c4abb52c101e481c78,
     type: 3}
+  structurePreviewPrefab: {fileID: 53046493206393848, guid: f369a8e957a35084080a875c3d8a18aa,
+    type: 3}
+  recipesAvailable:
+  - {fileID: 11400000, guid: 3c580645b7f29294e8028cef22f5058a, type: 2}
+  - {fileID: 11400000, guid: 966a3d3f42f71034d95ca33c9848bbf9, type: 2}

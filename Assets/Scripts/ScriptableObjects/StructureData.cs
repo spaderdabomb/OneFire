@@ -18,14 +18,24 @@ public class StructureData : SerializedScriptableObject
 
     [Header("Assets")]
     public ItemData itemDataAsset;
-    public GameObject item3DPrefab;
+    public GameObject structurePrefab;
+    public GameObject structurePreviewPrefab;
 
     private void OnValidate()
     {
-        if (!PrefabUtility.IsPartOfPrefabAsset(item3DPrefab)) 
-            Debug.LogError($"{this} {item3DPrefab} is a GameObject - set to prefab!");
+        if (!PrefabUtility.IsPartOfPrefabAsset(structurePrefab)) 
+            Debug.LogError($"{this} {structurePrefab} is a GameObject - set to prefab!");
+
+        if (!PrefabUtility.IsPartOfPrefabAsset(structurePreviewPrefab))
+            Debug.LogError($"{this} {structurePreviewPrefab} is a GameObject - set to prefab!");
+
+        if (structurePrefab.GetComponent<WorldStructure>() == null)
+            Debug.LogError($"{this} {structurePrefab} does not contain a WorldStructure component!");
 
         if (id == null || id == String.Empty)
             id = Guid.NewGuid().ToString();
+
+        if (!StructureRegistry.Register(this))
+            Debug.LogError($"Duplicate structure id found for {this}. Please regenerate the ID.");
     }
 }

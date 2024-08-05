@@ -56,6 +56,35 @@
     padding-left: 7px;
 }
 
+.inventory-slot-selected {
+    width: 70px;
+    height: 70px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    align-items: auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgba(1, 80, 135, 0.2);
+    border-left-color: rgba(255, 255, 255, 0.31);
+    border-right-color: rgba(255, 255, 255, 0.31);
+    border-top-color: rgba(255, 255, 255, 0.31);
+    border-bottom-color: rgba(255, 255, 255, 0.31);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+}
+
 .inventory-slot-label {
     -unity-font-style: bold;
     color: rgb(230, 230, 230);
