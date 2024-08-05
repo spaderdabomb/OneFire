@@ -2,7 +2,6 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using Unity.VisualScripting;
 using System.Linq;
 public partial class CraftingMenu : IPersistentData
 {
@@ -10,7 +9,6 @@ public partial class CraftingMenu : IPersistentData
     public CraftingStationData craftingStationData;
     public VisualElement root;
 
-    public CraftingStationData playerCraftingStationData;
     public List<MaterialContainer> materialContainers;
 
     public string fullId { get; private set; }
@@ -66,7 +64,7 @@ public partial class CraftingMenu : IPersistentData
         ShowMenu();
     }
 
-    public void InitCraftingStation(CraftingStationData craftingStationData)
+    public void InitCraftingStation()
     {
         materialContainers = new();
         CraftingSlotContainer = new CraftingSlotContainer(craftingSlotContainer, craftingStationData, this);
@@ -412,7 +410,7 @@ public partial class CraftingMenu : IPersistentData
 
     public void SaveData()
     {
-        BaseItemData baseItemData = new BaseItemData(GetCurrentRecipe().itemResult);
+        BaseItemData baseItemData = isCrafting ? new BaseItemData(GetCurrentRecipe().itemResult) : null;
         SaveableCraftingStation saveableCraftingStation = new SaveableCraftingStation(fullId, baseItemData, _itemsRemainingToCraft, singleCraftTimeRemaining);
         ES3.Save(fullId, saveableCraftingStation);
     }

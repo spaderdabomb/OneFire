@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 [DefaultExecutionOrder(2)]
 public class CraftingManager : SerializedMonoBehaviour
@@ -40,6 +41,7 @@ public class CraftingManager : SerializedMonoBehaviour
     {
         VisualElement craftingMenuClone = craftingMenuAsset.CloneTree();
         MainCraftingMenu = new CraftingMenu(craftingMenuClone, playerCraftingStationData, "playerCraftingStation_" + playerCraftingStationId);
+        MainCraftingMenu.InitCraftingStation();
         CraftingMenuDict = new()
         {
             { -1, MainCraftingMenu }
@@ -49,17 +51,18 @@ public class CraftingManager : SerializedMonoBehaviour
         for (int i = 0; i < GameObjectManager.Instance.craftingStationList.Count; i++)
         {
             WorldStructure craftingStation = GameObjectManager.Instance.craftingStationList[i];
-            CraftingStationData craftingStationData = (CraftingStationData)craftingStation.structureData;
-            AddCraftingStation(craftingStationData, i);
+            CraftingStationData craftingStationData = (CraftingStationData)craftingStation.structureDataAsset;
+            CraftingMenu craftingMenu = AddCraftingStation(craftingStationData, i);
+            craftingMenu.InitCraftingStation();
         }
 
 
      }
     private void Update()
     {
-        if (MainCraftingMenu != null)
+        foreach (var craftMenu in CraftingMenuDict.Values)
         {
-            MainCraftingMenu.Update();
+            craftMenu.Update();
         }
     }
 
@@ -78,8 +81,16 @@ public class CraftingManager : SerializedMonoBehaviour
         menuShowing = true;
 
         bool menuExists = CraftingMenuDict.ContainsKey(instanceId);
-        CraftingMenu selectedMenu = menuExists ? CraftingMenuDict[instanceId] : AddCraftingStation(craftingStationData, instanceId);
-        selectedMenu.InitCraftingStation(craftingStationData);
+        CraftingMenu selectedMenu;
+        if (menuExists)
+        {
+            selectedMenu = CraftingMenuDict[instanceId];
+        }
+        else
+        {
+            selectedMenu = AddCraftingStation(craftingStationData, instanceId);
+            selectedMenu.InitCraftingStation();
+        }
 
         UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Clear();
         UiManager.Instance.uiGameManager.PlayerInteractionMenu.root.Add(selectedMenu.root);

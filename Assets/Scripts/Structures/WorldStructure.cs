@@ -8,7 +8,6 @@ using Sirenix.OdinInspector;
 public class WorldStructure : MonoBehaviour
 {
     public StructureData structureDataAsset;
-    [ReadOnly] public StructureData structureData;
     public InteractingObject InteractingObject { get; private set; }
 
     [field: SerializeField] public int InstanceId { get; set; } = -1;
@@ -16,7 +15,6 @@ public class WorldStructure : MonoBehaviour
     private void Awake()
     {
         InteractingObject = GetComponent<InteractingObject>();
-        structureData = Instantiate(structureDataAsset);
     }
 
     private void Start()
@@ -26,20 +24,20 @@ public class WorldStructure : MonoBehaviour
 
     public void InteractWithStructure()
     {
-        if (structureData.GetType() == typeof(ChestData))
+        if (structureDataAsset.GetType() == typeof(ChestData))
         {
-            InventoryManager.Instance.OpenChestInventory((ChestData)structureData, InstanceId);
+            InventoryManager.Instance.OpenChestInventory((ChestData)structureDataAsset, InstanceId);
         }
-        else if (structureData.GetType() == typeof(CraftingStationData))
+        else if (structureDataAsset.GetType() == typeof(CraftingStationData))
         {
-            UiManager.Instance.uiGameManager.ToggleCraftingMenu((CraftingStationData)structureData, InstanceId);
+            UiManager.Instance.uiGameManager.ToggleCraftingMenu((CraftingStationData)structureDataAsset, InstanceId);
         }
     }
 
     public void SetDisplay()
     {
-        InteractingObject.DisplayPretext = structureData.interactDescription;
-        InteractingObject.DisplayString = structureData.itemDataAsset.displayName;
+        InteractingObject.DisplayPretext = structureDataAsset.interactDescription;
+        InteractingObject.DisplayString = structureDataAsset.itemDataAsset.displayName;
     }
 
     private void OnValidate()
@@ -47,7 +45,7 @@ public class WorldStructure : MonoBehaviour
         if (gameObject.layer != LayerMask.NameToLayer("Structure"))
         {
             gameObject.layer = LayerMask.NameToLayer("Structure");
-            print($"Structure {structureData.itemDataAsset.displayName} does not have a default layer assigned, assigning to 'Structure'");
+            print($"Structure {structureDataAsset.itemDataAsset.displayName} does not have a default layer assigned, assigning to 'Structure'");
         }
     }
 }

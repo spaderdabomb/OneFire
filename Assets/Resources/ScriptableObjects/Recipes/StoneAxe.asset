@@ -69,4 +69,4 @@ MonoBehaviour:
       Data: 
   id: 848ab748-0ed2-4443-940f-f60cb3f07728
   itemResult: {fileID: 11400000, guid: b7ccd9a8cc80acf4dad23795d6fb1347, type: 2}
-  timeToCraft: 2
+  timeToCraft: 0.5
