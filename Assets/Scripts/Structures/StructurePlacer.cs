@@ -14,12 +14,15 @@ public class StructurePlacer : MonoBehaviour
     [SerializeField] private LayerMask placementSurfaceMask;
     [SerializeField] private float forwardOffset = 2f;
     [SerializeField] GameObject structureBuildEffectPrefab;
+    [SerializeField] private Material validMaterial;
+    [SerializeField] private Material invalidMaterial;
 
     private GameObject previewStructure = null;
     private Vector3 currentPlacementPosition = Vector3.zero;
     private ItemData currentItemData = null;
 
     private bool inPlacementMode = false;
+    private bool validBuildState = false;
     private float upwardOffset = 100f; // How high up to start the downward raycast
     private float maxDistance = 1000f; // Maximum raycast distance
 
@@ -30,6 +33,12 @@ public class StructurePlacer : MonoBehaviour
 
         if (structureBuildEffectPrefab == null)
             Debug.LogError($"{structureBuildEffectPrefab} not assigned to {this}");
+
+        if (invalidMaterial == null)
+            Debug.LogError($"{invalidMaterial} not assigned to {this}");
+
+        if (validMaterial == null)
+            Debug.LogError($"{validMaterial} not assigned to {this}");
     }
 
     private void OnEnable()
@@ -60,6 +69,10 @@ public class StructurePlacer : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
         previewStructure.transform.position = currentPlacementPosition;
         previewStructure.transform.rotation = rotation;
+        if (CanPlaceStructure())
+            SetValidBuildState();
+        else
+            SetInvalidBuildState();
     }
 
     private void UpdateCurrentPlacementPosition()
@@ -92,7 +105,7 @@ public class StructurePlacer : MonoBehaviour
             return;
         }
 
-        SpawnStructure();
+        PlaceStructure();
     }
 
     public void TryEnterPlacementMode(ItemData itemData)
@@ -115,7 +128,13 @@ public class StructurePlacer : MonoBehaviour
         inPlacementMode = true;
     }
 
-    public void SpawnStructure()
+    public bool CanPlaceStructure()
+    {
+        return !previewStructure.GetComponent<CollisionChecker>().isColliding;
+    }
+
+
+    public void PlaceStructure()
     {
         if (currentItemData == null)
         {
@@ -123,17 +142,17 @@ public class StructurePlacer : MonoBehaviour
             return;
         }
 
+        if (!validBuildState)
+        {
+            PlaceWhileInvalid();
+            return;
+        }
+
         GameObject structurePrefab = currentItemData.GetStructureFromItem().structurePrefab;
         Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
         GameObject spawnedStructure = Instantiate(structurePrefab, currentPlacementPosition, rotation, GameObjectManager.Instance.structureContainer.transform);
 
-/*        if (spawnedStructure.GetComponent<WorldStructure>().structureDataAsset.GetType() == typeof(ChestData))
-        {
-            GameObjectManager.Instance.AddChest(spawnedStructure.GetComponent<WorldStructure>());
-        }*/
-
         GameObjectManager.Instance.AddWorldStructure(spawnedStructure.GetComponent<WorldStructure>());
-
         Instantiate(structureBuildEffectPrefab, spawnedStructure.transform);
         AudioManager.PlaySound(MainLibrarySounds.PlaceStructure);
 
@@ -141,6 +160,11 @@ public class StructurePlacer : MonoBehaviour
         InventoryManager.Instance.PlayerHotbarInventory.RemoveItem(slot);
 
         ExitPreviewMode();
+    }
+
+    private void PlaceWhileInvalid()
+    {
+        // AudioManager.PlaySound(MainLibrarySounds.InvalidPlacement);
     }
 
     private void ExitPreviewMode()
@@ -165,5 +189,44 @@ public class StructurePlacer : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
 
         previewStructure = Instantiate(obj, currentPlacementPosition, rotation, GameObjectManager.Instance.structureContainer.transform);
+    }
+
+    private void SetValidBuildState()
+    {
+        if (validBuildState)
+            return;
+
+        SetMaterialsRecursively(previewStructure, validMaterial);
+        validBuildState = true;
+    }
+
+    private void SetInvalidBuildState()
+    {
+        if (!validBuildState)
+            return;
+
+        SetMaterialsRecursively(previewStructure, invalidMaterial);
+        validBuildState = false;
+    }
+
+    private void SetMaterialsRecursively(GameObject obj, Material material)
+    {
+        // Set materials on the current object
+        MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+        if (renderer != null)
+        {
+            Material[] materials = new Material[renderer.sharedMaterials.Length];
+            for (int i = 0; i < materials.Length; i++)
+            {
+                materials[i] = material;
+            }
+            renderer.sharedMaterials = materials;
+        }
+
+        // Recursively set materials on all children
+        foreach (Transform child in obj.transform)
+        {
+            SetMaterialsRecursively(child.gameObject, material);
+        }
     }
 }

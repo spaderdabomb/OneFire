@@ -74,5 +74,31 @@ PrefabInstance:
     - {fileID: 3442985040932331369, guid: 72e29de196c720c4abb52c101e481c78, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 991390102720173739, guid: 72e29de196c720c4abb52c101e481c78,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1816178315970362510}
   m_SourcePrefab: {fileID: 100100000, guid: 72e29de196c720c4abb52c101e481c78, type: 3}
+--- !u!1 &53046493206393848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 991390102720173739, guid: 72e29de196c720c4abb52c101e481c78,
+    type: 3}
+  m_PrefabInstance: {fileID: 972308623208015187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-1816178315970362510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53046493206393848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1693498865523a54385d340e8a57978f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 1025
+  isColliding: 0

@@ -2546,6 +2546,8 @@ MonoBehaviour:
   forwardOffset: 2
   structureBuildEffectPrefab: {fileID: 565261148424511170, guid: cb441a28e887515448a9c095eed872d2,
     type: 3}
+  validMaterial: {fileID: 2100000, guid: 0a95836aee6d6e94bb81a394372b072f, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: 108e598692296db43820f26f2bdaefea, type: 2}
 --- !u!4 &2053921450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9028087210907472559, guid: a8cd2767e488e9249bd09318b283e47c,

@@ -18,7 +18,8 @@
         SelectSuppressed,
         WoodenTick,
         InventoryFull,
-        PlaceStructure
+        PlaceStructure,
+        InvalidPlacement
     }
     public enum MainLibraryMusic {
     }
