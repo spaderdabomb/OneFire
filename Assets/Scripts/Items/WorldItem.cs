@@ -57,10 +57,10 @@ public class WorldItem : MonoBehaviour
             AudioManager.PlaySound(MainLibrarySounds.InventoryFull);
         }
 
+        // Inventory is full so set stack count to remaining items
         if (itemsRemaining < itemData.stackCount)
         {
             SetStackCount(itemsRemaining);
-            AudioManager.PlaySound(MainLibrarySounds.ItemPickup);
         }
 
         if (itemsRemaining == 0)

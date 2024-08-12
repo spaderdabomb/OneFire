@@ -35,6 +35,9 @@ public class StructureData : SerializedScriptableObject
         if (id == null || id == String.Empty)
             id = Guid.NewGuid().ToString();
 
+        if (!structurePreviewPrefab.GetComponent<Collider>().isTrigger)
+            Debug.LogError($"{this} {structurePreviewPrefab} trigger is not checked!");
+
         if (!StructureRegistry.Register(this))
             Debug.LogError($"Duplicate structure id found for {this}. Please regenerate the ID.");
     }

@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False" gen-cs-namespace="Game.Ui" gen-cs-file="eafb4c11a4502d2408f82f9573417eb7">
+    <ui:VisualElement name="ItemPickupContainer" style="flex-grow: 1; justify-content: flex-end; flex-direction: column; translate: 0 0;" />
+</ui:UXML>

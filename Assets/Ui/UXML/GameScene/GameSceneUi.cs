@@ -1,5 +1,6 @@
 using UnityEngine.UIElements;
 using UnityEngine;
+using Game.Ui;
 
 namespace OneFireUi
 {
@@ -14,7 +15,16 @@ namespace OneFireUi
 
             this.root = root;
             rootElement = gameSceneRoot;
+
+            Init();
         }
+
+        private void Init()
+        {
+            UiManager.Instance.uiGameManager.structurePlacementMessage.Init(structurePlacementMessageRoot);
+            UiManager.Instance.uiGameManager.itemPickupContainer.Init(itemPickupContainerRoot);
+        }
+
         public void HideMenu()
         {
             root.style.display = DisplayStyle.None;

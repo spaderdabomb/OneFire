@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
-public class CollisionChecker : MonoBehaviour
+public class PreviewCollisionChecker : MonoBehaviour
 {
-    public LayerMask collisionLayers;
+    public LayerMask collisionLayers = 0; 
     public bool isColliding = false;
     private HashSet<Collider> collidingObjects = new HashSet<Collider>();
 
@@ -23,5 +24,11 @@ public class CollisionChecker : MonoBehaviour
             collidingObjects.Remove(other);
             isColliding = collidingObjects.Count > 0;
         }
+    }
+
+    private void OnValidate()
+    {
+        GameData gameData = Resources.Load<GameData>("ScriptableObjects/GameData/GameData");
+        collisionLayers = gameData.structurePreviewCollisionLayerMask;
     }
 }

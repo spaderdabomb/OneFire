@@ -1,0 +1,14 @@
+.notification {
+    transition-property: opacity;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+    opacity: 0;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+}

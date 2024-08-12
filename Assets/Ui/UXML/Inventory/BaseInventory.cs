@@ -195,7 +195,7 @@ namespace OneFireUi
             AddItem(newItemData, inventorySlots[firstSlot]);
         }
 
-        public int GetFirstFreeSlot(ItemData itemData, bool mergeSameItems = true)
+        public virtual int GetFirstFreeSlot(ItemData itemData, bool mergeSameItems = true)
         {
             int slotIndex = -1;
             for (int i = 0; i < inventorySlots.Count; i++)

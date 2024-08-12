@@ -130,7 +130,7 @@ public class StructurePlacer : MonoBehaviour
 
     public bool CanPlaceStructure()
     {
-        return !previewStructure.GetComponent<CollisionChecker>().isColliding;
+        return !previewStructure.GetComponent<PreviewCollisionChecker>().isColliding;
     }
 
 
@@ -172,6 +172,7 @@ public class StructurePlacer : MonoBehaviour
         Destroy(previewStructure);
         previewStructure = null;
         InputManager.Instance.DisableActionMap("UiControls", "ObjectPlacementMap");
+        UiManager.Instance.uiGameManager.structurePlacementMessage.Hide();
         inPlacementMode = false;
     }
 
@@ -196,6 +197,7 @@ public class StructurePlacer : MonoBehaviour
         if (validBuildState)
             return;
 
+        UiManager.Instance.uiGameManager.structurePlacementMessage.Hide();
         SetMaterialsRecursively(previewStructure, validMaterial);
         validBuildState = true;
     }
@@ -205,6 +207,7 @@ public class StructurePlacer : MonoBehaviour
         if (!validBuildState)
             return;
 
+        UiManager.Instance.uiGameManager.structurePlacementMessage.Show();
         SetMaterialsRecursively(previewStructure, invalidMaterial);
         validBuildState = false;
     }

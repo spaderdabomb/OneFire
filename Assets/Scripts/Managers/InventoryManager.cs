@@ -21,13 +21,16 @@ public class InventoryManager : SerializedMonoBehaviour
 {
     public static InventoryManager Instance;
 
-    [HideInInspector] public Action<ItemData> OnHotbarItemSelectedChanged;  
+    [HideInInspector] public Action<ItemData> OnHotbarItemSelectedChanged;
 
     public event Action<ItemData> OnDroppedItem;
+    public event Action<ItemData> OnAddedItem;
+    public event Action OnInventoryFull;
     public void DroppedItem(ItemData itemData) => OnDroppedItem?.Invoke(itemData);
 
     public VisualTreeAsset inventorySlotAsset;
     public VisualElement InventoryContainer { get; private set; }
+    public ChestInventory lastActiveChest { get; private set; } = null;
 
     [SerializeField] private int playerHotbarSlots;
     [SerializeField] private int playerInventorySlots;
@@ -40,9 +43,9 @@ public class InventoryManager : SerializedMonoBehaviour
 
     private Vector2 startMousePosition;
     public float timeToShowTooltip = 0.5f;
-    [field: SerializeField] public InventorySlot CurrentHoverSlot { get; private set; } = null;
-    [field: SerializeField] public InventorySlot DragEndSlot { get; private set; } = null;
-    [field: SerializeField] public InventorySlot DragStartSlot { get; private set; } = null;
+    [field: SerializeField]public InventorySlot CurrentHoverSlot { get; private set; } = null;
+    [field: SerializeField]public InventorySlot DragEndSlot { get; private set; } = null;
+    [field: SerializeField]public InventorySlot DragStartSlot { get; private set; } = null;
     public bool IsHoveringSlot { get; private set; } = false;
     public bool IsDragging { get; private set; } = false;
     public float TimeSinceHoveringSlot { get; private set; } = 0f;
@@ -83,6 +86,7 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         InputManager.Instance.RegisterCallback("DropItem", OnDropItem);
         InputManager.Instance.RegisterCallback("SplitItemHalf", OnTrySplitItem);
+        InputManager.Instance.RegisterCallback("QuickMove", OnQuickMove);
         InputManager.Instance.RegisterCallback("SelectSlot0", OnSelectSlot0);
         InputManager.Instance.RegisterCallback("SelectSlot1", OnSelectSlot1);
         InputManager.Instance.RegisterCallback("SelectSlot2", OnSelectSlot2);
@@ -97,6 +101,7 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         InputManager.Instance.UnregisterCallback("DropItem");
         InputManager.Instance.UnregisterCallback("SplitItemHalf");
+        InputManager.Instance.RegisterCallback("QuickMove");
         InputManager.Instance.RegisterCallback("SelectSlot0");
         InputManager.Instance.RegisterCallback("SelectSlot1");
         InputManager.Instance.RegisterCallback("SelectSlot2");
@@ -120,6 +125,7 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             if (instanceId == kvp.Key)
             {
+                lastActiveChest = kvp.Value;
                 kvp.Value.ShowInventory();
                 return;
             }
@@ -135,6 +141,7 @@ public class InventoryManager : SerializedMonoBehaviour
         string fullId = chestData.itemDataAsset.baseName + "_" + chestData.id + "_" + instanceId;
         ChestInventory chestInventory = new ChestInventory(chestElement, chestData.numSlots, fullId);
         ChestInventoryDict.Add(instanceId, chestInventory);
+        lastActiveChest = chestInventory;
     }
 
     private PopupMenuInventory InitPopupMenu()
@@ -299,11 +306,6 @@ public class InventoryManager : SerializedMonoBehaviour
         return hoveringDropArea || pointerOverDropButton; ;
     }
 
-    private void OnDropItem(InputAction.CallbackContext context)
-    {
-        DropItem();
-    }
-
     public void DropItem()
     {
         InventorySlot tempSlot = IsDragging ? DragStartSlot : CurrentHoverSlot;
@@ -345,9 +347,10 @@ public class InventoryManager : SerializedMonoBehaviour
 
     public int TryAddItem(ItemData itemData)
     {
+        int startingItems = itemData.stackCount;
         int itemsRemaining = PlayerHotbarInventory.TryAddItem(itemData);
 
-        // Added some items to hotbar
+        // Add remaining items to inventory
         if (itemsRemaining > 0)
         {
             ItemData playerInventoryItemData = itemData.CloneItemData();
@@ -356,9 +359,32 @@ public class InventoryManager : SerializedMonoBehaviour
             itemsRemaining = PlayerInventory.TryAddItem(playerInventoryItemData);
         }
 
-        // No items added to hotbar
+        // Inventory not full
+        if (startingItems != itemsRemaining)
+        {
+            ItemData itemDataClone = itemData.CloneItemData();
+            itemDataClone.stackCount = startingItems - itemsRemaining;
+            OnAddedItem.Invoke(itemDataClone);
+        }
+        // Inventory full
+        else
+        {
+            AudioManager.PlaySound(MainLibrarySounds.ItemPickup);
+            OnInventoryFull.Invoke();
+        }
+
 
         return itemsRemaining;
+    }
+
+    public ChestInventory GetActiveChest()
+    {
+        if (UiManager.Instance.uiGameManager.PlayerInteractionMenu.IsOpen())
+        {
+            return lastActiveChest;
+        }
+
+        return null;
     }
 
     public void SetAllInventorySlotData()
@@ -396,7 +422,46 @@ public class InventoryManager : SerializedMonoBehaviour
         return itemsRemaining;
     }
 
-    #region Player Hotbar Callbacks
+    #region Input callbacks
+
+    private void OnDropItem(InputAction.CallbackContext context)
+    {
+        DropItem();
+    }
+    private void OnQuickMove(InputAction.CallbackContext context)
+    {
+        print(context.performed);
+
+        InventorySlot tempSlot = IsDragging ? DragStartSlot : CurrentHoverSlot;
+        if (!tempSlot.ContainsItem())
+            return;
+
+        ItemData itemDataClone = tempSlot.currentItemData.CloneItemData();
+        int startingStackCount = itemDataClone.stackCount;
+        Type inventoryType = tempSlot.parentContainer.GetType();
+
+        if (inventoryType == typeof(PlayerInventory) && GetActiveChest() != null)
+        {
+            int itemsRemaining = lastActiveChest.TryAddItem(itemDataClone);
+            tempSlot.SubtractItemFromSlot(itemDataClone, startingStackCount - itemsRemaining);
+        }
+        else if (inventoryType == typeof(PlayerInventory) && tempSlot.currentItemData.itemCategories.HasFlag(ItemCategory.Outfit))
+        {
+            int itemsRemaining = EquipmentInventory.TryAddItem(itemDataClone);
+            tempSlot.SubtractItemFromSlot(itemDataClone, startingStackCount - itemsRemaining);
+        }
+        else if (inventoryType == typeof(PlayerInventory))
+        {
+            int itemsRemaining = PlayerHotbarInventory.TryAddItem(itemDataClone);
+            tempSlot.SubtractItemFromSlot(itemDataClone, startingStackCount - itemsRemaining);
+        }
+        else
+        {
+            int itemsRemaining = PlayerInventory.TryAddItem(itemDataClone);
+            tempSlot.SubtractItemFromSlot(itemDataClone, startingStackCount - itemsRemaining);
+        }
+    }
+
     private void OnSelectSlot7(InputAction.CallbackContext context)
     {
         PlayerHotbarInventory.SetSelectedIndex(7);

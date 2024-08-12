@@ -6,6 +6,8 @@ public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager Instance;
 
+    public GameData gameData;
+
     [Header("Colors")]
     public Color standardUiTintColor;
     public Color standardInteractTextColor;

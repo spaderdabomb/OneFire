@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UIElements;
 
-[DefaultExecutionOrder(1)]
+[DefaultExecutionOrder(-1)]
 public class UiManager : MonoBehaviour
 {
     public static UiManager Instance;
@@ -19,12 +19,8 @@ public class UiManager : MonoBehaviour
     public VisualTreeAsset ghostIcon;
 
     public InteractPopup interactPopup;
-
-    private bool onFirstGuiUpdate = false;
-
+    public UiGameManager uiGameManager;
     private VisualElement uiGameManagerRoot;
-
-    [HideInInspector] public UiGameManager uiGameManager;
 
     private void Awake()
     {
@@ -38,7 +34,7 @@ public class UiManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         uiGameManagerRoot = uiManagerDocument.rootVisualElement;
-        uiGameManager = new UiGameManager(uiGameManagerRoot);
+        uiGameManager.Init(uiGameManagerRoot);
     }
 }
 

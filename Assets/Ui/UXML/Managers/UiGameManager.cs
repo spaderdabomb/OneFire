@@ -4,28 +4,31 @@ using UnityEngine;
 using OneFireUi;
 using System;
 using UnityEngine.InputSystem;
+using Game.Ui;
 
-public partial class UiGameManager
+[DefaultExecutionOrder(-1)]
+public partial class UiGameManager : MonoBehaviour
 {
+    public StructurePlacementMessage structurePlacementMessage;
+    public ItemPickupContainer itemPickupContainer;
+
     public OptionsMenuUi OptionsMenuUi { get; private set; }
     public GameSceneUi GameSceneUi { get; private set; }
     public PlayerInteractionMenu PlayerInteractionMenu { get; private set; }
     public List<IGameMenu> GameMenus { get; private set; }
     public Dictionary<MenuType, IGameMenu> GameMenuDict { get; private set; }
 
-    public VisualElement root;
+    [HideInInspector] public VisualElement root;
     public Action OnShowInteractMenu;
     public Action OnHideInteractMenu;
-    public UiGameManager(VisualElement root)
+
+    public void Init(VisualElement root)
     {
         AssignQueryResults(root);
         this.root = root;
-        Init();
-        RegisterCallbacks();
-    }
 
-    private void Init()
-    {
+        RegisterCallbacks();
+
         SetCursorStateVisible(false);
 
         OptionsMenuUi = new OptionsMenuUi(optionsMenuUi);

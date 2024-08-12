@@ -45,20 +45,6 @@ namespace OneFireUi
                 inventorySlots.Add(newEquipmentSlot);
                 root.Add(slotClone);
             }
-
-/*            // Init persistent data
-            BaseItemData[] baseItemData = DataManager.Instance.LoadGearContainerData(gearContainerType);
-            for (int i = 0; i < baseItemData.Length; i++)
-            {
-                BaseItemData baseItem = baseItemData[i];
-                if (baseItem != null)
-                {
-                    ItemData itemDataAsset = ItemExtensions.GetItemData(baseItem.itemID);
-                    ItemData newItem = itemDataAsset.GetItemDataInstantiated();
-                    newItem.SetItemDataToBaseItemData(baseItem);
-                    AddItem(newItem, inventorySlots[i]);
-                }
-            }*/
         }
 
         public override bool CanMoveItem(InventorySlot dragEndSlot, InventorySlot dragBeginSlot)
@@ -73,6 +59,41 @@ namespace OneFireUi
             bool validItemType = dragEndGearSlot.itemType == dragBeginSlot.currentItemData.itemType;
 
             return validItemType;
+        }
+
+        public override int GetFirstFreeSlot(ItemData itemData, bool mergeSameItems = true)
+        {
+            for (int i = 0; i < equipmentSlots.Count; i++)
+            {
+                EquipmentSlot equipmentSlot = equipmentSlots[i];
+                if (itemData.itemType == equipmentSlot.itemType && !equipmentSlots[i].slotFilled)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+
+/*            int slotIndex = -1;
+            for (int i = 0; i < inventorySlots.Count; i++)
+            {
+                // Add item to free slot
+                if (!inventorySlots[i].slotFilled)
+                {
+                    slotIndex = i;
+                    break;
+                }
+                // Unfilled slot with identical item
+                else if (inventorySlots[i].currentItemData.itemID == itemData.itemID &&
+                         inventorySlots[i].currentItemData.stackCount < inventorySlots[i].currentItemData.maxStackCount &&
+                         mergeSameItems)
+                {
+                    slotIndex = i;
+                    break;
+                }
+            }
+
+            return slotIndex;*/
         }
 
         public void SetAllValidSlotHighlights(ItemData itemData)
