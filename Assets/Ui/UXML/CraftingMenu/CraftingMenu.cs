@@ -12,11 +12,11 @@ public partial class CraftingMenu : IPersistentData
     public List<MaterialContainer> materialContainers;
 
     public string fullId { get; private set; }
+    public bool isCrafting { get; private set; } = false;
 
     private float totalCraftTimeRemaining = 0f;
     private float singleCraftTimeRemaining = 0f;
     private int selectedIndex = -1;
-    private bool isCrafting = false;
     private bool loaded = false;
 
     private int _itemsRemainingToCraft = 0;
@@ -81,6 +81,7 @@ public partial class CraftingMenu : IPersistentData
         craftButton.clickable.clicked += () => StartCraftingItem(NumItemsToCraft);
         plusButton.clickable.clicked += IncrementNumItemsToCraft;
         minusButton.clickable.clicked += DecrementNumItemsToCraft;
+        minButton.clickable.clicked += SetMinItemsToCraft;
         maxButton.clickable.clicked += SetMaxItemsToCraft;
         cancelCraftButton.clickable.clicked += CancelCrafting;
     }
@@ -90,6 +91,7 @@ public partial class CraftingMenu : IPersistentData
         craftButton.clickable.clicked -= () => StartCraftingItem(NumItemsToCraft);
         plusButton.clickable.clicked -= IncrementNumItemsToCraft;
         minusButton.clickable.clicked -= DecrementNumItemsToCraft;
+        minButton.clickable.clicked -= SetMinItemsToCraft;
         maxButton.clickable.clicked -= SetMaxItemsToCraft;
         cancelCraftButton.clickable.clicked -= CancelCrafting;
     }
@@ -178,7 +180,7 @@ public partial class CraftingMenu : IPersistentData
         foreach (var kvp in recipeData.recipe)
         {
             VisualElement materialContainerClone = CraftingManager.Instance.materialContainerAsset.CloneTree();
-            MaterialContainer materialContainer = new MaterialContainer(materialContainerClone, kvp.Key, kvp.Value);
+            MaterialContainer materialContainer = new MaterialContainer(materialContainerClone, kvp.Key, kvp.Value, this);
             materialContainers.Add(materialContainer);
             requiredMaterialsContainer.Add(materialContainerClone);
         }
@@ -225,6 +227,7 @@ public partial class CraftingMenu : IPersistentData
 
         craftButton.style.display = DisplayStyle.None;
         craftProgressContainer.style.display = DisplayStyle.Flex;
+
 
         RecipeData recipeData = GetCurrentRecipe();
         foreach (var itemData in recipeData.recipe)
@@ -348,6 +351,13 @@ public partial class CraftingMenu : IPersistentData
     {
         RecipeData recipeData = GetCurrentRecipe(); 
         NumItemsToCraft = GetMaxItemsCraftable(recipeData);
+        UpdateRequiredMaterials();
+        UpdateCraftQuantityLabels();
+    }
+
+    private void SetMinItemsToCraft()
+    {
+        NumItemsToCraft = 1;
         UpdateRequiredMaterials();
         UpdateCraftQuantityLabels();
     }

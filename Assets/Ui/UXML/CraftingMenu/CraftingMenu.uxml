@@ -39,7 +39,10 @@
                                 <ui:Label tabindex="-1" text="15s" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TimeQuantityLabel" class="menu-standard-label" style="background-color: rgba(0, 0, 0, 0); padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-font-style: normal; -unity-text-align: upper-right;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
-                        <ui:Button text="MAX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MaxButton" class="menu-button" style="font-size: 16px; width: 90px; align-self: center; height: 35px;" />
+                        <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: center; align-self: center;">
+                            <ui:Button text="MIN" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MinButton" class="menu-button" style="font-size: 16px; width: 72px; align-self: center; height: 35px;" />
+                            <ui:Button text="MAX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MaxButton" class="menu-button" style="font-size: 16px; width: 72px; align-self: center; height: 35px;" />
+                        </ui:VisualElement>
                         <ui:Button text="CRAFT" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CraftButton" class="confirm-button" style="transition-property: ignored; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; display: flex;" />
                         <ui:VisualElement name="CraftProgressContainer" style="flex-grow: 0; width: 300px; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px; align-self: center; position: relative; top: auto; left: auto; display: none;">
                             <ui:ProgressBar value="100" title="CRAFTING" name="ProgressBar" class="progress-bar" style="height: auto; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />

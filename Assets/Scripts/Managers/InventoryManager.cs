@@ -86,15 +86,15 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         InputManager.Instance.RegisterCallback("DropItem", OnDropItem);
         InputManager.Instance.RegisterCallback("SplitItemHalf", OnTrySplitItem);
-        InputManager.Instance.RegisterCallback("QuickMove", OnQuickMove);
-        InputManager.Instance.RegisterCallback("SelectSlot0", OnSelectSlot0);
-        InputManager.Instance.RegisterCallback("SelectSlot1", OnSelectSlot1);
-        InputManager.Instance.RegisterCallback("SelectSlot2", OnSelectSlot2);
-        InputManager.Instance.RegisterCallback("SelectSlot3", OnSelectSlot3);
-        InputManager.Instance.RegisterCallback("SelectSlot4", OnSelectSlot4);
-        InputManager.Instance.RegisterCallback("SelectSlot5", OnSelectSlot5);
-        InputManager.Instance.RegisterCallback("SelectSlot6", OnSelectSlot6);
-        InputManager.Instance.RegisterCallback("SelectSlot7", OnSelectSlot7);
+        InputManager.Instance.RegisterCallback("QuickMove", performedCallback: OnQuickMove);
+        InputManager.Instance.RegisterCallback("SelectSlot0", performedCallback: OnSelectSlot0);
+        InputManager.Instance.RegisterCallback("SelectSlot1", performedCallback: OnSelectSlot1);
+        InputManager.Instance.RegisterCallback("SelectSlot2", performedCallback: OnSelectSlot2);
+        InputManager.Instance.RegisterCallback("SelectSlot3", performedCallback: OnSelectSlot3);
+        InputManager.Instance.RegisterCallback("SelectSlot4", performedCallback: OnSelectSlot4);
+        InputManager.Instance.RegisterCallback("SelectSlot5", performedCallback: OnSelectSlot5);
+        InputManager.Instance.RegisterCallback("SelectSlot6", performedCallback: OnSelectSlot6);
+        InputManager.Instance.RegisterCallback("SelectSlot7", performedCallback: OnSelectSlot7);
     }
 
     private void OnDisable()
@@ -394,10 +394,10 @@ public class InventoryManager : SerializedMonoBehaviour
 
     public void ConsumeItem(ItemData itemData, int itemQuantity)
     {
-        int itemsRemaining = ConsumeItemFromInventory(itemData, itemQuantity, PlayerInventory);
+        int itemsRemaining = ConsumeItemFromInventory(itemData, itemQuantity, PlayerHotbarInventory);
         if (itemsRemaining > 0)
         {
-            itemsRemaining = ConsumeItemFromInventory(itemData, itemsRemaining, PlayerHotbarInventory);
+            itemsRemaining = ConsumeItemFromInventory(itemData, itemsRemaining, PlayerInventory);
         }
 
         if (itemsRemaining > 0)
@@ -430,7 +430,7 @@ public class InventoryManager : SerializedMonoBehaviour
     }
     private void OnQuickMove(InputAction.CallbackContext context)
     {
-        print(context.performed);
+        print(context);
 
         InventorySlot tempSlot = IsDragging ? DragStartSlot : CurrentHoverSlot;
         if (!tempSlot.ContainsItem())
@@ -464,6 +464,7 @@ public class InventoryManager : SerializedMonoBehaviour
 
     private void OnSelectSlot7(InputAction.CallbackContext context)
     {
+        print(context);
         PlayerHotbarInventory.SetSelectedIndex(7);
     }
 

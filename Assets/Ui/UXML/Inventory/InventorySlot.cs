@@ -66,6 +66,8 @@ namespace OneFireUi
         public int AddItemToSlot(ItemData itemData)
         {
             int itemsRemaining = 0;
+
+            // Add to slot with existing item
             if (currentItemData != null)
             {
                 int stackCountRemaining = currentItemData.maxStackCount - currentItemData.stackCount;
@@ -81,9 +83,12 @@ namespace OneFireUi
                     itemData.stackCount = 0;
                 }
             }
+            // Add to empty slot
             else
             {
                 currentItemData = itemData;
+                itemsRemaining = Mathf.Max(0, currentItemData.stackCount - currentItemData.maxStackCount);
+                currentItemData.stackCount = Mathf.Min(currentItemData.stackCount, currentItemData.maxStackCount);
             }
 
             slotFilled = true;
@@ -106,6 +111,7 @@ namespace OneFireUi
             if (itemQuantity < currentItemData.stackCount)
             {
                 SetStackCount(currentItemData.stackCount - itemQuantity);
+                itemsRemaining = 0;
             }
             else
             {

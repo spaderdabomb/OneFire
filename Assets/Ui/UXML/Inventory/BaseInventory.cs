@@ -67,19 +67,17 @@ namespace OneFireUi
             if (slotIndex == -1)
                 return itemData.stackCount;
 
-            bool itemsRemainingBool = true;
-            int itemsRemaining = 0;
-            while (itemsRemainingBool)
+            int itemsRemaining = itemData.stackCount;
+            while (itemsRemaining > 0)
             {
                 InventorySlot inventorySlot = inventorySlots[slotIndex];
-                itemsRemaining = AddItem(itemData, inventorySlot);
-                itemsRemainingBool = (itemsRemaining > 0) ? true : false;
+                ItemData itemDataClone = itemData.CloneItemData();
+                itemDataClone.stackCount = itemsRemaining;
+                itemsRemaining = AddItem(itemDataClone, inventorySlot);
 
-                slotIndex = GetFirstFreeSlot(itemData);
+                slotIndex = GetFirstFreeSlot(itemDataClone);
                 if (slotIndex == -1)
-                {
                     break;
-                }
             }
 
             return itemsRemaining;
@@ -101,7 +99,7 @@ namespace OneFireUi
                 if (slot.currentItemData.itemID == itemData.itemID)
                 {
                     itemsRemaining = slot.SubtractItemFromSlot(itemData, itemsRemaining);
-                    if (itemsRemaining > 0)
+                    if (itemsRemaining <= 0)
                     {
                         break;
                     }

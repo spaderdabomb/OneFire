@@ -30,6 +30,7 @@ partial class CraftingMenu
     private VisualElement timeContainer;
     private VisualElement timeIcon;
     private Label timeQuantityLabel;
+    private Button minButton;
     private Button maxButton;
     private Button craftButton;
     private VisualElement craftProgressContainer;
@@ -64,6 +65,7 @@ partial class CraftingMenu
         timeContainer = root.Q<VisualElement>("TimeContainer");
         timeIcon = root.Q<VisualElement>("TimeIcon");
         timeQuantityLabel = root.Q<Label>("TimeQuantityLabel");
+        minButton = root.Q<Button>("MinButton");
         maxButton = root.Q<Button>("MaxButton");
         craftButton = root.Q<Button>("CraftButton");
         craftProgressContainer = root.Q<VisualElement>("CraftProgressContainer");
