@@ -83,7 +83,7 @@ namespace OneFireUi
             return itemsRemaining;
         }
 
-        public int AddItem(ItemData itemData, InventorySlot addSlot)
+        private int AddItem(ItemData itemData, InventorySlot addSlot)
         {
             int numItemsRemaining = addSlot.AddItemToSlot(itemData);
 
@@ -195,6 +195,8 @@ namespace OneFireUi
 
         public virtual int GetFirstFreeSlot(ItemData itemData, bool mergeSameItems = true)
         {
+            if (itemData == null) return -1;
+
             int slotIndex = -1;
             for (int i = 0; i < inventorySlots.Count; i++)
             {
@@ -215,6 +217,19 @@ namespace OneFireUi
             }
 
             return slotIndex;
+        }
+
+        public bool ContainsItem(ItemData itemData)
+        {
+            foreach (var slot in inventorySlots)
+            {
+                if (slot.ContainsItem() && slot.currentItemData.itemID == itemData.itemID)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public virtual InventorySlot GetCurrentSlotMouseOver(PointerUpEvent evt)
@@ -291,7 +306,7 @@ namespace OneFireUi
                     slot.SetUnselected();
             }
 
-            InventoryManager.Instance.OnHotbarItemSelectedChanged.Invoke(inventorySlots[selectedIndex].currentItemData);
+            InventoryManager.Instance.OnHotbarItemSelectedChanged.Invoke(inventorySlots[selectedIndex]);
         }
 
         public InventorySlot GetSelectedSlot()

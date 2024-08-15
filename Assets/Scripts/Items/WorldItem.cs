@@ -7,8 +7,10 @@ using UnityEngine.Events;
 using Sirenix.OdinInspector;
 using System;
 using JSAM;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(InteractingObject), typeof(Rigidbody), typeof(BoxCollider))]
+[RequireComponent(typeof(Outline))]
 public class WorldItem : MonoBehaviour
 {
     public ItemData itemDataAsset;
@@ -70,14 +72,56 @@ public class WorldItem : MonoBehaviour
         }
     }
 
+    public void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
+    }
+
     private void OnValidate()
     {
-        GetComponent<Rigidbody>().isKinematic = false;
+        if (GetComponent<Rigidbody>().isKinematic)
+        {
+            Debug.Log($"{this} is kinematic checked - automatically changing");
+            GetComponent<Rigidbody>().isKinematic = false;
+        }
+
+        if (GetComponent<Rigidbody>().collisionDetectionMode != CollisionDetectionMode.Continuous)
+        {
+            Debug.Log($"{this} collision detection is not set to continuous - automatically changing");
+            GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
+        }
 
         if (gameObject.layer != LayerMask.NameToLayer("Item"))
         {
+            Debug.Log($"{this} does not have a default layer assigned, assigning to 'item'");
             gameObject.layer = LayerMask.NameToLayer("Item");
-            print($"Item {itemData.displayName} does not have a default layer assigned, assigning to 'item'");
+        }
+
+        foreach (Transform child in transform)
+        {
+            SetLayerRecursively(child.gameObject, LayerMask.NameToLayer("Item"));
+        }
+
+        if (GetComponent<Outline>().OutlineMode != Outline.Mode.OutlineVisible)
+        {
+            Debug.Log($"{this} outline mode not set to visible - automatically changing");
+            GetComponent<Outline>().OutlineMode = Outline.Mode.OutlineVisible;
+        }
+
+        if (GetComponent<Outline>().OutlineWidth != 4f)
+        {
+            Debug.Log($"{this} outline width not set to {4f} - automatically changing");
+            GetComponent<Outline>().OutlineWidth = 4f;
+        }
+
+        if (GetComponent<Outline>().OutlineColor != new Color(1, 1, 1, 0.3f))
+        {
+            Debug.Log($"{this} outline color not set to {new Color(1, 1, 1, 0.3f)} - automatically changing");
+            GetComponent<Outline>().OutlineColor = new Color(1, 1, 1, 0.3f);
         }
     }
 }

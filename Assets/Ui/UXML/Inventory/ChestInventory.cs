@@ -20,6 +20,17 @@ public partial class ChestInventory : BaseInventory
     private void RegisterCallbacks()
     {
         root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+        allToChestButton.clickable.clicked += DepositAllToChest;
+        allToInventoryButton.clickable.clicked += DepositAllToInventory;
+        sameToChestButton.clickable.clicked += DepositSameToChest;
+        sameToInventoryButton.clickable.clicked += DepositSameToInventory;
+    }
+
+    public void UnregisterCallbacks()
+    {
+        root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+        allToChestButton.clickable.clicked -= DepositAllToChest;
+        allToInventoryButton.clickable.clicked -= DepositAllToInventory;
     }
 
     private void InitMenu()
@@ -58,5 +69,25 @@ public partial class ChestInventory : BaseInventory
     {
         playerContainer.Clear();
         InventoryManager.Instance.PlayerInventory.AddSlotsToContainer(playerContainer);
+    }
+
+    private void DepositAllToInventory()
+    {
+        InventoryManager.Instance.DepositAll(this, InventoryManager.Instance.PlayerInventory);
+    }
+
+    private void DepositAllToChest()
+    {
+        InventoryManager.Instance.DepositAll(InventoryManager.Instance.PlayerInventory, this);
+    }
+
+    private void DepositSameToInventory()
+    {
+        InventoryManager.Instance.DepositSame(this, InventoryManager.Instance.PlayerInventory);
+    }
+
+    private void DepositSameToChest()
+    {
+        InventoryManager.Instance.DepositSame(InventoryManager.Instance.PlayerInventory, this);
     }
 }

@@ -2006,6 +2006,16 @@ PrefabInstance:
       propertyPath: m_SkinnedMotionVectors
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8066352358851958603, guid: aa0dc18b8b0e3924a831420e4edc1397,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: de13a7420582ded45a8d7d3f96889aca, type: 3}
+    - target: {fileID: 8066352358851958603, guid: aa0dc18b8b0e3924a831420e4edc1397,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8597805407033306263, guid: aa0dc18b8b0e3924a831420e4edc1397,
         type: 3}
       propertyPath: m_CastShadows
@@ -2108,9 +2118,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes:
     - Name: ChestInventoryDict
-      Entry: 6
-      Data: 
-    - Name: OnHotbarItemSelectedChanged
       Entry: 6
       Data: 
     - Name: equipmentSlotDataDict

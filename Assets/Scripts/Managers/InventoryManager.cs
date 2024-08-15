@@ -21,10 +21,10 @@ public class InventoryManager : SerializedMonoBehaviour
 {
     public static InventoryManager Instance;
 
-    [HideInInspector] public Action<ItemData> OnHotbarItemSelectedChanged;
+    [HideInInspector] public Action<InventorySlot> OnHotbarItemSelectedChanged { get; set; }
 
     public event Action<ItemData> OnDroppedItem;
-    public event Action<ItemData> OnAddedItem;
+    public event Action<ItemData, bool> OnAddedItem;
     public event Action OnInventoryFull;
     public void DroppedItem(ItemData itemData) => OnDroppedItem?.Invoke(itemData);
 
@@ -345,7 +345,7 @@ public class InventoryManager : SerializedMonoBehaviour
         return baseItemDataArray;
     }
 
-    public int TryAddItem(ItemData itemData)
+    public int TryAddItem(ItemData itemData, bool showNotification = true)
     {
         int startingItems = itemData.stackCount;
         int itemsRemaining = PlayerHotbarInventory.TryAddItem(itemData);
@@ -364,7 +364,7 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             ItemData itemDataClone = itemData.CloneItemData();
             itemDataClone.stackCount = startingItems - itemsRemaining;
-            OnAddedItem.Invoke(itemDataClone);
+            OnAddedItem?.Invoke(itemDataClone, showNotification);
         }
         // Inventory full
         else
@@ -422,6 +422,42 @@ public class InventoryManager : SerializedMonoBehaviour
         return itemsRemaining;
     }
 
+    public void DepositAll(BaseInventory fromInventory, BaseInventory toInventory)
+    {
+        for (int i = 0; i < fromInventory.inventorySlots.Count; i++)
+        {
+            InventorySlot fromSlot = fromInventory.inventorySlots[i];
+            if (!fromSlot.ContainsItem()) 
+                continue;
+
+            int itemsRemaining = toInventory.TryAddItem(fromSlot.currentItemData);
+            if (itemsRemaining > 0)
+                fromSlot.currentItemData.stackCount = itemsRemaining;
+            else
+                fromSlot.RemoveItemFromSlot();
+        }
+    }
+
+    public void DepositSame(BaseInventory fromInventory, BaseInventory toInventory)
+    {
+        for (int i = 0; i < fromInventory.inventorySlots.Count; i++)
+        {
+            InventorySlot fromSlot = fromInventory.inventorySlots[i];
+            if (!fromSlot.ContainsItem())
+                continue;
+
+            // Check if the item exists in the toInventory
+            if (toInventory.ContainsItem(fromSlot.currentItemData))
+            {
+                int itemsRemaining = toInventory.TryAddItem(fromSlot.currentItemData);
+                if (itemsRemaining > 0)
+                    fromSlot.currentItemData.stackCount = itemsRemaining;
+                else
+                    fromSlot.RemoveItemFromSlot();
+            }
+        }
+    }
+
     #region Input callbacks
 
     private void OnDropItem(InputAction.CallbackContext context)
@@ -430,8 +466,6 @@ public class InventoryManager : SerializedMonoBehaviour
     }
     private void OnQuickMove(InputAction.CallbackContext context)
     {
-        print(context);
-
         InventorySlot tempSlot = IsDragging ? DragStartSlot : CurrentHoverSlot;
         if (!tempSlot.ContainsItem())
             return;
@@ -464,7 +498,6 @@ public class InventoryManager : SerializedMonoBehaviour
 
     private void OnSelectSlot7(InputAction.CallbackContext context)
     {
-        print(context);
         PlayerHotbarInventory.SetSelectedIndex(7);
     }
 

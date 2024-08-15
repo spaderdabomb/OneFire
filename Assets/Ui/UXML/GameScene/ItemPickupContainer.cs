@@ -69,8 +69,11 @@ namespace Game.Ui
             pickupNotification.SetTotalItemsLabel(String.Empty);
         }
 
-        public void ShowPickupNotification(ItemData itemData)
+        public void ShowPickupNotification(ItemData itemData, bool showNotification = true)
         {
+            if (!showNotification)
+                return;
+
             int notificationIdx = GetNotificationIndex(itemData);
             if (notificationIdx != -1)
             {

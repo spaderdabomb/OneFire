@@ -12,6 +12,7 @@ namespace OneFireUi
         public int slotIndex;
         public bool slotFilled = false;
         public bool selectable = false;
+        public bool selected = false;
         public Vector2 mousePosition;
 
         private Color labelColorDefault;
@@ -92,8 +93,8 @@ namespace OneFireUi
             }
 
             slotFilled = true;
-            UpdateSelectedSlot();
             SetSlotUI();
+            UpdateSelectedSlot(); // comes last
 
             return itemsRemaining;
         }
@@ -112,6 +113,7 @@ namespace OneFireUi
             {
                 SetStackCount(currentItemData.stackCount - itemQuantity);
                 itemsRemaining = 0;
+                UpdateSelectedSlot(); // comes last
             }
             else
             {
@@ -138,6 +140,7 @@ namespace OneFireUi
             slotIcon.style.backgroundImage = null;
             slotLabel.text = string.Empty;
             slotFilled = false;
+            UpdateSelectedSlot(); // comes last
         }
 
         public bool ContainsItem()
@@ -198,12 +201,14 @@ namespace OneFireUi
 
         public void SetSelected()
         {
+            selected = true;
             inventorySlotRoot.ClearClassList();
             inventorySlotRoot.AddToClassList(selectedStyle);
         }
 
         public void SetUnselected()
         {
+            selected = false;
             inventorySlotRoot.ClearClassList();
             inventorySlotRoot.AddToClassList(unselectedStyle);
         }
@@ -216,7 +221,7 @@ namespace OneFireUi
             InventorySlot currentSlot = parentContainer.GetSelectedSlot();
             if (currentSlot != null)
             {
-                InventoryManager.Instance.OnHotbarItemSelectedChanged.Invoke(currentSlot.currentItemData);
+                InventoryManager.Instance.OnHotbarItemSelectedChanged.Invoke(currentSlot);
             }
         }
     }

@@ -23,13 +23,13 @@ public class InteractingObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Interact"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interact") && !playerInteract.interactingObjects.Contains(gameObject))
             playerInteract.AddInteractingObject(gameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Interact"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interact") && playerInteract.interactingObjects.Contains(gameObject))
             playerInteract.RemoveInteractingObject(gameObject);
     }
 }

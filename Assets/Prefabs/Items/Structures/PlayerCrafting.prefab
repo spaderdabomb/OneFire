@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -4003385931601266051}
   - component: {fileID: 2152252811245663829}
   - component: {fileID: 1313482272252606038}
+  - component: {fileID: 5272222605418558453}
   m_Layer: 8
   m_Name: PlayerCrafting
   m_TagString: Untagged
@@ -136,7 +137,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &-4003385931601266051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,3 +186,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDataAsset: {fileID: 11400000, guid: 8290e648be290d945a232ab871ce865e, type: 2}
   itemData: {fileID: 0}
+--- !u!114 &5272222605418558453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991390102720173739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.3}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

@@ -8,14 +8,22 @@
             <ui:Label tabindex="-1" text="Chest" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ChestHeaderLabel" class="menu-header-label" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
             <ui:VisualElement name="ChestContainer" class="inventory-container" style="flex-grow: 0; flex-direction: row; width: 480px; flex-wrap: wrap; height: auto; flex-shrink: 0; justify-content: center; align-self: center; align-items: stretch;" />
         </ui:VisualElement>
-        <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.59); width: 200px; height: 300px; justify-content: center; align-items: center; align-self: center;">
-            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="AllRightButton" class="inventory-button">
+        <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78); width: 200px; height: 300px; justify-content: center; align-items: center; align-self: center;">
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="AllToInventoryButton" class="inventory-button" style="width: 110px;">
                 <ui:VisualElement name="AllRightIcon" style="flex-grow: 1;" />
                 <ui:Label tabindex="-1" text="All -&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AllRightLabel" class="options-standard-label" />
             </ui:Button>
-            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="AllLeftButton" class="inventory-button">
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="AllToChestButton" class="inventory-button" style="width: 110px;">
                 <ui:VisualElement name="AllLeftIcon" style="flex-grow: 1;" />
                 <ui:Label tabindex="-1" text="&lt;- All" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AllLeftLabel" class="options-standard-label" />
+            </ui:Button>
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SameToChestButton" class="inventory-button" style="width: 110px;">
+                <ui:VisualElement name="SameToChestIcon" style="flex-grow: 1;" />
+                <ui:Label tabindex="-1" text="&lt;- Same" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SameToChestLabel" class="options-standard-label" />
+            </ui:Button>
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SameToInventoryButton" class="inventory-button" style="width: 110px;">
+                <ui:VisualElement name="SameToInventoryIcon" style="flex-grow: 1;" />
+                <ui:Label tabindex="-1" text="Same -&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SameToInventoryLabel" class="options-standard-label" />
             </ui:Button>
         </ui:VisualElement>
         <ui:VisualElement name="PlayerContainerRoot" class="options-container menu-bg" style="flex-grow: 0; justify-content: space-around; align-self: center; align-items: stretch; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">

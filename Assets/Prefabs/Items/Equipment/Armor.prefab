@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2784040894254337676}
   - component: {fileID: 6259424355940124970}
   - component: {fileID: 260540766470887971}
+  - component: {fileID: 1386068897150889721}
+  - component: {fileID: 2694969373685383943}
   m_Layer: 8
   m_Name: Armor
   m_TagString: Untagged
@@ -112,7 +114,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &6259424355940124970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -148,3 +150,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDataAsset: {fileID: 11400000, guid: efd006a4da98946a69a5a3b350a66c99, type: 2}
   itemData: {fileID: 11400000, guid: efd006a4da98946a69a5a3b350a66c99, type: 2}
+--- !u!114 &1386068897150889721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8646145082966382363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828201e8bb578274ea479739aa13e356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInteract: {fileID: 0}
+--- !u!114 &2694969373685383943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8646145082966382363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.3}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

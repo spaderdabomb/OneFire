@@ -56,7 +56,7 @@ public class StructurePlacer : MonoBehaviour
     private void Start()
     {
         InventorySlot slot = InventoryManager.Instance.PlayerHotbarInventory.GetSelectedSlot();
-        TryEnterPlacementMode(slot.currentItemData);
+        TryEnterPlacementMode(slot);
     }
 
     private void Update()
@@ -108,15 +108,18 @@ public class StructurePlacer : MonoBehaviour
         PlaceStructure();
     }
 
-    public void TryEnterPlacementMode(ItemData itemData)
+    public void TryEnterPlacementMode(InventorySlot inventorySlot)
     {
-        if (itemData == null || !itemData.itemCategories.HasFlag(ItemData.ItemCategory.Structure))
+        if (!inventorySlot.selected)
+            return;
+
+        if (inventorySlot.currentItemData == null || !inventorySlot.currentItemData.itemCategories.HasFlag(ItemData.ItemCategory.Structure))
         {
             ExitPreviewMode();
             return;
         }
 
-        EnterPlacementMode(itemData);
+        EnterPlacementMode(inventorySlot.currentItemData);
     }
 
     public void EnterPlacementMode(ItemData itemData)
