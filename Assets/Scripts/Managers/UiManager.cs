@@ -17,6 +17,7 @@ public class UiManager : MonoBehaviour
     public VisualTreeAsset popupMenuInventory;
     public VisualTreeAsset popupMenuInventoryStatsContainer;
     public VisualTreeAsset ghostIcon;
+    public VisualTreeAsset healthBar;
 
     public InteractPopup interactPopup;
     public UiGameManager uiGameManager;

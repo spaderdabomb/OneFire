@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f773b355941531c49b174f16472d177c, type: 3}
+  m_Name: PineTree01
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  id: baf12047-3588-4dc6-8d51-93b504fdae56
+  interactDescription: 
+  health: 100
+  itemCollected: {fileID: 11400000, guid: c21feacebef69a542b2cf1ba7df3a711, type: 2}
+  treePrefab: {fileID: 1542331860841556684, guid: 23b892151db80a340b2380ef421ce210,
+    type: 3}

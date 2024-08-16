@@ -1,0 +1,5 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False" gen-cs-file="0448b392c80598340a437b81e6c68860">
+    <Style src="project://database/Assets/Ui/USS/CraftingMenu.uss?fileID=7433441132597879392&amp;guid=9cb4eeee50bf6604b8b4f730aa69b890&amp;type=3#CraftingMenu" />
+    <Style src="project://database/Assets/Ui/USS/HealthBar.uss?fileID=7433441132597879392&amp;guid=87d4218a8e4f9c645856444f0222f335&amp;type=3#HealthBar" />
+    <ui:ProgressBar value="22" title="22/100" name="HealthBarRoot" class="health-bar" style="position: relative; flex-grow: 0; align-self: stretch;" />
+</ui:UXML>

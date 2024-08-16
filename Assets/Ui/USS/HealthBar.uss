@@ -1,0 +1,85 @@
+.health-bar {
+    width: 250px;
+}
+
+.health-bar .unity-progress-bar__title {
+    -unity-font-style: bold;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color: rgb(220, 220, 220);
+}
+
+.health-bar .unity-progress-bar__title-container {
+    -unity-font-style: bold;
+    font-size: 16px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    height: auto;
+}
+
+.health-bar .unity-progress-bar__container {
+    -unity-font-style: bold;
+    font-size: 22px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: auto;
+    max-height: 20px;
+    max-width: 300px;
+}
+
+.health-bar .unity-progress-bar__background {
+    -unity-font-style: bold;
+    font-size: 22px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.78);
+    border-left-color: rgba(255, 255, 255, 0.08);
+    border-right-color: rgba(255, 255, 255, 0.08);
+    border-top-color: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.health-bar .unity-progress-bar__progress {
+    -unity-font-style: bold;
+    font-size: 22px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    height: auto;
+    background-color: rgb(71, 136, 49);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}

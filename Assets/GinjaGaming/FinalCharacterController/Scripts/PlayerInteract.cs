@@ -64,9 +64,9 @@ namespace GinjaGaming.FinalCharacterController
             if (interactingObjects.Count > 0)
             {
                 currentInteractObjectIndex = GetBestInteractingObjectIndex();
-                string interactingObjectPretext = interactingObjects[currentInteractObjectIndex].GetComponent<InteractingObject>().DisplayPretext;
-                string interactingObjectName = interactingObjects[currentInteractObjectIndex].GetComponent<InteractingObject>().DisplayString;
-                interactPopup.ShowPopup(interactingObjectPretext, interactingObjectName, GameDataManager.Instance.standardInteractTextColor);
+                InteractingObject interactingObject = interactingObjects[currentInteractObjectIndex].GetComponent<InteractingObject>();
+                if (interactingObject.ShowPopup)
+                    interactPopup.ShowPopup(interactingObject.DisplayPretext, interactingObject.DisplayString, GameDataManager.Instance.standardInteractTextColor);
             }
             else if (interactPopup.gameObject.activeSelf)
             {

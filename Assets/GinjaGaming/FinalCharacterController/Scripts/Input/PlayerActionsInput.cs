@@ -16,6 +16,7 @@ namespace GinjaGaming.FinalCharacterController
         public bool InteractPressed { get; private set; }
         public bool AttackPressed { get; private set; }
 
+        public event Action OnPunchHit;
         public event Action onInteract;
         public void Interact() => onInteract?.Invoke();
         #endregion
@@ -71,6 +72,12 @@ namespace GinjaGaming.FinalCharacterController
         { 
             AttackPressed = false;
         }
+
+        public void PunchHit()
+        {
+            OnPunchHit?.Invoke();
+        }
+
         #endregion
 
         #region Input Callbacks

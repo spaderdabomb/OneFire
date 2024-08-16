@@ -10,6 +10,8 @@ using Sirenix.OdinInspector;
 public class InteractingObject : MonoBehaviour
 {
     [HideInInspector] public PlayerInteract playerInteract;
+
+    [field: SerializeField] public bool ShowPopup { get; set; } = true;
     public string DisplayString { get; set; } = string.Empty;
     public string DisplayPretext { get; set; } = string.Empty;
 
