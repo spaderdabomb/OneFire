@@ -23,7 +23,10 @@ MonoBehaviour:
     SerializationNodes: []
   id: baf12047-3588-4dc6-8d51-93b504fdae56
   interactDescription: 
-  health: 100
+  baseHealth: 100
+  logsPerHealth: 0.05
+  logsWhenDestroyed: 5
+  respawnTime: 3
   itemCollected: {fileID: 11400000, guid: c21feacebef69a542b2cf1ba7df3a711, type: 2}
   treePrefab: {fileID: 1542331860841556684, guid: 23b892151db80a340b2380ef421ce210,
     type: 3}

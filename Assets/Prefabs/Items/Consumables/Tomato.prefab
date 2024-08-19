@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5635487290448585023}
   - component: {fileID: 971302316655600488}
   - component: {fileID: 1938720348416787424}
+  - component: {fileID: 8101190598286769765}
   m_Layer: 8
   m_Name: Tomato
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 494.557, y: 34.384, z: 502.768}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -134,8 +135,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.056736156, y: 0.05536315, z: 0.049872633}
-  m_Center: {x: 0.0013556425, y: 0.006954779, z: 0.008641807}
+  m_Size: {x: 0.22694463, y: 0.2214526, z: 0.19949053}
+  m_Center: {x: 0.00542257, y: 0.027819116, z: 0.03456723}
 --- !u!114 &5635487290448585023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInteract: {fileID: 0}
+  <ShowPopup>k__BackingField: 1
 --- !u!114 &1938720348416787424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +183,24 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &8101190598286769765
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87292891544641332}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}

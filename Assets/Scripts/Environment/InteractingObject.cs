@@ -7,6 +7,7 @@ using GinjaGaming.FinalCharacterController;
 using JSAM;
 using Sirenix.OdinInspector;
 
+[DefaultExecutionOrder(-1)]
 public class InteractingObject : MonoBehaviour
 {
     [HideInInspector] public PlayerInteract playerInteract;
@@ -25,13 +26,26 @@ public class InteractingObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Interact") && !playerInteract.interactingObjects.Contains(gameObject))
-            playerInteract.AddInteractingObject(gameObject);
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interact") 
+            && !playerInteract.interactingObjects.Contains(gameObject) 
+            && !playerInteract.damageableObjects.Contains(gameObject))
+        {
+            if (GetComponent<DamageableObject>() != null)
+                playerInteract.AddDamageableObject(gameObject);
+            else
+                playerInteract.AddInteractingObject(gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Interact") && playerInteract.interactingObjects.Contains(gameObject))
-            playerInteract.RemoveInteractingObject(gameObject);
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interact")
+            && (playerInteract.interactingObjects.Contains(gameObject) || playerInteract.damageableObjects.Contains(gameObject)))
+        {
+            if (GetComponent<DamageableObject>() != null)
+                playerInteract.RemoveDamageableObject(gameObject);
+            else
+                playerInteract.RemoveInteractingObject(gameObject);
+        }
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
 
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(-2)]
 public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
 {
     public static GameObjectManager Instance;
@@ -16,6 +16,7 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
     public GameObject player;
     public Camera playerCamera;
     public PlayerInteract playerInteract;
+    public PlayerStats playerStats;
 
     public List<WorldStructure> chestList = new();
     private List<SaveableWorldStructure> saveableChestList = new();
@@ -97,6 +98,18 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
             speedScaleFactor * Mathf.Sign(playerCamera.transform.forward.z) * Random.Range(0f, Mathf.Abs(playerCamera.transform.forward.z))
             );
 
+    }
+
+    public void StartTreeRespawn(WorldTree worldTree, float respawnTime)
+    {
+        StartCoroutine(RespawnTree(worldTree, respawnTime));
+    }
+
+    private IEnumerator RespawnTree(WorldTree worldTree, float respawnTime)
+    {
+        yield return new WaitForSeconds(respawnTime);
+
+        worldTree.ReactivateObject();
     }
 
     public void AddToSaveable()

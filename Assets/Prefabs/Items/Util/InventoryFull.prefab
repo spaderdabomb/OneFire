@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2453394144361186904}
   - component: {fileID: -2505524705125237597}
   - component: {fileID: 7651425224601045197}
+  - component: {fileID: 6326781804142458238}
   m_Layer: 8
   m_Name: InventoryFull
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInteract: {fileID: 0}
+  <ShowPopup>k__BackingField: 1
 --- !u!54 &5453720089804595597
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,3 +131,24 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &6326781804142458238
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9199911818793932146}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}

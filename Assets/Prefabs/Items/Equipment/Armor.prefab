@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 260540766470887971}
   - component: {fileID: 1386068897150889721}
   - component: {fileID: 2694969373685383943}
+  - component: {fileID: 5741974846468848448}
   m_Layer: 8
   m_Name: Armor
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 495.04, y: 34.22, z: 501.15137}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -134,8 +135,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6.2859, y: 2.5965855, z: 6.9390182}
-  m_Center: {x: 0.07092404, y: -0.05739951, z: 0.37371385}
+  m_Size: {x: 0.62859005, y: 0.25965863, z: 0.6939021}
+  m_Center: {x: 0.0070924163, y: -0.005739951, z: 0.03737139}
 --- !u!114 &260540766470887971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInteract: {fileID: 0}
+  <ShowPopup>k__BackingField: 1
 --- !u!114 &2694969373685383943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +183,24 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &5741974846468848448
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8646145082966382363}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}

@@ -1,35 +1,75 @@
 using GinjaGaming.FinalCharacterController;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class WorldTree : MonoBehaviour
+[RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody), typeof(InteractingObject))]
+public class WorldTree : DamageableObject, IRespawnable
 {
-    private HealthBar _healthBar = null;
-    private void OnEnable()
+    public TreeData treeData;
+    private float _damageRemainder;
+
+    public float RespawnTime => treeData.respawnTime;
+
+    public override void Damage()
     {
-        InputManager.Instance.playerActionsInput.OnPunchHit += DamageTree;
+        base.Damage();
+
+        float damage = GameObjectManager.Instance.playerStats.CalculateDamage(gameObject);
+        ItemData itemDataCloned = treeData.itemCollected.CloneItemData();
+        int newStackCount = (int)Mathf.Floor(treeData.logsPerHealth * (damage + _damageRemainder));
+        itemDataCloned.stackCount = newStackCount;
+        _damageRemainder = (_damageRemainder + damage) - newStackCount / treeData.logsPerHealth;
+        GameObjectManager.Instance.SpawnItem(itemDataCloned);
     }
 
-    private void OnDisable()
+    public override void DeactivateObject()
     {
-        InputManager.Instance.playerActionsInput.OnPunchHit -= DamageTree;
+        GameObjectManager.Instance.StartTreeRespawn(this, RespawnTime);
+
+        base.DeactivateObject();
+
+        if (transform.parent.GetComponent<LODGroup>() != null)
+            transform.parent.gameObject.SetActive(false);
+
+        ItemData itemDataCloned = treeData.itemCollected.CloneItemData();
+        itemDataCloned.stackCount = treeData.logsWhenDestroyed;
+        GameObjectManager.Instance.SpawnItem(itemDataCloned);
     }
 
-    private void DamageTree()
+    public void ReactivateObject()
     {
-        if (!GameObjectManager.Instance.playerInteract.interactingObjects.Contains(gameObject))
-            return;
-
-        if (_healthBar == null)
-            MakeHealthBar();
+        gameObject.SetActive(true);
+        if (transform.parent.GetComponent<LODGroup>() != null)
+            transform.parent.gameObject.SetActive(true);
     }
 
-    private void MakeHealthBar()
+    public override void DestroyObject()
     {
-        VisualElement healthBarInst = UiManager.Instance.healthBar.Instantiate();
-        _healthBar = new HealthBar(healthBarInst, gameObject, 100f);
-        UiManager.Instance.uiGameManager.root.Add(healthBarInst);
+        base.DestroyObject();
+
+        ItemData itemDataCloned = treeData.itemCollected.CloneItemData();
+        itemDataCloned.stackCount = treeData.logsWhenDestroyed;
+        GameObjectManager.Instance.SpawnItem(itemDataCloned);
+    }
+
+
+    private void OnValidate()
+    {
+#if UNITY_EDITOR
+        if (PrefabUtility.IsPartOfAnyPrefab(gameObject))
+        {
+            if (PrefabUtility.IsPartOfPrefabAsset(gameObject))
+            {
+                GameObject gameObj = PrefabUtility.GetCorrespondingObjectFromOriginalSource(treeData.treePrefab);
+                if (gameObj == gameObject)
+                {
+                    Debug.LogError($"{this} Tree prefab not set to correct treeData");
+                }
+            }
+        }
+#endif
     }
 }

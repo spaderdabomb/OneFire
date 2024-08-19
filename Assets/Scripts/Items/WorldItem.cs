@@ -8,9 +8,11 @@ using Sirenix.OdinInspector;
 using System;
 using JSAM;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using VHierarchy.Libs;
+using UnityEditor;
 
 [RequireComponent(typeof(InteractingObject), typeof(Rigidbody), typeof(BoxCollider))]
-[RequireComponent(typeof(Outline))]
+[RequireComponent(typeof(Outline), typeof(SphereCollider), typeof(TriggersInTrigger))]
 public class WorldItem : MonoBehaviour
 {
     public ItemData itemDataAsset;
@@ -18,16 +20,68 @@ public class WorldItem : MonoBehaviour
 
     public InteractingObject InteractingObject {  get; private set; }
     public Action<string> StackCountChanged;
+    public static Action<GameObject> OnWorldItemDestroyed; 
+    public bool Combining { get; set; } = false;
+    public WorldItem combineTargetWorldItem = null;
+
+    private TriggersInTrigger triggersInTrigger;
+    private const float combineRadius = 1f;
+    private const float combineDestroyDist = 0.1f; 
+    private float canCombineTimer = 1f;
 
     private void Awake()
     {
         InteractingObject = GetComponent<InteractingObject>();
+        triggersInTrigger = GetComponent<TriggersInTrigger>();
+    }
+
+    private void OnEnable()
+    {
+        triggersInTrigger.OnTriggerInTriggerEntered += CombineWorldItems;
+    }
+
+    private void OnDisable()
+    {
+        triggersInTrigger.OnTriggerInTriggerEntered -= CombineWorldItems;
     }
 
     private void Start()
     {
         if (itemData == null)
             InitItemData(Instantiate(itemDataAsset));
+    }
+
+    private void Update()
+    {
+        canCombineTimer -= Time.deltaTime;
+        if (canCombineTimer <= 0)
+        {
+            List<Collider> triggerList = new List<Collider>();
+            foreach (var c in triggersInTrigger.triggerList)
+            {
+                triggerList.Add(c);
+            }
+
+            foreach (var c in triggerList)
+            {
+                CombineWorldItems(c);
+            }
+        }
+
+        if (Combining && combineTargetWorldItem != null)
+        {
+            Vector3 newPosition = Vector3.Lerp(transform.position, combineTargetWorldItem.transform.position, 0.1f);
+            transform.position = newPosition;
+            if (Vector3.Distance(transform.position, combineTargetWorldItem.transform.position) < combineDestroyDist)
+            {
+                Destroy(gameObject);
+                combineTargetWorldItem = null;
+            }
+        }
+        else
+        {
+            Combining = false;
+        }
     }
 
     public void InitItemData(ItemData newItemData)
@@ -48,6 +102,39 @@ public class WorldItem : MonoBehaviour
         InteractingObject.DisplayString = itemData.displayName + " x" + itemData.stackCount.ToString();
         StackCountChanged?.Invoke(InteractingObject.DisplayString);
     }
+
+    public void CombineWorldItems(Collider combineCollider)
+    {
+        if (itemData.maxStackCount <= 1 || combineCollider == null || canCombineTimer > 0f)
+            return;
+
+        WorldItem combineWorldItem;
+        if (!combineCollider.gameObject.TryGetComponent(out combineWorldItem))
+            return;
+
+        if (combineWorldItem.itemData.itemID != itemData.itemID || Combining || combineWorldItem.canCombineTimer > 0f || combineWorldItem.Combining || canCombineTimer > combineWorldItem.canCombineTimer)
+            return;
+
+        int newStackCount = itemData.stackCount + combineWorldItem.itemData.stackCount;
+        if (newStackCount > itemData.maxStackCount)
+            return;
+
+        combineWorldItem.Combining = true;
+        combineWorldItem.combineTargetWorldItem = this;
+        combineWorldItem.GetComponent<BoxCollider>().enabled = false;
+        combineWorldItem.GetComponent<Rigidbody>().isKinematic = true;
+
+        SetStackCount(newStackCount);
+        OnWorldItemDestroyed?.Invoke(combineWorldItem.gameObject);
+        GameObjectManager.Instance.playerInteract.RemoveInteractingObject(combineWorldItem.gameObject);
+    }
+
+/*    public void FinishCombining()
+    {
+        OnWorldItemDestroyed?.Invoke(combineWorldItem.gameObject);
+        GameObjectManager.Instance.playerInteract.RemoveInteractingObject(combineWorldItem.gameObject);
+        combineWorldItem.gameObject.Destroy();
+    }*/
 
     public void PickUpItem()
     {
@@ -72,6 +159,12 @@ public class WorldItem : MonoBehaviour
         }
     }
 
+    public void OnDestroy()
+    {
+        OnWorldItemDestroyed?.Invoke(gameObject);
+        InteractingObject.playerInteract.RemoveInteractingObject(gameObject);
+    }
+
     public void SetLayerRecursively(GameObject obj, int layer)
     {
         obj.layer = layer;
@@ -83,6 +176,12 @@ public class WorldItem : MonoBehaviour
 
     private void OnValidate()
     {
+        if (transform.localScale != Vector3.one)
+        {
+            float maxScale = Mathf.Max(transform.localScale.x, Mathf.Max(transform.localScale.y, transform.localScale.z));
+            GetComponent<SphereCollider>().radius = combineRadius * 1 / maxScale;
+        }
+
         if (GetComponent<Rigidbody>().isKinematic)
         {
             Debug.Log($"{this} is kinematic checked - automatically changing");
@@ -106,6 +205,14 @@ public class WorldItem : MonoBehaviour
             SetLayerRecursively(child.gameObject, LayerMask.NameToLayer("Item"));
         }
 
+        // Combine trigger
+        if (GetComponent<SphereCollider>().isTrigger == false)
+        {
+            Debug.Log($"{this} sphere collider trigger set to false - changing to true");
+            GetComponent<SphereCollider>().isTrigger = true;
+        }
+
+        // Outline
         if (GetComponent<Outline>().OutlineMode != Outline.Mode.OutlineVisible)
         {
             Debug.Log($"{this} outline mode not set to visible - automatically changing");

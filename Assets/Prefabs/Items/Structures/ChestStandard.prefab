@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 7284720297593369864}
   - component: {fileID: 4480883762074636886}
   - component: {fileID: 4134749256355395028}
+  - component: {fileID: 2407305950297941317}
+  - component: {fileID: 4196658103137876828}
   m_Layer: 8
   m_Name: ChestStandard
   m_TagString: Untagged
@@ -150,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInteract: {fileID: 0}
+  <ShowPopup>k__BackingField: 1
 --- !u!114 &4480883762074636886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2303,6 +2306,40 @@ MonoBehaviour:
     - {x: -0.1031493, y: -0.9946645, z: -0.0016334587}
     - {x: -0.30750766, y: -0.7269345, z: 0.6140075}
     - {x: -0.3131278, y: -0.7230445, z: -0.6157578}
+--- !u!135 &2407305950297941317
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714119430091773529}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4196658103137876828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714119430091773529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4583ba52a60ade4795631170142d398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: []
 --- !u!1 &8149278817087821829
 GameObject:
   m_ObjectHideFlags: 0

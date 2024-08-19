@@ -16,7 +16,7 @@ using System.Linq;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
-[DefaultExecutionOrder(-2)]
+[DefaultExecutionOrder(-3)]
 public class InventoryManager : SerializedMonoBehaviour
 {
     public static InventoryManager Instance;

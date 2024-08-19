@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5050589090474706186}
   - component: {fileID: 6566351931877485799}
   - component: {fileID: -7182952601506649526}
+  - component: {fileID: 5292382860821434621}
+  - component: {fileID: 6011218756093659715}
   m_Layer: 8
   m_Name: Planks
   m_TagString: Untagged
@@ -33,7 +35,7 @@ Transform:
   m_LocalRotation: {x: 4.292815e-10, y: 0.000000044702062, z: 0.0000000045110937,
     w: 1}
   m_LocalPosition: {x: 495.55417, y: 33.492912, z: 500.27066}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,8 +109,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.0390198, y: 0.45349085, z: 2.1986756}
-  m_Center: {x: -0.1692858, y: 0.22577748, z: -0.007695496}
+  m_Size: {x: 0.81560796, y: 0.18139635, z: 0.8794702}
+  m_Center: {x: -0.06771433, y: 0.090311, z: -0.0030781925}
 --- !u!54 &5050589090474706186
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInteract: {fileID: 0}
+  <ShowPopup>k__BackingField: 1
 --- !u!114 &-7182952601506649526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +166,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDataAsset: {fileID: 11400000, guid: 0f3ea7b6b8dec6b478283ca2de9c0b68, type: 2}
   itemData: {fileID: 0}
+--- !u!114 &5292382860821434621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125688561331272100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.3}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!135 &6011218756093659715
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125688561331272100}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}

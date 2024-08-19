@@ -65,7 +65,7 @@ MonoBehaviour:
   displayName: Tomato
   description: A ripe tomato
   interactDescription: Pick up
-  stackCount: 30
+  stackCount: 20
   maxStackCount: 50
   baseSellValue: 1
   itemType: 0

@@ -6,14 +6,18 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TreeData", menuName = "OneFire/Environment/TreeData")]
-public class TreeData : SerializedScriptableObject
+public class TreeData : SerializedScriptableObject, IDamageable
 {
     [Header("Details")]
     public string id = Guid.NewGuid().ToString();
     public string interactDescription;
 
     [Header("Quantities")]
-    public float health = 100;
+    [SerializeField] private float baseHealth = 100;
+    public float BaseHealth => baseHealth;
+    public float logsPerHealth;
+    public int logsWhenDestroyed;
+    public float respawnTime;
 
     [Header("Assets")]
     public ItemData itemCollected;

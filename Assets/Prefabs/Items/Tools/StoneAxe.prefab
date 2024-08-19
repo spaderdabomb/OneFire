@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6964723289982650135}
   - component: {fileID: 3945956913170099826}
   - component: {fileID: 1507158145006103820}
+  - component: {fileID: 6146633982094931201}
   m_Layer: 8
   m_Name: StoneAxe
   m_TagString: Untagged
@@ -51,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInteract: {fileID: 0}
+  <ShowPopup>k__BackingField: 1
 --- !u!54 &8401195636733071911
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,6 +133,27 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &6146633982094931201
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803106725327420191}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3021664311340146758
 GameObject:
   m_ObjectHideFlags: 0
