@@ -23,11 +23,16 @@ public class WorldTree : DamageableObject, IRespawnable
         itemDataCloned.stackCount = newStackCount;
         _damageRemainder = (_damageRemainder + damage) - newStackCount / treeData.logsPerHealth;
         GameObjectManager.Instance.SpawnItem(itemDataCloned);
+
+        LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.hitFlashEffect);
+        LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.hitSmokeEffect);
     }
 
     public override void DeactivateObject()
     {
-        GameObjectManager.Instance.StartTreeRespawn(this, RespawnTime);
+        LumberjackingManager.Instance.StartTreeRespawn(this, RespawnTime);
+        LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.destroyEffect);
+        LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.destroyFlashEffect);
 
         base.DeactivateObject();
 

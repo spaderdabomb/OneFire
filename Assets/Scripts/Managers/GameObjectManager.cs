@@ -30,6 +30,7 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
     [Header("Containers")]
     public GameObject itemContainer;
     public GameObject structureContainer;
+    public GameObject effectsContainer;
 
     private void Awake()
     {
@@ -98,18 +99,6 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
             speedScaleFactor * Mathf.Sign(playerCamera.transform.forward.z) * Random.Range(0f, Mathf.Abs(playerCamera.transform.forward.z))
             );
 
-    }
-
-    public void StartTreeRespawn(WorldTree worldTree, float respawnTime)
-    {
-        StartCoroutine(RespawnTree(worldTree, respawnTime));
-    }
-
-    private IEnumerator RespawnTree(WorldTree worldTree, float respawnTime)
-    {
-        yield return new WaitForSeconds(respawnTime);
-
-        worldTree.ReactivateObject();
     }
 
     public void AddToSaveable()
