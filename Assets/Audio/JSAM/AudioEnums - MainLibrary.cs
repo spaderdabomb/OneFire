@@ -19,7 +19,11 @@
         WoodenTick,
         InventoryFull,
         PlaceStructure,
-        InvalidPlacement
+        InvalidPlacement,
+        TreeDestroy_01,
+        TreeDestroy_02,
+        FistHitTree_01,
+        FistHitTree_02
     }
     public enum MainLibraryMusic {
     }

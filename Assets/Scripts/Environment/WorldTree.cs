@@ -1,4 +1,5 @@
 using GinjaGaming.FinalCharacterController;
+using JSAM;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -26,6 +27,8 @@ public class WorldTree : DamageableObject, IRespawnable
 
         LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.hitFlashEffect);
         LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.hitSmokeEffect);
+        LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.hitSpintersEffect);
+        AudioManager.PlaySound(MainLibrarySounds.FistHitTree_02);
     }
 
     public override void DeactivateObject()
@@ -33,6 +36,7 @@ public class WorldTree : DamageableObject, IRespawnable
         LumberjackingManager.Instance.StartTreeRespawn(this, RespawnTime);
         LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.destroyEffect);
         LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.destroyFlashEffect);
+        AudioManager.PlaySound(MainLibrarySounds.TreeDestroy_02);
 
         base.DeactivateObject();
 
