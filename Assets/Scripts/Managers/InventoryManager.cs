@@ -101,15 +101,15 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         InputManager.Instance.UnregisterCallback("DropItem");
         InputManager.Instance.UnregisterCallback("SplitItemHalf");
-        InputManager.Instance.RegisterCallback("QuickMove");
-        InputManager.Instance.RegisterCallback("SelectSlot0");
-        InputManager.Instance.RegisterCallback("SelectSlot1");
-        InputManager.Instance.RegisterCallback("SelectSlot2");
-        InputManager.Instance.RegisterCallback("SelectSlot3");
-        InputManager.Instance.RegisterCallback("SelectSlot4");
-        InputManager.Instance.RegisterCallback("SelectSlot5");
-        InputManager.Instance.RegisterCallback("SelectSlot6");
-        InputManager.Instance.RegisterCallback("SelectSlot7");
+        InputManager.Instance.UnregisterCallback("QuickMove");
+        InputManager.Instance.UnregisterCallback("SelectSlot0");
+        InputManager.Instance.UnregisterCallback("SelectSlot1");
+        InputManager.Instance.UnregisterCallback("SelectSlot2");
+        InputManager.Instance.UnregisterCallback("SelectSlot3");
+        InputManager.Instance.UnregisterCallback("SelectSlot4");
+        InputManager.Instance.UnregisterCallback("SelectSlot5");
+        InputManager.Instance.UnregisterCallback("SelectSlot6");
+        InputManager.Instance.UnregisterCallback("SelectSlot7");
     }
 
     void Update()
@@ -466,6 +466,9 @@ public class InventoryManager : SerializedMonoBehaviour
     }
     private void OnQuickMove(InputAction.CallbackContext context)
     {
+        print("Quick moving");
+
+
         InventorySlot tempSlot = IsDragging ? DragStartSlot : CurrentHoverSlot;
         if (!tempSlot.ContainsItem())
             return;

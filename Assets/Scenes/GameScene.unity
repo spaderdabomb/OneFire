@@ -367,6 +367,8 @@ MonoBehaviour:
     type: 3}
   healthBar: {fileID: 9197481963319205126, guid: 12ef486366b52154583d248cea88938d,
     type: 3}
+  damageNumberStandard: {fileID: 2666821403142079915, guid: 0d2e631edaf29f947bcdf0f6fc69227f,
+    type: 3}
   interactPopup: {fileID: 783122778}
   uiGameManager: {fileID: 867432744}
 --- !u!114 &315266882
@@ -1407,7 +1409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e1ea53f231e134d9a207bbb6868069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pineTree01: {fileID: 0}
+  pineTree01: {fileID: 1542331860841556684, guid: 23b892151db80a340b2380ef421ce210,
+    type: 3}
   hitSmokeEffect: {fileID: 3045166499494695814, guid: 3e0ada394ca6cc74599f15efb6a6f8d4,
     type: 3}
   hitSpintersEffect: {fileID: 8844483585067323469, guid: 477202b89dacd89468a9725e8abf4f7f,
@@ -1708,7 +1711,7 @@ Transform:
   m_GameObject: {fileID: 1408345461}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 464.34302, y: 20.39817, z: 512.60504}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3322,74 +3325,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dbad6ceabe53db4682c077746535130, type: 3}
---- !u!1001 &4086358169873980986
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7546073018672087326, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_Name
-      value: SplintersEffect
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670926070239949476, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 495.718
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670926070239949476, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 35.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670926070239949476, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 498.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670926070239949476, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670926070239949476, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670926070239949476, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670926070239949476, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670926070239949476, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670926070239949476, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670926070239949476, guid: 477202b89dacd89468a9725e8abf4f7f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 477202b89dacd89468a9725e8abf4f7f, type: 3}
 --- !u!1001 &6066997439796489430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3527,6 +3462,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8463592815632541833, guid: ad3fb10cbfe639f4b99753d5fd4a3c02,
+        type: 3}
+      propertyPath: gameCanvas
+      value: 
+      objectReference: {fileID: 1475074488}
     - target: {fileID: 8689088028899634715, guid: ad3fb10cbfe639f4b99753d5fd4a3c02,
         type: 3}
       propertyPath: animationDuration
@@ -3641,4 +3581,3 @@ SceneRoots:
   - {fileID: 745468765}
   - {fileID: 1669804814}
   - {fileID: 352826088}
-  - {fileID: 4086358169873980986}

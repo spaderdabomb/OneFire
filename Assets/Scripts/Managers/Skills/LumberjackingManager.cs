@@ -20,7 +20,7 @@ public class LumberjackingManager : MonoBehaviour
         Instance = this;
     }
 
-    public void SpawnHitEffect(GameObject obj, ParticleSystem particleSystem)
+    public Vector3 GetHitPosition(GameObject obj)
     {
         Vector3 interactPosition = GameObjectManager.Instance.playerInteract.transform.position;
         Vector3 objPosition = obj.transform.position;
@@ -29,8 +29,14 @@ public class LumberjackingManager : MonoBehaviour
         float radius = obj.GetComponent<CapsuleCollider>().radius;
         Vector3 direction = (interactPosition - objPosition).normalized * radius;
         objPosition = new Vector3(objPosition.x + direction.x, objPosition.y, objPosition.z + direction.z);
+
+        return objPosition;
+    }
+
+    public void SpawnHitEffect(ParticleSystem particleSystem, Vector3 position)
+    {
         ParticleSystem hitEffect = Instantiate(particleSystem, GameObjectManager.Instance.effectsContainer.transform);
-        hitEffect.transform.position = objPosition;
+        hitEffect.transform.position = position;
     }
 
     public void StartTreeRespawn(WorldTree worldTree, float respawnTime)

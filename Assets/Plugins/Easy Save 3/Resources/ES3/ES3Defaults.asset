@@ -33,6 +33,7 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - Cinemachine
+    - DamageNumbersPro
     - QuickEye.UIToolkit
     showAdvancedSettings: 1
   addMgrToSceneAutomatically: 0

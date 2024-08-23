@@ -19,6 +19,10 @@ public class UiManager : MonoBehaviour
     public VisualTreeAsset ghostIcon;
     public VisualTreeAsset healthBar;
 
+    [Header("Damage Numbers")]
+    public GameObject damageNumberStandard;
+
+    [Header("UGUI")]
     public InteractPopup interactPopup;
     public UiGameManager uiGameManager;
     private VisualElement uiGameManagerRoot;

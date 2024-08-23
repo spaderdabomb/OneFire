@@ -21,10 +21,12 @@ public class StructurePlacer : MonoBehaviour
     private Vector3 currentPlacementPosition = Vector3.zero;
     private ItemData currentItemData = null;
 
-    private bool inPlacementMode = false;
+    public bool inPlacementMode { get; private set; } = false;
     private bool validBuildState = false;
     private float upwardOffset = 100f; // How high up to start the downward raycast
     private float maxDistance = 1000f; // Maximum raycast distance
+
+    private bool _exitedPlacementModeLastFrame = false;
 
     private void Awake()
     {
@@ -43,7 +45,7 @@ public class StructurePlacer : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Instance.RegisterCallback("PlaceObject", OnPlaceObject);
+        InputManager.Instance.RegisterCallback("PlaceObject", performedCallback: OnPlaceObject);
         InventoryManager.Instance.OnHotbarItemSelectedChanged += TryEnterPlacementMode;
     }
 
@@ -61,6 +63,12 @@ public class StructurePlacer : MonoBehaviour
 
     private void Update()
     {
+        if (_exitedPlacementModeLastFrame)
+        {
+            InputManager.Instance.SetGameSceneControls();
+            _exitedPlacementModeLastFrame = false;
+        }
+
         if (!inPlacementMode)
             return;
 
@@ -119,16 +127,29 @@ public class StructurePlacer : MonoBehaviour
             return;
         }
 
+        if (inPlacementMode)
+            return;
+
         EnterPlacementMode(inventorySlot.currentItemData);
     }
 
     public void EnterPlacementMode(ItemData itemData)
     {
-        InputManager.Instance.EnableActionMap("UiControls", "ObjectPlacementMap");
+        InputManager.Instance.SetBuildControls();
         currentItemData = itemData;
         GameObject previewPrefab = currentItemData.GetStructureFromItem().structurePreviewPrefab;
         SetPreviewMode(previewPrefab);
         inPlacementMode = true;
+    }
+
+    private void ExitPreviewMode()
+    {
+        Destroy(previewStructure);
+        previewStructure = null;
+        UiManager.Instance.uiGameManager.structurePlacementMessage.Hide();
+        inPlacementMode = false;
+        _exitedPlacementModeLastFrame = true;
+
     }
 
     public bool CanPlaceStructure()
@@ -168,15 +189,6 @@ public class StructurePlacer : MonoBehaviour
     private void PlaceWhileInvalid()
     {
         // AudioManager.PlaySound(MainLibrarySounds.InvalidPlacement);
-    }
-
-    private void ExitPreviewMode()
-    {
-        Destroy(previewStructure);
-        previewStructure = null;
-        InputManager.Instance.DisableActionMap("UiControls", "ObjectPlacementMap");
-        UiManager.Instance.uiGameManager.structurePlacementMessage.Hide();
-        inPlacementMode = false;
     }
 
     public void SetCraftingInputState()

@@ -5,12 +5,14 @@ using OneFireUi;
 using System;
 using UnityEngine.InputSystem;
 using Game.Ui;
+using DamageNumbersPro;
 
 [DefaultExecutionOrder(-1)]
 public partial class UiGameManager : MonoBehaviour
 {
     public StructurePlacementMessage structurePlacementMessage;
     public ItemPickupContainer itemPickupContainer;
+    public GameObject gameCanvas;
 
     public OptionsMenuUi OptionsMenuUi { get; private set; }
     public GameSceneUi GameSceneUi { get; private set; }
@@ -179,6 +181,14 @@ public partial class UiGameManager : MonoBehaviour
             InputManager.Instance.SetMenuControls();
             SetCursorStateVisible(true);
         }
+    }
+
+    public void SpawnDamageNumber(GameObject damageNumberObj, float value, Vector3 worldPosition)
+    {
+        GameObject spanwedDamageNumber = Instantiate(damageNumberObj, gameCanvas.transform);
+        Vector3 screenPoint = Camera.main.WorldToScreenPoint(worldPosition);
+        spanwedDamageNumber.transform.position = screenPoint;
+        spanwedDamageNumber.GetComponent<DamageNumberGUI>().number = Mathf.Floor(value);
     }
 }
 

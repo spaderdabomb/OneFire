@@ -25,17 +25,20 @@ public class WorldTree : DamageableObject, IRespawnable
         _damageRemainder = (_damageRemainder + damage) - newStackCount / treeData.logsPerHealth;
         GameObjectManager.Instance.SpawnItem(itemDataCloned);
 
-        LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.hitFlashEffect);
-        LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.hitSmokeEffect);
-        LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.hitSpintersEffect);
+        Vector3 hitPosition = LumberjackingManager.Instance.GetHitPosition(gameObject);
+        LumberjackingManager.Instance.SpawnHitEffect(LumberjackingManager.Instance.hitFlashEffect, hitPosition);
+        LumberjackingManager.Instance.SpawnHitEffect(LumberjackingManager.Instance.hitSmokeEffect, hitPosition);
+        LumberjackingManager.Instance.SpawnHitEffect(LumberjackingManager.Instance.hitSpintersEffect, hitPosition);
+        UiManager.Instance.uiGameManager.SpawnDamageNumber(UiManager.Instance.damageNumberStandard, damage, hitPosition);
         AudioManager.PlaySound(MainLibrarySounds.FistHitTree_02);
     }
 
     public override void DeactivateObject()
     {
+        Vector3 hitPosition = LumberjackingManager.Instance.GetHitPosition(gameObject);
         LumberjackingManager.Instance.StartTreeRespawn(this, RespawnTime);
-        LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.destroyEffect);
-        LumberjackingManager.Instance.SpawnHitEffect(gameObject, LumberjackingManager.Instance.destroyFlashEffect);
+        LumberjackingManager.Instance.SpawnHitEffect(LumberjackingManager.Instance.destroyEffect, hitPosition);
+        LumberjackingManager.Instance.SpawnHitEffect(LumberjackingManager.Instance.destroyFlashEffect, hitPosition);
         AudioManager.PlaySound(MainLibrarySounds.TreeDestroy_02);
 
         base.DeactivateObject();
@@ -68,16 +71,23 @@ public class WorldTree : DamageableObject, IRespawnable
     private void OnValidate()
     {
 #if UNITY_EDITOR
-        if (PrefabUtility.IsPartOfAnyPrefab(gameObject))
+        if (transform.parent.GetComponent<LODGroup>() != null)
         {
-            if (PrefabUtility.IsPartOfPrefabAsset(gameObject))
+            Transform parent = transform.parent;
+            if (PrefabUtility.IsPartOfPrefabAsset(parent))
             {
                 GameObject gameObj = PrefabUtility.GetCorrespondingObjectFromOriginalSource(treeData.treePrefab);
-                if (gameObj == gameObject)
+                if (gameObj.name != parent.gameObject.name)
                 {
                     Debug.LogError($"{this} Tree prefab not set to correct treeData");
                 }
             }
+        }
+
+        if (GetComponent<Rigidbody>().collisionDetectionMode == CollisionDetectionMode.Discrete)
+        {
+            Debug.Log($"{this} collision detection set to discrete - switching to continuous");
+            GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
         }
 #endif
     }

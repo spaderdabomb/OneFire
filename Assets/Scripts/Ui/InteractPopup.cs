@@ -32,6 +32,9 @@ public class InteractPopup : MonoBehaviour
 
     public void ShowPopup(string objectPretextStr, string objectTextStr, Color keyBindColor)
     {
+        if (!InputManager.Instance.playerActionsInput.enabled)
+            return;
+
         gameObject.SetActive(true);
         string keybindHexColor = "#" + ColorUtility.ToHtmlStringRGBA(keyBindColor);
         keyBindLabel.text = "[" + "<color=" + keybindHexColor + ">" + currentInputKey + "</color>" + "] " + objectPretextStr;

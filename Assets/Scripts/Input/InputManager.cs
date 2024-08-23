@@ -63,6 +63,10 @@ public class InputManager : MonoBehaviour
         EnableInputAsset("UiControls");
         structurePlacer.SetCraftingInputState();
         DisableInputAsset("InventoryControls");
+        DisableActionMap("UiControls", "ObjectPlacementMap");
+
+        if (structurePlacer.inPlacementMode)
+            SetBuildControls();
     }
 
     public void SetMenuControls()
@@ -71,6 +75,13 @@ public class InputManager : MonoBehaviour
         EnableInputAsset("UiControls");
         EnableInputAsset("InventoryControls");
         DisableActionMap("UiControls", "ObjectPlacementMap");
+        DisableActionMap("UiControls", "HotbarControls");
+    }
+
+    public void SetBuildControls()
+    {
+        playerActionsInput.enabled = false;
+        EnableActionMap("UiControls", "ObjectPlacementMap");
     }
 
     private void OnDeviceChange(InputDevice device, InputDeviceChange change)

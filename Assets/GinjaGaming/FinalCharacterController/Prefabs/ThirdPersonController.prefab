@@ -2872,14 +2872,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 1459228644294326337}
   _playerCamera: {fileID: 3822927564161998416}
-  walkAcceleration: 25
+  walkAcceleration: 28
   walkSpeed: 2
   runAcceleration: 35
   runSpeed: 4
-  sprintAcceleration: 50
-  sprintSpeed: 7
+  sprintAcceleration: 35
+  sprintSpeed: 6
   inAirAcceleration: 25
-  drag: 20
+  drag: 24
   inAirDrag: 5
   gravity: 25
   terminalVelocity: 50
@@ -5301,6 +5301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactingObjects: []
+  damageableObjects: []
 --- !u!1 &7075567549976152563
 GameObject:
   m_ObjectHideFlags: 0
