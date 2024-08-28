@@ -39,6 +39,9 @@ public class ItemData : SerializedScriptableObject
 
     private void OnValidate()
     {
+        ItemRegistry.Register(this);
+
+#if UNITY_EDITOR
         if (itemID == null || itemID == String.Empty)
             itemID = Guid.NewGuid().ToString();
 
@@ -48,14 +51,15 @@ public class ItemData : SerializedScriptableObject
         if (!PrefabUtility.IsPartOfPrefabAsset(itemHeldPrefab))
             Debug.LogError($"{this} {itemHeldPrefab} is a GameObject - set to prefab!");
 
+        if (itemHeldPrefab.GetComponent<WorldItem>() != null && itemCategories.HasFlag(ItemCategory.Wieldable))
+            Debug.LogError($"{this} {itemHeldPrefab} is a WorldItem and wieldable - remove component!");
+
         if (item3DPrefab.GetComponent<WorldItem>() == null)
             Debug.LogError($"{this} {item3DPrefab} does not contain a WorldItem component!");
 
         if (string.IsNullOrEmpty(itemID) || itemID == Guid.Empty.ToString())
             itemID = Guid.NewGuid().ToString();
-
-        if (!ItemRegistry.Register(this))
-            Debug.LogError($"Duplicate itemID found for {baseName}. Please regenerate the ID.");
+#endif
     }
 
     private void OnEnable()

@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8297074636824274446
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.13060334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.32697606
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.92003095
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.17196664
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -156.307
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 368.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785067380115482621, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 577.444
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233051394700438405, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+        type: 3}
+      propertyPath: m_Name
+      value: SteelAxeHeld
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2926910101069283342, guid: 55d8b1784da9df6449edd9e4a66fbadf, type: 3}
+    - {fileID: 7342702800229390407, guid: 55d8b1784da9df6449edd9e4a66fbadf, type: 3}
+    - {fileID: -5341988708116293852, guid: 55d8b1784da9df6449edd9e4a66fbadf, type: 3}
+    - {fileID: -6337812003330754055, guid: 55d8b1784da9df6449edd9e4a66fbadf, type: 3}
+    - {fileID: 6119728345839409196, guid: 55d8b1784da9df6449edd9e4a66fbadf, type: 3}
+    - {fileID: -1968492572613201091, guid: 55d8b1784da9df6449edd9e4a66fbadf, type: 3}
+    - {fileID: -7317776300181244880, guid: 55d8b1784da9df6449edd9e4a66fbadf, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 55d8b1784da9df6449edd9e4a66fbadf, type: 3}

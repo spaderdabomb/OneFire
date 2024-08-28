@@ -74,5 +74,5 @@ MonoBehaviour:
   item3DPrefab: {fileID: 2803106725327420191, guid: 3dff1ae1818c5b6489f295ecf2bee1fc,
     type: 3}
   itemSprite: {fileID: 21300000, guid: b1d46d38b2b4b934fb22c6f327be0602, type: 3}
-  itemHeldPrefab: {fileID: 2803106725327420191, guid: 3dff1ae1818c5b6489f295ecf2bee1fc,
+  itemHeldPrefab: {fileID: 9001681717918360207, guid: a1f11e8b1a80ebe4e9f5e29404aa45f6,
     type: 3}

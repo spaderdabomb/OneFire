@@ -17,7 +17,10 @@ public static class ItemRegistry
     {
         if (itemDictionary.ContainsKey(item.itemID))
         {
-            return false; // Duplicate found
+            if (itemDictionary[item.itemID].baseName != item.baseName)
+                Debug.LogError("Two items have duplicate id");
+
+            return false;
         }
 
         itemDictionary[item.itemID] = item;
@@ -27,5 +30,10 @@ public static class ItemRegistry
     public static void Unregister(ItemData item)
     {
         itemDictionary.Remove(item.itemID);
+    }
+
+    public static ItemData GetItem(string id)
+    {
+        return itemDictionary.ContainsKey(id) ? itemDictionary[id] : null;
     }
 }

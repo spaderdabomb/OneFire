@@ -2784,6 +2784,7 @@ GameObject:
   - component: {fileID: 5937644712600567144}
   - component: {fileID: 2772437604046418842}
   - component: {fileID: 101207086453030411}
+  - component: {fileID: 7083603523886007245}
   m_Layer: 6
   m_Name: ThirdPersonController
   m_TagString: Untagged
@@ -2932,6 +2933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8066352358851958603}
+  overrideController: {fileID: 22100000, guid: 85c506dddfe345043826a5712e673966, type: 2}
   locomotionBlendSpeed: 4
 --- !u!114 &5937644712600567144
 MonoBehaviour:
@@ -2973,6 +2975,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd15e82b4e04304fa377055ab4d956e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7083603523886007245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389807745426357149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579690513c1c4d04ca6c460adfca8b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: -655384087881347385, guid: 4e89a281cf1c7b14e9948dd869dae755, type: 3}
+    - {fileID: -1582444622346850160, guid: fb4122f411e1a3c489aad23866a70598, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: itemTypeToAnimationClipDict
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[ItemData+ItemType, Assembly-CSharp],[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[ItemData+ItemType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 11
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 12
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  armature: {fileID: 6097183378904016235}
+  itemContainerR: {fileID: 955352559530299114}
+  punchAnimationClip: {fileID: 7400000, guid: bb37c151aa8956841a30a9cf8fc5d335, type: 2}
 --- !u!1 &4447334899436784638
 GameObject:
   m_ObjectHideFlags: 0

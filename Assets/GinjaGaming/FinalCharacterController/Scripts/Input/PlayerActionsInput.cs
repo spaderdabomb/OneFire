@@ -68,8 +68,8 @@ namespace GinjaGaming.FinalCharacterController
             InteractPressed = false;
         }
 
-        public void SetAttackPressedFalse() 
-        { 
+        public void SetAttackPressedFalse()
+        {
             AttackPressed = false;
         }
 

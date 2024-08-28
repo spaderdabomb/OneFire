@@ -9,12 +9,16 @@ namespace GinjaGaming.FinalCharacterController
     public class PlayerAnimation : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
+        private AnimatorOverrideController overrideController;
         [SerializeField] private float locomotionBlendSpeed = 4f;
+
+        [SerializeField] private AnimationClip[] animationClips;
 
         private PlayerLocomotionInput _playerLocomotionInput;
         private PlayerState _playerState;
         private PlayerController _playerController;
         private PlayerActionsInput _playerActionsInput;
+        private PlayerEquippedItem _playerEquippedItem;
 
         // Locomotion
         private static int inputXHash = Animator.StringToHash("inputX");
@@ -47,13 +51,40 @@ namespace GinjaGaming.FinalCharacterController
             _playerState = GetComponent<PlayerState>();
             _playerController = GetComponent<PlayerController>();
             _playerActionsInput = GetComponent<PlayerActionsInput>();
+            _playerEquippedItem = GetComponent<PlayerEquippedItem>();
 
             actionHashes = new int[] { isGatheringHash };
+
+            overrideController = new AnimatorOverrideController(_animator.runtimeAnimatorController);
         }
 
         private void Update()
         {
+            UpdateAttackAnimation();
+            UpdateLayerWeights();
             UpdateAnimationState();
+        }
+
+        private void UpdateAttackAnimation()
+        {
+            AnimationClip newClip = _playerEquippedItem.GetAttackAnimationFromActiveItem();
+            AnimatorOverrideController tempOverrideController = new AnimatorOverrideController(overrideController);
+            tempOverrideController["PunchRight_EVENT"] = tempOverrideController[newClip.name];
+            _animator.runtimeAnimatorController = tempOverrideController;
+        }
+
+        private void UpdateLayerWeights()
+        {
+            if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Idling)
+            {
+                _animator.SetLayerWeight(1, 0);
+                _animator.SetLayerWeight(2, 1);
+            }
+            else
+            {
+                _animator.SetLayerWeight(1, 1);
+                _animator.SetLayerWeight(2, 0);
+            }
         }
 
         private void UpdateAnimationState()

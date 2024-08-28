@@ -22,7 +22,7 @@ public class WorldItem : MonoBehaviour
     public Action<string> StackCountChanged;
     public static Action<GameObject> OnWorldItemDestroyed; 
     public bool Combining { get; set; } = false;
-    public WorldItem combineTargetWorldItem = null;
+    private WorldItem combineTargetWorldItem = null;
 
     private TriggersInTrigger triggersInTrigger;
     private const float combineRadius = 1f;

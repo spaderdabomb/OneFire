@@ -12,7 +12,6 @@ namespace GinjaGaming.FinalCharacterController
         public List<GameObject> interactingObjects;
         public List<GameObject> damageableObjects;
         private int currentInteractObjectIndex = -1;
-        private int currentDamageableObjectIndex = -1;
         private InteractPopup interactPopup;
 
         private void OnEnable()
