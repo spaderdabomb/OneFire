@@ -30,7 +30,7 @@ public class StructureData : SerializedScriptableObject
             Debug.LogError($"{this} {structurePreviewPrefab} is a GameObject - set to prefab!");
 
         if (structurePrefab.GetComponent<WorldStructure>() == null)
-            Debug.LogError($"{this} {structurePrefab} does not contain a WorldStructure component!");
+            Debug.LogError($"{this} {structurePrefab} does not contain a WorldStructure component! ");
 
         if (id == null || id == String.Empty)
             id = Guid.NewGuid().ToString();

@@ -50,36 +50,7 @@ ModelImporter:
       has translation animation that will be discarded.\n\t'Wrist_R' has translation
       animation that will be discarded.\n\t'Elbow_L' has translation animation that
       will be discarded.\n\t'Wrist_L' has translation animation that will be discarded.\n"
-    animationRetargetingWarnings: "\nRetargeting quality report for clip 'tpose':\n\tLeftLowerLeg
-      average position error 6.2 mm and maximum position error 6.2 mm at time 0:
-      0 (0.0%) Frame 0\n\tRightLowerLeg average position error 6.2 mm and maximum
-      position error 6.2 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average position
-      error 1.6 mm and maximum position error 1.6 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerArm
-      average position error 1.6 mm and maximum position error 1.6 mm at time 0:
-      0 (0.0%) Frame 0\n\nRetargeting quality report for clip 'human_male_jumpup':\n\tLeftLowerLeg
-      average position error 0.2 mm and maximum position error 1.1 mm at time 0:
-      2 (0.0%) Frame 2\n\tRightLowerLeg average position error 0.7 mm and maximum
-      position error 8.7 mm at time 0: 2 (0.0%) Frame 2\n\tRightHand average position
-      error 0.2 mm and maximum position error 1.2 mm at time 0: 5 (18.8%) Frame 5\n\nRetargeting
-      quality report for clip 'human_male_jumpdown':\n\tLeftLowerLeg average position
-      error 0.3 mm and maximum position error 1.1 mm at time 1:10 (100.0%) Frame
-      40\n\tRightLowerLeg average position error 1.7 mm and maximum position error
-      8.7 mm at time 1: 7 (86.4%) Frame 37\n\tLeftLowerArm average position error
-      3.8 mm and maximum position error 16.4 mm at time 1: 1 (59.1%) Frame 31\n\tLeftHand
-      average position error 3.9 mm and maximum position error 17.6 mm at time 1:
-      1 (59.1%) Frame 31\n\tRightLowerArm average position error 3.7 mm and maximum
-      position error 16.3 mm at time 1: 2 (63.6%) Frame 32\n\tRightHand average position
-      error 4.0 mm and maximum position error 17.9 mm at time 1: 2 (63.6%) Frame
-      32\n\nRetargeting quality report for clip 'human_male_jump_all':\n\tLeftLowerLeg
-      average position error 0.2 mm and maximum position error 1.1 mm at time 0:
-      2 (0.0%) Frame 2\n\tRightLowerLeg average position error 1.3 mm and maximum
-      position error 8.7 mm at time 1: 7 (92.1%) Frame 37\n\tLeftLowerArm average
-      position error 2.3 mm and maximum position error 16.4 mm at time 1: 1 (76.3%)
-      Frame 31\n\tLeftHand average position error 2.3 mm and maximum position error
-      17.6 mm at time 1: 1 (76.3%) Frame 31\n\tRightLowerArm average position error
-      2.2 mm and maximum position error 16.3 mm at time 1: 2 (78.9%) Frame 32\n\tRightHand
-      average position error 2.5 mm and maximum position error 17.9 mm at time 1:
-      2 (78.9%) Frame 32\n"
+    animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
@@ -109,9 +80,9 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -145,10 +116,184 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root_M
+        weight: 1
+      - path: Armature/Root_M/Hip_L
+        weight: 1
+      - path: Armature/Root_M/Hip_L/Knee_L
+        weight: 1
+      - path: Armature/Root_M/Hip_L/Knee_L/Ankle_L
+        weight: 1
+      - path: Armature/Root_M/Hip_L/Knee_L/Ankle_L/Toes_L
+        weight: 1
+      - path: Armature/Root_M/Hip_L/Knee_L/Ankle_L/Toes_L/ToesEnd_L
+        weight: 0
+      - path: Armature/Root_M/Hip_R
+        weight: 1
+      - path: Armature/Root_M/Hip_R/Knee_R
+        weight: 1
+      - path: Armature/Root_M/Hip_R/Knee_R/Ankle_R
+        weight: 1
+      - path: Armature/Root_M/Hip_R/Knee_R/Ankle_R/Toes_R
+        weight: 1
+      - path: Armature/Root_M/Hip_R/Knee_R/Ankle_R/Toes_R/ToesEnd_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/Eye_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/Eye_L/EyeEnd_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/Eye_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/Eye_R/EyeEnd_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/HeadEnd_M
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/Jaw_M
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/Jaw_M/JawEnd_M
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/jnt_eyelidDOWN_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/jnt_eyelidDOWN_L/jnt_eyelidDOWNEnd_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/jnt_eyelidDOWN_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/jnt_eyelidDOWN_R/jnt_eyelidDOWNEnd_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/jnt_eyelidUP_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/jnt_eyelidUP_L/jnt_eyelidUPEnd_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/jnt_eyelidUP_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Neck_M/Head_M/jnt_eyelidUP_R/jnt_eyelidUPEnd_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/jnt_shoulder_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/jnt_shoulder_L/jnt_shoulderEnd_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/IndexFinger1_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/IndexFinger1_L/IndexFinger2_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/IndexFinger1_L/IndexFinger2_L/IndexFinger3_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/IndexFinger1_L/IndexFinger2_L/IndexFinger3_L/IndexFinger4_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/jointItemL
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/MiddleFinger1_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/PinkyFinger1_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/PinkyFinger1_L/PinkyFinger2_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/PinkyFinger1_L/PinkyFinger2_L/PinkyFinger3_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/PinkyFinger1_L/PinkyFinger2_L/PinkyFinger3_L/PinkyFinger4_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/RingFinger1_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/RingFinger1_L/RingFinger2_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/RingFinger1_L/RingFinger2_L/RingFinger3_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/RingFinger1_L/RingFinger2_L/RingFinger3_L/RingFinger4_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/ThumbFinger1_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/jnt_shoulder_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/jnt_shoulder_R/jnt_shoulderEnd_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/IndexFinger1_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/IndexFinger1_R/IndexFinger2_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/IndexFinger1_R/IndexFinger2_R/IndexFinger3_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/IndexFinger1_R/IndexFinger2_R/IndexFinger3_R/IndexFinger4_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/jointItemR
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/MiddleFinger1_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/PinkyFinger1_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/PinkyFinger1_R/PinkyFinger2_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/PinkyFinger1_R/PinkyFinger2_R/PinkyFinger3_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/PinkyFinger1_R/PinkyFinger2_R/PinkyFinger3_R/PinkyFinger4_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/RingFinger1_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/RingFinger1_R/RingFinger2_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/RingFinger1_R/RingFinger2_R/RingFinger3_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/RingFinger1_R/RingFinger2_R/RingFinger3_R/RingFinger4_R
+        weight: 0
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/ThumbFinger1_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
+        weight: 1
+      - path: Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
+        weight: 0
+      maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 2
     - serializedVersion: 16
       name: Jump_Down
       takeName: human_male_jumpdown
@@ -164,7 +309,7 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 0
@@ -177,7 +322,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 18
     - serializedVersion: 16
       name: Jump
       takeName: human_male_jump_all
@@ -206,7 +351,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 2
     isReadable: 0
   meshes:
     lODScreenPercentages: []

@@ -9,10 +9,20 @@ namespace GinjaGaming.FinalCharacterController
     [DefaultExecutionOrder(-1)]
     public class PlayerInteract : MonoBehaviour
     {
+        [SerializeField] float timeBeforeShowInteractPopup = 0.1f;
+
         public List<GameObject> interactingObjects;
         public List<GameObject> damageableObjects;
+
         private int currentInteractObjectIndex = -1;
         private InteractPopup interactPopup;
+
+        private PlayerState _playerState;
+
+        private void Awake()
+        {
+            _playerState = PrefabManager.Instance.player.GetComponent<PlayerState>();
+        }
 
         private void OnEnable()
         {
@@ -90,7 +100,9 @@ namespace GinjaGaming.FinalCharacterController
 
         private void UpdateInteractUI()
         {
-            if (interactingObjects.Count > 0)
+            if (interactingObjects.Count > 0 && 
+                _playerState.CurrentPlayerActionState == PlayerActionState.None &&
+                timeBeforeShowInteractPopup <= _playerState.TimeInNoneActionState)
             {
                 currentInteractObjectIndex = GetBestInteractingObjectIndex();
                 InteractingObject interactingObject = interactingObjects[currentInteractObjectIndex].GetComponent<InteractingObject>();

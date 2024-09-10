@@ -74,7 +74,7 @@ public class StructurePlacer : MonoBehaviour
 
         UpdateCurrentPlacementPosition();
 
-        Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
+        Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y - 180f, 0f);
         previewStructure.transform.position = currentPlacementPosition;
         previewStructure.transform.rotation = rotation;
         if (CanPlaceStructure())
@@ -173,7 +173,7 @@ public class StructurePlacer : MonoBehaviour
         }
 
         GameObject structurePrefab = currentItemData.GetStructureFromItem().structurePrefab;
-        Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
+        Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y - 180f, 0f);
         GameObject spawnedStructure = Instantiate(structurePrefab, currentPlacementPosition, rotation, GameObjectManager.Instance.structureContainer.transform);
 
         GameObjectManager.Instance.AddWorldStructure(spawnedStructure.GetComponent<WorldStructure>());
@@ -202,7 +202,7 @@ public class StructurePlacer : MonoBehaviour
     private void SetPreviewMode(GameObject obj)
     {
         UpdateCurrentPlacementPosition();
-        Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
+        Quaternion rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y - 180f, 0f);
 
         previewStructure = Instantiate(obj, currentPlacementPosition, rotation, GameObjectManager.Instance.structureContainer.transform);
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float BaseDamage { get; private set; } = 35f;
+    [field: SerializeField] public float BaseDamage { get; private set; } = 35f;
     public float BaseSpeed { get; private set; } = 1f;
     public float BaseStamina { get; private set; } = 1f;
 
@@ -16,9 +16,41 @@ public class PlayerStats : MonoBehaviour
     public int MiningXp { get; private set; } = 1;
     public int FishingXp { get; private set; } = 1;
 
+    private PlayerEquippedItem _playerEquippedItem;
+
+    [SerializeField] private float _axeDamageOnTreeMultiplier = 2.5f;
+    [SerializeField] private float _pickaxeDamageOnVeinMultiplier = 2.5f;
+
+    private void Awake()
+    {
+        _playerEquippedItem = GetComponent<PlayerEquippedItem>();
+    }
+
     public float CalculateDamage(GameObject targetObject)
     {
-        return BaseDamage;
+        float objectDamage = BaseDamage;
+
+        bool weaponIsNull = _playerEquippedItem.ActiveItemData != null;
+        if (targetObject.GetComponent<WorldTree>() != null)
+        {
+            if (weaponIsNull && _playerEquippedItem.ActiveItemData.itemType == ItemData.ItemType.Axe)
+            {
+                objectDamage *= _axeDamageOnTreeMultiplier;
+            } 
+        }
+        else if (targetObject.GetComponent<WorldVein>() != null)
+        {
+            if (weaponIsNull && _playerEquippedItem.ActiveItemData.itemType == ItemData.ItemType.Pickaxe)
+            {
+                objectDamage *= _pickaxeDamageOnVeinMultiplier;
+            }
+            else
+            {
+                objectDamage = 0f;
+            }
+        }
+
+        return objectDamage;
     }
 
 }

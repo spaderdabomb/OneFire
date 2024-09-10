@@ -82,6 +82,9 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
 
     public void SpawnItem(ItemData itemData)
     {
+        if (itemData.stackCount == 0)
+            return;
+
         ItemData itemDataCloned = itemData.CloneItemData();
         GameObject newItemSpawned = Instantiate(itemDataCloned.item3DPrefab, itemContainer.transform);
         WorldItem newItemSpanwedInst = newItemSpawned.GetComponent<WorldItem>();

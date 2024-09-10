@@ -183,12 +183,19 @@ public partial class UiGameManager : MonoBehaviour
         }
     }
 
-    public void SpawnDamageNumber(GameObject damageNumberObj, float value, Vector3 worldPosition)
+    public void SpawnDamageNumberGUI(GameObject damageNumberObj, float value, Vector3 worldPosition)
     {
         GameObject spanwedDamageNumber = Instantiate(damageNumberObj, gameCanvas.transform);
         Vector3 screenPoint = Camera.main.WorldToScreenPoint(worldPosition);
         spanwedDamageNumber.transform.position = screenPoint;
         spanwedDamageNumber.GetComponent<DamageNumberGUI>().number = Mathf.Floor(value);
+    }
+
+    public void SpawnDamageNumberMesh(GameObject damageNumberObj, float value, Vector3 worldPosition)
+    {
+        GameObject spanwedDamageNumber = Instantiate(damageNumberObj, gameCanvas.transform);
+        spanwedDamageNumber.transform.position = worldPosition;
+        spanwedDamageNumber.GetComponent<DamageNumberMesh>().number = Mathf.Floor(value);
     }
 }
 

@@ -68,9 +68,9 @@ MonoBehaviour:
   stackCount: 5
   maxStackCount: 50
   baseSellValue: 1
-  itemType: 0
+  itemType: 20
   itemRarity: 1
-  itemCategories: 0
+  itemCategories: 512
   item3DPrefab: {fileID: 6665069075805903950, guid: 2f2337b6c09331b44a27678a0ed67132,
     type: 3}
   itemSprite: {fileID: 21300000, guid: 34e17a467d5bbe3479de8a537a4ff10e, type: 3}

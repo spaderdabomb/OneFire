@@ -23,7 +23,17 @@
         TreeDestroy_01,
         TreeDestroy_02,
         FistHitTree_01,
-        FistHitTree_02
+        FistHitTree_02,
+        SwingHeavy,
+        HitVein_03,
+        HitVein_01,
+        HitVein_02,
+        HitHollowWood_01,
+        HitHollowWood_02,
+        HitHollowWood_03,
+        HitTree_01,
+        HitTree_02,
+        HitTree_03
     }
     public enum MainLibraryMusic {
     }

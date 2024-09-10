@@ -60,6 +60,8 @@ public class InputManager : MonoBehaviour
     public void SetGameSceneControls()
     {
         PlayerInputManager.Instance.EnableControls();
+        playerActionsInput.enabled = true;
+
         EnableInputAsset("UiControls");
         structurePlacer.SetCraftingInputState();
         DisableInputAsset("InventoryControls");

@@ -12,9 +12,9 @@ namespace GinjaGaming.FinalCharacterController
     {
         #region Class Variables
         private PlayerLocomotionInput _playerLocomotionInput;
+        private PlayerAnimation _playerAnimation;
         private PlayerState _playerState;
-        public bool InteractPressed { get; private set; }
-        public bool AttackPressed { get; private set; }
+        public bool AttackHit { get; private set; } = false;
 
         public event Action OnPunchHit;
         public event Action onInteract;
@@ -25,6 +25,7 @@ namespace GinjaGaming.FinalCharacterController
         private void Awake()
         {
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
+            _playerAnimation = GetComponent<PlayerAnimation>();
             _playerState = GetComponent<PlayerState>();
         }
         private void OnEnable()
@@ -59,23 +60,32 @@ namespace GinjaGaming.FinalCharacterController
                 _playerState.CurrentPlayerMovementState == PlayerMovementState.Jumping ||
                 _playerState.CurrentPlayerMovementState == PlayerMovementState.Falling)
             {
-                InteractPressed = false;
+                // if in an inturruptible state, set to none
+                if (_playerState.CurrentPlayerActionState == PlayerActionState.Gathering)
+                {
+                    _playerState.SetPlayerActionState(PlayerActionState.None);
+                }
             }
         }
 
         public void SetInteractPressedFalse()
         {
-            InteractPressed = false;
+            _playerState.SetPlayerActionState(PlayerActionState.None);
         }
 
         public void SetAttackPressedFalse()
         {
-            AttackPressed = false;
+            _playerState.SetPlayerActionState(PlayerActionState.None);
+            AttackHit = false;
         }
 
         public void PunchHit()
         {
+            if (AttackHit)
+                return;
+
             OnPunchHit?.Invoke();
+            AttackHit = true;
         }
 
         #endregion
@@ -86,7 +96,7 @@ namespace GinjaGaming.FinalCharacterController
             if (!context.performed)
                 return;
 
-            InteractPressed = true;
+            _playerState.SetPlayerActionState(PlayerActionState.Gathering);
             Interact();
         }
 
@@ -95,7 +105,7 @@ namespace GinjaGaming.FinalCharacterController
             if (!context.performed)
                 return;
 
-            AttackPressed = true;
+            _playerState.SetPlayerActionState(PlayerActionState.Attacking);
         }
         #endregion
     }

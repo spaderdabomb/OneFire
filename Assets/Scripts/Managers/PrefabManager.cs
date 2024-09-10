@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-10)]
 public class PrefabManager : MonoBehaviour
 {
     public static PrefabManager Instance;

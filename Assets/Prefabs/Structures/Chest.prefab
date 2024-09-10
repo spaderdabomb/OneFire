@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structureDataAsset: {fileID: 11400000, guid: bbe3cfdaf1bdae045856be61e17b3892, type: 2}
-  structureData: {fileID: 0}
+  <InstanceId>k__BackingField: -1
 --- !u!114 &8832796611016711310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInteract: {fileID: 0}
+  <ShowPopup>k__BackingField: 1
 --- !u!1 &8149278817087821829
 GameObject:
   m_ObjectHideFlags: 0

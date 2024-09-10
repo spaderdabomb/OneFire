@@ -25,20 +25,22 @@ public class WorldTree : DamageableObject, IRespawnable
         _damageRemainder = (_damageRemainder + damage) - newStackCount / treeData.logsPerHealth;
         GameObjectManager.Instance.SpawnItem(itemDataCloned);
 
-        Vector3 hitPosition = LumberjackingManager.Instance.GetHitPosition(gameObject);
-        LumberjackingManager.Instance.SpawnHitEffect(LumberjackingManager.Instance.hitFlashEffect, hitPosition);
-        LumberjackingManager.Instance.SpawnHitEffect(LumberjackingManager.Instance.hitSmokeEffect, hitPosition);
-        LumberjackingManager.Instance.SpawnHitEffect(LumberjackingManager.Instance.hitSpintersEffect, hitPosition);
-        UiManager.Instance.uiGameManager.SpawnDamageNumber(UiManager.Instance.damageNumberStandard, damage, hitPosition);
-        AudioManager.PlaySound(MainLibrarySounds.FistHitTree_02);
+        Vector3 hitPosition = DestructibleResourceManager.Instance.GetHitPosition(gameObject);
+        DestructibleResourceManager.Instance.SpawnHitEffect(DestructibleResourceManager.Instance.treeHitFlashEffect, hitPosition);
+        DestructibleResourceManager.Instance.SpawnHitEffect(DestructibleResourceManager.Instance.treeHitSmokeEffect, hitPosition);
+        DestructibleResourceManager.Instance.SpawnHitEffect(DestructibleResourceManager.Instance.treeHitSplintersEffect, hitPosition);
+
+        UiManager.Instance.uiGameManager.SpawnDamageNumberMesh(UiManager.Instance.damageNumberStandard, damage, hitPosition);
+        SoundFileObject sfo = DestructibleResourceManager.Instance.SelectRandomLumberjackingSound();
+        AudioManager.PlaySound(sfo);
     }
 
     public override void DeactivateObject()
     {
-        Vector3 hitPosition = LumberjackingManager.Instance.GetHitPosition(gameObject);
-        LumberjackingManager.Instance.StartTreeRespawn(this, RespawnTime);
-        LumberjackingManager.Instance.SpawnHitEffect(LumberjackingManager.Instance.destroyEffect, hitPosition);
-        LumberjackingManager.Instance.SpawnHitEffect(LumberjackingManager.Instance.destroyFlashEffect, hitPosition);
+        Vector3 hitPosition = DestructibleResourceManager.Instance.GetHitPosition(gameObject);
+        DestructibleResourceManager.Instance.StartTreeRespawn(this, RespawnTime);
+        DestructibleResourceManager.Instance.SpawnHitEffect(DestructibleResourceManager.Instance.treeDestroyEffect, hitPosition);
+        DestructibleResourceManager.Instance.SpawnHitEffect(DestructibleResourceManager.Instance.destroyFlashEffect, hitPosition);
         AudioManager.PlaySound(MainLibrarySounds.TreeDestroy_02);
 
         base.DeactivateObject();

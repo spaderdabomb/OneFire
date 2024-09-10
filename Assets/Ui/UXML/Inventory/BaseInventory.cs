@@ -277,7 +277,7 @@ namespace OneFireUi
                 BaseItemData baseItem = inventoryItemData[i];
                 if (baseItem != null)
                 {
-                    ItemData itemDataAsset = ItemExtensions.GetItemData(baseItem.itemID);
+                    ItemData itemDataAsset = ItemRegistry.GetItem(baseItem.itemID); // ItemExtensions.GetItemData(baseItem.itemID);
                     ItemData newItem = itemDataAsset.GetItemDataInstantiated();
                     newItem.SetItemDataToBaseItemData(baseItem);
                     AddItem(newItem, inventorySlots[i]);

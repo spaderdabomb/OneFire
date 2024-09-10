@@ -42,6 +42,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4e49693f9c69c334ab4bd2ec09482a46, type: 2}
   - {fileID: 11400000, guid: 426545aa6a782aa49ab4879ca3c0d2c2, type: 2}
   - {fileID: 11400000, guid: 672cb93cfd0e63d479f9e23de7b432d6, type: 2}
+  - {fileID: 11400000, guid: ed1e035c1a99cdd49a26cef12edc2800, type: 2}
+  - {fileID: 11400000, guid: 5ea5ee589cf0bb945ad633cd027a0d4b, type: 2}
+  - {fileID: 11400000, guid: 1f9baa17f4235b24fa685d1e90712418, type: 2}
+  - {fileID: 11400000, guid: 7392ae265e198e749bb00bdd781766c9, type: 2}
+  - {fileID: 11400000, guid: 5916753fca30bb94bbc0907a3f43a52d, type: 2}
+  - {fileID: 11400000, guid: a98f4f2d358687341a87298d7cc00930, type: 2}
+  - {fileID: 11400000, guid: c3ee47aa8fe2cdc4dbc0763c09a4648e, type: 2}
+  - {fileID: 11400000, guid: bd1327abc1f7884439df87f77fd56b01, type: 2}
+  - {fileID: 11400000, guid: 3605406d1ed790541b8a5574c351dbf8, type: 2}
+  - {fileID: 11400000, guid: 5109e9c656ec5a249b1dcb1446032f3d, type: 2}
   Music: []
   useCustomNames: 0
   generatedName: MainLibrary
@@ -81,6 +91,16 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4e49693f9c69c334ab4bd2ec09482a46, type: 2}
     - {fileID: 11400000, guid: 426545aa6a782aa49ab4879ca3c0d2c2, type: 2}
     - {fileID: 11400000, guid: 672cb93cfd0e63d479f9e23de7b432d6, type: 2}
+    - {fileID: 11400000, guid: ed1e035c1a99cdd49a26cef12edc2800, type: 2}
+    - {fileID: 11400000, guid: 5ea5ee589cf0bb945ad633cd027a0d4b, type: 2}
+    - {fileID: 11400000, guid: 1f9baa17f4235b24fa685d1e90712418, type: 2}
+    - {fileID: 11400000, guid: 7392ae265e198e749bb00bdd781766c9, type: 2}
+    - {fileID: 11400000, guid: 5916753fca30bb94bbc0907a3f43a52d, type: 2}
+    - {fileID: 11400000, guid: a98f4f2d358687341a87298d7cc00930, type: 2}
+    - {fileID: 11400000, guid: c3ee47aa8fe2cdc4dbc0763c09a4648e, type: 2}
+    - {fileID: 11400000, guid: bd1327abc1f7884439df87f77fd56b01, type: 2}
+    - {fileID: 11400000, guid: 3605406d1ed790541b8a5574c351dbf8, type: 2}
+    - {fileID: 11400000, guid: 5109e9c656ec5a249b1dcb1446032f3d, type: 2}
     foldout: 1
   musicCategoriesToList:
   - name: 

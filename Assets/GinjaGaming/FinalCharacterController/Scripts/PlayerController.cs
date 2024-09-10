@@ -206,7 +206,7 @@ namespace GinjaGaming.FinalCharacterController
             IsRotatingToTarget = _rotatingToTargetTimer > 0;
 
             // ROTATE if we're not idling
-            if (!isIdling)
+            if (!isIdling || _playerState.CurrentPlayerActionState != PlayerActionState.None)
             {
                 RotatePlayerToTarget();
             }

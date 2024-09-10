@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5a1ebf53d360d47b80fba9e787cb9f, type: 3}
+  m_Name: CopperVein
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  id: 680dabec-f009-43f3-a09e-0177b6f1ba3c
+  interactDescription: 
+  baseHealth: 100
+  orePerHealth: 0.05
+  oreWhenDestroyed: 5
+  respawnTime: 3
+  itemCollected: {fileID: 11400000, guid: 2b6361e3559e1aa48b67540f09e4a3aa, type: 2}
+  veinPrefab: {fileID: 2608055882689353308, guid: b07503129b61a3043a70cf0c87e1e5cb,
+    type: 3}

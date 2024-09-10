@@ -29,6 +29,8 @@ public class WorldItem : MonoBehaviour
     private const float combineDestroyDist = 0.1f; 
     private float canCombineTimer = 1f;
 
+    private string _interactDescription = "Pick up";
+
     private void Awake()
     {
         InteractingObject = GetComponent<InteractingObject>();
@@ -70,10 +72,13 @@ public class WorldItem : MonoBehaviour
 
         if (Combining && combineTargetWorldItem != null)
         {
-            Vector3 newPosition = Vector3.Lerp(transform.position, combineTargetWorldItem.transform.position, 0.1f);
+            Vector3 newPosition = Vector3.Lerp(transform.position, combineTargetWorldItem.transform.position, 14f*Time.deltaTime);
             transform.position = newPosition;
             if (Vector3.Distance(transform.position, combineTargetWorldItem.transform.position) < combineDestroyDist)
             {
+                int newStackCount = itemData.stackCount + combineTargetWorldItem.itemData.stackCount;
+                combineTargetWorldItem.SetStackCount(newStackCount);
+
                 Destroy(gameObject);
                 combineTargetWorldItem = null;
             }
@@ -98,7 +103,7 @@ public class WorldItem : MonoBehaviour
 
     public void SetDisplay()
     {
-        InteractingObject.DisplayPretext = itemData.interactDescription;
+        InteractingObject.DisplayPretext = _interactDescription;
         InteractingObject.DisplayString = itemData.displayName + " x" + itemData.stackCount.ToString();
         StackCountChanged?.Invoke(InteractingObject.DisplayString);
     }
@@ -124,17 +129,16 @@ public class WorldItem : MonoBehaviour
         combineWorldItem.GetComponent<BoxCollider>().enabled = false;
         combineWorldItem.GetComponent<Rigidbody>().isKinematic = true;
 
-        SetStackCount(newStackCount);
         OnWorldItemDestroyed?.Invoke(combineWorldItem.gameObject);
         GameObjectManager.Instance.playerInteract.RemoveInteractingObject(combineWorldItem.gameObject);
     }
 
-/*    public void FinishCombining()
-    {
-        OnWorldItemDestroyed?.Invoke(combineWorldItem.gameObject);
-        GameObjectManager.Instance.playerInteract.RemoveInteractingObject(combineWorldItem.gameObject);
-        combineWorldItem.gameObject.Destroy();
-    }*/
+    /*    public void FinishCombining()
+        {
+            OnWorldItemDestroyed?.Invoke(combineWorldItem.gameObject);
+            GameObjectManager.Instance.playerInteract.RemoveInteractingObject(combineWorldItem.gameObject);
+            combineWorldItem.gameObject.Destroy();
+        }*/
 
     public void PickUpItem()
     {
@@ -176,22 +180,27 @@ public class WorldItem : MonoBehaviour
 
     private void OnValidate()
     {
-        if (transform.localScale != Vector3.one)
+#if UNITY_EDITOR
+
+        float maxScale = Mathf.Max(transform.localScale.x, Mathf.Max(transform.localScale.y, transform.localScale.z));
+        GetComponent<SphereCollider>().radius = combineRadius * 1 / maxScale;
+
+        if (GetComponent<BoxCollider>() != null && GetComponent<MeshCollider>() != null)
         {
-            float maxScale = Mathf.Max(transform.localScale.x, Mathf.Max(transform.localScale.y, transform.localScale.z));
-            GetComponent<SphereCollider>().radius = combineRadius * 1 / maxScale;
+            Debug.Log($"{this} has both a BoxCollider and a MeshCollider - are you sure you want both?");
         }
 
-        if (GetComponent<Rigidbody>().isKinematic)
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb.isKinematic)
         {
             Debug.Log($"{this} is kinematic checked - automatically changing");
-            GetComponent<Rigidbody>().isKinematic = false;
+            rb.isKinematic = false;
         }
 
-        if (GetComponent<Rigidbody>().collisionDetectionMode != CollisionDetectionMode.Continuous)
+        if (rb.collisionDetectionMode != CollisionDetectionMode.Continuous)
         {
-            Debug.Log($"{this} collision detection is not set to continuous - automatically changing");
-            GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
+            Debug.Log($"{this} collision detection is not set to continuous - automatically changing ");
+            rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         }
 
         if (gameObject.layer != LayerMask.NameToLayer("Item"))
@@ -231,4 +240,5 @@ public class WorldItem : MonoBehaviour
             GetComponent<Outline>().OutlineColor = new Color(1, 1, 1, 0.3f);
         }
     }
+#endif
 }

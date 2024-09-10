@@ -17,7 +17,6 @@ public class ItemData : SerializedScriptableObject
     public string baseName;
     public string displayName;
     public string description;
-    public string interactDescription;
 
     public int stackCount;
     public int maxStackCount = 50;
@@ -134,6 +133,10 @@ public class ItemData : SerializedScriptableObject
         // Tools
         Axe = 11,
         Pickaxe = 12,
+        //Resources
+        Log = 20,
+        Ore = 21,
+        Bar = 22,
     }
 
     [Flags]
@@ -149,6 +152,7 @@ public class ItemData : SerializedScriptableObject
         Tackle = 64,
         Structure = 128,
         Tool = 256,
+        Material = 512,
     }
 }
 
@@ -189,7 +193,7 @@ public static class ItemExtensions
 
     public static ItemData GetItemDataInstantiated(this ItemData itemData)
     {
-        ItemData originalItemData = GetItemData(itemData.itemID);
+        ItemData originalItemData = ItemRegistry.GetItem(itemData.itemID); // GetItemData(itemData.itemID);
         if (originalItemData == null)
             return null;
 

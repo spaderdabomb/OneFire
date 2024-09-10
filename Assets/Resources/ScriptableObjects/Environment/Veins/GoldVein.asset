@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5a1ebf53d360d47b80fba9e787cb9f, type: 3}
+  m_Name: GoldVein
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  id: 03b1db2d-58b0-400d-9518-6283731ce9a3
+  interactDescription: 
+  baseHealth: 100
+  orePerHealth: 0.05
+  oreWhenDestroyed: 5
+  respawnTime: 3
+  itemCollected: {fileID: 11400000, guid: d5c6ac4b6caea8a4683279e4b62e3cf0, type: 2}
+  veinPrefab: {fileID: 3378067064645614355, guid: 6c1bd17aac21c264fb2007b12cba2d53,
+    type: 3}

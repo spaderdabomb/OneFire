@@ -241,7 +241,7 @@ public partial class CraftingMenu : IPersistentData
 
     public void ResumeCraftingItem(SaveableCraftingStation saveableCraftingStation)
     {
-        ItemData clonedItemData = ItemExtensions.GetItemData(saveableCraftingStation.itemInProgress.itemID);
+        ItemData clonedItemData = ItemRegistry.GetItem(saveableCraftingStation.itemInProgress.itemID); //ItemExtensions.GetItemData(saveableCraftingStation.itemInProgress.itemID);
         int recipeIndex = GetRecipeIdxFromItem(clonedItemData);
         RecipeSelected(recipeIndex);
 

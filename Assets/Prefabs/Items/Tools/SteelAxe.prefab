@@ -189,7 +189,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.40215212
+  m_Radius: 1
   m_Center: {x: -0.05989864, y: 0.31838137, z: 0.00002044356}
 --- !u!114 &7342702800229390407
 MonoBehaviour:
@@ -218,4 +218,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDataAsset: {fileID: 11400000, guid: 3dd246499f8bcc849a561bba94b33cbc, type: 2}
   itemData: {fileID: 0}
-  combineTargetWorldItem: {fileID: 0}

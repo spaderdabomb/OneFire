@@ -29,7 +29,23 @@ ModelImporter:
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'Scapula_L' has translation animation that
       will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'tpose':\n\tLeftLowerLeg
+      average position error 6.2 mm and maximum position error 6.2 mm at time 0:
+      0 (0.0%) Frame 0\n\tRightLowerLeg average position error 6.2 mm and maximum
+      position error 6.2 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average position
+      error 1.6 mm and maximum position error 1.6 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerArm
+      average position error 1.6 mm and maximum position error 1.6 mm at time 0:
+      0 (0.0%) Frame 0\n\nRetargeting quality report for clip 'human_male_run_01':\n\tLeftUpperArm
+      average position error 10.2 mm and maximum position error 20.2 mm at time 0:16
+      (35.0%) Frame 16\n\tLeftLowerArm average position error 10.2 mm and maximum
+      position error 20.3 mm at time 0:16 (35.0%) Frame 16\n\tLeftHand average position
+      error 10.2 mm and maximum position error 20.2 mm at time 0:16 (35.0%) Frame
+      16\n\tRightUpperArm average position error 15.4 mm and maximum position error
+      15.6 mm at time 0:36 (85.0%) Frame 36\n\tRightLowerArm average position error
+      15.4 mm and maximum position error 15.6 mm at time 0:36 (85.0%) Frame 36\n\tRightHand
+      average position error 15.4 mm and maximum position error 15.6 mm at time 0:36
+      (85.0%) Frame 36\n\tHead average position error 3.0 mm and maximum position
+      error 3.0 mm at time 0:29 (67.5%) Frame 29\n"
     animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
     importConstraints: 0
@@ -55,9 +71,9 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0

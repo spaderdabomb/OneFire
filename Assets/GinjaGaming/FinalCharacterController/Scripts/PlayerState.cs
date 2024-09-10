@@ -1,16 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace GinjaGaming.FinalCharacterController
 {
     public class PlayerState : MonoBehaviour
     {
         [field: SerializeField] public PlayerMovementState CurrentPlayerMovementState { get; private set; } = PlayerMovementState.Idling;
+        [field: SerializeField] public PlayerActionState CurrentPlayerActionState { get; private set; } = PlayerActionState.None;
+
+        public float TimeInNoneActionState = 0f;
+
+        public bool EnteredAttackStateLastFrame { get; private set; } = false;
+
+        private void Update()
+        {
+            EnteredAttackStateLastFrame = CurrentPlayerActionState == PlayerActionState.Attacking && EnteredAttackStateLastFrame == false;
+
+            if (CurrentPlayerActionState == PlayerActionState.None)
+                TimeInNoneActionState += Time.deltaTime;
+            else
+                TimeInNoneActionState = 0f;
+        }
 
         public void SetPlayerMovementState(PlayerMovementState playerMovementState)
         {
             CurrentPlayerMovementState = playerMovementState;
+        }
+
+        public void SetPlayerActionState(PlayerActionState playerActionState)
+        {
+            CurrentPlayerActionState = playerActionState;
         }
 
         public bool InGroundedState()
@@ -35,5 +56,13 @@ namespace GinjaGaming.FinalCharacterController
         Jumping = 4,
         Falling = 5,
         Strafing = 6,
+    }
+
+    public enum PlayerActionState
+    {
+        None = 0,
+        Attacking = 1,
+        Gathering = 2,
+        Crafting = 3,
     }
 }
