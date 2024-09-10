@@ -133,13 +133,6 @@ public class WorldItem : MonoBehaviour
         GameObjectManager.Instance.playerInteract.RemoveInteractingObject(combineWorldItem.gameObject);
     }
 
-    /*    public void FinishCombining()
-        {
-            OnWorldItemDestroyed?.Invoke(combineWorldItem.gameObject);
-            GameObjectManager.Instance.playerInteract.RemoveInteractingObject(combineWorldItem.gameObject);
-            combineWorldItem.gameObject.Destroy();
-        }*/
-
     public void PickUpItem()
     {
         ItemData clonedItemData = itemData.CloneItemData();
@@ -184,6 +177,11 @@ public class WorldItem : MonoBehaviour
 
         float maxScale = Mathf.Max(transform.localScale.x, Mathf.Max(transform.localScale.y, transform.localScale.z));
         GetComponent<SphereCollider>().radius = combineRadius * 1 / maxScale;
+
+        if (itemDataAsset == null)
+        {
+            Debug.Log($"No item data asset assigned to {this} - assign in inspector");
+        }
 
         if (GetComponent<BoxCollider>() != null && GetComponent<MeshCollider>() != null)
         {

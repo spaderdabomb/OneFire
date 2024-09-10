@@ -71,9 +71,6 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
         List<WorldStructure> structureList = structureDataDict[worldStructure.structureDataAsset.GetType()];
         List<SaveableWorldStructure> saveableStructureList = saveableStructureDataDict[worldStructure.structureDataAsset.GetType()];
 
-        print(structureList == chestList);
-        print(structureDataDict[worldStructure.structureDataAsset.GetType()] == chestList);
-
         worldStructure.InstanceId = structureList.Count;
         structureList.Add(worldStructure);
         SaveableWorldStructure saveableStructure = new SaveableWorldStructure(worldStructure);

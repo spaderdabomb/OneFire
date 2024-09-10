@@ -30,13 +30,12 @@ public class ItemData : SerializedScriptableObject
     [Header("Assets")]
     public GameObject item3DPrefab;
     public Sprite itemSprite;
-    public GameObject itemHeldPrefab;
 
     [Header("Stats")]
     public List<IGenericItemStat> itemStatList;
     [HideInInspector] public ItemStats itemStats;
 
-    private void OnValidate()
+    public virtual void OnValidate()
     {
         ItemRegistry.Register(this);
 
@@ -46,12 +45,6 @@ public class ItemData : SerializedScriptableObject
 
         if (!PrefabUtility.IsPartOfPrefabAsset(item3DPrefab))
             Debug.LogError($"{this} {item3DPrefab} is a GameObject - set to prefab!");
-
-        if (!PrefabUtility.IsPartOfPrefabAsset(itemHeldPrefab))
-            Debug.LogError($"{this} {itemHeldPrefab} is a GameObject - set to prefab!");
-
-        if (itemHeldPrefab.GetComponent<WorldItem>() != null && itemCategories.HasFlag(ItemCategory.Wieldable))
-            Debug.LogError($"{this} {itemHeldPrefab} is a WorldItem and wieldable - remove component!");
 
         if (item3DPrefab.GetComponent<WorldItem>() == null)
             Debug.LogError($"{this} {item3DPrefab} does not contain a WorldItem component!");

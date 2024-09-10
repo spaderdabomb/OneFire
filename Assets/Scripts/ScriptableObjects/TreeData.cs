@@ -25,8 +25,10 @@ public class TreeData : SerializedScriptableObject, IDamageable
 
     private void OnValidate()
     {
+#if UNITY_EDITOR
         if (!PrefabUtility.IsPartOfPrefabAsset(treePrefab))
             Debug.LogError($"{this} {treePrefab} is a GameObject - set to prefab!");
+#endif
 
         if (treePrefab.GetComponentInChildren<WorldTree>() == null)
             Debug.LogError($"{this} {treePrefab} does not contain a WorldTree component!");

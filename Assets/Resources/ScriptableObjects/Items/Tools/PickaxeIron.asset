@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb430cd2fe8c54396792d853c49513, type: 3}
+  m_Script: {fileID: 11500000, guid: 387bb779115d4184d9f0a74d40931c74, type: 3}
   m_Name: PickaxeIron
   m_EditorClassIdentifier: 
   serializationData:
@@ -23,14 +23,8 @@ MonoBehaviour:
     SerializationNodes:
     - Name: itemStatList
       Entry: 7
-      Data: 0|Unity.Plastic.Antlr3.Runtime.Misc.ListStack`1[[ItemData+IGenericItemStat,
-        Assembly-CSharp]], Unity.Plastic.Antlr3.Runtime
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
+      Data: 0|UnityEditor.ShaderGraph.PooledList`1[[ItemData+IGenericItemStat, Assembly-CSharp]],
+        Unity.ShaderGraph.Editor
     - Name: 
       Entry: 8
       Data: 
@@ -60,11 +54,10 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  itemID: 820719e2-4ff5-4191-9012-37e45ac9c75a
+  itemID: c5c2d076-8725-4f92-9f3a-60ac3957032d
   baseName: PickaxeIron
   displayName: Iron Pickaxe
   description: It gets the job done
-  interactDescription: Pick up
   stackCount: 1
   maxStackCount: 1
   baseSellValue: 1
@@ -74,5 +67,6 @@ MonoBehaviour:
   item3DPrefab: {fileID: 3693930650716802555, guid: 0883a31cdcdc73946ae2319fa9b92262,
     type: 3}
   itemSprite: {fileID: 21300000, guid: 9ac622c454e7f2b438cc46e1d2424ac5, type: 3}
+  swingSound: {fileID: 11400000, guid: ed1e035c1a99cdd49a26cef12edc2800, type: 2}
   itemHeldPrefab: {fileID: 3924414062289646097, guid: 0f805d86068e8a24da25163b15de6547,
     type: 3}

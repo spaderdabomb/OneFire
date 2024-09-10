@@ -27,23 +27,23 @@ public class PlayerEquippedItem : SerializedMonoBehaviour
     {
         if (!slot.selected)
             return;
-
-        if (slot.currentItemData == null || !slot.currentItemData.itemCategories.HasFlag(ItemData.ItemCategory.Wieldable))
+;
+        if (slot.currentItemData == null || !(slot.currentItemData is WieldableItemData))
         {
             UnEquipItem();
             return;
         }
 
-        EquipItem(slot.currentItemData);
+        EquipItem((WieldableItemData)slot.currentItemData);
     }
 
-    public void EquipItem(ItemData itemData)
+    public void EquipItem(WieldableItemData itemData)
     {
         UnEquipItem();
         GameObject itemHeldPrefab = itemData.itemHeldPrefab;
         GameObject spawnedItemHeld = Instantiate(itemHeldPrefab, itemContainerR);
 
-        spawnedItemHeld.transform.position = itemContainerR.position; // + itemHeldPrefab.transform.position;
+        spawnedItemHeld.transform.position = itemContainerR.position;
         spawnedItemHeld.transform.rotation = itemContainerR.rotation * itemHeldPrefab.transform.rotation;
 
         ActiveItemObject = spawnedItemHeld;

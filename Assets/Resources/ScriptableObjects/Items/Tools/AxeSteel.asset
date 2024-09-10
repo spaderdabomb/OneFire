@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387bb779115d4184d9f0a74d40931c74, type: 3}
+  m_Name: AxeSteel
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: itemStatList
+      Entry: 7
+      Data: 0|UnityEditor.ShaderGraph.PooledList`1[[ItemData+IGenericItemStat, Assembly-CSharp]],
+        Unity.ShaderGraph.Editor
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: itemStats
+      Entry: 7
+      Data: 1|ItemStats, Assembly-CSharp
+    - Name: statsDict
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[ItemStat, Assembly-CSharp],[System.Object,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[ItemStat, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  itemID: 0442cdc1-b804-48f6-b8dd-7adbb672578c
+  baseName: AxeSteel
+  displayName: Steel Axe
+  description: Shiny and sturdy axe
+  stackCount: 1
+  maxStackCount: 1
+  baseSellValue: 1
+  itemType: 11
+  itemRarity: 3
+  itemCategories: 265
+  item3DPrefab: {fileID: 4233051394700438405, guid: 55d8b1784da9df6449edd9e4a66fbadf,
+    type: 3}
+  itemSprite: {fileID: 21300000, guid: b46fb461a0adc5a4f9f769e6995da930, type: 3}
+  swingSound: {fileID: 11400000, guid: ed1e035c1a99cdd49a26cef12edc2800, type: 2}
+  itemHeldPrefab: {fileID: 5304097680627535243, guid: 3496e144d4d5c014bb319800e6eddb75,
+    type: 3}

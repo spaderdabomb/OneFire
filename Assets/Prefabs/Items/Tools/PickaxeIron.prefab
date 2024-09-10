@@ -216,5 +216,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9ca01d071ac3940be6665a3522b95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDataAsset: {fileID: 11400000, guid: b4bcea4af9b94a249be832f4f27b7614, type: 2}
+  itemDataAsset: {fileID: 11400000, guid: 176b24e88af84074187552d9aa85968f, type: 2}
   itemData: {fileID: 0}

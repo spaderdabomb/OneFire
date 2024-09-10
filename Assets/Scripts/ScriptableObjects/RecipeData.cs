@@ -18,6 +18,11 @@ public class RecipeData : SerializedScriptableObject
     {
         if (id == null || id == String.Empty)
             id = Guid.NewGuid().ToString();
+
+#if UNITY_EDITOR
+        if (itemResult == null)
+            Debug.Log($"{this} is missing itemResult - assign in inspector");
+#endif
     }
 }
 

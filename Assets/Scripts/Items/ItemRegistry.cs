@@ -18,7 +18,7 @@ public static class ItemRegistry
         if (itemDictionary.ContainsKey(item.itemID))
         {
             if (itemDictionary[item.itemID].baseName != item.baseName)
-                Debug.LogError("Two items have duplicate id");
+                Debug.LogError($"Two items have duplicate id - in database: {itemDictionary[item.itemID].baseName}; adding to registry {item.baseName}");
 
             return false;
         }
