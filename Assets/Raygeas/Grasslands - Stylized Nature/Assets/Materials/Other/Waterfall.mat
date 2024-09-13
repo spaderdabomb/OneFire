@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Waterfall
+  m_Shader: {fileID: 4800000, guid: 552f7aa33dc7b8a458677a2a43dc4925, type: 3}
+  m_ValidKeywords:
+  - _OPACITYENABLE_ON
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 90e2e9ec05880c44d8230f1c6834b743, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaCutoff: 0.5
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DInt: 0.25
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _EnableFoam: 1
+    - _EnableGradient: 1
+    - _EnvironmentReflections: 1
+    - _Float0: 0.09
+    - _FlowSpeed: 2
+    - _FoamFade: -0.39
+    - _FoamInt: 0.4
+    - _FoamLevel: -0.8
+    - _FoamOffset: 2.27
+    - _FoamPower: 3
+    - _FoamScale: 4.96
+    - _FoamSpeed: 0.15
+    - _FoamTilingX: 3
+    - _FoamTilingY: 0.15
+    - _FoamVoronoiSpeed: 3
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Gradient: 1
+    - _GradientFade: -1
+    - _GradientLevel: 0
+    - _Metallic: 1
+    - _Mode: 0
+    - _NormalScale: 2.5
+    - _NormalTilingX: 3
+    - _NormalTilingY: 0.3
+    - _OcclusionStrength: 1
+    - _Offset: 4.57
+    - _OpacityEnable: 1
+    - _OpacityFade: -3.18
+    - _OpacityLevel: -0.94
+    - _Parallax: 0.02
+    - _Power: 5
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _RefractionFactor: 1
+    - _Scale: 15
+    - _Smoothness: 0.8
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _VOInt: 0.15
+    - _VOIntensity: 0.25
+    - _VOScale: 3
+    - _VOSpeed: 0.7
+    - _VoronoiSpeed: 3
+    - _WaterSpeed: 0.1
+    - _ZWrite: 1
+    - __dirty: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
+    - _FoamTiling: {r: 3, g: 0.2, b: 0, a: 0}
+    - _GradientColor: {r: 0.63529414, g: 1, b: 0.97478104, a: 0}
+    - _MainColor: {r: 0, g: 0.3580163, b: 0.404, a: 0.69803923}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Vector1: {r: 1, g: 0.15, b: 0, a: 0}
+  m_BuildTextureStacks: []

@@ -1,3 +1,4 @@
+using JSAM;
 using OneFireUi;
 using Sirenix.OdinInspector;
 using System;
@@ -10,6 +11,10 @@ public class PlayerEquippedItem : SerializedMonoBehaviour
     [SerializeField] private Transform armature;
     [SerializeField] private Transform itemContainerR;
     [SerializeField] private Dictionary<ItemData.ItemType, AnimationClip> itemTypeToAnimationClipDict = new();
+
+    [Header("Weapon Effects")]
+    [SerializeField] private ParticleSystem weaponSlash;
+
     public GameObject ActiveItemObject { get; private set; } = null;
     public ItemData ActiveItemData { get; private set; } = null;
 
@@ -61,7 +66,7 @@ public class PlayerEquippedItem : SerializedMonoBehaviour
     }
 
     public AnimationClip GetAttackAnimationFromActiveItem()
-    {
+    {   
         if (ActiveItemData == null)
             return itemTypeToAnimationClipDict[ItemData.ItemType.None];
 
@@ -69,5 +74,14 @@ public class PlayerEquippedItem : SerializedMonoBehaviour
             return itemTypeToAnimationClipDict[ActiveItemData.itemType];
 
         return itemTypeToAnimationClipDict[ItemData.ItemType.None];
+    }
+
+    public void SpawnSlashEffect()
+    {
+        ParticleSystem ps = Instantiate(weaponSlash, ActiveItemObject.transform);
+        if (ActiveItemData is WieldableItemData wieldableItemData)
+        {
+            AudioManager.PlaySound(wieldableItemData.swingSound);
+        }
     }
 }

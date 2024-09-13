@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf28a169ff1e72245814d1120f01c156, type: 3}
+  m_Name: Trout
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: itemStatList
+      Entry: 7
+      Data: 0|UnityEditor.ShaderGraph.PooledList`1[[ItemData+IGenericItemStat, Assembly-CSharp]],
+        Unity.ShaderGraph.Editor
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: itemStats
+      Entry: 6
+      Data: 
+  itemID: 5e497885-e11c-4132-b96b-ea037415b187
+  baseName: Trout
+  displayName: Trout
+  description: An pretty edible fish
+  stackCount: 1
+  maxStackCount: 50
+  baseSellValue: 1
+  itemType: 0
+  itemRarity: 1
+  itemCategories: 0
+  item3DPrefab: {fileID: 5224393941312387127, guid: de500f6b90f89bc4c87a6585b2dea01a,
+    type: 3}
+  itemSprite: {fileID: 21300000, guid: 60c25a45c67373046bc0ce23d3166adb, type: 3}
