@@ -64,6 +64,10 @@ namespace GinjaGaming.FinalCharacterController
             InventoryManager.Instance.OnHotbarItemSelectedChanged += UpdateAttackAnimation;
         }
 
+        private void OnDisable()
+        {
+            InventoryManager.Instance.OnHotbarItemSelectedChanged -= UpdateAttackAnimation;
+        }
 
 
         private void Update()

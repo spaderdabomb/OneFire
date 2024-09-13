@@ -33,7 +33,8 @@
         HitHollowWood_03,
         HitTree_01,
         HitTree_02,
-        HitTree_03
+        HitTree_03,
+        SwingLight
     }
     public enum MainLibraryMusic {
     }

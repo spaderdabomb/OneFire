@@ -126,6 +126,7 @@ public class ItemData : SerializedScriptableObject
         // Tools
         Axe = 11,
         Pickaxe = 12,
+        FishingRod = 13,
         //Resources
         Log = 20,
         Ore = 21,

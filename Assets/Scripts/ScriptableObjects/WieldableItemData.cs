@@ -18,7 +18,7 @@ public class WieldableItemData : ItemData
 
 #if UNITY_EDITOR
         if (!PrefabUtility.IsPartOfPrefabAsset(itemHeldPrefab))
-            Debug.LogError($"{this} {itemHeldPrefab} is a GameObject - set to prefab!");
+            Debug.LogError($"{this} {itemHeldPrefab} is a GameObject - set to prefab! ");
 
         if (itemHeldPrefab.GetComponent<WorldItem>() != null && itemCategories.HasFlag(ItemCategory.Wieldable))
             Debug.LogError($"{this} {itemHeldPrefab} is a WorldItem and wieldable - remove component!");

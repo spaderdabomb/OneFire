@@ -1,4 +1,5 @@
 using Cinemachine;
+using OneFireUi;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace GinjaGaming.FinalCharacterController
         private PlayerLocomotionInput _playerLocomotionInput;
         private PlayerAnimation _playerAnimation;
         private PlayerState _playerState;
+        private PlayerEquippedItem _playerEquippedItem;
         public bool AttackHit { get; private set; } = false;
 
         public event Action OnPunchHit;
@@ -27,6 +29,7 @@ namespace GinjaGaming.FinalCharacterController
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
             _playerAnimation = GetComponent<PlayerAnimation>();
             _playerState = GetComponent<PlayerState>();
+            _playerEquippedItem = GetComponent<PlayerEquippedItem>();
         }
         private void OnEnable()
         {
@@ -105,7 +108,16 @@ namespace GinjaGaming.FinalCharacterController
             if (!context.performed)
                 return;
 
-            _playerState.SetPlayerActionState(PlayerActionState.Attacking);
+
+            if (_playerEquippedItem.ActiveItemData == null || 
+                _playerEquippedItem.ActiveItemData.itemType.HasFlag(ItemData.ItemType.FishingRod))
+            {
+                _playerState.SetPlayerActionState(PlayerActionState.Fishing);
+            }
+            else
+            {
+                _playerState.SetPlayerActionState(PlayerActionState.Attacking);
+            }
         }
         #endregion
     }

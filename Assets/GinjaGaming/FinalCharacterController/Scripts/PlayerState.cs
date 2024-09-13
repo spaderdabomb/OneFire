@@ -64,5 +64,6 @@ namespace GinjaGaming.FinalCharacterController
         Attacking = 1,
         Gathering = 2,
         Crafting = 3,
+        Fishing = 4,
     }
 }

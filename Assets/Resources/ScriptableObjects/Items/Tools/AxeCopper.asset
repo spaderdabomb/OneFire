@@ -68,5 +68,5 @@ MonoBehaviour:
     type: 3}
   itemSprite: {fileID: 21300000, guid: 50dd98d378073ae43ba80e04ab8810cd, type: 3}
   swingSound: {fileID: 11400000, guid: ed1e035c1a99cdd49a26cef12edc2800, type: 2}
-  itemHeldPrefab: {fileID: 5304097680627535243, guid: bd271a384f144e540a41b890f808309a,
+  itemHeldPrefab: {fileID: 3093092653427159696, guid: bd271a384f144e540a41b890f808309a,
     type: 3}
