@@ -9,10 +9,17 @@ namespace GinjaGaming.FinalCharacterController
     {
         [field: SerializeField] public PlayerMovementState CurrentPlayerMovementState { get; private set; } = PlayerMovementState.Idling;
         [field: SerializeField] public PlayerActionState CurrentPlayerActionState { get; private set; } = PlayerActionState.None;
+        [field: SerializeField] public PlayerFishingState CurrentPlayerFishingState { get; private set; } = PlayerFishingState.None;
 
-        public float TimeInNoneActionState = 0f;
-
+        public float TimeInNoneActionState { get; private set; } = 0f;
         public bool EnteredAttackStateLastFrame { get; private set; } = false;
+
+        private PlayerAnimation _playerAnimation;
+
+        private void Awake()
+        {
+            _playerAnimation = GetComponent<PlayerAnimation>();
+        }
 
         private void Update()
         {
@@ -32,6 +39,17 @@ namespace GinjaGaming.FinalCharacterController
         public void SetPlayerActionState(PlayerActionState playerActionState)
         {
             CurrentPlayerActionState = playerActionState;
+
+            if (CurrentPlayerActionState == PlayerActionState.Fishing && CurrentPlayerFishingState == PlayerFishingState.None)
+            {
+                SetPlayerFishingState(PlayerFishingState.RodCharging);
+                _playerAnimation.SetFishingTrigger();
+            }
+        }
+
+        public void SetPlayerFishingState(PlayerFishingState playerFishingState)
+        {
+            CurrentPlayerFishingState = playerFishingState;
         }
 
         public bool InGroundedState()
@@ -65,5 +83,14 @@ namespace GinjaGaming.FinalCharacterController
         Gathering = 2,
         Crafting = 3,
         Fishing = 4,
+    }
+
+    public enum PlayerFishingState
+    {
+        None = 0,
+        RodCharging = 1,
+        RodReleased = 2,
+        BobInWater = 3,
+        FishOnLine = 4,
     }
 }

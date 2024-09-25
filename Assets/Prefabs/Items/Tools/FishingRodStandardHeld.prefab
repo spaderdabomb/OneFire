@@ -64,13 +64,13 @@ PrefabInstance:
       value: FishingRodStandardHeld
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 7967161408043562766, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
-    - {fileID: 3182105290073043998, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
-    - {fileID: 4585146455665815437, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
-    - {fileID: 5002811951172774511, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
-    - {fileID: 3132252678982070158, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
-    - {fileID: 8961472473386177760, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
-    - {fileID: 3135079554976698806, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
+    - {fileID: 2210607914809455437, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
+    - {fileID: -6162327116105593405, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
+    - {fileID: 4868529886199150847, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
+    - {fileID: 4249493692183955582, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
+    - {fileID: 7927990055963224642, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
+    - {fileID: -81597746869099564, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
+    - {fileID: -6703397661786411683, guid: 38486e17ba7197d40a94b87d198d2f2b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

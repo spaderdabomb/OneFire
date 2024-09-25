@@ -15,8 +15,8 @@ public class PlayerEquippedItem : SerializedMonoBehaviour
     [Header("Weapon Effects")]
     [SerializeField] private ParticleSystem weaponSlash;
 
-    public GameObject ActiveItemObject { get; private set; } = null;
-    public ItemData ActiveItemData { get; private set; } = null;
+    [field: SerializeField] public GameObject ActiveItemObject { get; private set; } = null;
+    [field: SerializeField] public ItemData ActiveItemData { get; private set; } = null;
 
     private void OnEnable()
     {

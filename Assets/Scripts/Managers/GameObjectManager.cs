@@ -17,6 +17,8 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
     public Camera playerCamera;
     public PlayerInteract playerInteract;
     public PlayerStats playerStats;
+    public PlayerState playerState;
+    public PlayerEquippedItem playerEquippedItem;
 
     public List<WorldStructure> chestList = new();
     private List<SaveableWorldStructure> saveableChestList = new();

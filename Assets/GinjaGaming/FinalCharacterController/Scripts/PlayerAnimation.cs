@@ -29,11 +29,18 @@ namespace GinjaGaming.FinalCharacterController
         private static int isFallingHash = Animator.StringToHash("isFalling");
         private static int isJumpingHash = Animator.StringToHash("isJumping");
 
+        // Fishing
+        private static int canStartFishingTriggerHash = Animator.StringToHash("canStartFishingTrigger");
+
         // Actions
         private static int isAttackingHash = Animator.StringToHash("isAttacking");
         private static int isGatheringHash = Animator.StringToHash("isInteracting");
+        private static int isFishingHash = Animator.StringToHash("isFishing");
+        private static int isRodChargingHash = Animator.StringToHash("isRodCharging");
+        private static int isRodReleasedHash = Animator.StringToHash("isRodReleased");
+        private static int isBobInWaterHash = Animator.StringToHash("isBobInWater");
         private static int isPlayingActionHash = Animator.StringToHash("isPlayingAction");
-        private int[] actionHashes;
+        private int[] interruptibleActionHashes;
 
         // Camera/Rotation
         private static int isRotatingToTargetHash = Animator.StringToHash("isRotatingToTarget");
@@ -56,7 +63,7 @@ namespace GinjaGaming.FinalCharacterController
             _playerActionsInput = GetComponent<PlayerActionsInput>();
             _playerEquippedItem = GetComponent<PlayerEquippedItem>();
 
-            actionHashes = new int[] { isGatheringHash };
+            interruptibleActionHashes = new int[] { isGatheringHash };
         }
 
         private void OnEnable()
@@ -87,7 +94,8 @@ namespace GinjaGaming.FinalCharacterController
 
         private void UpdateLayerWeights()
         {
-            if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Idling)
+            if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Idling && 
+                _playerState.CurrentPlayerActionState != PlayerActionState.Fishing)
                 _targetUpperBodyLayerWeight = 0f;
             else
                 _targetUpperBodyLayerWeight = 1f;
@@ -95,7 +103,6 @@ namespace GinjaGaming.FinalCharacterController
             _currentUpperBodyLayerWeight = Mathf.Lerp(_currentUpperBodyLayerWeight, _targetUpperBodyLayerWeight, maskLayerBlendSpeed);
             _animator.SetLayerWeight(1, _currentUpperBodyLayerWeight);
             _animator.SetLayerWeight(2, 1f-_currentUpperBodyLayerWeight);
-
         }
 
         private void UpdateAnimationState()
@@ -107,9 +114,13 @@ namespace GinjaGaming.FinalCharacterController
             bool isFalling = _playerState.CurrentPlayerMovementState == PlayerMovementState.Falling;
             bool isGrounded = _playerState.InGroundedState();
 
-            bool isPlayingAction = actionHashes.Any(hash => _animator.GetBool(hash));
+            bool isPlayingAction = interruptibleActionHashes.Any(hash => _animator.GetBool(hash));
             bool isAttacking = _playerState.CurrentPlayerActionState == PlayerActionState.Attacking;
             bool isGathering = _playerState.CurrentPlayerActionState == PlayerActionState.Gathering;
+            bool isRodCharging = _playerState.CurrentPlayerFishingState == PlayerFishingState.RodCharging;
+            bool isRodReleased = _playerState.CurrentPlayerFishingState == PlayerFishingState.RodReleased;
+            bool isBobInWater = _playerState.CurrentPlayerFishingState == PlayerFishingState.BobInWater;
+            bool isFishing = _playerState.CurrentPlayerActionState == PlayerActionState.Fishing;
             bool isRunBlendValue = isRunning || isJumping || isFalling;
 
             Vector2 inputTarget = isSprinting ? _playerLocomotionInput.MovementInput * _sprintMaxBlendValue :
@@ -125,12 +136,21 @@ namespace GinjaGaming.FinalCharacterController
             _animator.SetBool(isRotatingToTargetHash, _playerController.IsRotatingToTarget);
             _animator.SetBool(isAttackingHash, isAttacking);
             _animator.SetBool(isGatheringHash, isGathering);
+            _animator.SetBool(isFishingHash, isFishing);
+            _animator.SetBool(isRodChargingHash, isRodCharging);
+            _animator.SetBool(isRodReleasedHash, isRodReleased);
+            _animator.SetBool(isBobInWaterHash, isBobInWater);
             _animator.SetBool(isPlayingActionHash, isPlayingAction);
 
             _animator.SetFloat(inputXHash, _currentBlendInput.x);
             _animator.SetFloat(inputYHash, _currentBlendInput.y);
             _animator.SetFloat(inputMagnitudeHash, _currentBlendInput.magnitude);
             _animator.SetFloat(rotationMismatchHash, _playerController.RotationMismatch);
+        }
+
+        public void SetFishingTrigger()
+        {
+            _animator.SetTrigger(canStartFishingTriggerHash);
         }
     }
 }

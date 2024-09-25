@@ -281,6 +281,15 @@ namespace GinjaGaming.FinalCharacterController
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""aa07b177-63e8-4ef2-bfae-46c57f48282d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -303,6 +312,17 @@ namespace GinjaGaming.FinalCharacterController
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attacking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db33fe09-e5be-43f9-a757-b152bb486a31"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -342,6 +362,7 @@ namespace GinjaGaming.FinalCharacterController
             m_PlayerActionsMap = asset.FindActionMap("PlayerActionsMap", throwIfNotFound: true);
             m_PlayerActionsMap_Interact = m_PlayerActionsMap.FindAction("Interact", throwIfNotFound: true);
             m_PlayerActionsMap_Attacking = m_PlayerActionsMap.FindAction("Attacking", throwIfNotFound: true);
+            m_PlayerActionsMap_Cancel = m_PlayerActionsMap.FindAction("Cancel", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -529,12 +550,14 @@ namespace GinjaGaming.FinalCharacterController
         private List<IPlayerActionsMapActions> m_PlayerActionsMapActionsCallbackInterfaces = new List<IPlayerActionsMapActions>();
         private readonly InputAction m_PlayerActionsMap_Interact;
         private readonly InputAction m_PlayerActionsMap_Attacking;
+        private readonly InputAction m_PlayerActionsMap_Cancel;
         public struct PlayerActionsMapActions
         {
             private @PlayerControls m_Wrapper;
             public PlayerActionsMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Interact => m_Wrapper.m_PlayerActionsMap_Interact;
             public InputAction @Attacking => m_Wrapper.m_PlayerActionsMap_Attacking;
+            public InputAction @Cancel => m_Wrapper.m_PlayerActionsMap_Cancel;
             public InputActionMap Get() { return m_Wrapper.m_PlayerActionsMap; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -550,6 +573,9 @@ namespace GinjaGaming.FinalCharacterController
                 @Attacking.started += instance.OnAttacking;
                 @Attacking.performed += instance.OnAttacking;
                 @Attacking.canceled += instance.OnAttacking;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
 
             private void UnregisterCallbacks(IPlayerActionsMapActions instance)
@@ -560,6 +586,9 @@ namespace GinjaGaming.FinalCharacterController
                 @Attacking.started -= instance.OnAttacking;
                 @Attacking.performed -= instance.OnAttacking;
                 @Attacking.canceled -= instance.OnAttacking;
+                @Cancel.started -= instance.OnCancel;
+                @Cancel.performed -= instance.OnCancel;
+                @Cancel.canceled -= instance.OnCancel;
             }
 
             public void RemoveCallbacks(IPlayerActionsMapActions instance)
@@ -611,6 +640,7 @@ namespace GinjaGaming.FinalCharacterController
         {
             void OnInteract(InputAction.CallbackContext context);
             void OnAttacking(InputAction.CallbackContext context);
+            void OnCancel(InputAction.CallbackContext context);
         }
     }
 }

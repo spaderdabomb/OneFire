@@ -105,11 +105,38 @@ namespace GinjaGaming.FinalCharacterController
 
         public void OnAttacking(InputAction.CallbackContext context)
         {
-            if (!context.performed)
+            if (context.started)
                 return;
 
+            if (context.canceled)
+            {
+                OnAttackCanceled();
+                return;
+            }
 
-            if (_playerEquippedItem.ActiveItemData == null || 
+            if (context.performed)
+            {
+                OnAttackPressed();
+                return;
+            }
+        }
+
+        public void OnAttackCanceled()
+        {
+            // Fishing mouse click released
+            if (_playerEquippedItem.ActiveItemData != null &&
+                _playerEquippedItem.ActiveItemData.itemType.HasFlag(ItemData.ItemType.FishingRod) &&
+                _playerState.CurrentPlayerFishingState == PlayerFishingState.RodCharging)
+            {
+                _playerState.SetPlayerFishingState(PlayerFishingState.RodReleased);
+                FishingManager.Instance.CastRod(1f);
+                return;
+            }
+        }
+
+        public void OnAttackPressed()
+        {
+            if (_playerEquippedItem.ActiveItemData != null &&
                 _playerEquippedItem.ActiveItemData.itemType.HasFlag(ItemData.ItemType.FishingRod))
             {
                 _playerState.SetPlayerActionState(PlayerActionState.Fishing);
@@ -119,6 +146,19 @@ namespace GinjaGaming.FinalCharacterController
                 _playerState.SetPlayerActionState(PlayerActionState.Attacking);
             }
         }
+
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            if (_playerState.CurrentPlayerActionState == PlayerActionState.Fishing)
+            {
+                FishingManager.Instance.StopFishing();
+            }
+        }
+
+
         #endregion
     }
 }
