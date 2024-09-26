@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
+using GogoGaga.OptimizedRopesAndCables;
 
 public class FishingManager : MonoBehaviour
 {
@@ -13,14 +14,28 @@ public class FishingManager : MonoBehaviour
     public GameObject fishingBobPrefab;
     public GameObject _currentFishingBob = null;
 
-    [SerializeField] float _bobAngularSpeed = 7f;
+    [SerializeField] private float bobAngularSpeed = 7f;
+    [SerializeField] private float bobShowDelayTime = 0.2f;
 
     public event Action OnFishCaught;
     public event Action OnStopFishing;
 
+    public GameObject ropeTest;
+    private Rope rope;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        rope = ropeTest.GetComponent<Rope>();
+    }
+
+    private void Update()
+    {
+        rope.ropeLength += 0.01f;
     }
 
     public void BobHitWater()
@@ -36,6 +51,13 @@ public class FishingManager : MonoBehaviour
     public void CastRod(float castPower)
     {
         _currentFishingBob = Instantiate(fishingBobPrefab, GameObjectManager.Instance.effectsContainer.transform);
+        StartCoroutine(SpawnBob());
+    }
+
+    IEnumerator SpawnBob()
+    {
+        yield return new WaitForSeconds(bobShowDelayTime);
+
         GameObject currentFishingRod = GameObjectManager.Instance.playerEquippedItem.ActiveItemObject;
 
         FishingRodHeld fishingRodHeld;
@@ -57,7 +79,7 @@ public class FishingManager : MonoBehaviour
             Quaternion rotation = Quaternion.AngleAxis(angleFromLookDirection, rightInXZPlane);
             Vector3 newDirection = rotation * originalDirection;
 
-            bobRb.angularVelocity = new Vector3(Random.Range(0f, _bobAngularSpeed), Random.Range(0f, _bobAngularSpeed), Random.Range(0f, _bobAngularSpeed));
+            bobRb.angularVelocity = new Vector3(Random.Range(0f, bobAngularSpeed), Random.Range(0f, bobAngularSpeed), Random.Range(0f, bobAngularSpeed));
             bobRb.velocity = newDirection * fishingPower;
         }
         else

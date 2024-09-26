@@ -286,7 +286,8 @@ namespace GinjaGaming.FinalCharacterController
         private bool CanRun()
         {
             // This means player is moving diagonally at 45 degrees or forward, if so, we can run
-            return _playerLocomotionInput.MovementInput.y >= Mathf.Abs(_playerLocomotionInput.MovementInput.x);
+            return _playerLocomotionInput.MovementInput.y >= Mathf.Abs(_playerLocomotionInput.MovementInput.x) && 
+                   _playerState.CurrentPlayerActionState != PlayerActionState.Fishing;
         }
         #endregion
     }

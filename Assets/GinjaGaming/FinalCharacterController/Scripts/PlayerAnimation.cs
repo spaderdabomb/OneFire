@@ -94,8 +94,7 @@ namespace GinjaGaming.FinalCharacterController
 
         private void UpdateLayerWeights()
         {
-            if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Idling && 
-                _playerState.CurrentPlayerActionState != PlayerActionState.Fishing)
+            if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Idling)
                 _targetUpperBodyLayerWeight = 0f;
             else
                 _targetUpperBodyLayerWeight = 1f;
