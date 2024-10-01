@@ -19,6 +19,10 @@ public class WorldTree : DamageableObject, IRespawnable
         base.Damage();
 
         float damage = GameObjectManager.Instance.playerStats.CalculateDamage(gameObject);
+        float currentHealthPercent = 0f;
+        if (HealthBar != null)
+            currentHealthPercent = (HealthBar.CurrentHealth + damage) / HealthBar.TotalHealth;
+
         ItemData itemDataCloned = treeData.itemCollected.CloneItemData();
         int newStackCount = (int)Mathf.Floor(treeData.logsPerHealth * (damage + _damageRemainder));
         itemDataCloned.stackCount = newStackCount;
@@ -31,7 +35,7 @@ public class WorldTree : DamageableObject, IRespawnable
         DestructibleResourceManager.Instance.SpawnHitEffect(DestructibleResourceManager.Instance.treeHitSplintersEffect, hitPosition);
 
         UiManager.Instance.uiGameManager.SpawnDamageNumberMesh(UiManager.Instance.damageNumberStandard, damage, hitPosition);
-        SoundFileObject sfo = DestructibleResourceManager.Instance.SelectRandomLumberjackingSound();
+        SoundFileObject sfo = DestructibleResourceManager.Instance.SelectRandomLumberjackingSound(currentHealthPercent);
         AudioManager.PlaySound(sfo);
     }
 

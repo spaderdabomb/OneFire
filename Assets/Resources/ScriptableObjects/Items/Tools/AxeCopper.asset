@@ -63,7 +63,7 @@ MonoBehaviour:
   baseSellValue: 1
   itemType: 11
   itemRarity: 1
-  itemCategories: 265
+  itemCategories: 264
   item3DPrefab: {fileID: 4233051394700438405, guid: 6653b891e5af949458f5ad814cca1fb7,
     type: 3}
   itemSprite: {fileID: 21300000, guid: 50dd98d378073ae43ba80e04ab8810cd, type: 3}

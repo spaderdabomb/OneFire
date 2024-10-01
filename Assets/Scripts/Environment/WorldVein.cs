@@ -19,6 +19,10 @@ public class WorldVein : DamageableObject, IRespawnable
         base.Damage();
 
         float damage = GameObjectManager.Instance.playerStats.CalculateDamage(gameObject);
+        float currentHealthPercent = 0f;
+        if (HealthBar != null)
+            currentHealthPercent = (HealthBar.CurrentHealth + damage) / HealthBar.TotalHealth;
+
         ItemData itemDataCloned = veinData.itemCollected.CloneItemData();
         int newStackCount = (int)Mathf.Floor(veinData.orePerHealth * (damage + _damageRemainder));
         itemDataCloned.stackCount = newStackCount;
@@ -31,7 +35,7 @@ public class WorldVein : DamageableObject, IRespawnable
         DestructibleResourceManager.Instance.SpawnHitEffect(DestructibleResourceManager.Instance.miningeHitSplintersEffect, hitPosition);
         UiManager.Instance.uiGameManager.SpawnDamageNumberMesh(UiManager.Instance.damageNumberStandard, damage, hitPosition);
 
-        SoundFileObject sfo = DestructibleResourceManager.Instance.SelectRandomMiningSound();
+        SoundFileObject sfo = DestructibleResourceManager.Instance.SelectRandomMiningSound(currentHealthPercent);
         AudioManager.PlaySound(sfo);
     }
 

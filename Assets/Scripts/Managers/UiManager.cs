@@ -23,9 +23,12 @@ public class UiManager : MonoBehaviour
     public GameObject damageNumberStandard;
 
     [Header("UGUI")]
+    public Canvas bloomCanvas;
     public InteractPopup interactPopup;
     public UiGameManager uiGameManager;
+    public GameObject FishHookedProgressBarPrefab;
     private VisualElement uiGameManagerRoot;
+
 
     private void Awake()
     {

@@ -1,15 +1,12 @@
-using Sirenix.OdinInspector;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "FishData", menuName = "OneFire/Items/FishData")]
 public class FishData : ItemData
 {
-    float catchExp = 10f;
-    float escapeBonus = 1f;
+    [Header("Fish Parameters")]
+    public float catchExp = 10f;
+    public float escapeBonus = 1f;
+    public float timeToEscape = 10f;
 
     public override void OnValidate()
     {

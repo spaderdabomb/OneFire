@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8bce2c44ba825540963a4f1553cecbb, type: 3}
+  m_Name: GrassyBiome_T1
+  m_EditorClassIdentifier: 
+  fishInLake:
+  - {fileID: 11400000, guid: 18860a4c1d871a943928a9d8b4687003, type: 2}
+  - {fileID: 11400000, guid: e8af65f8613a44848b948f08b4d070b9, type: 2}

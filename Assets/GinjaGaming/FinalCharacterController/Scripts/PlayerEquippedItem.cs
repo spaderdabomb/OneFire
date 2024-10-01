@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class PlayerEquippedItem : SerializedMonoBehaviour
 {
     [SerializeField] private Transform armature;
@@ -66,11 +67,11 @@ public class PlayerEquippedItem : SerializedMonoBehaviour
     }
 
     public AnimationClip GetAttackAnimationFromActiveItem()
-    {   
+    {
         if (ActiveItemData == null)
             return itemTypeToAnimationClipDict[ItemData.ItemType.None];
 
-        if (ActiveItemData.itemCategories.HasFlag(ItemData.ItemCategory.Wieldable))
+        if (ActiveItemData is WieldableItemData)
             return itemTypeToAnimationClipDict[ActiveItemData.itemType];
 
         return itemTypeToAnimationClipDict[ItemData.ItemType.None];

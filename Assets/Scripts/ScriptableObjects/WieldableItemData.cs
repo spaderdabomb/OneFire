@@ -20,8 +20,11 @@ public class WieldableItemData : ItemData
         if (!PrefabUtility.IsPartOfPrefabAsset(itemHeldPrefab))
             Debug.LogError($"{this} {itemHeldPrefab} is a GameObject - set to prefab! ");
 
-        if (itemHeldPrefab.GetComponent<WorldItem>() != null && itemCategories.HasFlag(ItemCategory.Wieldable))
-            Debug.LogError($"{this} {itemHeldPrefab} is a WorldItem and wieldable - remove component!");
+        GameObject itemHeldObj = PrefabUtility.GetCorrespondingObjectFromSource(itemHeldPrefab);
+        GameObject worldItemObj = PrefabUtility.GetCorrespondingObjectFromSource(item3DPrefab);
+
+        if (itemHeldObj != item3DPrefab)
+            Debug.Log($"{this} Item held and world item are not from same prefab root ");
 #endif
     }
 }

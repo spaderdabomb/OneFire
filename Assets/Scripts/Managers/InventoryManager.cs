@@ -15,6 +15,7 @@ using JSAM;
 using System.Linq;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using GinjaGaming.FinalCharacterController;
 
 [DefaultExecutionOrder(-3)]
 public class InventoryManager : SerializedMonoBehaviour
@@ -499,44 +500,52 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
 
+    private void OnSelectSlot(InputAction.CallbackContext context, int slotIndex)
+    {
+        if (GameObjectManager.Instance.playerState.CurrentPlayerActionState == PlayerActionState.Attacking)
+            return;
+
+        PlayerHotbarInventory.SetSelectedIndex(slotIndex);
+    }
+
     private void OnSelectSlot7(InputAction.CallbackContext context)
     {
-        PlayerHotbarInventory.SetSelectedIndex(7);
+        OnSelectSlot(context, 7);
     }
 
     private void OnSelectSlot6(InputAction.CallbackContext context)
     {
-        PlayerHotbarInventory.SetSelectedIndex(6);
+        OnSelectSlot(context, 6);
     }
 
     private void OnSelectSlot5(InputAction.CallbackContext context)
     {
-        PlayerHotbarInventory.SetSelectedIndex(5);
+        OnSelectSlot(context, 5);
     }
 
     private void OnSelectSlot4(InputAction.CallbackContext context)
     {
-        PlayerHotbarInventory.SetSelectedIndex(4);
+        OnSelectSlot(context, 4);
     }
 
     private void OnSelectSlot3(InputAction.CallbackContext context)
     {
-        PlayerHotbarInventory.SetSelectedIndex(3);
+        OnSelectSlot(context, 3);
     }
 
     private void OnSelectSlot2(InputAction.CallbackContext context)
     {
-        PlayerHotbarInventory.SetSelectedIndex(2);
+        OnSelectSlot(context, 2);
     }
 
     private void OnSelectSlot1(InputAction.CallbackContext context)
     {
-        PlayerHotbarInventory.SetSelectedIndex(1);
+        OnSelectSlot(context, 1);
     }
 
     private void OnSelectSlot0(InputAction.CallbackContext context)
     {
-        PlayerHotbarInventory.SetSelectedIndex(0);
+        OnSelectSlot(context, 0);
     }
     #endregion
 

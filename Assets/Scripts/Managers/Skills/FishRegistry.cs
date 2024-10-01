@@ -6,7 +6,7 @@ using UnityEngine;
 [InitializeOnLoad]
 public static class FishRegistry
 {
-    private static Dictionary<string, FishData> fishDictionary = new Dictionary<string, FishData>();
+    public static Dictionary<string, FishData> fishDictionary = new Dictionary<string, FishData>();
 
     static FishRegistry()
     {

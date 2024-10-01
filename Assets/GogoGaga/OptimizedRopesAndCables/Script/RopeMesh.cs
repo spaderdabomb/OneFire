@@ -94,7 +94,7 @@ namespace GogoGaga.OptimizedRopesAndCables
             if (rope.StartPoint == null || rope.EndPoint == null)
             {
                 isStartOrEndPointMissing = true;
-                Debug.LogError("StartPoint or EndPoint is not assigned.", gameObject);
+                // Debug.LogError("StartPoint or EndPoint is not assigned.", gameObject);
             }
             else
             {

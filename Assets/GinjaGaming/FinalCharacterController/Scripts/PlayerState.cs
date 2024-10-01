@@ -91,6 +91,7 @@ namespace GinjaGaming.FinalCharacterController
         RodCharging = 1,
         RodReleased = 2,
         BobInWater = 3,
-        FishOnLine = 4,
+        FishSpawned = 4,
+        FishHooked = 5,
     }
 }

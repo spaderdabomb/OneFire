@@ -101,7 +101,6 @@ public class ItemData : SerializedScriptableObject
         Common,
         Uncommon,
         Rare,
-        Special,
         Epic,
         Legendary,
         Mythic
@@ -137,7 +136,7 @@ public class ItemData : SerializedScriptableObject
     public enum ItemCategory
     {
         None = 0,
-        Wieldable = 1,
+        Placeholder01 = 1,
         Fishing = 2,
         Consumable = 4,
         Weapon = 8,

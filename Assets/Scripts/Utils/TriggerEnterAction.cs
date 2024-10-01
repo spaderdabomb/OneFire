@@ -9,7 +9,7 @@ public class TriggerEnterAction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.attachedRigidbody != null && other.gameObject.layer == layerToDetect)
+        if (other.gameObject.layer == layerToDetect)
         {
             onTriggerEntered?.Invoke();
         }

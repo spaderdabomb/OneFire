@@ -88,7 +88,7 @@ namespace GinjaGaming.FinalCharacterController
             AnimationClip newClip = _playerEquippedItem.GetAttackAnimationFromActiveItem();
             AnimatorOverrideController tempOverrideController = new AnimatorOverrideController(overrideController);
 
-            overrideController["PunchRight_EVENT"] = tempOverrideController[newClip.name];
+            overrideController["PunchRight_EVENT"] = tempOverrideController[newClip.name]; 
             _animator.runtimeAnimatorController = overrideController;
         }
 

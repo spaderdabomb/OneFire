@@ -79,24 +79,27 @@ public class DestructibleResourceManager : MonoBehaviour
         worldVein.ReactivateObject();
     }
 
-    public SoundFileObject SelectRandomLumberjackingSound()
+    public SoundFileObject SelectRandomLumberjackingSound(float healthPercent)
     {
-        (SoundFileObject sfo, int index) = SelectRandomSound(_lumberjackingSounds, _lastLumberjackingSoundIndex);
+        (SoundFileObject sfo, int index) = SelectRandomSound(_lumberjackingSounds, _lastLumberjackingSoundIndex, healthPercent);
         _lastLumberjackingSoundIndex = index;
 
         return sfo;
     }
 
-    public SoundFileObject SelectRandomMiningSound()
+    public SoundFileObject SelectRandomMiningSound(float healthPercent)
     {
-        (SoundFileObject sfo, int index) = SelectRandomSound(_miningSounds, _lastMiningSoundIndex);
+        (SoundFileObject sfo, int index) = SelectRandomSound(_miningSounds, _lastMiningSoundIndex, healthPercent);
         _lastMiningSoundIndex = index;
 
         return sfo;
     }
 
-    private (SoundFileObject, int) SelectRandomSound(SoundFileObject[] sounds, int lastIndex)
+    private (SoundFileObject, int) SelectRandomSound(SoundFileObject[] sounds, int lastIndex, float healthPercent)
     {
+        if (healthPercent == 1f)
+            return (sounds[0], 0);
+
         int newIndex;
         do
         {

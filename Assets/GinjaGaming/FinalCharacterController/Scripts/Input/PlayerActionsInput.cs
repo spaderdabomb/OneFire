@@ -139,7 +139,7 @@ namespace GinjaGaming.FinalCharacterController
             if (_playerEquippedItem.ActiveItemData != null &&
                 _playerEquippedItem.ActiveItemData.itemType.HasFlag(ItemData.ItemType.FishingRod))
             {
-                _playerState.SetPlayerActionState(PlayerActionState.Fishing);
+                OnFishingConfirmedPressed();
             }
             else
             {
@@ -155,6 +155,20 @@ namespace GinjaGaming.FinalCharacterController
             if (_playerState.CurrentPlayerActionState == PlayerActionState.Fishing)
             {
                 FishingManager.Instance.StopFishing();
+            }
+        }
+
+        public void OnFishingConfirmedPressed()
+        {
+            if (_playerState.CurrentPlayerActionState != PlayerActionState.Fishing)
+            {
+                _playerState.SetPlayerActionState(PlayerActionState.Fishing);
+                return;
+            }
+
+            if (_playerState.CurrentPlayerFishingState == PlayerFishingState.FishSpawned)
+            {
+                FishingManager.Instance.HookFish();
             }
         }
 

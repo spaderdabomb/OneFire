@@ -46,19 +46,19 @@ public class StructurePlacer : MonoBehaviour
     private void OnEnable()
     {
         InputManager.Instance.RegisterCallback("PlaceObject", performedCallback: OnPlaceObject);
-        InventoryManager.Instance.OnHotbarItemSelectedChanged += TryEnterPlacementMode;
+        InventoryManager.Instance.OnHotbarItemSelectedChanged += SetPlacementMode;
     }
 
     private void OnDisable()
     {
         InputManager.Instance.UnregisterCallback("PlaceObject");
-        InventoryManager.Instance.OnHotbarItemSelectedChanged -= TryEnterPlacementMode;
+        InventoryManager.Instance.OnHotbarItemSelectedChanged -= SetPlacementMode;
     }
 
     private void Start()
     {
         InventorySlot slot = InventoryManager.Instance.PlayerHotbarInventory.GetSelectedSlot();
-        TryEnterPlacementMode(slot);
+        SetPlacementMode(slot);
     }
 
     private void Update()
@@ -102,6 +102,8 @@ public class StructurePlacer : MonoBehaviour
         startPos.y += upwardOffset;
         Vector3 direction = Vector3.down;
 
+        Debug.DrawRay(startPos, direction, Color.red, 0.05f);
+
         return Physics.Raycast(startPos, direction, out hitInfo, maxDistance, placementSurfaceMask);
     }
 
@@ -116,7 +118,7 @@ public class StructurePlacer : MonoBehaviour
         PlaceStructure();
     }
 
-    public void TryEnterPlacementMode(InventorySlot inventorySlot)
+    public void SetPlacementMode(InventorySlot inventorySlot)
     {
         if (!inventorySlot.selected)
             return;
@@ -147,9 +149,10 @@ public class StructurePlacer : MonoBehaviour
         Destroy(previewStructure);
         previewStructure = null;
         UiManager.Instance.uiGameManager.structurePlacementMessage.Hide();
-        inPlacementMode = false;
-        _exitedPlacementModeLastFrame = true;
 
+        if (inPlacementMode)
+            _exitedPlacementModeLastFrame = true;
+        inPlacementMode = false;
     }
 
     public bool CanPlaceStructure()

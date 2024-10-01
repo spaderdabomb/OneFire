@@ -68,7 +68,7 @@ public partial class HealthBar
 
     public void AddHealth(float deltaHealth)
     {
-
+        CurrentHealth += deltaHealth;
     }
 
     public void SubtractHealth(float deltaHealth)
