@@ -13,10 +13,6 @@ public class FishHookedProgressBar : MonoBehaviour
     [SerializeField] private Image timeRemainingProgressBar;
     [SerializeField] private float yoffset = 0.5f;
 
-    [SerializeField] private Color startColor;
-    [SerializeField] private Color halfwayColor;
-    [SerializeField] private Color lastQuarterColor;
-
     private void OnEnable()
     {
         FishingManager.Instance.OnFishHooked += Initialize;
@@ -35,23 +31,6 @@ public class FishHookedProgressBar : MonoBehaviour
 
         _timeRemaining -= Time.deltaTime;
         timeRemainingProgressBar.fillAmount = _timeRemaining / _startTime;
-
-        if (timeRemainingProgressBar.fillAmount <= 0.25f)
-        {
-            timeRemainingProgressBar.material.color = lastQuarterColor;
-            timeRemainingProgressBar.material.SetColor("_EmissionColor", lastQuarterColor * 5.0f);
-
-        }
-        else if (timeRemainingProgressBar.fillAmount <= 0.5f)
-        {
-            timeRemainingProgressBar.material.color = halfwayColor;
-            timeRemainingProgressBar.material.SetColor("_EmissionColor", halfwayColor * 2.5f);
-        }
-        else
-        {
-            timeRemainingProgressBar.material.color = startColor;
-            timeRemainingProgressBar.material.SetColor("_EmissionColor", startColor * 3.0f);
-        }
     }
 
 

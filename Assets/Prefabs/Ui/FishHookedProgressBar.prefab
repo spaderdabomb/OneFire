@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4281348908217694556}
   - component: {fileID: 981266547567978342}
   - component: {fileID: 3819069666690238661}
+  - component: {fileID: -7197008926259395758}
   m_Layer: 13
   m_Name: FishHookedProgressBar
   m_TagString: Untagged
@@ -93,9 +94,22 @@ MonoBehaviour:
   uiElement: {fileID: 9173377029822790575}
   timeRemainingProgressBar: {fileID: 2905939043724255822}
   yoffset: 1.5
-  startColor: {r: 0.7490196, g: 0.5568628, b: 0, a: 1}
-  halfwayColor: {r: 0.7490196, g: 0.18039216, b: 0, a: 1}
-  lastQuarterColor: {r: 0.7490196, g: 0, b: 0, a: 1}
+--- !u!114 &-7197008926259395758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377595583225043987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98654a04a8e708c41814a28a0f9afb4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  targetSize: 12
+  minDistance: 1
+  maxDistance: 100
 --- !u!1 &3418262513121593952
 GameObject:
   m_ObjectHideFlags: 0
