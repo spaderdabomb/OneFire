@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 387bb779115d4184d9f0a74d40931c74, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d3956e4e98dfce47a5dcdc66f341a2d, type: 3}
   m_Name: FishingRodStandard
   m_EditorClassIdentifier: 
   serializationData:
@@ -70,3 +70,8 @@ MonoBehaviour:
   swingSound: {fileID: 11400000, guid: aa15c95aa8a101647a81a5eab9bd0fad, type: 2}
   itemHeldPrefab: {fileID: 8296813890055355180, guid: 3d389b3879a6dd5468a1418cd8c8d85a,
     type: 3}
+  rodSpeed: 1
+  baseHookTime: 10
+  missPenaltyTime: 1
+  segmentBonus: 0
+  fishingLevelRequired: 1

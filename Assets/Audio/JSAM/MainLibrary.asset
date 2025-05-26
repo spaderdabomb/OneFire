@@ -53,6 +53,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3605406d1ed790541b8a5574c351dbf8, type: 2}
   - {fileID: 11400000, guid: 5109e9c656ec5a249b1dcb1446032f3d, type: 2}
   - {fileID: 11400000, guid: aa15c95aa8a101647a81a5eab9bd0fad, type: 2}
+  - {fileID: 11400000, guid: 9971fc02f63bf2f4bb88741a845802ae, type: 2}
+  - {fileID: 11400000, guid: ee36f4bd0a42c184db470957243def0c, type: 2}
+  - {fileID: 11400000, guid: 0734f78ba31a9d64c8318094793bc525, type: 2}
+  - {fileID: 11400000, guid: e70b6f5d3a7c2a84e91df8422a65eeb7, type: 2}
   Music: []
   useCustomNames: 0
   generatedName: MainLibrary
@@ -103,6 +107,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3605406d1ed790541b8a5574c351dbf8, type: 2}
     - {fileID: 11400000, guid: 5109e9c656ec5a249b1dcb1446032f3d, type: 2}
     - {fileID: 11400000, guid: aa15c95aa8a101647a81a5eab9bd0fad, type: 2}
+    - {fileID: 11400000, guid: 9971fc02f63bf2f4bb88741a845802ae, type: 2}
+    - {fileID: 11400000, guid: ee36f4bd0a42c184db470957243def0c, type: 2}
+    - {fileID: 11400000, guid: 0734f78ba31a9d64c8318094793bc525, type: 2}
+    - {fileID: 11400000, guid: e70b6f5d3a7c2a84e91df8422a65eeb7, type: 2}
     foldout: 1
   musicCategoriesToList:
   - name: 

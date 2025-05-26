@@ -93,5 +93,6 @@ namespace GinjaGaming.FinalCharacterController
         BobInWater = 3,
         FishSpawned = 4,
         FishHooked = 5,
+        FishCaught = 6,
     }
 }

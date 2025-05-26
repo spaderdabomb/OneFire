@@ -23,7 +23,7 @@ public class WorldTree : DamageableObject, IRespawnable
         if (HealthBar != null)
             currentHealthPercent = (HealthBar.CurrentHealth + damage) / HealthBar.TotalHealth;
 
-        ItemData itemDataCloned = treeData.itemCollected.CloneItemData();
+        ItemData itemDataCloned = treeData.itemCollected.CloneItem();
         int newStackCount = (int)Mathf.Floor(treeData.logsPerHealth * (damage + _damageRemainder));
         itemDataCloned.stackCount = newStackCount;
         _damageRemainder = (_damageRemainder + damage) - newStackCount / treeData.logsPerHealth;
@@ -52,7 +52,7 @@ public class WorldTree : DamageableObject, IRespawnable
         if (transform.parent.GetComponent<LODGroup>() != null)
             transform.parent.gameObject.SetActive(false);
 
-        ItemData itemDataCloned = treeData.itemCollected.CloneItemData();
+        ItemData itemDataCloned = treeData.itemCollected.CloneItem();
         itemDataCloned.stackCount = treeData.logsWhenDestroyed;
         GameObjectManager.Instance.SpawnItem(itemDataCloned);
     }
@@ -68,7 +68,7 @@ public class WorldTree : DamageableObject, IRespawnable
     {
         base.DestroyObject();
 
-        ItemData itemDataCloned = treeData.itemCollected.CloneItemData();
+        ItemData itemDataCloned = treeData.itemCollected.CloneItem();
         itemDataCloned.stackCount = treeData.logsWhenDestroyed;
         GameObjectManager.Instance.SpawnItem(itemDataCloned);
     }

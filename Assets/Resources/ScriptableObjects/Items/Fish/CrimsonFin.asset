@@ -69,4 +69,5 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: ba25eac51a87b244c804a76ff4b0a08e, type: 3}
   catchExp: 50
   escapeBonus: 1
-  timeToEscape: 15
+  timeToEscape: 10
+  catchSegments: 3

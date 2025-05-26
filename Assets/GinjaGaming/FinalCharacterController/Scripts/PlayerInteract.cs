@@ -24,24 +24,32 @@ namespace GinjaGaming.FinalCharacterController
             _playerState = PrefabManager.Instance.player.GetComponent<PlayerState>();
         }
 
-        private void OnEnable()
+        private void Start()
+        {
+            RegisterCallbacks();
+
+            interactingObjects = new List<GameObject>();
+            damageableObjects = new List<GameObject>();
+            interactPopup = UiManager.Instance.interactPopup;
+        }
+
+        private void OnDestroy()
+        {
+            UnregisterCallbacks();
+        }
+
+        private void RegisterCallbacks()
         {
             InputManager.Instance.playerActionsInput.onInteract += PickUpItem;
             InputManager.Instance.playerActionsInput.OnPunchHit += Damage;
         }
 
-        private void OnDisable()
+        private void UnregisterCallbacks()
         {
             InputManager.Instance.playerActionsInput.onInteract -= PickUpItem;
             InputManager.Instance.playerActionsInput.OnPunchHit -= Damage;
         }
 
-        private void Start()
-        {
-            interactingObjects = new List<GameObject>();
-            damageableObjects = new List<GameObject>();
-            interactPopup = UiManager.Instance.interactPopup;
-        }
 
         private void Update()
         {

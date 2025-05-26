@@ -23,7 +23,7 @@ public class WorldVein : DamageableObject, IRespawnable
         if (HealthBar != null)
             currentHealthPercent = (HealthBar.CurrentHealth + damage) / HealthBar.TotalHealth;
 
-        ItemData itemDataCloned = veinData.itemCollected.CloneItemData();
+        ItemData itemDataCloned = veinData.itemCollected.CloneItem();
         int newStackCount = (int)Mathf.Floor(veinData.orePerHealth * (damage + _damageRemainder));
         itemDataCloned.stackCount = newStackCount;
         _damageRemainder = (_damageRemainder + damage) - newStackCount / veinData.orePerHealth;
@@ -52,7 +52,7 @@ public class WorldVein : DamageableObject, IRespawnable
         if (transform.parent.GetComponent<LODGroup>() != null)
             transform.parent.gameObject.SetActive(false);
 
-        ItemData itemDataCloned = veinData.itemCollected.CloneItemData();
+        ItemData itemDataCloned = veinData.itemCollected.CloneItem();
         itemDataCloned.stackCount = veinData.oreWhenDestroyed;
         GameObjectManager.Instance.SpawnItem(itemDataCloned);
     }
@@ -68,7 +68,7 @@ public class WorldVein : DamageableObject, IRespawnable
     {
         base.DestroyObject();
 
-        ItemData itemDataCloned = veinData.itemCollected.CloneItemData();
+        ItemData itemDataCloned = veinData.itemCollected.CloneItem();
         itemDataCloned.stackCount = veinData.oreWhenDestroyed;
         GameObjectManager.Instance.SpawnItem(itemDataCloned);
     }

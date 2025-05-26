@@ -43,22 +43,29 @@ public class StructurePlacer : MonoBehaviour
             Debug.LogError($"{validMaterial} not assigned to {this}");
     }
 
-    private void OnEnable()
+    private void Start()
+    {
+        RegisterCallbcaks();
+
+        InventorySlot slot = InventoryManager.Instance.PlayerHotbarInventory.GetSelectedSlot();
+        SetPlacementMode(slot);
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterCallbacks();
+    }
+
+    private void RegisterCallbcaks()
     {
         InputManager.Instance.RegisterCallback("PlaceObject", performedCallback: OnPlaceObject);
         InventoryManager.Instance.OnHotbarItemSelectedChanged += SetPlacementMode;
     }
 
-    private void OnDisable()
+    private void UnregisterCallbacks()
     {
         InputManager.Instance.UnregisterCallback("PlaceObject");
         InventoryManager.Instance.OnHotbarItemSelectedChanged -= SetPlacementMode;
-    }
-
-    private void Start()
-    {
-        InventorySlot slot = InventoryManager.Instance.PlayerHotbarInventory.GetSelectedSlot();
-        SetPlacementMode(slot);
     }
 
     private void Update()
@@ -123,7 +130,7 @@ public class StructurePlacer : MonoBehaviour
         if (!inventorySlot.selected)
             return;
 
-        if (inventorySlot.currentItemData == null || !inventorySlot.currentItemData.itemCategories.HasFlag(ItemData.ItemCategory.Structure))
+        if (inventorySlot.currentItemData == null || !inventorySlot.currentItemData.itemCategories.HasFlag(ItemCategory.Structure))
         {
             ExitPreviewMode();
             return;

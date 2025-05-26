@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ItemData;
 using UnityEngine.UIElements;
 using OneFireUi;
 using Random = UnityEngine.Random;
@@ -17,7 +16,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using GinjaGaming.FinalCharacterController;
 
-[DefaultExecutionOrder(-3)]
 public class InventoryManager : SerializedMonoBehaviour
 {
     public static InventoryManager Instance;
@@ -67,6 +65,8 @@ public class InventoryManager : SerializedMonoBehaviour
 
     private void Start()
     {
+        RegisterCallbacks();
+
         VisualElement playerInventoryRoot = UiManager.Instance.uiGameManager.OptionsMenuUi.inventoryMenu.GetPlayerInventoryRoot();
         VisualElement equipmentInventoryRoot = UiManager.Instance.uiGameManager.OptionsMenuUi.inventoryMenu.GetEquipmentInventoryRoot();
         VisualElement hotbarInventoryRoot = UiManager.Instance.uiGameManager.GetPlayerHotbarInventoryRoot();
@@ -83,11 +83,19 @@ public class InventoryManager : SerializedMonoBehaviour
         GhostIcon = new GhostIcon(ghostIconAsset);
     }
 
-    private void OnEnable()
+    private void OnDestroy()
     {
+        UnregisterCallbacks();
+    }
+
+    private void RegisterCallbacks()
+    {
+        FishingManager.Instance.OnFishCaught += AddOrSpawnItem;
+
         InputManager.Instance.RegisterCallback("DropItem", OnDropItem);
         InputManager.Instance.RegisterCallback("SplitItemHalf", OnTrySplitItem);
         InputManager.Instance.RegisterCallback("QuickMove", performedCallback: OnQuickMove);
+
         InputManager.Instance.RegisterCallback("SelectSlot0", performedCallback: OnSelectSlot0);
         InputManager.Instance.RegisterCallback("SelectSlot1", performedCallback: OnSelectSlot1);
         InputManager.Instance.RegisterCallback("SelectSlot2", performedCallback: OnSelectSlot2);
@@ -98,11 +106,14 @@ public class InventoryManager : SerializedMonoBehaviour
         InputManager.Instance.RegisterCallback("SelectSlot7", performedCallback: OnSelectSlot7);
     }
 
-    private void OnDisable()
+    private void UnregisterCallbacks()
     {
+        FishingManager.Instance.OnFishCaught -= AddOrSpawnItem;
+
         InputManager.Instance.UnregisterCallback("DropItem");
         InputManager.Instance.UnregisterCallback("SplitItemHalf");
         InputManager.Instance.UnregisterCallback("QuickMove");
+
         InputManager.Instance.UnregisterCallback("SelectSlot0");
         InputManager.Instance.UnregisterCallback("SelectSlot1");
         InputManager.Instance.UnregisterCallback("SelectSlot2");
@@ -346,6 +357,24 @@ public class InventoryManager : SerializedMonoBehaviour
         return baseItemDataArray;
     }
 
+    public void AddOrSpawnItem(ItemData itemData)
+    {
+        AddOrSpawnItem(itemData, true);
+    }
+
+    public void AddOrSpawnItem(ItemData itemData, bool showNotification = true)
+    {
+        ItemData clonedItemData = itemData.CloneItem();
+        int itemsRemaining = TryAddItem(clonedItemData, showNotification);
+        if (itemsRemaining > 0)
+        {
+            ItemData spawnedItemData = clonedItemData.CloneItem();
+            GameObjectManager.Instance.SpawnItem(spawnedItemData);
+        }
+    }
+
+    // For trying to add an existing item to inventory (such as ground item)
+    // Returns items remaining, must be handled separately
     public int TryAddItem(ItemData itemData, bool showNotification = true)
     {
         int startingItems = itemData.stackCount;
@@ -354,7 +383,7 @@ public class InventoryManager : SerializedMonoBehaviour
         // Add remaining items to inventory
         if (itemsRemaining > 0)
         {
-            ItemData playerInventoryItemData = itemData.CloneItemData();
+            ItemData playerInventoryItemData = itemData.CloneItem();
             playerInventoryItemData.stackCount = itemsRemaining;
 
             itemsRemaining = PlayerInventory.TryAddItem(playerInventoryItemData);
@@ -363,7 +392,7 @@ public class InventoryManager : SerializedMonoBehaviour
         // Inventory not full
         if (startingItems != itemsRemaining)
         {
-            ItemData itemDataClone = itemData.CloneItemData();
+            ItemData itemDataClone = itemData.CloneItem();
             itemDataClone.stackCount = startingItems - itemsRemaining;
             OnAddedItem?.Invoke(itemDataClone, showNotification);
         }
@@ -474,7 +503,7 @@ public class InventoryManager : SerializedMonoBehaviour
         if (!tempSlot.ContainsItem())
             return;
 
-        ItemData itemDataClone = tempSlot.currentItemData.CloneItemData();
+        ItemData itemDataClone = tempSlot.currentItemData.CloneItem();
         int startingStackCount = itemDataClone.stackCount;
         Type inventoryType = tempSlot.parentContainer.GetType();
 

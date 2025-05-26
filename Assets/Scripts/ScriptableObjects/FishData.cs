@@ -7,6 +7,7 @@ public class FishData : ItemData
     public float catchExp = 10f;
     public float escapeBonus = 1f;
     public float timeToEscape = 10f;
+    public int catchSegments = 3;
 
     public override void OnValidate()
     {

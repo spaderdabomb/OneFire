@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using PlayerInputManager = GinjaGaming.FinalCharacterController.PlayerInputManager;
 
-[DefaultExecutionOrder(-4)]
+// [DefaultExecutionOrder(-4)]
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;

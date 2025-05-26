@@ -71,7 +71,7 @@ namespace OneFireUi
             while (itemsRemaining > 0)
             {
                 InventorySlot inventorySlot = inventorySlots[slotIndex];
-                ItemData itemDataClone = itemData.CloneItemData();
+                ItemData itemDataClone = itemData.CloneItem();
                 itemDataClone.stackCount = itemsRemaining;
                 itemsRemaining = AddItem(itemDataClone, inventorySlot);
 
@@ -127,7 +127,7 @@ namespace OneFireUi
             /*        if (!CanMoveItem(dragEndSlot, dragBeginSlot))
                         return;*/
 
-            ItemData dragBeginItemData = dragBeginSlot.currentItemData.CloneItemData();
+            ItemData dragBeginItemData = dragBeginSlot.currentItemData.CloneItem();
 
             // If target slot has no items
             if (dragEndSlot.currentItemData == null)
@@ -175,7 +175,7 @@ namespace OneFireUi
             if (!ItemExistsInHoverSlot())
                 return;
 
-            ItemData newItemData = currentHoverSlot.currentItemData.CloneItemData();
+            ItemData newItemData = currentHoverSlot.currentItemData.CloneItem();
             int firstSlot = GetFirstFreeSlot(newItemData, mergeSameItems: false);
             if (firstSlot == -1 || currentHoverSlot.currentItemData.stackCount == 1)
                 return;
@@ -278,8 +278,8 @@ namespace OneFireUi
                 if (baseItem != null)
                 {
                     ItemData itemDataAsset = ItemRegistry.GetItem(baseItem.itemID); // ItemExtensions.GetItemData(baseItem.itemID);
-                    ItemData newItem = itemDataAsset.GetItemDataInstantiated();
-                    newItem.SetItemDataToBaseItemData(baseItem);
+                    ItemData newItem = itemDataAsset.GetItemInstantiated();
+                    newItem.SetItemToBaseItem(baseItem);
                     AddItem(newItem, inventorySlots[i]);
                 }
             }

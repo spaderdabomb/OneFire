@@ -135,7 +135,7 @@ public class WorldItem : MonoBehaviour
 
     public void PickUpItem()
     {
-        ItemData clonedItemData = itemData.CloneItemData();
+        ItemData clonedItemData = itemData.CloneItem();
         int itemsRemaining = InventoryManager.Instance.TryAddItem(clonedItemData);
 
         if (itemsRemaining == itemData.stackCount)

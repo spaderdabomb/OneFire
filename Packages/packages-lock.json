@@ -7,6 +7,16 @@
       "dependencies": {},
       "hash": "6d93b0b5050443d4a9f71cd804afb0b2bbcb1386"
     },
+    "com.coffee.ui-particle": {
+      "version": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0"
+      },
+      "hash": "2b3cec69aceddbddf1c5307d28300c3328161ab4"
+    },
     "com.quickeye.ui-toolkit-plus": {
       "version": "https://github.com/ErnSur/UI-Toolkit-Plus.git",
       "depth": 0,

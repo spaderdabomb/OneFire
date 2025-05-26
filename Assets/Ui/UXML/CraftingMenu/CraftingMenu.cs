@@ -259,23 +259,12 @@ public partial class CraftingMenu : IPersistentData
     private void FinishCraftingItem()
     {
         RecipeData recipeData = GetCurrentRecipe();
-        AddOrSpawnItem(recipeData.itemResult);
+        InventoryManager.Instance.AddOrSpawnItem(recipeData.itemResult);
 
         NumItemsToCraft -= 1;
         _itemsRemainingToCraft -= 1;
 
         EndCraftingInterface();
-    }
-
-    private void AddOrSpawnItem(ItemData itemData, bool showNotification = true)
-    {
-        ItemData clonedItemData = itemData.CloneItemData();
-        int itemsRemaining = InventoryManager.Instance.TryAddItem(clonedItemData, showNotification);
-        if (itemsRemaining > 0)
-        {
-            ItemData spawnedItemData = clonedItemData.CloneItemData();
-            GameObjectManager.Instance.SpawnItem(spawnedItemData);
-        }
     }
 
     private void EndCraftingInterface()
@@ -301,9 +290,9 @@ public partial class CraftingMenu : IPersistentData
     {
         foreach (var materialContainer in materialContainers)
         {
-            ItemData clonedItemData = materialContainer.ItemData.CloneItemData();
+            ItemData clonedItemData = materialContainer.ItemData.CloneItem();
             clonedItemData.stackCount = materialContainer.ItemQuantity * recipeQuantity;
-            AddOrSpawnItem(clonedItemData, false);
+            InventoryManager.Instance.AddOrSpawnItem(clonedItemData, false);
         }
     }
 

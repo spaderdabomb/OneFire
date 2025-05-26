@@ -1,4 +1,5 @@
 using Cinemachine;
+using JSAM;
 using OneFireUi;
 using System;
 using System.Collections;
@@ -125,7 +126,7 @@ namespace GinjaGaming.FinalCharacterController
         {
             // Fishing mouse click released
             if (_playerEquippedItem.ActiveItemData != null &&
-                _playerEquippedItem.ActiveItemData.itemType.HasFlag(ItemData.ItemType.FishingRod) &&
+                _playerEquippedItem.ActiveItemData.itemType.HasFlag(ItemType.FishingRod) &&
                 _playerState.CurrentPlayerFishingState == PlayerFishingState.RodCharging)
             {
                 _playerState.SetPlayerFishingState(PlayerFishingState.RodReleased);
@@ -137,7 +138,7 @@ namespace GinjaGaming.FinalCharacterController
         public void OnAttackPressed()
         {
             if (_playerEquippedItem.ActiveItemData != null &&
-                _playerEquippedItem.ActiveItemData.itemType.HasFlag(ItemData.ItemType.FishingRod))
+                _playerEquippedItem.ActiveItemData.itemType.HasFlag(ItemType.FishingRod))
             {
                 OnFishingConfirmedPressed();
             }
@@ -169,6 +170,10 @@ namespace GinjaGaming.FinalCharacterController
             if (_playerState.CurrentPlayerFishingState == PlayerFishingState.FishSpawned)
             {
                 FishingManager.Instance.HookFish();
+            }
+            else if (_playerState.CurrentPlayerFishingState == PlayerFishingState.FishHooked)
+            {
+                FishingManager.Instance.ReelFishPressed();
             }
         }
 

@@ -23,10 +23,10 @@ public class UiManager : MonoBehaviour
     public GameObject damageNumberStandard;
 
     [Header("UGUI")]
-    public Canvas bloomCanvas;
+    public Canvas overlayCanvas;
+    public Canvas perspectiveCanvas;
     public InteractPopup interactPopup;
     public UiGameManager uiGameManager;
-    public GameObject FishHookedProgressBarPrefab;
     private VisualElement uiGameManagerRoot;
 
 
@@ -40,7 +40,10 @@ public class UiManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
 
+    private void Start()
+    {
         uiGameManagerRoot = uiManagerDocument.rootVisualElement;
         uiGameManager.Init(uiGameManagerRoot);
     }

@@ -6,10 +6,9 @@ using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-using static ItemData;
 using static UnityEngine.GraphicsBuffer;
 
-[CreateAssetMenu(fileName = "ItemData", menuName = "OneFire/Items/ItemData")]
+[CreateAssetMenu(fileName = "Item", menuName = "OneFire/Items/Item")]
 public class ItemData : SerializedScriptableObject
 {
     [Header("Details")]
@@ -63,10 +62,10 @@ public class ItemData : SerializedScriptableObject
         }
     }
 
-    public void SetItemDataToBaseItemData(BaseItemData baseItemData)
+    public void SetItemToBaseItem(BaseItemData baseItem)
     {
-        itemID = baseItemData.itemID;
-        stackCount = baseItemData.stackCount;
+        itemID = baseItem.itemID;
+        stackCount = baseItem.stackCount;
     }
 
     public interface IGenericItemStat
@@ -94,59 +93,59 @@ public class ItemData : SerializedScriptableObject
         public ItemStat ItemStat => itemStat;
         public object GetValue() => value;
     }
+}
 
-    public enum ItemRarity
-    {
-        None,
-        Common,
-        Uncommon,
-        Rare,
-        Epic,
-        Legendary,
-        Mythic
-    }
+public enum ItemRarity
+{
+    None,
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary,
+    Mythic
+}
 
-    public enum ItemType
-    {
-        None = 0,
-        // Misc
-        Food = 1,
-        Potion = 2,
-        // Outfit
-        Boots = 3,
-        Gloves = 4,
-        Head = 5,
-        Body = 6,
-        Legs = 7,
-        Cape = 8,
-        // Structures
-        CraftingStation = 9,
-        Chest = 10,
-        // Tools
-        Axe = 11,
-        Pickaxe = 12,
-        FishingRod = 13,
-        //Resources
-        Log = 20,
-        Ore = 21,
-        Bar = 22,
-    }
+public enum ItemType
+{
+    None = 0,
+    // Misc
+    Food = 1,
+    Potion = 2,
+    // Outfit
+    Boots = 3,
+    Gloves = 4,
+    Head = 5,
+    Body = 6,
+    Legs = 7,
+    Cape = 8,
+    // Structures
+    CraftingStation = 9,
+    Chest = 10,
+    // Tools
+    Axe = 11,
+    Pickaxe = 12,
+    FishingRod = 13,
+    //Resources
+    Log = 20,
+    Ore = 21,
+    Bar = 22,
+}
 
-    [Flags]
-    public enum ItemCategory
-    {
-        None = 0,
-        Placeholder01 = 1,
-        Fishing = 2,
-        Consumable = 4,
-        Weapon = 8,
-        Outfit = 16,
-        Accessory = 32,
-        Tackle = 64,
-        Structure = 128,
-        Tool = 256,
-        Material = 512,
-    }
+[Flags]
+public enum ItemCategory
+{
+    None = 0,
+    Placeholder01 = 1,
+    Fishing = 2,
+    Consumable = 4,
+    Weapon = 8,
+    Outfit = 16,
+    Accessory = 32,
+    Tackle = 64,
+    Structure = 128,
+    Tool = 256,
+    Material = 512,
 }
 
 public class BaseItemData
@@ -164,7 +163,7 @@ public class BaseItemData
 public static class ItemExtensions
 {
     private static readonly Dictionary<string, ItemData> _items = new Dictionary<string, ItemData>();
-    public static ItemData GetItemData(string uniqueID)
+    public static ItemData GetItem(string uniqueID)
     {
         if (_items.Count <= 0)
         {
@@ -184,18 +183,18 @@ public static class ItemExtensions
         return null;
     }
 
-    public static ItemData GetItemDataInstantiated(this ItemData itemData)
+    public static ItemData GetItemInstantiated(this ItemData itemData)
     {
-        ItemData originalItemData = ItemRegistry.GetItem(itemData.itemID); // GetItemData(itemData.itemID);
-        if (originalItemData == null)
+        ItemData originalItem = ItemRegistry.GetItem(itemData.itemID); // GetItem(itemData.itemID);
+        if (originalItem == null)
             return null;
 
-        ItemData spawnedItemData = ScriptableObject.Instantiate(originalItemData);
+        ItemData spawnedItem = ScriptableObject.Instantiate(originalItem);
 
-        return spawnedItemData;
+        return spawnedItem;
     }
 
-    public static ItemData CloneItemData(this ItemData data)
+    public static ItemData CloneItem(this ItemData data)
     {
         ItemData spawnedData = ScriptableObject.Instantiate(data);
         return spawnedData;

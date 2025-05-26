@@ -11,7 +11,7 @@ public class PlayerEquippedItem : SerializedMonoBehaviour
 {
     [SerializeField] private Transform armature;
     [SerializeField] private Transform itemContainerR;
-    [SerializeField] private Dictionary<ItemData.ItemType, AnimationClip> itemTypeToAnimationClipDict = new();
+    [SerializeField] private Dictionary<ItemType, AnimationClip> itemTypeToAnimationClipDict = new();
 
     [Header("Weapon Effects")]
     [SerializeField] private ParticleSystem weaponSlash;
@@ -19,12 +19,22 @@ public class PlayerEquippedItem : SerializedMonoBehaviour
     [field: SerializeField] public GameObject ActiveItemObject { get; private set; } = null;
     [field: SerializeField] public ItemData ActiveItemData { get; private set; } = null;
 
-    private void OnEnable()
+    private void Start()
+    {
+        RegisterCallbacks();
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterCallbacks();
+    }
+
+    private void RegisterCallbacks()
     {
         InventoryManager.Instance.OnHotbarItemSelectedChanged += HandleItemSelect;
     }
 
-    private void OnDisable()
+    private void UnregisterCallbacks()
     {
         InventoryManager.Instance.OnHotbarItemSelectedChanged -= HandleItemSelect;
     }
@@ -53,7 +63,7 @@ public class PlayerEquippedItem : SerializedMonoBehaviour
         spawnedItemHeld.transform.rotation = itemContainerR.rotation * itemHeldPrefab.transform.rotation;
 
         ActiveItemObject = spawnedItemHeld;
-        ActiveItemData = itemData.CloneItemData();
+        ActiveItemData = itemData.CloneItem();
     }
 
     public void UnEquipItem()
@@ -69,12 +79,12 @@ public class PlayerEquippedItem : SerializedMonoBehaviour
     public AnimationClip GetAttackAnimationFromActiveItem()
     {
         if (ActiveItemData == null)
-            return itemTypeToAnimationClipDict[ItemData.ItemType.None];
+            return itemTypeToAnimationClipDict[ItemType.None];
 
         if (ActiveItemData is WieldableItemData)
             return itemTypeToAnimationClipDict[ActiveItemData.itemType];
 
-        return itemTypeToAnimationClipDict[ItemData.ItemType.None];
+        return itemTypeToAnimationClipDict[ItemType.None];
     }
 
     public void SpawnSlashEffect()

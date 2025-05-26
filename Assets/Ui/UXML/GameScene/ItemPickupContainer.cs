@@ -25,13 +25,23 @@ namespace Game.Ui
             timeElapsedList = new List<float>();
         }
 
-        private void OnEnable()
+        private void Start()
+        {
+            RegisterCallbacks();
+        }
+
+        private void OnDestroy()
+        {
+            UnregisterCallbacks();
+        }
+
+        private void RegisterCallbacks()
         {
             InventoryManager.Instance.OnAddedItem += ShowPickupNotification;
             InventoryManager.Instance.OnInventoryFull += AddInventoryFullNotification;
         }
 
-        private void OnDisable()
+        private void UnregisterCallbacks()
         {
             InventoryManager.Instance.OnAddedItem -= ShowPickupNotification;
             InventoryManager.Instance.OnInventoryFull -= AddInventoryFullNotification;

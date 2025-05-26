@@ -33,7 +33,9 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - Cinemachine
+    - Coffee.UIParticle
     - DamageNumbersPro
+    - ParticleImage
     - QuickEye.UIToolkit
     showAdvancedSettings: 1
   addMgrToSceneAutomatically: 0

@@ -8,16 +8,17 @@ using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
 
-[DefaultExecutionOrder(-2)]
 public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
 {
     public static GameObjectManager Instance;
 
     public GameObject player;
     public Camera playerCamera;
+    public Camera uiCamera;
     public PlayerInteract playerInteract;
     public PlayerStats playerStats;
     public PlayerState playerState;
+    public PlayerAnimation playerAnimation;
     public PlayerEquippedItem playerEquippedItem;
 
     public List<WorldStructure> chestList = new();
@@ -46,18 +47,10 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
         DontDestroyOnLoad(gameObject);
     }
 
-    private void OnEnable()
-    {
-        InventoryManager.Instance.OnDroppedItem += SpawnItem;
-    }
-
-    private void OnDisable()
-    {
-        InventoryManager.Instance.OnDroppedItem -= SpawnItem;
-    }
-
     private void Start()
     {
+        RegisterCallbacks();
+
         LoadData();
         AddToSaveable();
 
@@ -66,6 +59,23 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
 
         saveableStructureDataDict.Add(typeof(ChestData), saveableChestList);
         saveableStructureDataDict.Add(typeof(CraftingStationData), saveableCraftingStationList);
+
+        uiCamera.depth = 99;
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterCallbacks();
+    }
+
+    private void RegisterCallbacks()
+    {
+        InventoryManager.Instance.OnDroppedItem += SpawnItem;
+    }
+
+    private void UnregisterCallbacks()
+    {
+        InventoryManager.Instance.OnDroppedItem -= SpawnItem;
     }
 
     public void AddWorldStructure(WorldStructure worldStructure)
@@ -84,7 +94,7 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
         if (itemData.stackCount == 0)
             return;
 
-        ItemData itemDataCloned = itemData.CloneItemData();
+        ItemData itemDataCloned = itemData.CloneItem();
         GameObject newItemSpawned = Instantiate(itemDataCloned.item3DPrefab, itemContainer.transform);
         WorldItem newItemSpanwedInst = newItemSpawned.GetComponent<WorldItem>();
         newItemSpanwedInst.InitItemData(itemDataCloned);

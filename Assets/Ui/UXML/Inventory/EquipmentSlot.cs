@@ -1,6 +1,5 @@
 using UnityEngine.UIElements;
 using UnityEngine;
-using ItemType = ItemData.ItemType;
 
 namespace OneFireUi
 {

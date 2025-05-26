@@ -7,7 +7,6 @@ using GinjaGaming.FinalCharacterController;
 using JSAM;
 using Sirenix.OdinInspector;
 
-[DefaultExecutionOrder(-1)]
 public class InteractingObject : MonoBehaviour
 {
     [HideInInspector] public PlayerInteract playerInteract;
@@ -16,7 +15,7 @@ public class InteractingObject : MonoBehaviour
     public string DisplayString { get; set; } = string.Empty;
     public string DisplayPretext { get; set; } = string.Empty;
 
-    private void Awake()
+    private void Start()
     {
         playerInteract = GameObjectManager.Instance.playerInteract;
 

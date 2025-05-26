@@ -34,7 +34,11 @@
         HitTree_01,
         HitTree_02,
         HitTree_03,
-        SwingLight
+        SwingLight,
+        Success,
+        Miss,
+        Complete,
+        Splash_CatchFish
     }
     public enum MainLibraryMusic {
     }

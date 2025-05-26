@@ -1,6 +1,5 @@
 using UnityEngine.UIElements;
 using UnityEngine;
-using static ItemData;
 using System.Collections.Generic;
 
 namespace OneFireUi

@@ -34,14 +34,14 @@ public class PlayerStats : MonoBehaviour
         bool weaponIsNull = _playerEquippedItem.ActiveItemData != null;
         if (targetObject.GetComponent<WorldTree>() != null)
         {
-            if (weaponIsNull && _playerEquippedItem.ActiveItemData.itemType == ItemData.ItemType.Axe)
+            if (weaponIsNull && _playerEquippedItem.ActiveItemData.itemType == ItemType.Axe)
             {
                 objectDamage *= _axeDamageOnTreeMultiplier;
             } 
         }
         else if (targetObject.GetComponent<WorldVein>() != null)
         {
-            if (weaponIsNull && _playerEquippedItem.ActiveItemData.itemType == ItemData.ItemType.Pickaxe)
+            if (weaponIsNull && _playerEquippedItem.ActiveItemData.itemType == ItemType.Pickaxe)
             {
                 objectDamage *= _pickaxeDamageOnVeinMultiplier;
             }

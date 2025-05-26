@@ -1,3 +1,4 @@
+using JSAM;
 using OneFireUi;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +32,8 @@ namespace GinjaGaming.FinalCharacterController
 
         // Fishing
         private static int canStartFishingTriggerHash = Animator.StringToHash("canStartFishingTrigger");
+        private static int canReelFishingTriggerHash = Animator.StringToHash("canReelFishingTrigger");
+        private static int isFishCaughtHash = Animator.StringToHash("isFishCaught");
 
         // Actions
         private static int isAttackingHash = Animator.StringToHash("isAttacking");
@@ -66,12 +69,22 @@ namespace GinjaGaming.FinalCharacterController
             interruptibleActionHashes = new int[] { isGatheringHash };
         }
 
-        private void OnEnable()
+        private void Start()
+        {
+            RegisterCallbacks();
+        }
+
+        private void OnDestroy()
+        {
+            UnregisterCallbacks();
+        }
+
+        private void RegisterCallbacks()
         {
             InventoryManager.Instance.OnHotbarItemSelectedChanged += UpdateAttackAnimation;
         }
 
-        private void OnDisable()
+        private void UnregisterCallbacks()
         {
             InventoryManager.Instance.OnHotbarItemSelectedChanged -= UpdateAttackAnimation;
         }
@@ -119,6 +132,7 @@ namespace GinjaGaming.FinalCharacterController
             bool isRodCharging = _playerState.CurrentPlayerFishingState == PlayerFishingState.RodCharging;
             bool isRodReleased = _playerState.CurrentPlayerFishingState == PlayerFishingState.RodReleased;
             bool isBobInWater = _playerState.CurrentPlayerFishingState == PlayerFishingState.BobInWater;
+            bool isFishCaught = _playerState.CurrentPlayerFishingState == PlayerFishingState.FishCaught;
             bool isFishing = _playerState.CurrentPlayerActionState == PlayerActionState.Fishing;
             bool isRunBlendValue = isRunning || isJumping || isFalling;
 
@@ -139,6 +153,7 @@ namespace GinjaGaming.FinalCharacterController
             _animator.SetBool(isRodChargingHash, isRodCharging);
             _animator.SetBool(isRodReleasedHash, isRodReleased);
             _animator.SetBool(isBobInWaterHash, isBobInWater);
+            _animator.SetBool(isFishCaughtHash, isFishCaught);
             _animator.SetBool(isPlayingActionHash, isPlayingAction);
 
             _animator.SetFloat(inputXHash, _currentBlendInput.x);
@@ -150,6 +165,21 @@ namespace GinjaGaming.FinalCharacterController
         public void SetFishingTrigger()
         {
             _animator.SetTrigger(canStartFishingTriggerHash);
+        }
+
+        public void SetReelingTrigger()
+        {
+            _animator.SetTrigger(canReelFishingTriggerHash);
+        }
+
+        public void PullFishOutOfWater()
+        {
+            SoundFileObject sfo = AudioManager.GetSoundSafe(MainLibrarySounds.CastRod);
+            sfo.relativeVolume = 0.5f;
+            AudioManager.PlaySound(MainLibrarySounds.CastRod);
+            sfo.relativeVolume = 1f;
+
+            AudioManager.PlaySound(MainLibrarySounds.Splash_CatchFish);
         }
     }
 }
