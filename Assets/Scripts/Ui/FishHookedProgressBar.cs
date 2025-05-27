@@ -21,7 +21,8 @@ public class FishHookedProgressBar : MonoBehaviour
     private void Update()
     {
         if (timeRemainingProgressBar == null ||
-            GameObjectManager.Instance.playerState.CurrentPlayerFishingState == PlayerFishingState.FishCaught)
+            GameObjectManager.Instance.playerState.CurrentPlayerFishingState == PlayerFishingState.FishCaught || 
+            GameObjectManager.Instance.playerState.CurrentPlayerFishingState == PlayerFishingState.None)
         {
             return;
         }

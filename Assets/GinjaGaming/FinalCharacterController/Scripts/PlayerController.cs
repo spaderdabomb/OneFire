@@ -81,16 +81,17 @@ namespace GinjaGaming.FinalCharacterController
         {
             _lastMovementState = _playerState.CurrentPlayerMovementState;
 
+            bool canMove = CanMove();
             bool canRun = CanRun();
-            bool isMovementInput = _playerLocomotionInput.MovementInput != Vector2.zero;             //order
-            bool isMovingLaterally = IsMovingLaterally();                                            //matters
-            bool isSprinting = _playerLocomotionInput.SprintToggledOn && isMovingLaterally;          //order
-            bool isWalking = isMovingLaterally && (!canRun || _playerLocomotionInput.WalkToggledOn); //matters
+            bool isMovementInput = _playerLocomotionInput.MovementInput != Vector2.zero;                          //order
+            bool isMovingLaterally = IsMovingLaterally();                                                         //matters
+            bool isSprinting = _playerLocomotionInput.SprintToggledOn && isMovingLaterally;                       //order
+            bool isWalking = isMovingLaterally && (!canRun || (canMove && _playerLocomotionInput.WalkToggledOn)); //matters
             bool isGrounded = IsGrounded();
 
             PlayerMovementState lateralState = isWalking ? PlayerMovementState.Walking :
                                                isSprinting ? PlayerMovementState.Sprinting :
-                                               isMovingLaterally || isMovementInput ? PlayerMovementState.Running : PlayerMovementState.Idling;
+                                               (isMovingLaterally || isMovementInput) && canMove ? PlayerMovementState.Running : PlayerMovementState.Idling;
 
             _playerState.SetPlayerMovementState(lateralState);
 
@@ -143,6 +144,7 @@ namespace GinjaGaming.FinalCharacterController
         private void HandleLateralMovement()
         {
             // Create quick references for current state
+            bool canMove = CanMove();
             bool isSprinting = _playerState.CurrentPlayerMovementState == PlayerMovementState.Sprinting;
             bool isGrounded = _playerState.InGroundedState();
             bool isWalking = _playerState.CurrentPlayerMovementState == PlayerMovementState.Walking;
@@ -170,6 +172,7 @@ namespace GinjaGaming.FinalCharacterController
             newVelocity = Vector3.ClampMagnitude(new Vector3(newVelocity.x, 0f, newVelocity.z), clampLateralMagnitude);
             newVelocity.y += _verticalVelocity;
             newVelocity = !isGrounded ? HandleSteepWalls(newVelocity) : newVelocity;
+            newVelocity = canMove ? newVelocity : Vector3.zero;
 
             // Move character (Unity suggests only calling this once per tick)
             _characterController.Move(newVelocity * Time.deltaTime);
@@ -288,6 +291,11 @@ namespace GinjaGaming.FinalCharacterController
             // This means player is moving diagonally at 45 degrees or forward, if so, we can run
             return _playerLocomotionInput.MovementInput.y >= Mathf.Abs(_playerLocomotionInput.MovementInput.x) && 
                    _playerState.CurrentPlayerActionState != PlayerActionState.Fishing;
+        }
+
+        private bool CanMove()
+        {
+            return _playerState.CurrentPlayerActionState != PlayerActionState.Fishing;
         }
         #endregion
     }

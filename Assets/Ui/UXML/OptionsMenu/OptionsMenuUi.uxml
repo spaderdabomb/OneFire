@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-namespace="OneFireUi" gen-cs-file="19310c501d4d2ab41a6638db3a1eeb6c">
     <ui:Template name="InventoryUi" src="project://database/Assets/Ui/UXML/Inventory/InventoryMenuUi.uxml?fileID=9197481963319205126&amp;guid=e02300833c6c3f84fabcccf6faf6da0a&amp;type=3#InventoryMenuUi" />
     <ui:Template name="ExitButton" src="project://database/Assets/Ui/UXML/OptionsMenu/ExitButton.uxml?fileID=9197481963319205126&amp;guid=ac3d562c420e30545b9209d50be0708c&amp;type=3#ExitButton" />
+    <ui:Template name="SkiillsMenuUI" src="project://database/Assets/Ui/UXML/SkillsMenu/SkiillsMenuUI.uxml?fileID=9197481963319205126&amp;guid=280e9d34f3dd3044aa5fd9983472a2de&amp;type=3#SkiillsMenuUI" />
     <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
     <Style src="project://database/Assets/Ui/USS/Standard.uss?fileID=7433441132597879392&amp;guid=c99aa736163923f459f7fe4fc8ffa1c9&amp;type=3#Standard" />
     <ui:VisualElement name="OptionsUiRoot" class="dim-bg" style="align-self: stretch; align-items: center;">
@@ -13,7 +14,7 @@
                 <QuickEye.UIToolkit.Tab text="Settings" name="SettingsTab" class="options-tab" style="height: auto;" />
             </QuickEye.UIToolkit.TabGroup>
             <ui:Instance template="InventoryUi" name="InventoryMenuUi" style="flex-grow: 1;" />
-            <ui:VisualElement name="SkiillsMenuUi" class="options-menu" style="flex-grow: 1; display: none;" />
+            <ui:Instance template="SkiillsMenuUI" name="SkiillsMenuUI" />
             <ui:VisualElement name="ObjectiveMenuUi" style="flex-grow: 1; display: none;" />
             <ui:VisualElement name="AchievementsMenuUi" style="flex-grow: 1; display: none;" />
             <ui:VisualElement name="SettingsMenuUi" style="flex-grow: 1; display: none;" />

@@ -57,26 +57,15 @@ public class FishCaughtProgressBar : MonoBehaviour
     {
         UpdateUI();
 
-        if (_flashingProgressColor)
-        {
-            float lerpFactor = Mathf.PingPong(2 * _progressFlashTimer / progressFlashTime, 1.0f);
-            Color currentColor = Color.Lerp(_progressFlashStartColor, progressFlashColor, lerpFactor);
-            FishCaughtProgressBarImage.color = currentColor;
+        if (!_flashingProgressColor)
+            return;
+        
+        float lerpFactor = Mathf.PingPong(2 * _progressFlashTimer / progressFlashTime, 1.0f);
+        Color currentColor = Color.Lerp(_progressFlashStartColor, progressFlashColor, lerpFactor);
+        FishCaughtProgressBarImage.color = currentColor;
 
-            _progressFlashTimer += Time.deltaTime;
-            _flashingProgressColor = _progressFlashTimer < progressFlashTime;
-        }
-    }
-
-    private void LateUpdate()
-    {
-        if (_successParticles != null && _lastHookZonePosition != Vector3.zero)
-        {
-            Vector3 spawnPosition = GetUIWorldPoint(_lastHookZonePosition);
-            Quaternion rotation = GetUIWorldRotation(_lastHookZonePosition);
-            _successParticles.transform.position = spawnPosition;
-            _successParticles.transform.rotation = rotation;
-        }
+        _progressFlashTimer += Time.deltaTime;
+        _flashingProgressColor = _progressFlashTimer < progressFlashTime;
     }
 
     public void ReelFishPressed()
@@ -91,7 +80,7 @@ public class FishCaughtProgressBar : MonoBehaviour
 
     private Vector3 GetUIWorldPoint(Vector3 centerPosition)
     {
-        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, centerPosition);
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(GameObjectManager.Instance.playerCamera, centerPosition);
         Ray ray = GameObjectManager.Instance.uiCamera.ScreenPointToRay(screenPoint);
         Vector3 spawnPosition = ray.origin + ray.direction * 10f;
 
@@ -100,7 +89,7 @@ public class FishCaughtProgressBar : MonoBehaviour
 
     private Quaternion GetUIWorldRotation(Vector3 centerPosition)
     {
-        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, centerPosition);
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(GameObjectManager.Instance.playerCamera, centerPosition);
         Ray ray = GameObjectManager.Instance.uiCamera.ScreenPointToRay(screenPoint);
         Vector3 spawnPosition = ray.origin + ray.direction * 10f;
         Quaternion rotation = Quaternion.LookRotation(ray.direction);
@@ -116,9 +105,7 @@ public class FishCaughtProgressBar : MonoBehaviour
 
         // Spawn success burst effect at correct point
         _lastHookZonePosition = _hookZoneRect.TransformPoint(_hookZoneRect.rect.center);
-        Vector3 spawnPosition = GetUIWorldPoint(_lastHookZonePosition);
-        Quaternion rotation = GetUIWorldRotation(_lastHookZonePosition);
-        _successParticles = Instantiate(FishingManager.Instance.successBurstYellowEffect, spawnPosition, rotation);
+        _successParticles = Instantiate(FishingManager.Instance.successBurstYellowEffect, _lastHookZonePosition, Quaternion.identity, UiManager.Instance.perspectiveCanvas.transform);
 
         // Audio
         AudioManager.PlaySound(MainLibrarySounds.ReelFishShort);
@@ -176,7 +163,8 @@ public class FishCaughtProgressBar : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (GameObjectManager.Instance.playerState.CurrentPlayerFishingState == PlayerFishingState.FishCaught)
+        if (GameObjectManager.Instance.playerState.CurrentPlayerFishingState == PlayerFishingState.FishCaught || 
+            GameObjectManager.Instance.playerState.CurrentPlayerFishingState == PlayerFishingState.None )
             return;
 
         _timeCounter += Time.deltaTime * baseSpeedIndicator;

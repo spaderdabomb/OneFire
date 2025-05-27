@@ -25,6 +25,7 @@ public class UiManager : MonoBehaviour
     [Header("UGUI")]
     public Canvas overlayCanvas;
     public Canvas perspectiveCanvas;
+    public GameObject effectsContainerUI;
     public InteractPopup interactPopup;
     public UiGameManager uiGameManager;
     private VisualElement uiGameManagerRoot;

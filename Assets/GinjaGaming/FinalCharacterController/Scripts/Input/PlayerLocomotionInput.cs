@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,9 +16,18 @@ namespace GinjaGaming.FinalCharacterController
         public bool JumpPressed { get; private set; }
         public bool SprintToggledOn { get; private set; }
         public bool WalkToggledOn { get; private set; }
+        
+        private PlayerState _playerState;
+
         #endregion
 
         #region Startup
+
+        private void Awake()
+        {
+            _playerState = GetComponent<PlayerState>();
+        }
+
         private void OnEnable()
         {
             if (PlayerInputManager.Instance?.PlayerControls == null)

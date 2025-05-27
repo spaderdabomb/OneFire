@@ -3,11 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
-using GogoGaga.OptimizedRopesAndCables;
 using OneFireUi;
-using VHierarchy.Libs;
 using Sirenix.OdinInspector;
 using JSAM;
 
@@ -133,8 +130,8 @@ public class FishingManager : SerializedMonoBehaviour
         _currentFishingBob.GetComponent<FishingBob>().Hide();
         _currentFishOnHookEffect = Instantiate(fishOnHookEffect, _currentFishPosition, fishOnHookEffect.transform.rotation, GameObjectManager.Instance.effectsContainer.transform);
 
-        fishHookedProgressBar = Instantiate(fishHookedProgressBarPrefab, UiManager.Instance.overlayCanvas.transform);
-        fishCaughtProgressBar = Instantiate(fishCaughtProgressBarPrefab, UiManager.Instance.overlayCanvas.transform);
+        fishHookedProgressBar = Instantiate(fishHookedProgressBarPrefab, UiManager.Instance.perspectiveCanvas.transform);
+        fishCaughtProgressBar = Instantiate(fishCaughtProgressBarPrefab, UiManager.Instance.perspectiveCanvas.transform);
 
 
         OnFishHooked?.Invoke(CurrentFish);
@@ -257,8 +254,8 @@ public class FishingManager : SerializedMonoBehaviour
 
         DestroyAndSetNull(ref _currentFishingBob);
         DestroyAndSetNull(ref _currentFishOnHookEffect);
-        DestroyAndSetNull(ref fishCaughtProgressBar);
-        DestroyAndSetNull(ref fishHookedProgressBar);
+        DestroyAndFade(ref fishCaughtProgressBar);
+        DestroyAndFade(ref fishHookedProgressBar);
 
         AudioManager.StopSound(MainLibrarySounds.FishOnHookNormal);
 
@@ -275,5 +272,14 @@ public class FishingManager : SerializedMonoBehaviour
     {
         Destroy(obj);
         obj = null;
+    }
+
+    private void DestroyAndFade(ref GameObject obj)
+    {
+        obj.TryGetComponent(out UIFader uiFader);
+        {
+            uiFader.FadeAndDestroy();
+            obj = null;
+        }
     }
 }
