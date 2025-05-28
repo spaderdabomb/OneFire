@@ -1,21 +1,22 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-namespace="OneFireUi" gen-cs-file="19310c501d4d2ab41a6638db3a1eeb6c">
     <ui:Template name="InventoryUi" src="project://database/Assets/Ui/UXML/Inventory/InventoryMenuUi.uxml?fileID=9197481963319205126&amp;guid=e02300833c6c3f84fabcccf6faf6da0a&amp;type=3#InventoryMenuUi" />
+    <ui:Template name="MenuCollections" src="project://database/Assets/Ui/UXML/PlayerInfoMenu/CollectionsMenu/MenuCollections.uxml?fileID=9197481963319205126&amp;guid=ad8fc37f6d62cec4eb92dbcb0c9aa9ea&amp;type=3#MenuCollections" />
     <ui:Template name="ExitButton" src="project://database/Assets/Ui/UXML/OptionsMenu/ExitButton.uxml?fileID=9197481963319205126&amp;guid=ac3d562c420e30545b9209d50be0708c&amp;type=3#ExitButton" />
-    <ui:Template name="SkiillsMenuUI" src="project://database/Assets/Ui/UXML/SkillsMenu/SkiillsMenuUI.uxml?fileID=9197481963319205126&amp;guid=280e9d34f3dd3044aa5fd9983472a2de&amp;type=3#SkiillsMenuUI" />
     <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
     <Style src="project://database/Assets/Ui/USS/Standard.uss?fileID=7433441132597879392&amp;guid=c99aa736163923f459f7fe4fc8ffa1c9&amp;type=3#Standard" />
     <ui:VisualElement name="OptionsUiRoot" class="dim-bg" style="align-self: stretch; align-items: center;">
         <ui:VisualElement name="OptionsUiBg" class="menu-container" style="align-self: center;">
             <QuickEye.UIToolkit.TabGroup name="OptionsTabGroup" style="flex-grow: 0; height: 50px; align-items: flex-start; justify-content: flex-start; align-self: auto; background-color: rgba(0, 0, 0, 0); bottom: 752px; position: absolute; left: 1px;">
-                <QuickEye.UIToolkit.Tab text="Inventory" name="InventoryTab" class="options-tab" style="height: auto;" />
-                <QuickEye.UIToolkit.Tab text="Skills" name="SkillsTab" class="options-tab" style="height: auto;" />
-                <QuickEye.UIToolkit.Tab text="Objectives" name="ObjectivesTab" class="options-tab" style="height: auto;" />
-                <QuickEye.UIToolkit.Tab text="Achievements" name="AchievementsTab" class="options-tab" style="height: auto;" />
-                <QuickEye.UIToolkit.Tab text="Settings" name="SettingsTab" class="options-tab" style="height: auto;" />
+                <QuickEye.UIToolkit.Tab text="Inventory" name="InventoryTab" is-reorderable="false" value="false" class="options-tab" style="height: auto;" />
+                <QuickEye.UIToolkit.Tab text="Collections" name="CollectionLogTab" value="false" tabindex="1" class="options-tab" style="height: auto;" />
+                <QuickEye.UIToolkit.Tab text="Skills" name="SkillsTab" tabindex="2" class="options-tab" style="height: auto;" />
+                <QuickEye.UIToolkit.Tab text="Objectives" name="ObjectivesTab" tabindex="3" class="options-tab" style="height: auto;" />
+                <QuickEye.UIToolkit.Tab text="Achievements" name="AchievementsTab" tabindex="4" class="options-tab" style="height: auto;" />
+                <QuickEye.UIToolkit.Tab text="Settings" name="SettingsTab" tabindex="5" class="options-tab" style="height: auto;" />
             </QuickEye.UIToolkit.TabGroup>
-            <ui:Instance template="InventoryUi" name="InventoryMenuUi" style="flex-grow: 1;" />
-            <ui:Instance template="SkiillsMenuUI" name="SkiillsMenuUI" />
+            <ui:Instance template="InventoryUi" name="InventoryMenuUi" style="flex-grow: 1; display: flex;" />
             <ui:VisualElement name="ObjectiveMenuUi" style="flex-grow: 1; display: none;" />
+            <ui:Instance template="MenuCollections" name="MenuCollectionsUi" style="display: none;" />
             <ui:VisualElement name="AchievementsMenuUi" style="flex-grow: 1; display: none;" />
             <ui:VisualElement name="SettingsMenuUi" style="flex-grow: 1; display: none;" />
             <ui:Instance template="ExitButton" name="ExitButtonUXML" style="position: absolute; top: 2px; left: 1396px;" />

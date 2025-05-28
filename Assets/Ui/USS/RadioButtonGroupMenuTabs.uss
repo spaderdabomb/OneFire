@@ -1,0 +1,47 @@
+.menu-tab .unity-radio-button-group {
+    flex-direction: row;
+}
+
+.menu-tab .unity-radio-button-group__container {
+    flex-direction: row;
+}
+
+.menu-tab .unity-radio-button__label {
+    font-size: 40px;
+}
+
+.unity-radio-button__checkmark-background {
+    background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/MenuTabSelected.psd?fileID=2800000&guid=bf73be427185b5844a3778dd4c727ae2&type=3#MenuTabSelected');
+    width: 346px;
+    height: 130px;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.unity-radio-button__checkmark {
+    background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/MenuTabUnselected.psd?fileID=2800000&guid=27c9cb8c7797d0c45a3a20b9471c059d&type=3#MenuTabUnselected');
+    width: 346px;
+    height: 130px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.unity-radio-button__checkmark:active {
+    background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/MenuTabUnselected.psd?fileID=2800000&guid=27c9cb8c7797d0c45a3a20b9471c059d&type=3#MenuTabUnselected');
+    width: 346px;
+    height: 130px;
+    background-color: rgb(0, 0, 0);
+}
+
+.unity-radio-button__checkmark-background:selected {
+    background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/MenuTabSelected.psd?fileID=2800000&guid=bf73be427185b5844a3778dd4c727ae2&type=3#MenuTabSelected');
+    width: 346px;
+    height: 130px;
+    background-color: rgba(0, 0, 159, 0.51);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}

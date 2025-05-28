@@ -1,0 +1,47 @@
+.menu-settings-header-label {
+    font-size: 44px;
+    color: rgb(230, 230, 230);
+    -unity-text-outline-width: 5px;
+    -unity-font: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold.ttf?fileID=12800000&guid=a920e2e8ea812f34a9d19380151c1df9&type=3#Montserrat-Bold');
+    -unity-font-definition: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF');
+    -unity-text-outline-color: rgb(134, 97, 52);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    word-spacing: 0;
+    letter-spacing: -5px;
+}
+
+.menu-settings-standard-label {
+    font-size: 24px;
+    color: rgb(230, 230, 230);
+    -unity-text-outline-width: 0;
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    -unity-font-definition: initial;
+    -unity-text-outline-color: rgb(230, 230, 230);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+}
+
+.menu-settings-fields-container {
+    -unity-slice-left: 10;
+    -unity-slice-top: 10;
+    -unity-slice-right: 10;
+    -unity-slice-bottom: 10;
+    width: 372px;
+    height: 54px;
+    flex-grow: 0;
+    align-self: auto;
+    justify-content: space-around;
+    flex-direction: row;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: -4px;
+}

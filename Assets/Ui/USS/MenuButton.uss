@@ -1,0 +1,73 @@
+.menu-button-standard {
+    width: 452px;
+    height: 154px;
+    font-size: 55px;
+    color: rgb(230, 230, 230);
+    -unity-font: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold.ttf?fileID=12800000&guid=a920e2e8ea812f34a9d19380151c1df9&type=3#Montserrat-Bold');
+    -unity-font-definition: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF');
+    -unity-font-style: bold;
+    background-image: url('project://database/Assets/Art/UI/UIMenus/OptionsMenu/OptionsHeaderBg.psd?fileID=2800000&guid=89ec281fa2ef53742947f258f4253d10&type=3#OptionsHeaderBg');
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    -unity-text-outline-width: 5px;
+    -unity-text-outline-color: rgb(110, 73, 33);
+}
+
+.menu-button-standard:hover {
+    width: 452px;
+    height: 154px;
+    font-size: 55px;
+    color: rgb(230, 230, 230);
+    -unity-font: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold.ttf?fileID=12800000&guid=a920e2e8ea812f34a9d19380151c1df9&type=3#Montserrat-Bold');
+    -unity-font-definition: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF');
+    -unity-font-style: bold;
+    background-image: url('project://database/Assets/Art/UI/UIMenus/OptionsMenu/OptionsHeaderBg.psd?fileID=2800000&guid=89ec281fa2ef53742947f258f4253d10&type=3#OptionsHeaderBg');
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    -unity-text-outline-width: 5px;
+    -unity-text-outline-color: rgb(110, 73, 33);
+    -unity-background-image-tint-color: rgb(210, 210, 210);
+}
+
+.menu-button-standard:active {
+    width: 452px;
+    height: 154px;
+    font-size: 55px;
+    color: rgb(230, 230, 230);
+    -unity-font: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold.ttf?fileID=12800000&guid=a920e2e8ea812f34a9d19380151c1df9&type=3#Montserrat-Bold');
+    -unity-font-definition: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF');
+    -unity-font-style: bold;
+    background-image: url('project://database/Assets/Art/UI/UIMenus/OptionsMenu/OptionsHeaderBg.psd?fileID=2800000&guid=89ec281fa2ef53742947f258f4253d10&type=3#OptionsHeaderBg');
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    -unity-text-outline-width: 5px;
+    -unity-text-outline-color: rgb(110, 73, 33);
+    -unity-background-image-tint-color: rgb(180, 180, 180);
+}

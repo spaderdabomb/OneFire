@@ -2,11 +2,8 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
-using static UnityEngine.GraphicsBuffer;
 
 [CreateAssetMenu(fileName = "Item", menuName = "OneFire/Items/Item")]
 public class ItemData : SerializedScriptableObject
@@ -23,7 +20,7 @@ public class ItemData : SerializedScriptableObject
     
     [Header("Classification")]
     public ItemType itemType = ItemType.None;
-    public ItemRarity itemRarity = ItemRarity.None;
+    public ItemRarity itemRarity = ItemRarity.Common;
     public ItemCategory itemCategories = ItemCategory.None;
 
     [Header("Assets")]
@@ -97,7 +94,6 @@ public class ItemData : SerializedScriptableObject
 
 public enum ItemRarity
 {
-    None,
     Common,
     Uncommon,
     Rare,

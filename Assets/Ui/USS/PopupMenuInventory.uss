@@ -1,0 +1,132 @@
+.popup-container {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    background-image: url('project://database/Assets/Art/UI/UIMenus/PopupMenu/PopupBg.psd?fileID=2800000&guid=d416844c4c7238e41a9ff2ee08055e1d&type=3#PopupBg');
+    width: 349px;
+    -unity-slice-left: 10;
+    -unity-slice-top: 10;
+    -unity-slice-right: 10;
+    -unity-slice-bottom: 10;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.popup-container-header {
+    flex-grow: 0;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Art/UI/UIMenus/PopupMenu/PopupHeader.psd?fileID=2800000&guid=a080384d00f876145b2d515f6757b7ec&type=3#PopupHeader');
+    width: 341px;
+    height: 44px;
+    -unity-background-image-tint-color: rgba(200, 159, 8, 0.78);
+    -unity-slice-left: 10;
+    -unity-slice-top: 10;
+    -unity-slice-right: 10;
+    -unity-slice-bottom: 10;
+    align-self: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.popup-container__item-description-label {
+    font-size: 15px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+    white-space: normal;
+    -unity-font-style: bold;
+    color: rgb(230, 230, 230);
+}
+
+.popup-container__stats-container {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.popup-container__bottom-container {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    flex-direction: row;
+    height: 50px;
+}
+
+.shop-sell-container {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    flex-direction: row;
+    align-self: auto;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.shop-sell-icon {
+    flex-grow: 0;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/PlayerSummaryMenu/ZenGemIcon.psd?fileID=2800000&guid=86e57b36d49adf749bbb401327dee15d&type=3#ZenGemIcon');
+    width: 24px;
+    height: 24px;
+}
+
+.divider {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Art/UI/UIMenus/PopupMenu/PopupSpacer.psd?fileID=2800000&guid=f6cffa7846e7f994f94e874b64030593&type=3#PopupSpacer');
+    width: 341px;
+    height: 1px;
+    left: 0;
+    align-self: center;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.item-name-label {
+    font-size: 24px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    align-self: auto;
+    -unity-text-align: middle-left;
+    -unity-font: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold.ttf?fileID=12800000&guid=a920e2e8ea812f34a9d19380151c1df9&type=3#Montserrat-Bold');
+    -unity-font-definition: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF');
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+}
+
+.item-type-icon {
+    flex-grow: 0;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/InventoryMenu/sortingIconRod.psd?fileID=2800000&guid=a2028d73cf3be64458bee11ce6871046&type=3#sortingIconRod');
+    width: 24px;
+    height: 24px;
+    align-self: center;
+}
+
+.divider-stats {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Art/UI/UIMenus/PopupMenu/PopupSpacer.psd?fileID=2800000&guid=f6cffa7846e7f994f94e874b64030593&type=3#PopupSpacer');
+    width: 341px;
+    height: 1px;
+    left: 0;
+    align-self: center;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}

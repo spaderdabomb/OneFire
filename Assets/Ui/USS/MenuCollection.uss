@@ -1,0 +1,44 @@
+.collected-icon {
+    flex-grow: 0;
+    background-color: rgb(48, 168, 76);
+    background-image: none;
+    -unity-background-scale-mode: scale-to-fit;
+    align-self: center;
+    width: 140px;
+    height: 35px;
+    align-items: auto;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    border-left-color: rgb(230, 230, 230);
+    border-right-color: rgb(230, 230, 230);
+    border-top-color: rgb(230, 230, 230);
+    border-bottom-color: rgb(230, 230, 230);
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+}
+
+.collected-icon:disabled {
+    flex-grow: 0;
+    background-color: rgb(197, 64, 67);
+    background-image: none;
+    -unity-background-scale-mode: scale-to-fit;
+    align-self: center;
+    width: 140px;
+    height: 35px;
+    align-items: auto;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    border-left-color: rgb(230, 230, 230);
+    border-right-color: rgb(230, 230, 230);
+    border-top-color: rgb(230, 230, 230);
+    border-bottom-color: rgb(230, 230, 230);
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    visibility: visible;
+}

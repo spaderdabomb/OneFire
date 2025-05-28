@@ -1,0 +1,138 @@
+.dialogue-option-button {
+    background-image: url('project://database/Assets/Art/UI/UIMenus/DialogueMenu/DialogueOptionBg.psd?fileID=2800000&guid=964e2e95d248e324084f481f52127dcf&type=3#DialogueOptionBg');
+    width: 323px;
+    height: 52px;
+    -unity-slice-left: 10;
+    -unity-slice-top: 10;
+    -unity-slice-right: 10;
+    -unity-slice-bottom: 10;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    font-size: 22px;
+    -unity-font-style: bold;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left-color: rgba(96, 71, 45, 0);
+    border-right-color: rgba(96, 71, 45, 0);
+    border-top-color: rgba(96, 71, 45, 0);
+    border-bottom-color: rgb(96, 71, 45);
+}
+
+.dialogue-option-button:inactive {
+    background-image: url('project://database/Assets/Art/UI/UIMenus/DialogueMenu/DialogueOptionBg.psd?fileID=2800000&guid=964e2e95d248e324084f481f52127dcf&type=3#DialogueOptionBg');
+    width: 323px;
+    height: 52px;
+    -unity-slice-left: 10;
+    -unity-slice-top: 10;
+    -unity-slice-right: 10;
+    -unity-slice-bottom: 10;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-color: rgb(96, 71, 45);
+    border-right-color: rgb(96, 71, 45);
+    border-top-color: rgb(96, 71, 45);
+    border-bottom-color: rgb(96, 71, 45);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.dialogue-option-button:hover {
+    background-image: url('project://database/Assets/Art/UI/UIMenus/DialogueMenu/DialogueOptionBgHighlighted.psd?fileID=2800000&guid=87ea76b73599dea41a135ab735677a59&type=3#DialogueOptionBgHighlighted');
+    width: 323px;
+    height: 52px;
+    -unity-slice-left: 10;
+    -unity-slice-top: 10;
+    -unity-slice-right: 10;
+    -unity-slice-bottom: 10;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-color: rgb(134, 97, 52);
+    border-right-color: rgb(134, 97, 52);
+    border-top-color: rgb(134, 97, 52);
+    border-bottom-color: rgb(134, 97, 52);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dialogue-option-button:focus {
+    background-image: url('project://database/Assets/Art/UI/UIMenus/DialogueMenu/DialogueOptionBgHighlighted.psd?fileID=2800000&guid=87ea76b73599dea41a135ab735677a59&type=3#DialogueOptionBgHighlighted');
+    width: 323px;
+    height: 52px;
+    -unity-slice-left: 10;
+    -unity-slice-top: 10;
+    -unity-slice-right: 10;
+    -unity-slice-bottom: 10;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-color: rgb(134, 97, 52);
+    border-right-color: rgb(134, 97, 52);
+    border-top-color: rgb(134, 97, 52);
+    border-bottom-color: rgb(134, 97, 52);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dialogue-option-button:active {
+    background-image: url('project://database/Assets/Art/UI/UIMenus/DialogueMenu/DialogueOptionBgHighlighted.psd?fileID=2800000&guid=87ea76b73599dea41a135ab735677a59&type=3#DialogueOptionBgHighlighted');
+    width: 323px;
+    height: 52px;
+    -unity-slice-left: 10;
+    -unity-slice-top: 10;
+    -unity-slice-right: 10;
+    -unity-slice-bottom: 10;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-color: rgb(134, 97, 52);
+    border-right-color: rgb(134, 97, 52);
+    border-top-color: rgb(134, 97, 52);
+    border-bottom-color: rgb(134, 97, 52);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -unity-background-image-tint-color: rgb(210, 210, 210);
+}
+
+.dialogue-header-label {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dialogue-story-label {
+    -unity-font-style: bold;
+    color: rgb(230, 230, 230);
+    font-size: 22px;
+    margin-left: 55px;
+    margin-right: 55px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    flex-grow: 1;
+    flex-direction: row;
+    align-self: stretch;
+}

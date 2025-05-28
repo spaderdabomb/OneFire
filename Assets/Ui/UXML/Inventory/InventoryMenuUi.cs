@@ -7,9 +7,11 @@ namespace OneFireUi
     public partial class InventoryMenuUi: ITabMenu
     {
         public VisualElement root;
-        public InventoryMenuUi(VisualElement root)
+        public int TabIndex { get; }
+        public InventoryMenuUi(VisualElement root, int tabIndex)
         {
             this.root = root;
+            TabIndex = tabIndex;
 
             AssignQueryResults(root);
         }
@@ -26,7 +28,21 @@ namespace OneFireUi
 
         public void ShowMenu()
         {
+            root.style.display = DisplayStyle.Flex;
             InventoryManager.Instance.PlayerInventory.ShowPlayerInventory();
+        }
+    
+        public void HideMenu()
+        {
+            root.style.display = DisplayStyle.None;
+        }
+
+        public void OnTabChanged(int newIndex)
+        {
+            if (TabIndex == newIndex)
+                ShowMenu();
+            else
+                HideMenu();
         }
     }
 }

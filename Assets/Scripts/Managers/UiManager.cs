@@ -18,6 +18,15 @@ public class UiManager : MonoBehaviour
     public VisualTreeAsset popupMenuInventoryStatsContainer;
     public VisualTreeAsset ghostIcon;
     public VisualTreeAsset healthBar;
+    public VisualTreeAsset collectionsBiomeTab;
+    public VisualTreeAsset collectionSlot;
+    public VisualTreeAsset raritySlotContainer;
+
+    [Header("UI Textures")]
+    public Texture2D questStatusIconDark;
+    public Texture2D questStatusIconLight;
+    public Texture2D statusLightLit;
+    public Texture2D statusLightUnlit;
 
     [Header("Damage Numbers")]
     public GameObject damageNumberStandard;

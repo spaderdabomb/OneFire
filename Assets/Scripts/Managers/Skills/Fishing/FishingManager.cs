@@ -56,6 +56,7 @@ public class FishingManager : SerializedMonoBehaviour
 
     public event Action<WorldLake> OnBobHitWater;
     public event Action<FishData> OnFishCaught;
+    public event Action<FishData> OnNewFishCaught;
     public event Action<FishData, GameObject> OnFishSpawned;
     public event Action<FishData> OnFishHooked;
     public event Action OnStopFishing;

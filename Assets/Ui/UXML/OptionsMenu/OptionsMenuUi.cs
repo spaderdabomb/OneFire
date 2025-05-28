@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using QuickEye.UIToolkit;
 using UnityEngine.UIElements;
 using UnityEngine;
 
@@ -8,7 +10,9 @@ namespace OneFireUi
         public VisualElement root;
         public VisualElement rootElement;
         public InventoryMenuUi inventoryMenu;
+        public MenuCollections menuCollections;
 
+        public List<Tab> playerInfoTabs = new();
         private ITabMenu[] tabMenus;
         private ExitButton exitButton;
 
@@ -29,17 +33,20 @@ namespace OneFireUi
             root.style.display = DisplayStyle.None;
             InitMenus();
             exitButton = new ExitButton(exitButtonUXML);
+            
+            foreach (Tab tab in optionsTabGroup.contentContainer.Children())
+            {
+                playerInfoTabs.Add(tab);
+                tab.RegisterValueChangedCallback(evt => OnTabIndexChanged(evt, tab));
+            }
         }
 
         private void InitMenus()
         {
-            InitInventoryMenu();
-            tabMenus = new ITabMenu[] { inventoryMenu };
-        }
-
-        private void InitInventoryMenu()
-        {
-            inventoryMenu = new InventoryMenuUi(inventoryMenuUi);
+            inventoryMenu = new InventoryMenuUi(inventoryMenuUi, 0);
+            menuCollections = new MenuCollections(menuCollectionsUi, 1);
+            
+            tabMenus = new ITabMenu[] { inventoryMenu, menuCollections };
         }
 
         public VisualElement GetRootElement()
@@ -74,10 +81,18 @@ namespace OneFireUi
                 ShowMenu();
                 return true;
             }
-            else
+            
+            HideMenu();
+            return false;
+        }
+        
+        void OnTabIndexChanged(ChangeEvent<bool> evt, VisualElement tab)
+        {
+            Debug.Log(tab);
+            Debug.Log(tab.tabIndex);
+            foreach (var tabMenu in tabMenus)
             {
-                HideMenu();
-                return false;
+                tabMenu.OnTabChanged(tab.tabIndex);
             }
         }
     }
@@ -86,4 +101,7 @@ namespace OneFireUi
 public interface ITabMenu
 {
     void ShowMenu();
+    void HideMenu();
+    void OnTabChanged(int newIndex);
+    int TabIndex { get; }
 }
