@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_c31e37468855458f95a32bebf0fce6b7:
-        m_Texture: {fileID: 2800000, guid: 072da886cf81bed43868e14eb58bf0d1, type: 3}
+        m_Texture: {fileID: 2800000, guid: d754663a63cb02342a5d6f6c745b1127, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -101,7 +101,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &6909880884609399516
+--- !u!114 &3260072210786081947
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -2,17 +2,19 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using JSAM;
 using System;
+using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 
 public partial class CollectionSlot : ITabInterface
 {
     public VisualElement root;
-    public FishData fishData;
+    public FishData SlotFishData;
     public CollectionSlot(VisualElement root, FishData fishData, int tabIndex)
     {
         AssignQueryResults(root);
 
         this.root = root;
-        this.fishData = fishData;
+        SlotFishData = fishData;
         tabRoot.tabIndex = tabIndex;
         InitCollectionSlot();
         RegisterCallbacks();
@@ -20,28 +22,45 @@ public partial class CollectionSlot : ITabInterface
 
     private void InitCollectionSlot()
     {
-        fishIcon.style.backgroundImage = PersistentDataManager.Instance.IsFishTypeCaught(fishData) ? fishData.itemSprite.texture : fishData.uncaughtFishIcon.texture;
-        fishLabel.text = fishData.name;
+        UpdateCollectionSlotUI(SlotFishData);
+    }
 
+    private void UpdateCollectionSlotUI(FishData fishData)
+    {
+        if (fishData.itemID != SlotFishData.itemID) // important that it is itemID here since it's just by fish type
+            return;
+        
+        fishIcon.style.backgroundImage = FishingManager.Instance.IsFishTypeCaught(fishData) ? fishData.itemSprite.texture : fishData.uncaughtFishIcon.texture;
+        fishLabel.text = fishData.displayName;
+        
         ItemRarity[] itemRarityArr = (ItemRarity[])Enum.GetValues(typeof(ItemRarity));
+        int highestIndex = -1;
         for (int i = 0; i < itemRarityArr.Length; i++)
         {
             string currentFishID = fishData.baseName + itemRarityArr[i];
-            rarityLightsContainer[i].style.backgroundImage = PersistentDataManager.Instance.IsFishCaught(currentFishID) ? UiManager.Instance.statusLightLit : 
-                                                                                                                          UiManager.Instance.statusLightUnlit;
+            if (!FishingManager.Instance.IsFishCaught(currentFishID))
+                break;
+
+            highestIndex = i;
         }
+        
+        trophyIcon.style.backgroundImage = highestIndex == -1 ? UiManager.Instance.trophyTexturesDark[ItemRarity.Common].texture : UiManager.Instance.trophyTextures[itemRarityArr[highestIndex]].texture;
+        rarityTierLabel.text = highestIndex == -1 ? "" : GameDataManager.Instance.gameData.rarityToTrophyRankDict[itemRarityArr[highestIndex]].GetDescription();
+        rarityTierLabel.style.color = highestIndex == -1 ? GameDataManager.Instance.gameData.whiteTextColor : GameDataManager.Instance.gameData.rarityToLightTextColorDict[itemRarityArr[highestIndex]];
     }
 
     public void RegisterCallbacks()
     {
         tabRoot.RegisterValueChangedCallback(TabIndexChanged);
         tabRoot.RegisterCallback<PointerEnterEvent>(OnHover);
+        FishingManager.Instance.OnNewFishCaught += UpdateCollectionSlotUI;
     }
 
     public void UnregisterCallbacks()
     {
         tabRoot.UnregisterValueChangedCallback(TabIndexChanged);
         tabRoot.UnregisterCallback<PointerEnterEvent>(OnHover);
+        FishingManager.Instance.OnNewFishCaught -= UpdateCollectionSlotUI;
     }
 
     public void TabIndexChanged(ChangeEvent<bool> value)

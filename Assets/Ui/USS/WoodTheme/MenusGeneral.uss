@@ -1,7 +1,7 @@
 .menu-bg {
     flex-grow: 0;
     background-color: rgba(0, 0, 0, 0);
-    background-image: url('project://database/Assets/Art/UI/UIMenus/MenuGeneral/MenuBg.psd?fileID=2800000&guid=f54ba0a35505e304aaac1b1f27d3b6e7&type=3#MenuBg');
+    background-image: url("project://database/Assets/Art/UI/UIMenus/MenuGeneral/MenuBg.psd?fileID=2800000&guid=f54ba0a35505e304aaac1b1f27d3b6e7&type=3#MenuBg");
     -unity-background-scale-mode: scale-to-fit;
     width: 928px;
     height: 889px;
@@ -12,22 +12,57 @@
     align-self: center;
 }
 
+.menu-container {
+    border-left-color: rgb(116, 78, 28);
+    border-right-color: rgb(116, 78, 28);
+    border-top-color: rgb(116, 78, 28);
+    border-bottom-color: rgb(116, 78, 28);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    flex-grow: 0;
+    align-self: center;
+    background-image: url("project://database/Assets/Art/UI/UIMenus/OptionsMenu/OptionsBg_NoBorder.psd?fileID=2800000&guid=7f6951e58ba06be4b99e1733ddea9a7a&type=3#OptionsBg_NoBorder");
+}
+
+.menu-header-label {
+    font-size: 26px;
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+    color: rgb(230, 230, 230);
+    background-color: rgb(146, 99, 43);
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-top: 11px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: 11px;
+    margin-right: 11px;
+}
+
 .menu-header-container {
     margin-bottom: 20px;
     align-self: center;
 }
 
-.menu-header-label {
-    font-size: 50px;
-    color: rgb(230, 230, 230);
-    -unity-font-style: bold;
-    -unity-text-outline-width: 3px;
-}
-
 .menu-header-spacer {
     flex-grow: 0;
     background-color: rgba(0, 0, 0, 0);
-    background-image: url('project://database/Assets/Art/UI/UIMenus/MenuGeneral/MenuHeaderSpacer.psd?fileID=2800000&guid=8e9051492b4671c41aa6fbc567713d1c&type=3#MenuHeaderSpacer');
+    background-image: url("project://database/Assets/Art/UI/UIMenus/MenuGeneral/MenuHeaderSpacer.psd?fileID=2800000&guid=8e9051492b4671c41aa6fbc567713d1c&type=3#MenuHeaderSpacer");
     width: 867px;
     height: 11px;
 }
@@ -36,14 +71,28 @@
     -unity-background-image-tint-color: rgb(255, 255, 255);
     -unity-font-style: bold;
     color: rgb(230, 230, 230);
-    font-size: 22px;
+    font-size: 16px;
     background-image: none;
     -unity-text-outline-width: 0;
     -unity-text-outline-color: rgb(255, 255, 255);
+    -unity-text-align: middle-left;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .submenu-container {
-    background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/CollectionLog/SubheaderBg.psd?fileID=2800000&guid=f8f6248733ec0a744977fc39e754ead6&type=3#SubheaderBg');
+    background-image: url("project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/CollectionLog/SubheaderBg.psd?fileID=2800000&guid=f8f6248733ec0a744977fc39e754ead6&type=3#SubheaderBg");
     -unity-slice-left: 60;
     -unity-slice-top: 60;
     -unity-slice-right: 60;
@@ -55,7 +104,7 @@
 }
 
 .submenu-header {
-    height: 52px;
+    height: 40px;
     flex-grow: 0;
     flex-direction: row;
     justify-content: flex-start;
@@ -63,13 +112,18 @@
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
+    font-size: 18px;
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    color: rgb(230, 230, 230);
+    background-color: rgb(146, 99, 43);
 }
 
 .menu-progress-bar {
 }
 
 .menu-progress-bar .unity-progress-bar__progress {
-    background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/PlayerInfoProgressBar.psd?fileID=2800000&guid=15ac3611512841943bfd15d5eda133d3&type=3#PlayerInfoProgressBar');
+    background-image: url("project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/PlayerInfoProgressBar.psd?fileID=2800000&guid=15ac3611512841943bfd15d5eda133d3&type=3#PlayerInfoProgressBar");
     width: auto;
     height: 23px;
     -unity-background-image-tint-color: rgb(255, 221, 0);
@@ -87,7 +141,7 @@
 }
 
 .menu-progress-bar .unity-progress-bar__background {
-    background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/MissionsMenu/QuestProgressBarOutline.psd?fileID=2800000&guid=12eac36e6ea4ecc4dbc3fb1f18360b53&type=3#QuestProgressBarOutline');
+    background-image: url("project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/MissionsMenu/QuestProgressBarOutline.psd?fileID=2800000&guid=12eac36e6ea4ecc4dbc3fb1f18360b53&type=3#QuestProgressBarOutline");
     width: 252px;
     height: 32px;
     max-height: 32px;
@@ -111,8 +165,206 @@
     font-size: 18px;
     -unity-font-style: bold;
     color: rgb(230, 230, 230);
-    -unity-font: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold.ttf?fileID=12800000&guid=a920e2e8ea812f34a9d19380151c1df9&type=3#Montserrat-Bold');
-    -unity-font-definition: url('project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF');
+    -unity-font: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold.ttf?fileID=12800000&guid=a920e2e8ea812f34a9d19380151c1df9&type=3#Montserrat-Bold");
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
     -unity-text-outline-color: rgb(110, 73, 33);
     -unity-text-outline-width: 2px;
+}
+
+.confirm-button {
+    background-color: rgb(1, 80, 135);
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    border-left-color: rgba(255, 255, 255, 0.08);
+    border-right-color: rgba(255, 255, 255, 0.08);
+    border-top-color: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width: 300px;
+    align-items: auto;
+    align-self: center;
+}
+
+.confirm-button:hover:enabled {
+    background-color: rgb(0, 60, 101);
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    border-left-color: rgba(255, 255, 255, 0.08);
+    border-right-color: rgba(255, 255, 255, 0.08);
+    border-top-color: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width: 300px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.confirm-button:active {
+    background-color: rgb(0, 36, 61);
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    border-left-color: rgba(255, 255, 255, 0.08);
+    border-right-color: rgba(255, 255, 255, 0.08);
+    border-top-color: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width: 300px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.confirm-button:disabled {
+    background-color: rgb(0, 28, 47);
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    border-left-color: rgba(255, 255, 255, 0.08);
+    border-right-color: rgba(255, 255, 255, 0.08);
+    border-top-color: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width: 300px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.menu-button {
+    background-color: rgb(151, 115, 79);
+    border-left-color: rgb(119, 86, 38);
+    border-right-color: rgb(119, 86, 38);
+    border-top-color: rgb(119, 86, 38);
+    border-bottom-color: rgb(119, 86, 38);
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.01);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    align-items: center;
+    justify-content: flex-start;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+}
+
+.menu-button:active {
+    background-color: rgb(151, 115, 79);
+    border-left-color: rgb(119, 86, 38);
+    border-right-color: rgb(119, 86, 38);
+    border-top-color: rgb(119, 86, 38);
+    border-bottom-color: rgb(119, 86, 38);
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.01);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menu-button:hover:enabled {
+    background-color: rgb(140, 106, 72);
+    border-left-color: rgb(116, 78, 28);
+    border-right-color: rgb(116, 78, 28);
+    border-top-color: rgb(116, 78, 28);
+    border-bottom-color: rgb(116, 78, 28);
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.01);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menu-button:focus:hover:enabled {
+    background-color: rgb(140, 106, 72);
+    border-left-color: rgb(116, 78, 28);
+    border-right-color: rgb(116, 78, 28);
+    border-top-color: rgb(116, 78, 28);
+    border-bottom-color: rgb(116, 78, 28);
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.01);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menu-button:focus:enabled {
+    background-color: rgb(151, 115, 79);
+    border-left-color: rgb(119, 86, 38);
+    border-right-color: rgb(119, 86, 38);
+    border-top-color: rgb(119, 86, 38);
+    border-bottom-color: rgb(119, 86, 38);
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.01);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    align-items: center;
+    justify-content: flex-start;
 }

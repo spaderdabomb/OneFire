@@ -94,12 +94,12 @@ public class ItemData : SerializedScriptableObject
 
 public enum ItemRarity
 {
-    Common,
-    Uncommon,
-    Rare,
-    Epic,
-    Legendary,
-    Mythic
+    Common = 0,
+    Uncommon = 1,
+    Rare = 2,
+    Epic = 3,
+    Legendary = 4,
+    Mythic = 5
 }
 
 public enum ItemType

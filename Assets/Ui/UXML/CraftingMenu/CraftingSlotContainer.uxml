@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-file="c9515243c5a343745a16fc807094ac87">
-    <Style src="project://database/Assets/Ui/USS/Standard.uss?fileID=7433441132597879392&amp;guid=c99aa736163923f459f7fe4fc8ffa1c9&amp;type=3#Standard" />
-    <Style src="project://database/Assets/Ui/USS/CraftingMenu.uss?fileID=7433441132597879392&amp;guid=9cb4eeee50bf6604b8b4f730aa69b890&amp;type=3#CraftingMenu" />
+    <Style src="project://database/Assets/Ui/USS/TransparentTheme/Standard.uss?fileID=7433441132597879392;guid=c99aa736163923f459f7fe4fc8ffa1c9;type=3#Standard" />
+    <Style src="project://database/Assets/Ui/USS/TransparentTheme/CraftingMenu.uss?fileID=7433441132597879392&amp;guid=9cb4eeee50bf6604b8b4f730aa69b890&amp;type=3#CraftingMenu" />
     <ui:VisualElement name="SlotContainer" class="crafting-container" style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;" />
 </ui:UXML>

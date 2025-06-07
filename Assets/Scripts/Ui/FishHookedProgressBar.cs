@@ -8,6 +8,7 @@ public class FishHookedProgressBar : MonoBehaviour
 {
     private float _startTime = -1f;
     private float _timeRemaining = -1f;
+    private bool _fishCaught = false;
 
     [SerializeField] private Image timeRemainingProgressBar;
 
@@ -17,15 +18,26 @@ public class FishHookedProgressBar : MonoBehaviour
         _startTime = FishingManager.Instance.CurrentFish.timeToEscape;
         _timeRemaining = _startTime;
     }
+    
+    private void OnEnable()
+    {
+        FishingManager.Instance.OnFishCaught += FishCaught;
+    }
+
+    private void OnDisable()
+    {
+        FishingManager.Instance.OnFishCaught -= FishCaught;
+    }
+
+    private void FishCaught(FishData fishData)
+    {
+        _fishCaught = true;
+    }
 
     private void Update()
     {
-        if (timeRemainingProgressBar == null ||
-            GameObjectManager.Instance.playerState.CurrentPlayerFishingState == PlayerFishingState.FishCaught || 
-            GameObjectManager.Instance.playerState.CurrentPlayerFishingState == PlayerFishingState.None)
-        {
+        if (_fishCaught)
             return;
-        }
 
         _timeRemaining -= Time.deltaTime;
         timeRemainingProgressBar.fillAmount = _timeRemaining / _startTime;

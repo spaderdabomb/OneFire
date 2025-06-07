@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" gen-cs-namespace="OneFireUi" gen-cs-file="2e00390f4648d9e4aad4217e605d46c1" editor-extension-mode="False">
     <ui:Template name="StructurePlacementMessage" src="project://database/Assets/Ui/UXML/GameScene/StructurePlacementMessage.uxml?fileID=9197481963319205126&amp;guid=3bce7fe434cd3e344ab8fa404d07d5ff&amp;type=3#StructurePlacementMessage" />
     <ui:Template name="ItemPickupContainer" src="project://database/Assets/Ui/UXML/GameScene/ItemPickupContainer.uxml?fileID=9197481963319205126&amp;guid=1cf607274156cb94080eaae6d78e1d34&amp;type=3#ItemPickupContainer" />
-    <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
+    <Style src="project://database/Assets/Ui/USS/TransparentTheme/OptionsMenu.uss?fileID=7433441132597879392;guid=8d949e2a68b54294889f8e5fbebafd5d;type=3#OptionsMenu" />
     <ui:VisualElement name="GameSceneRoot" style="flex-grow: 1;">
         <ui:VisualElement name="BottomContainer" style="flex-grow: 1; justify-content: flex-end; align-self: stretch;" />
         <ui:Instance template="StructurePlacementMessage" name="StructurePlacementMessageRoot" style="position: absolute; top: 50%; left: 50%; align-self: center; translate: -50% 0; display: none;" />

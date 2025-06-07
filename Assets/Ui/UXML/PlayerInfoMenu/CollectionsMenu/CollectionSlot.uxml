@@ -1,17 +1,13 @@
-﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" gen-cs-file="f49167ae32adbbc4e9fc03068c7a5764" editor-extension-mode="False">
-    <Style src="project://database/Assets/Ui/USS/PlayerInfoMenu/MenuCollections.uss?fileID=7433441132597879392&amp;guid=9f7505e4057c6054098827846f7f6c21&amp;type=3#MenuCollections" />
-    <Style src="project://database/Assets/Ui/USS/MenusGeneral.uss?fileID=7433441132597879392&amp;guid=1c7206bf865cea84abb20862944e6c02&amp;type=3#MenusGeneral" />
-    <Style src="project://database/Assets/Ui/USS/PlayerInfoMenus.uss?fileID=7433441132597879392&amp;guid=da9b4f7b6b51a494eae43b326ba9a5b6&amp;type=3#PlayerInfoMenus" />
-    <QuickEye.UIToolkit.Tab name="tabRoot" value="false" class="collection-slot" style="justify-content: flex-start; width: 631px; height: 52px;">
-        <ui:VisualElement name="FishIcon" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/PlayerSummaryMenu/FishingLevelIcon.psd?fileID=2800000&amp;guid=54557ffc39f971b4e84ff53f338cfba6&amp;type=3#FishingLevelIcon'); width: 40px; height: 40px; align-self: center; justify-content: center; display: flex; margin-left: 20px;" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" gen-cs-file="f49167ae32adbbc4e9fc03068c7a5764" editor-extension-mode="False">
+    <Style src="project://database/Assets/Ui/USS/WoodTheme/MenuCollections.uss?fileID=7433441132597879392&amp;guid=9f7505e4057c6054098827846f7f6c21&amp;type=3#MenuCollections" />
+    <Style src="project://database/Assets/Ui/USS/WoodTheme/MenusGeneral.uss?fileID=7433441132597879392&amp;guid=4704faa6888e33645806260e215547b5&amp;type=3#MenusGeneral" />
+    <Style src="project://database/Assets/Ui/USS/WoodTheme/PlayerInfoMenus.uss?fileID=7433441132597879392&amp;guid=5632bb7ca801f684d8b4808ef6bb26c8&amp;type=3#PlayerInfoMenus" />
+    <QuickEye.UIToolkit.Tab name="tabRoot" value="false" class="collection-slot" style="justify-content: flex-start; width: 631px;">
+        <ui:VisualElement name="FishIcon" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); background-image: url(&quot;project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/PlayerSummaryMenu/FishingLevelIcon.psd?fileID=2800000&amp;guid=54557ffc39f971b4e84ff53f338cfba6&amp;type=3#FishingLevelIcon&quot;); width: 40px; height: 40px; align-self: center; justify-content: center; display: flex; margin-left: 20px;" />
         <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="FishLabel" class="menu-label-standard" style="margin-left: 10px; margin-right: 10px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 18px;" />
-        <ui:VisualElement name="RarityLightsContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: relative; display: flex; flex-direction: row; justify-content: flex-end; margin-right: 20px;">
-            <ui:VisualElement name="LightCommon" class="rarity-light" />
-            <ui:VisualElement name="LightUncommon" class="rarity-light" />
-            <ui:VisualElement name="LightRare" class="rarity-light" />
-            <ui:VisualElement name="LightEpic" class="rarity-light" />
-            <ui:VisualElement name="LightLegendary" class="rarity-light" />
-            <ui:VisualElement name="LightMythic" class="rarity-light" />
+        <ui:VisualElement name="RightContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: relative; display: flex; flex-direction: row; justify-content: flex-end; margin-right: 20px;">
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RarityTierLabel" class="menu-label-standard" style="font-size: 18px; -unity-text-align: middle-left;" />
+            <ui:VisualElement name="TrophyIcon" class="trophy-icon" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/UI/UIMenus/CollectionMenu/TrophyCommon.psd?fileID=2800000&amp;guid=d2932f97d1897b041b11e7ce18dde432&amp;type=3#TrophyCommon&quot;); width: 56px; height: 56px;" />
         </ui:VisualElement>
     </QuickEye.UIToolkit.Tab>
 </ui:UXML>

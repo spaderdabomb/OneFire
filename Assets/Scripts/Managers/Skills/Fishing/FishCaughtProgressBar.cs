@@ -1,9 +1,11 @@
+using System;
 using JSAM;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using GinjaGaming.FinalCharacterController;
+using Random = UnityEngine.Random;
 
 public class FishCaughtProgressBar : MonoBehaviour
 {
@@ -30,6 +32,7 @@ public class FishCaughtProgressBar : MonoBehaviour
     private Color _progressFlashStartColor;
     private GameObject _successParticles = null; 
     private Vector3 _lastHookZonePosition = Vector3.zero;
+    private bool _fishCaught = false;
 
     private void Awake()
     {
@@ -51,6 +54,21 @@ public class FishCaughtProgressBar : MonoBehaviour
 
         SoundFileObject sfo = AudioManager.GetSoundSafe(MainLibrarySounds.Success);
         sfo.startingPitch = _startingPitch;
+    }
+
+    private void OnEnable()
+    {
+        FishingManager.Instance.OnFishCaught += FishCaught;
+    }
+
+    private void OnDisable()
+    {
+        FishingManager.Instance.OnFishCaught -= FishCaught;
+    }
+
+    private void FishCaught(FishData fishData)
+    {
+        _fishCaught = true;
     }
 
     private void Update()
@@ -163,8 +181,7 @@ public class FishCaughtProgressBar : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (GameObjectManager.Instance.playerState.CurrentPlayerFishingState == PlayerFishingState.FishCaught || 
-            GameObjectManager.Instance.playerState.CurrentPlayerFishingState == PlayerFishingState.None )
+        if (_fishCaught)
             return;
 
         _timeCounter += Time.deltaTime * baseSpeedIndicator;

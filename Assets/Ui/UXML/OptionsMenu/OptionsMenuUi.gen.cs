@@ -16,10 +16,12 @@ namespace OneFireUi
         private QuickEye.UIToolkit.Tab collectionLogTab;
         private QuickEye.UIToolkit.Tab skillsTab;
         private QuickEye.UIToolkit.Tab objectivesTab;
-        private QuickEye.UIToolkit.Tab achievementsTab;
+        private QuickEye.UIToolkit.Tab trophiesTab;
+        private QuickEye.UIToolkit.Tab mapTab;
         private QuickEye.UIToolkit.Tab settingsTab;
         private TemplateContainer inventoryMenuUi;
         private VisualElement objectiveMenuUi;
+        private TemplateContainer skillsMenu;
         private TemplateContainer menuCollectionsUi;
         private VisualElement achievementsMenuUi;
         private VisualElement settingsMenuUi;
@@ -34,10 +36,12 @@ namespace OneFireUi
             collectionLogTab = root.Q<QuickEye.UIToolkit.Tab>("CollectionLogTab");
             skillsTab = root.Q<QuickEye.UIToolkit.Tab>("SkillsTab");
             objectivesTab = root.Q<QuickEye.UIToolkit.Tab>("ObjectivesTab");
-            achievementsTab = root.Q<QuickEye.UIToolkit.Tab>("AchievementsTab");
+            trophiesTab = root.Q<QuickEye.UIToolkit.Tab>("TrophiesTab");
+            mapTab = root.Q<QuickEye.UIToolkit.Tab>("MapTab");
             settingsTab = root.Q<QuickEye.UIToolkit.Tab>("SettingsTab");
             inventoryMenuUi = root.Q<TemplateContainer>("InventoryMenuUi");
             objectiveMenuUi = root.Q<VisualElement>("ObjectiveMenuUi");
+            skillsMenu = root.Q<TemplateContainer>("SkillsMenu");
             menuCollectionsUi = root.Q<TemplateContainer>("MenuCollectionsUi");
             achievementsMenuUi = root.Q<VisualElement>("AchievementsMenuUi");
             settingsMenuUi = root.Q<VisualElement>("SettingsMenuUi");

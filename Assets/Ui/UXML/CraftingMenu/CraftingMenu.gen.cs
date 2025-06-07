@@ -17,6 +17,7 @@ partial class CraftingMenu
     private VisualElement slotPreviewIcon;
     private Label slotPreviewLabel;
     private Label requiredMaterialsHeader;
+    private VisualElement shadow;
     private VisualElement requiredMaterialsContainer;
     private VisualElement craftingButtonsContainer;
     private VisualElement selectAmountContainer;
@@ -52,6 +53,7 @@ partial class CraftingMenu
         slotPreviewIcon = root.Q<VisualElement>("SlotPreviewIcon");
         slotPreviewLabel = root.Q<Label>("SlotPreviewLabel");
         requiredMaterialsHeader = root.Q<Label>("RequiredMaterialsHeader");
+        shadow = root.Q<VisualElement>("Shadow");
         requiredMaterialsContainer = root.Q<VisualElement>("RequiredMaterialsContainer");
         craftingButtonsContainer = root.Q<VisualElement>("CraftingButtonsContainer");
         selectAmountContainer = root.Q<VisualElement>("SelectAmountContainer");

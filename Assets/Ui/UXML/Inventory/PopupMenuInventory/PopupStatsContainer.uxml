@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" gen-cs-file="036dd14cc35c9744b82c204c084c5a0a" editor-extension-mode="False">
-    <Style src="project://database/Assets/Ui/USS/Standard.uss?fileID=7433441132597879392&amp;guid=c99aa736163923f459f7fe4fc8ffa1c9&amp;type=3#Standard" />
-    <Style src="project://database/Assets/Ui/USS/CraftingMenu.uss?fileID=7433441132597879392&amp;guid=9cb4eeee50bf6604b8b4f730aa69b890&amp;type=3#CraftingMenu" />
+    <Style src="project://database/Assets/Ui/USS/TransparentTheme/Standard.uss?fileID=7433441132597879392;guid=c99aa736163923f459f7fe4fc8ffa1c9;type=3#Standard" />
+    <Style src="project://database/Assets/Ui/USS/TransparentTheme/CraftingMenu.uss?fileID=7433441132597879392&amp;guid=9cb4eeee50bf6604b8b4f730aa69b890&amp;type=3#CraftingMenu" />
     <ui:VisualElement name="PopupStatsContainer" class="stats-container-1" style="flex-grow: 0;">
         <ui:VisualElement name="statsContainerBg" style="align-self: stretch; justify-content: space-between; align-items: stretch; flex-direction: row;">
             <ui:Label tabindex="-1" text="Req. Fishing Lv." display-tooltip-when-elided="true" name="statDisplayNameLabel" class="menu-label-standard menu-standard-label" style="font-size: 14px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 10px; margin-right: 10px; margin-top: 0; margin-bottom: 0; flex-wrap: nowrap; white-space: normal; -unity-text-align: middle-left;" />

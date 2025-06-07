@@ -177,12 +177,14 @@ public partial class CraftingMenu : IPersistentData
         slotPreviewIcon.style.backgroundImage = recipeData.itemResult.itemSprite.texture;
         slotPreviewLabel.text = recipeData.itemResult.displayName;
 
+        int i = 0;
         foreach (var kvp in recipeData.recipe)
         {
             VisualElement materialContainerClone = CraftingManager.Instance.materialContainerAsset.CloneTree();
-            MaterialContainer materialContainer = new MaterialContainer(materialContainerClone, kvp.Key, kvp.Value, this);
+            MaterialContainer materialContainer = new MaterialContainer(materialContainerClone, kvp.Key, kvp.Value, this, i);
             materialContainers.Add(materialContainer);
             requiredMaterialsContainer.Add(materialContainerClone);
+            i++;
         }
 
         ownedQuantityLabel.text = InventoryManager.Instance.GetNumItemOwned(recipeData.itemResult).ToString();

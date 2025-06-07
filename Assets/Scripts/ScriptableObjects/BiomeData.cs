@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.ComponentModel;
+using System.Linq;
+
 [CreateAssetMenu(fileName = "BiomeData", menuName = "ZenFisher/Biomes/BiomeData")]
 public class BiomeData : SerializedScriptableObject
 {
@@ -59,21 +61,25 @@ public static class BiomeExtensions
         return dataDict;
     }
 
-    public static Dictionary<BiomeType, List<FishData>> GetAllFishInBiomes()
+    public static Dictionary<BiomeType, List<FishData>> GetAllFishTypesInBiomes()
     {
-        if (allFishInBiomesDict.Count <= 0)
+        if (allFishInBiomesDict.Count == 0 || allFishInBiomesDict.Values.Any(v => v == null))
         {
+            allFishInBiomesDict.Clear(); 
+
             Dictionary<string, FishData> fishData = FishRegistry.fishDictionary;
 
             foreach (var fish in fishData.Values)
             {
-                allFishInBiomesDict.TryGetValue(fish.biomeType, out List<FishData> currentFishData);
-                if (currentFishData is null)
+                if (fish == null) continue;
+
+                if (!allFishInBiomesDict.TryGetValue(fish.biomeType, out var fishList) || fishList == null)
                 {
-                    currentFishData = new();
+                    fishList = new List<FishData>();
                 }
-                currentFishData.Add(fish);
-                allFishInBiomesDict[fish.biomeType] = currentFishData;
+
+                fishList.Add(fish);
+                allFishInBiomesDict[fish.biomeType] = fishList;
             }
         }
 

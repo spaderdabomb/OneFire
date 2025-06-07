@@ -314,7 +314,7 @@ namespace USSRelinker
             }
 
             // For USS files, we typically use fileID=7433441132597879392 and type=3
-            link.newUri = $"project://database/{link.newPath}?fileID=7433441132597879392;guid={guid};type=3#{Path.GetFileNameWithoutExtension(link.newPath)}";
+            link.newUri = $"project://database/{link.newPath}?fileID=7433441132597879392&amp;guid={guid}&amp;type=3#{Path.GetFileNameWithoutExtension(link.newPath)}";
             link.linkFixed = true;
         }
 

@@ -12,6 +12,7 @@ partial class RaritySlotContainer
     private VisualElement rarityColorBg;
     private VisualElement rarityFishIcon;
     private Label raritySlotLabel;
+    private VisualElement trophyIcon;
     
     protected void AssignQueryResults(VisualElement root)
     {
@@ -20,5 +21,6 @@ partial class RaritySlotContainer
         rarityColorBg = root.Q<VisualElement>("RarityColorBg");
         rarityFishIcon = root.Q<VisualElement>("RarityFishIcon");
         raritySlotLabel = root.Q<Label>("RaritySlotLabel");
+        trophyIcon = root.Q<VisualElement>("TrophyIcon");
     }
 }

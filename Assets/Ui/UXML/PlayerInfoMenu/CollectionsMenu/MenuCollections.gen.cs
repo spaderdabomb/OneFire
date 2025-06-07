@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 partial class MenuCollections
 {
     private VisualElement menuCollectionsRoot;
+    private Label headerLabel;
+    private VisualElement hLayout;
     private VisualElement collectionsLeftContainer;
     private VisualElement collectionLogHeader;
     private VisualElement tabGroupContainer;
@@ -53,6 +55,8 @@ partial class MenuCollections
     protected void AssignQueryResults(VisualElement root)
     {
         menuCollectionsRoot = root.Q<VisualElement>("MenuCollectionsRoot");
+        headerLabel = root.Q<Label>("HeaderLabel");
+        hLayout = root.Q<VisualElement>("HLayout");
         collectionsLeftContainer = root.Q<VisualElement>("CollectionsLeftContainer");
         collectionLogHeader = root.Q<VisualElement>("CollectionLogHeader");
         tabGroupContainer = root.Q<VisualElement>("TabGroupContainer");

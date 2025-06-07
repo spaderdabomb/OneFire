@@ -158,6 +158,7 @@ public class FishingBob : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        print("Here");
         if (collision.gameObject.layer == waterLayer)
         {
             Debug.Log("colling with water layer - did you forget to set water collider to a trigger?");

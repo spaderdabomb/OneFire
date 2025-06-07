@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Ui/USS/WoodTheme/MenusGeneral.uss?fileID=7433441132597879392&amp;guid=4704faa6888e33645806260e215547b5&amp;type=3#MenusGeneral" />
+    <Style src="project://database/Assets/Ui/USS/WoodTheme/MenuOptionsWood.uss?fileID=7433441132597879392&amp;guid=16b72c728cd169e41aea1f8b3478c374&amp;type=3#MenuOptionsWood" />
+    <ui:VisualElement name="SkillsMenuRoot" class="options-submenu-bg" style="flex-grow: 1; display: none;">
+        <ui:VisualElement style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

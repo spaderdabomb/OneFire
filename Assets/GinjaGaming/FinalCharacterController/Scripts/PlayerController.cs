@@ -116,6 +116,7 @@ namespace GinjaGaming.FinalCharacterController
 
         private void HandleVerticalMovement()
         {
+            bool canMove = CanMove();
             bool isGrounded = _playerState.InGroundedState();
 
             _verticalVelocity -= gravity * Time.deltaTime;
@@ -123,7 +124,7 @@ namespace GinjaGaming.FinalCharacterController
             if (isGrounded && _verticalVelocity < 0)
                 _verticalVelocity = -_antiBump;
 
-            if (_playerLocomotionInput.JumpPressed && isGrounded)
+            if (_playerLocomotionInput.JumpPressed && isGrounded && canMove)
             {
                 _verticalVelocity += Mathf.Sqrt(jumpSpeed * 3 * gravity);
                 _jumpedLastFrame = true;

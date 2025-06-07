@@ -14,9 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundCategories:
   - 
+  - Destroy
+  - Fishing
+  - Hits
+  - Interact
+  - Positive
+  - UI
+  - Weapons
   musicCategories:
   - 
   Sounds:
+  - {fileID: 11400000, guid: cbeb91790627bf448b370c9370d05ce3, type: 2}
+  - {fileID: 11400000, guid: 4e49693f9c69c334ab4bd2ec09482a46, type: 2}
   - {fileID: 11400000, guid: c87a3c7274aec84479b37ffefb457710, type: 2}
   - {fileID: 11400000, guid: f18e61aeaec2ca543b2882a7f7dab8fb, type: 2}
   - {fileID: 11400000, guid: ce6b06278563d384e94740f9d7f67ef8, type: 2}
@@ -29,47 +38,64 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f640320ab51caae40a713548e503b5e9, type: 2}
   - {fileID: 11400000, guid: c072bf4161f7cf843a80f94010437a1b, type: 2}
   - {fileID: 11400000, guid: 8d9a07963a4ed3049b87d324a1ce995f, type: 2}
-  - {fileID: 11400000, guid: 63f25f83cbe32a941b77414244869ac0, type: 2}
-  - {fileID: 11400000, guid: dc3ec41e104dc464796112bc995d04cd, type: 2}
-  - {fileID: 11400000, guid: 1c6fc446f2845b4469691edec7f6de60, type: 2}
-  - {fileID: 11400000, guid: 8d03c59a1016c6543b530ccc0ffcec73, type: 2}
-  - {fileID: 11400000, guid: 92acbb87b3876cd4ab5782564970c6ca, type: 2}
-  - {fileID: 11400000, guid: abfa6b9fbaffc874298809b95bc8b277, type: 2}
-  - {fileID: 11400000, guid: 49206ca9643e7994bb036b9bcdefc59b, type: 2}
-  - {fileID: 11400000, guid: 457789e44d08f644f9b6c0cc5a0d04b0, type: 2}
-  - {fileID: 11400000, guid: 8128061dea294d04383be81766eb956b, type: 2}
-  - {fileID: 11400000, guid: cbeb91790627bf448b370c9370d05ce3, type: 2}
-  - {fileID: 11400000, guid: 4e49693f9c69c334ab4bd2ec09482a46, type: 2}
+  - {fileID: 11400000, guid: e70b6f5d3a7c2a84e91df8422a65eeb7, type: 2}
   - {fileID: 11400000, guid: 426545aa6a782aa49ab4879ca3c0d2c2, type: 2}
   - {fileID: 11400000, guid: 672cb93cfd0e63d479f9e23de7b432d6, type: 2}
-  - {fileID: 11400000, guid: ed1e035c1a99cdd49a26cef12edc2800, type: 2}
-  - {fileID: 11400000, guid: 5ea5ee589cf0bb945ad633cd027a0d4b, type: 2}
-  - {fileID: 11400000, guid: 1f9baa17f4235b24fa685d1e90712418, type: 2}
-  - {fileID: 11400000, guid: 7392ae265e198e749bb00bdd781766c9, type: 2}
   - {fileID: 11400000, guid: 5916753fca30bb94bbc0907a3f43a52d, type: 2}
   - {fileID: 11400000, guid: a98f4f2d358687341a87298d7cc00930, type: 2}
   - {fileID: 11400000, guid: c3ee47aa8fe2cdc4dbc0763c09a4648e, type: 2}
   - {fileID: 11400000, guid: bd1327abc1f7884439df87f77fd56b01, type: 2}
   - {fileID: 11400000, guid: 3605406d1ed790541b8a5574c351dbf8, type: 2}
   - {fileID: 11400000, guid: 5109e9c656ec5a249b1dcb1446032f3d, type: 2}
-  - {fileID: 11400000, guid: aa15c95aa8a101647a81a5eab9bd0fad, type: 2}
-  - {fileID: 11400000, guid: 9971fc02f63bf2f4bb88741a845802ae, type: 2}
-  - {fileID: 11400000, guid: ee36f4bd0a42c184db470957243def0c, type: 2}
+  - {fileID: 11400000, guid: 1f9baa17f4235b24fa685d1e90712418, type: 2}
+  - {fileID: 11400000, guid: 7392ae265e198e749bb00bdd781766c9, type: 2}
+  - {fileID: 11400000, guid: 5ea5ee589cf0bb945ad633cd027a0d4b, type: 2}
+  - {fileID: 11400000, guid: 8128061dea294d04383be81766eb956b, type: 2}
+  - {fileID: 11400000, guid: 63f25f83cbe32a941b77414244869ac0, type: 2}
+  - {fileID: 11400000, guid: dc3ec41e104dc464796112bc995d04cd, type: 2}
+  - {fileID: 11400000, guid: 457789e44d08f644f9b6c0cc5a0d04b0, type: 2}
+  - {fileID: 11400000, guid: c251d32b679c73a4aac933036e593e51, type: 2}
+  - {fileID: 11400000, guid: 9b9bbd89517cf93469554a33923d5a03, type: 2}
+  - {fileID: 11400000, guid: b2c7b45e337efe843a9e594729921979, type: 2}
+  - {fileID: 11400000, guid: 7a9f3a40bdc1ba24ea0dd051cd90c4be, type: 2}
+  - {fileID: 11400000, guid: 88c7a7b61c70d6b4488c5449fdec5a31, type: 2}
+  - {fileID: 11400000, guid: 4f04942a04447ab46ba06cd3f25d5d4b, type: 2}
+  - {fileID: 11400000, guid: 42f23d1fd17b26d4497dc000c7e87144, type: 2}
+  - {fileID: 11400000, guid: 246565502c6184642bf660277984e008, type: 2}
+  - {fileID: 11400000, guid: 8a11a841ca5951d4c83723b83eb3e8ec, type: 2}
+  - {fileID: 11400000, guid: a82f127f239c1d243b3e1184030e06d7, type: 2}
+  - {fileID: 11400000, guid: f141037947c26b548ac825a0a72b8236, type: 2}
   - {fileID: 11400000, guid: 0734f78ba31a9d64c8318094793bc525, type: 2}
-  - {fileID: 11400000, guid: e70b6f5d3a7c2a84e91df8422a65eeb7, type: 2}
+  - {fileID: 11400000, guid: 1c6fc446f2845b4469691edec7f6de60, type: 2}
+  - {fileID: 11400000, guid: 8d03c59a1016c6543b530ccc0ffcec73, type: 2}
+  - {fileID: 11400000, guid: 49206ca9643e7994bb036b9bcdefc59b, type: 2}
+  - {fileID: 11400000, guid: ee36f4bd0a42c184db470957243def0c, type: 2}
+  - {fileID: 11400000, guid: 92acbb87b3876cd4ab5782564970c6ca, type: 2}
+  - {fileID: 11400000, guid: 9971fc02f63bf2f4bb88741a845802ae, type: 2}
+  - {fileID: 11400000, guid: abfa6b9fbaffc874298809b95bc8b277, type: 2}
+  - {fileID: 11400000, guid: ed1e035c1a99cdd49a26cef12edc2800, type: 2}
+  - {fileID: 11400000, guid: aa15c95aa8a101647a81a5eab9bd0fad, type: 2}
   Music: []
   useCustomNames: 0
   generatedName: MainLibrary
-  musicEnum: MainLibraryMusic
+  musicEnum: 
   musicEnumGenerated: MainLibraryMusic
   musicNamespace: 
   musicNamespaceGenerated: 
-  soundEnum: MainLibrarySounds
+  soundEnum: 
   soundEnumGenerated: MainLibrarySounds
   soundNamespace: 
   soundNamespaceGenerated: 
   soundCategoriesToList:
   - name: 
+    files: []
+    foldout: 0
+  - name: Destroy
+    files:
+    - {fileID: 11400000, guid: cbeb91790627bf448b370c9370d05ce3, type: 2}
+    - {fileID: 11400000, guid: 4e49693f9c69c334ab4bd2ec09482a46, type: 2}
+    foldout: 0
+  - name: Fishing
     files:
     - {fileID: 11400000, guid: c87a3c7274aec84479b37ffefb457710, type: 2}
     - {fileID: 11400000, guid: f18e61aeaec2ca543b2882a7f7dab8fb, type: 2}
@@ -83,35 +109,59 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f640320ab51caae40a713548e503b5e9, type: 2}
     - {fileID: 11400000, guid: c072bf4161f7cf843a80f94010437a1b, type: 2}
     - {fileID: 11400000, guid: 8d9a07963a4ed3049b87d324a1ce995f, type: 2}
-    - {fileID: 11400000, guid: 63f25f83cbe32a941b77414244869ac0, type: 2}
-    - {fileID: 11400000, guid: dc3ec41e104dc464796112bc995d04cd, type: 2}
-    - {fileID: 11400000, guid: 1c6fc446f2845b4469691edec7f6de60, type: 2}
-    - {fileID: 11400000, guid: 8d03c59a1016c6543b530ccc0ffcec73, type: 2}
-    - {fileID: 11400000, guid: 92acbb87b3876cd4ab5782564970c6ca, type: 2}
-    - {fileID: 11400000, guid: abfa6b9fbaffc874298809b95bc8b277, type: 2}
-    - {fileID: 11400000, guid: 49206ca9643e7994bb036b9bcdefc59b, type: 2}
-    - {fileID: 11400000, guid: 457789e44d08f644f9b6c0cc5a0d04b0, type: 2}
-    - {fileID: 11400000, guid: 8128061dea294d04383be81766eb956b, type: 2}
-    - {fileID: 11400000, guid: cbeb91790627bf448b370c9370d05ce3, type: 2}
-    - {fileID: 11400000, guid: 4e49693f9c69c334ab4bd2ec09482a46, type: 2}
+    - {fileID: 11400000, guid: e70b6f5d3a7c2a84e91df8422a65eeb7, type: 2}
+    foldout: 1
+  - name: Hits
+    files:
     - {fileID: 11400000, guid: 426545aa6a782aa49ab4879ca3c0d2c2, type: 2}
     - {fileID: 11400000, guid: 672cb93cfd0e63d479f9e23de7b432d6, type: 2}
-    - {fileID: 11400000, guid: ed1e035c1a99cdd49a26cef12edc2800, type: 2}
-    - {fileID: 11400000, guid: 5ea5ee589cf0bb945ad633cd027a0d4b, type: 2}
-    - {fileID: 11400000, guid: 1f9baa17f4235b24fa685d1e90712418, type: 2}
-    - {fileID: 11400000, guid: 7392ae265e198e749bb00bdd781766c9, type: 2}
     - {fileID: 11400000, guid: 5916753fca30bb94bbc0907a3f43a52d, type: 2}
     - {fileID: 11400000, guid: a98f4f2d358687341a87298d7cc00930, type: 2}
     - {fileID: 11400000, guid: c3ee47aa8fe2cdc4dbc0763c09a4648e, type: 2}
     - {fileID: 11400000, guid: bd1327abc1f7884439df87f77fd56b01, type: 2}
     - {fileID: 11400000, guid: 3605406d1ed790541b8a5574c351dbf8, type: 2}
     - {fileID: 11400000, guid: 5109e9c656ec5a249b1dcb1446032f3d, type: 2}
-    - {fileID: 11400000, guid: aa15c95aa8a101647a81a5eab9bd0fad, type: 2}
-    - {fileID: 11400000, guid: 9971fc02f63bf2f4bb88741a845802ae, type: 2}
-    - {fileID: 11400000, guid: ee36f4bd0a42c184db470957243def0c, type: 2}
+    - {fileID: 11400000, guid: 1f9baa17f4235b24fa685d1e90712418, type: 2}
+    - {fileID: 11400000, guid: 7392ae265e198e749bb00bdd781766c9, type: 2}
+    - {fileID: 11400000, guid: 5ea5ee589cf0bb945ad633cd027a0d4b, type: 2}
+    foldout: 0
+  - name: Interact
+    files:
+    - {fileID: 11400000, guid: 8128061dea294d04383be81766eb956b, type: 2}
+    - {fileID: 11400000, guid: 63f25f83cbe32a941b77414244869ac0, type: 2}
+    - {fileID: 11400000, guid: dc3ec41e104dc464796112bc995d04cd, type: 2}
+    - {fileID: 11400000, guid: 457789e44d08f644f9b6c0cc5a0d04b0, type: 2}
+    foldout: 0
+  - name: Positive
+    files:
+    - {fileID: 11400000, guid: c251d32b679c73a4aac933036e593e51, type: 2}
+    - {fileID: 11400000, guid: 9b9bbd89517cf93469554a33923d5a03, type: 2}
+    - {fileID: 11400000, guid: b2c7b45e337efe843a9e594729921979, type: 2}
+    - {fileID: 11400000, guid: 7a9f3a40bdc1ba24ea0dd051cd90c4be, type: 2}
+    - {fileID: 11400000, guid: 88c7a7b61c70d6b4488c5449fdec5a31, type: 2}
+    - {fileID: 11400000, guid: 4f04942a04447ab46ba06cd3f25d5d4b, type: 2}
+    - {fileID: 11400000, guid: 42f23d1fd17b26d4497dc000c7e87144, type: 2}
+    - {fileID: 11400000, guid: 246565502c6184642bf660277984e008, type: 2}
+    - {fileID: 11400000, guid: 8a11a841ca5951d4c83723b83eb3e8ec, type: 2}
+    - {fileID: 11400000, guid: a82f127f239c1d243b3e1184030e06d7, type: 2}
+    - {fileID: 11400000, guid: f141037947c26b548ac825a0a72b8236, type: 2}
+    foldout: 0
+  - name: UI
+    files:
     - {fileID: 11400000, guid: 0734f78ba31a9d64c8318094793bc525, type: 2}
-    - {fileID: 11400000, guid: e70b6f5d3a7c2a84e91df8422a65eeb7, type: 2}
-    foldout: 1
+    - {fileID: 11400000, guid: 1c6fc446f2845b4469691edec7f6de60, type: 2}
+    - {fileID: 11400000, guid: 8d03c59a1016c6543b530ccc0ffcec73, type: 2}
+    - {fileID: 11400000, guid: 49206ca9643e7994bb036b9bcdefc59b, type: 2}
+    - {fileID: 11400000, guid: ee36f4bd0a42c184db470957243def0c, type: 2}
+    - {fileID: 11400000, guid: 92acbb87b3876cd4ab5782564970c6ca, type: 2}
+    - {fileID: 11400000, guid: 9971fc02f63bf2f4bb88741a845802ae, type: 2}
+    - {fileID: 11400000, guid: abfa6b9fbaffc874298809b95bc8b277, type: 2}
+    foldout: 0
+  - name: Weapons
+    files:
+    - {fileID: 11400000, guid: ed1e035c1a99cdd49a26cef12edc2800, type: 2}
+    - {fileID: 11400000, guid: aa15c95aa8a101647a81a5eab9bd0fad, type: 2}
+    foldout: 0
   musicCategoriesToList:
   - name: 
     files: []

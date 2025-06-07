@@ -5,11 +5,18 @@ using System;
 [CreateAssetMenu(fileName = "FishData", menuName = "OneFire/Items/FishData")]
 public class FishData : ItemData
 {
+    [Header("Details")] 
+    public string fishID;
+
     [Header("Fish Parameters")]
     public float catchExp = 10f;
     public float escapeBonus = 1f;
     public float timeToEscape = 10f;
     public int catchSegments = 3;
+    public float weight = 1f;
+    public float catchRate = 100f;
+    public float weightRangeLow = 1f;
+    public float weightRangeHigh = 10f;
 
     [Header("Assets")] 
     public Sprite uncaughtFishIcon;
@@ -21,6 +28,8 @@ public class FishData : ItemData
     {
         base.OnValidate();
 
+        fishID = baseName + itemRarity;
+
         FishRegistry.Register(this);
     }
 }
@@ -28,7 +37,7 @@ public class FishData : ItemData
 public static class FishDataExtensions
 {
     public static readonly Dictionary<string, FishData> dataDict = new Dictionary<string, FishData>();
-    public static string path = "ScriptableObjects/Fish";
+    public static string path = "ScriptableObjects/Items/Fish";
 
     public static FishData GetFishData(string uniqueID)
     {
@@ -79,7 +88,8 @@ public static class FishDataExtensions
     {
         FishData spawnedData = ScriptableObject.Instantiate(data);
         spawnedData.itemRarity = itemRarity;
+        spawnedData.fishID = spawnedData.baseName + itemRarity;
         
-        return spawnedData;
+        return spawnedData; //
     }
 }

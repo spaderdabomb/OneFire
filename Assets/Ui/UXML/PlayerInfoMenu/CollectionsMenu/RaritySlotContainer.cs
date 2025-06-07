@@ -5,13 +5,11 @@ using JSAM;
 public partial class RaritySlotContainer : ITabInterface
 {
     public VisualElement root;
-    public FishData fishData;
-    public ItemRarity itemRarity;
-    public RaritySlotContainer(VisualElement root, FishData fishdata, ItemRarity itemRarity, int index)
+    public FishData SlotFishData;
+    public RaritySlotContainer(VisualElement root, FishData fishData, int index)
     {
         this.root = root;
-        this.fishData = fishdata;
-        this.itemRarity = itemRarity;
+        SlotFishData = fishData;
 
         AssignQueryResults(root);
         tabRoot.tabIndex = index;
@@ -21,21 +19,32 @@ public partial class RaritySlotContainer : ITabInterface
 
     private void InitRaritySlot()
     {
-        raritySlotLabel.text = itemRarity.ToString();
-        rarityColorBg.style.unityBackgroundImageTintColor = GameDataManager.Instance.gameData.rarityToColorDict[itemRarity];
-        rarityFishIcon.style.backgroundImage = PersistentDataManager.Instance.IsFishCaught(fishData.baseName) ? fishData.itemSprite.texture : fishData.uncaughtFishIcon.texture;
+        UpdateRaritySlot(SlotFishData);
+    }
+
+    private void UpdateRaritySlot(FishData fishData)
+    {
+        if (fishData.fishID != SlotFishData.fishID)
+            return;
+            
+        raritySlotLabel.text = fishData.itemRarity.ToString();
+        rarityColorBg.style.unityBackgroundImageTintColor = GameDataManager.Instance.gameData.rarityToColorDict[fishData.itemRarity];
+        rarityFishIcon.style.backgroundImage = FishingManager.Instance.IsFishCaught(fishData.fishID) ? fishData.itemSprite.texture : fishData.uncaughtFishIcon.texture;
+        trophyIcon.style.backgroundImage = FishingManager.Instance.IsFishCaught(fishData.fishID) ? UiManager.Instance.trophyTextures[fishData.itemRarity].texture : UiManager.Instance.trophyTexturesDark[fishData.itemRarity].texture;
     }
 
     public void RegisterCallbacks()
     {
         tabRoot.RegisterValueChangedCallback(TabIndexChanged);
         tabRoot.RegisterCallback<PointerEnterEvent>(OnHover);
+        FishingManager.Instance.OnNewFishCaught += UpdateRaritySlot;
     }
 
     public void UnregisterCallbacks()
     {
         tabRoot.UnregisterValueChangedCallback(TabIndexChanged);
         tabRoot.UnregisterCallback<PointerEnterEvent>(OnHover);
+        FishingManager.Instance.OnNewFishCaught -= UpdateRaritySlot;
     }
 
     public void TabIndexChanged(ChangeEvent<bool> value)

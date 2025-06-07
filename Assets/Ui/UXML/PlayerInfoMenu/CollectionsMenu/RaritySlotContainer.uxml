@@ -1,11 +1,12 @@
-﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-file="6e26dad327dce8548bba58e88cc9cc30">
-    <Style src="project://database/Assets/Ui/USS/PlayerInfoMenu/MenuCollections.uss?fileID=7433441132597879392&amp;guid=9f7505e4057c6054098827846f7f6c21&amp;type=3#MenuCollections" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-file="6e26dad327dce8548bba58e88cc9cc30">
+    <Style src="project://database/Assets/Ui/USS/WoodTheme/MenuCollections.uss?fileID=7433441132597879392&amp;guid=9f7505e4057c6054098827846f7f6c21&amp;type=3#MenuCollections" />
     <ui:VisualElement name="RaritySlotContainer" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0);">
         <QuickEye.UIToolkit.Tab name="tabRoot" class="rarity-tab">
-            <ui:VisualElement name="RarityColorBg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: center; align-self: stretch; background-image: url('project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/CollectionLog/CollectionSlotRarityBg.psd?fileID=2800000&amp;guid=f84c92589881bc7419b53b2a172ee807&amp;type=3#CollectionSlotRarityBg'); -unity-background-image-tint-color: rgb(48, 168, 76);">
-                <ui:VisualElement name="RarityFishIcon" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); background-image: url('project://database/Assets/Art/UI/UIItems/Fish/MahMahiUI.png?fileID=2800000&amp;guid=052cb19962e196248ad0125c737ecbd0&amp;type=3#MahMahiUI'); max-width: none; max-height: none; align-self: center; justify-content: center; width: 70px; height: 70px; align-items: center;" />
+            <ui:VisualElement name="RarityColorBg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: center; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/CollectionLog/CollectionSlotRarityBg.psd?fileID=2800000&amp;guid=f84c92589881bc7419b53b2a172ee807&amp;type=3#CollectionSlotRarityBg&quot;); -unity-background-image-tint-color: rgb(48, 168, 76);">
+                <ui:VisualElement name="RarityFishIcon" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); background-image: url(&quot;project://database/Assets/Art/Ui_2/ItemIcons/Fish/MahMahiUI.png?fileID=2800000&amp;guid=052cb19962e196248ad0125c737ecbd0&amp;type=3#MahMahiUI&quot;); max-width: none; max-height: none; align-self: center; justify-content: center; width: 70px; height: 70px; align-items: center;" />
             </ui:VisualElement>
         </QuickEye.UIToolkit.Tab>
         <ui:Label tabindex="-1" text="Common" display-tooltip-when-elided="true" name="RaritySlotLabel" class="menu-label-standard" style="font-size: 14px; -unity-text-align: upper-center; -unity-font-style: bold;" />
+        <ui:VisualElement name="TrophyIcon" class="trophy-icon" style="flex-grow: 1;" />
     </ui:VisualElement>
 </ui:UXML>

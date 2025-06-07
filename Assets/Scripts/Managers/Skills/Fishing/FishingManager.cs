@@ -7,10 +7,15 @@ using Random = UnityEngine.Random;
 using OneFireUi;
 using Sirenix.OdinInspector;
 using JSAM;
+using System.Linq;
 
-public class FishingManager : SerializedMonoBehaviour
+[DefaultExecutionOrder(-1)]
+public class FishingManager : SerializedMonoBehaviour, IPersistentData
 {
     public static FishingManager Instance;
+
+    [Header("Debug")] 
+    [SerializeField] private bool clearData;
 
     [Header("Fishing Prefabs")]
     public GameObject fishingBobPrefab;
@@ -28,18 +33,28 @@ public class FishingManager : SerializedMonoBehaviour
     public ParticleSystem fishSpawnedEffect;
     public ParticleSystem fishOnHookEffect;
     public GameObject successBurstYellowEffect;
+    public GameObject newFishCaughtEffect;
+    public Dictionary<ItemRarity, ParticleSystem> fishOnHookRarityEffectDict;
 
     [Header("UI")]
     public GameObject fishHookedProgressBarPrefab;
     public GameObject fishCaughtProgressBarPrefab;
 
-    [Header("WorldObjects")]
+    [Header("WorldObjects")] 
+    public Camera uiWorldCamera;
     public Transform currentFishingPositionTransform;
 
     [HideInInspector] public GameObject fishCaughtProgressBar = null;
     [HideInInspector] public GameObject fishHookedProgressBar = null;
+    
+    [HideInInspector] public int TotalFishCaught { get; set; } = 0;
+    [HideInInspector] public Dictionary<string, bool> FishCaughtDict { get; set; } = new Dictionary<string, bool>();
+    [HideInInspector] public Dictionary<string, DateTime> FishDateCaughtDict { get; set; } = new Dictionary<string, DateTime>();
+    [HideInInspector] public Dictionary<string, int> FishTotalCaughtDict { get; set; } = new Dictionary<string, int>();
+    [HideInInspector] public Dictionary<string, float> FishCaughtBestWeightDict { get; set; } = new Dictionary<string, float>();
 
     private ParticleSystem _currentFishOnHookEffect;
+    private ParticleSystem _currentFishOnHookRarityEffect;
 
     private float _timeBobInWater = 0f;
     private float _nextSpawnTime = 0f;
@@ -71,6 +86,14 @@ public class FishingManager : SerializedMonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
+        if (clearData)
+            ClearData();
+        else
+            LoadData();
+        
+        AddToSaveable();
+        
     }
 
     private void Start()
@@ -130,6 +153,7 @@ public class FishingManager : SerializedMonoBehaviour
 
         _currentFishingBob.GetComponent<FishingBob>().Hide();
         _currentFishOnHookEffect = Instantiate(fishOnHookEffect, _currentFishPosition, fishOnHookEffect.transform.rotation, GameObjectManager.Instance.effectsContainer.transform);
+        _currentFishOnHookRarityEffect = Instantiate(fishOnHookRarityEffectDict[CurrentFish.itemRarity], _currentFishPosition + 0.3f * Vector3.up, Quaternion.identity, GameObjectManager.Instance.effectsContainer.transform);
 
         fishHookedProgressBar = Instantiate(fishHookedProgressBarPrefab, UiManager.Instance.perspectiveCanvas.transform);
         fishCaughtProgressBar = Instantiate(fishCaughtProgressBarPrefab, UiManager.Instance.perspectiveCanvas.transform);
@@ -157,6 +181,43 @@ public class FishingManager : SerializedMonoBehaviour
         AudioManager.PlaySound(MainLibrarySounds.Complete);
         OnFishCaught?.Invoke(CurrentFish);
         GameObjectManager.Instance.playerState.SetPlayerFishingState(PlayerFishingState.FishCaught);
+
+        if (!FishCaughtDict.ContainsKey(CurrentFish.fishID))
+        {
+            NewFishCaught(CurrentFish);
+            CatchAllLowerTierFish(CurrentFish);
+            AudioManager.PlaySound(MainLibrarySounds.zenfisher_fishcaught_01);
+            Instantiate(newFishCaughtEffect, uiWorldCamera.transform);
+        }
+
+        TotalFishCaught += 1;
+        IncrementOrCreateKey(FishTotalCaughtDict, CurrentFish.fishID);
+    }
+    
+    private void NewFishCaught(FishData fishData)
+    {
+        FishCaughtDict.TryAdd(fishData.fishID, true);
+        FishDateCaughtDict.TryAdd(fishData.fishID, DateTime.Now);
+        IncrementOrCreateKey(FishTotalCaughtDict, fishData.fishID);
+        UpdateIfBiggerOrCreateKeyWithFloatValue(FishCaughtBestWeightDict, fishData.fishID, fishData.weight);
+        OnNewFishCaught?.Invoke(CurrentFish);
+    }
+    
+    private void CatchAllLowerTierFish(FishData fishData)
+    {
+        for (int i = (int)fishData.itemRarity - 1; i >= 0; i--)
+        {
+            string fishID = fishData.baseName + (ItemRarity)i;
+            if (i < (int)fishData.itemRarity && !FishCaughtDict.ContainsKey(fishID))
+            {
+                FishData newFish = fishData.CreateNew((ItemRarity)i);
+                CurrentFish = newFish;
+                NewFishCaught(CurrentFish);
+                continue;
+            }
+
+            break;
+        }
     }
 
     public void CastRod(float castPower)
@@ -166,28 +227,48 @@ public class FishingManager : SerializedMonoBehaviour
 
     private FishData SpawnFishFromLake(WorldLake worldLake)
     {
-        float totalWeight = 0f;
+        FishData randomFish = GetRandomFishFromLake(worldLake);
+        ItemRarity randomRarity = GetRandomRarity();
 
+        FishData newFish = randomFish.CreateNew(randomRarity);
+        newFish.weight = Random.Range(newFish.weightRangeLow, newFish.weightRangeHigh);
+
+        return newFish;
+    }
+
+    public FishData GetRandomFishFromLake(WorldLake worldLake)
+    {
+        float totalRate = worldLake.lakeData.fishInLake.Sum(fishData => fishData.catchRate);
+        float randomRateValue = UnityEngine.Random.Range(0f, totalRate);
+        
+        float cumulativeRate = 0f;
+        FishData newFishData = null;
         foreach (FishData fishData in worldLake.lakeData.fishInLake)
         {
-            totalWeight += rarityWeights[fishData.itemRarity];
+            cumulativeRate += fishData.catchRate;
+            if (randomRateValue <= cumulativeRate)
+                return fishData;           
         }
-
-        float randomValue = UnityEngine.Random.Range(0f, totalWeight);
-
-        float cumulativeWeight = 0f;
-        foreach (FishData fishData in worldLake.lakeData.fishInLake)
-        {
-            float weight = rarityWeights[fishData.itemRarity];
-            cumulativeWeight += weight;
-
-            if (randomValue <= cumulativeWeight)
-                return fishData;
-        }
-
+        
         Debug.Log("Spawning null fish - this is bad");
-
         return null;
+    }
+    
+    public ItemRarity GetRandomRarity()
+    {
+        float totalWeight = rarityWeights.Values.Sum();
+        float randomWeight = UnityEngine.Random.Range(0f, totalWeight);
+
+        float cumulative = 0f;
+        foreach (var pair in rarityWeights)
+        {
+            cumulative += pair.Value;
+            if (randomWeight <= cumulative)
+                return pair.Key;
+        }
+
+        Debug.Log("Fallback rarity - this is bad");
+        return rarityWeights.Keys.FirstOrDefault();
     }
 
     public void ReelFishPressed()
@@ -253,8 +334,11 @@ public class FishingManager : SerializedMonoBehaviour
         currentFishingPositionTransform.position = _currentFishPosition;
         CurrentFish = null;
 
+        GameObject rarityEffectObj = _currentFishOnHookRarityEffect != null ? _currentFishOnHookRarityEffect.gameObject : null;
+
         DestroyAndSetNull(ref _currentFishingBob);
         DestroyAndSetNull(ref _currentFishOnHookEffect);
+        DestroyAndSetNull(ref rarityEffectObj);
         DestroyAndFade(ref fishCaughtProgressBar);
         DestroyAndFade(ref fishHookedProgressBar);
 
@@ -265,22 +349,141 @@ public class FishingManager : SerializedMonoBehaviour
 
     private void DestroyAndSetNull(ref GameObject obj)
     {
+        if (obj == null)
+            return;
+        
         Destroy(obj);
         obj = null;
     }
 
     private void DestroyAndSetNull(ref ParticleSystem obj)
     {
+        if (obj == null)
+            return;
+        
         Destroy(obj);
         obj = null;
     }
 
     private void DestroyAndFade(ref GameObject obj)
     {
+        if (obj == null)
+            return;
+        
         obj.TryGetComponent(out UIFader uiFader);
         {
             uiFader.FadeAndDestroy();
             obj = null;
         }
     }
+    
+    #region Persistent Data Utils
+    public void AddToSaveable()
+    {
+        PersistentDataManager.Instance.AddToPersistentDataList(this);
+    }
+
+    public void LoadData()
+    {
+        TotalFishCaught = ES3.Load(nameof(TotalFishCaught), defaultValue: TotalFishCaught);
+        FishCaughtDict = ES3.Load(nameof(FishCaughtDict), defaultValue: FishCaughtDict);
+        FishDateCaughtDict = ES3.Load(nameof(FishDateCaughtDict), defaultValue: FishDateCaughtDict);
+        FishTotalCaughtDict = ES3.Load(nameof(FishTotalCaughtDict), defaultValue: FishTotalCaughtDict);
+        FishCaughtBestWeightDict = ES3.Load(nameof(FishCaughtBestWeightDict), defaultValue: FishCaughtBestWeightDict); //
+    }
+
+    public void SaveData()
+    {
+        ES3.Save(nameof(TotalFishCaught), TotalFishCaught);
+        ES3.Save(nameof(FishCaughtDict), FishCaughtDict);
+        ES3.Save(nameof(FishDateCaughtDict), FishDateCaughtDict);
+        ES3.Save(nameof(FishTotalCaughtDict), FishTotalCaughtDict);
+        ES3.Save(nameof(FishCaughtBestWeightDict), FishCaughtBestWeightDict);
+    }
+
+    public void ClearData()
+    {
+        TotalFishCaught = 0;
+        FishCaughtDict.Clear();
+        FishDateCaughtDict.Clear();
+        FishTotalCaughtDict.Clear();
+        FishCaughtBestWeightDict.Clear();
+
+        SaveData();
+    }
+    
+    public int GetTotalFishCollected()
+    {
+        return FishCaughtDict.Count;
+    }
+
+    public bool IsFishCaught(string fishID)
+    {
+        return FishCaughtDict.TryGetValue(fishID, out bool fishCaught) ? fishCaught : false;
+    }
+
+    public bool IsFishTypeCaught(FishData fishData)
+    {
+        string fishName = fishData.baseName;
+        foreach (ItemRarity itemRarity in Enum.GetValues(typeof(ItemRarity)))
+        {
+            string currentFishID = fishName + itemRarity;
+            if (FishCaughtDict.TryGetValue(currentFishID, out bool fishCaught))
+            {
+                return fishCaught;
+            }
+        }
+
+        return false;
+    }
+
+    // public int GetFishCollectedInBiome(BiomeType biomeType)
+    // {
+    //     List<FishData> biomeFish = BiomeExtensions.GetAllFishTypesInBiomes()[biomeType];
+    //
+    //     return biomeFish.Count(fish => FishCaughtDict.TryGetValue(fish.fishID, out bool caught) && caught);
+    // }
+    
+    public int GetFishCollectedInBiome(BiomeType biomeType)
+    {
+        int fishCollectedInBiome = 0;
+        List<FishData> biomeFishData = BiomeExtensions.GetAllFishTypesInBiomes()[biomeType];
+        foreach (FishData biomeFish in  biomeFishData)
+        {
+            foreach (ItemRarity itemRarity in Enum.GetValues(typeof(ItemRarity)))
+            {
+                string currentFishID = biomeFish.baseName + itemRarity;
+                if (FishCaughtDict.TryGetValue(currentFishID, out bool fishCaught))
+                {
+                    if (fishCaught)
+                    {
+                        fishCollectedInBiome++;
+                    }
+                }
+            }
+        }
+
+        return fishCollectedInBiome;
+    }
+    
+    public static void IncrementOrCreateKey(Dictionary<string, int> dictionary, string key)
+    {
+        dictionary[key] = dictionary.GetValueOrDefault(key) + 1;
+    }
+
+    static void UpdateIfBiggerOrCreateKeyWithFloatValue(Dictionary<string, float> dictionary, string key, float newValue)
+    {
+        if (dictionary.ContainsKey(key))
+        {
+            if (newValue > dictionary[key])
+            {
+                dictionary[key] = newValue;
+            }
+        }
+        else
+        {
+            dictionary[key] = newValue;
+        }
+    }
+    #endregion
 }

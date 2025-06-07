@@ -13,6 +13,7 @@ namespace OneFireUi
         public MenuCollections menuCollections;
 
         public List<Tab> playerInfoTabs = new();
+        public int CurrentTabIndex { get; private set; } = 0;
         private ITabMenu[] tabMenus;
         private ExitButton exitButton;
 
@@ -37,7 +38,7 @@ namespace OneFireUi
             foreach (Tab tab in optionsTabGroup.contentContainer.Children())
             {
                 playerInfoTabs.Add(tab);
-                tab.RegisterValueChangedCallback(evt => OnTabIndexChanged(evt, tab));
+                tab.RegisterValueChangedCallback(evt => OnTabIndexChanged(tab.tabIndex));
             }
         }
 
@@ -67,11 +68,8 @@ namespace OneFireUi
         public void ShowMenu()
         {
             root.style.display = DisplayStyle.Flex;
-
-            foreach (var menu in tabMenus)
-            {
-                menu.ShowMenu();
-            }
+            
+            OnTabIndexChanged(CurrentTabIndex);
         }
 
         public bool ToggleMenu()
@@ -86,13 +84,12 @@ namespace OneFireUi
             return false;
         }
         
-        void OnTabIndexChanged(ChangeEvent<bool> evt, VisualElement tab)
+        void OnTabIndexChanged(int tabIndex)
         {
-            Debug.Log(tab);
-            Debug.Log(tab.tabIndex);
+            CurrentTabIndex = tabIndex;
             foreach (var tabMenu in tabMenus)
             {
-                tabMenu.OnTabChanged(tab.tabIndex);
+                tabMenu.OnTabChanged(tabIndex);
             }
         }
     }

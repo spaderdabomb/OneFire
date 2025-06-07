@@ -92,7 +92,7 @@ public partial class MenuCollections : ITabMenu
     private void SetBiomeTabUI(int index)
     {
         biomeSubheaderLabel.text = biomeDataList[index].displayName;
-        Dictionary<BiomeType, List<FishData>> biomeToFishDict = BiomeExtensions.GetAllFishInBiomes();
+        Dictionary<BiomeType, List<FishData>> biomeToFishDict = BiomeExtensions.GetAllFishTypesInBiomes();
 
         int i = 0;
         foreach (KeyValuePair<BiomeType, List<FishData>> kvp in biomeToFishDict)
@@ -125,7 +125,7 @@ public partial class MenuCollections : ITabMenu
             if (i == index)
             {
                 ClearCurrentFishUI();
-                SetCurrentFishUI(collectionSlot.fishData);
+                SetCurrentFishUI(collectionSlot.SlotFishData);
             }
         }
 
@@ -148,7 +148,7 @@ public partial class MenuCollections : ITabMenu
     {
         currentFisherLabel.text = fishData.displayName;
         fishDescriptionLabel.text = fishData.description;
-        rarityFishIcon.style.backgroundImage = PersistentDataManager.Instance.IsFishCaught(fishData.baseName) ? fishData.itemSprite.texture : fishData.uncaughtFishIcon.texture;
+        rarityFishIcon.style.backgroundImage = FishingManager.Instance.IsFishCaught(fishData.fishID) ? fishData.itemSprite.texture : fishData.uncaughtFishIcon.texture;
         fishInfoColorBg.style.unityBackgroundImageTintColor = GameDataManager.Instance.gameData.rarityToColorDict[fishData.itemRarity];
 
         // Init Fish Rarity UI
@@ -157,7 +157,7 @@ public partial class MenuCollections : ITabMenu
         {
             VisualElement fishRaritySlot = UiManager.Instance.raritySlotContainer.CloneTree();
             FishData newFishData = fishData.CreateNew(itemRarity);
-            RaritySlotContainer raritySlotContainer = new RaritySlotContainer(fishRaritySlot, newFishData, itemRarity, i);
+            RaritySlotContainer raritySlotContainer = new RaritySlotContainer(fishRaritySlot, newFishData, i);
             currentFishRaritySlots.Add(raritySlotContainer);
             raritiesSlotLayout.Add(fishRaritySlot);
             i++;
@@ -166,9 +166,9 @@ public partial class MenuCollections : ITabMenu
 
     private void SetFishInfoUI(FishData fishData)
     {
-        if (PersistentDataManager.Instance.FishDateCaughtDict.TryGetValue(fishData.baseName, out DateTime fishCaughtDate) &&
-            PersistentDataManager.Instance.FishTotalCaughtDict.TryGetValue(fishData.baseName, out int fishTotal) &&
-            PersistentDataManager.Instance.FishCaughtBestWeightDict.TryGetValue(fishData.baseName, out float fishWeight))
+        if (FishingManager.Instance.FishDateCaughtDict.TryGetValue(fishData.fishID, out DateTime fishCaughtDate) &&
+            FishingManager.Instance.FishTotalCaughtDict.TryGetValue(fishData.fishID, out int fishTotal) &&
+            FishingManager.Instance.FishCaughtBestWeightDict.TryGetValue(fishData.fishID, out float fishWeight))
         {
             infoLabelLeft1.text = "First Caught";
             infoLabelRight1.text = fishCaughtDate.ToString();
@@ -177,6 +177,7 @@ public partial class MenuCollections : ITabMenu
             infoLabelLeft3.text = "Best Weight";
             infoLabelRight3.text = fishWeight.ToString("0.00");
             rarityFishIcon.style.backgroundImage = fishData.itemSprite.texture;
+            fishInfoColorBg.style.unityBackgroundImageTintColor = GameDataManager.Instance.gameData.rarityToColorDict[fishData.itemRarity];
         }
         else
         {
@@ -187,6 +188,7 @@ public partial class MenuCollections : ITabMenu
             infoLabelLeft3.text = "Best Weight";
             infoLabelRight3.text = "-";
             rarityFishIcon.style.backgroundImage = fishData.uncaughtFishIcon.texture;
+            fishInfoColorBg.style.unityBackgroundImageTintColor = GameDataManager.Instance.gameData.rarityToColorDict[fishData.itemRarity];
         }
     }
 
@@ -199,16 +201,16 @@ public partial class MenuCollections : ITabMenu
             raritySlot.SetTabSelectedValue(i == index);
             if (i == index)
             {
-                SetFishInfoUI(raritySlot.fishData);
+                SetFishInfoUI(raritySlot.SlotFishData);
             }
         }
     }
 
     private void UpdateCollectionProgressUI()
     {
-        int fishObtained = PersistentDataManager.Instance.GetTotalFishCollected();
+        int fishObtained = FishingManager.Instance.GetTotalFishCollected();
         int totalFish = FishDataExtensions.GetTotalUniqueFish();
-
+        
         float percentComplete = 100 * ((float)fishObtained / (float)totalFish);
         collectionProgressBar.value = percentComplete;
         collectionProgressBar.title = fishObtained.ToString() + "/" + totalFish.ToString();
@@ -217,10 +219,10 @@ public partial class MenuCollections : ITabMenu
     private void UpdateFishObtainedLabel()
     {
         BiomeData currentBiomeData = biomeTabs[currentBiomeTabIndex].biomeData;
-        Dictionary<BiomeType, List<FishData>> biomeToFishDict = BiomeExtensions.GetAllFishInBiomes();
-        List<FishData> biomeFishData = BiomeExtensions.GetAllFishInBiomes()[currentBiomeData.biomeType];
-        int numFishInBiome = biomeFishData.Count;
-        int numFishCaughtInBiome = PersistentDataManager.Instance.GetFishCollectedInBiome(currentBiomeData.biomeType);
+        Dictionary<BiomeType, List<FishData>> biomeToFishDict = BiomeExtensions.GetAllFishTypesInBiomes();
+        List<FishData> biomeFishData = BiomeExtensions.GetAllFishTypesInBiomes()[currentBiomeData.biomeType];
+        int numFishInBiome = biomeFishData.Count * Enum.GetValues(typeof(ItemRarity)).Length;
+        int numFishCaughtInBiome = FishingManager.Instance.GetFishCollectedInBiome(currentBiomeData.biomeType);
         biomeObtainedLabel.text = "Obtained:  " + numFishCaughtInBiome + "/" + numFishInBiome;
     }
 

@@ -1,9 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False" gen-cs-file="8a8a8af1ed431ce4093d73e9a898cd75">
     <ui:Template name="InventorySlot" src="project://database/Assets/Ui/UXML/Inventory/InventorySlot.uxml?fileID=9197481963319205126&amp;guid=ccbad88146756884eb748478687af031&amp;type=3#InventorySlot" />
-    <Style src="project://database/Assets/Ui/USS/InventorySlot.uss?fileID=7433441132597879392&amp;guid=d360fa236a66adb47a78743100616810&amp;type=3#InventorySlot" />
-    <Style src="project://database/Assets/Ui/USS/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
-    <Style src="project://database/Assets/Ui/USS/GameSceneStandard.uss?fileID=7433441132597879392&amp;guid=f893621f9efe7434daa9b743d051df33&amp;type=3#GameSceneStandard" />
-    <ui:VisualElement name="PlayerHotbarRoot" class="game-scene-menu-container" style="margin-top: 15px; margin-right: 15px; margin-bottom: 15px; margin-left: 15px;">
+    <Style src="project://database/Assets/Ui/USS/TransparentTheme/InventorySlot.uss?fileID=7433441132597879392&amp;guid=d360fa236a66adb47a78743100616810&amp;type=3#InventorySlot" />
+    <Style src="project://database/Assets/Ui/USS/TransparentTheme/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=8d949e2a68b54294889f8e5fbebafd5d&amp;type=3#OptionsMenu" />
+    <Style src="project://database/Assets/Ui/USS/GameView.uss?fileID=7433441132597879392&amp;guid=f893621f9efe7434daa9b743d051df33&amp;type=3#GameView" />
+    <Style src="project://database/Assets/Ui/USS/WoodTheme/InventoryStyle.uss?fileID=7433441132597879392&amp;guid=80f3de8a9fad61a40b8aebac3d91f734&amp;type=3#InventoryStyle" />
+    <ui:VisualElement name="PlayerHotbarRoot" class="hotbar-container" style="margin-top: 15px; margin-right: 15px; margin-bottom: 15px; margin-left: 15px;">
         <ui:Instance template="InventorySlot" />
         <ui:Instance template="InventorySlot" />
         <ui:Instance template="InventorySlot" />

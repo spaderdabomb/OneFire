@@ -57,19 +57,21 @@ MonoBehaviour:
   itemID: 5e497885-e11c-4132-b96b-ea037415b187
   baseName: Trout
   displayName: Trout
-  description: An pretty edible fish
+  description: A pretty edible fish
   stackCount: 1
   maxStackCount: 50
   baseSellValue: 1
   itemType: 0
-  itemRarity: 1
+  itemRarity: 0
   itemCategories: 0
   item3DPrefab: {fileID: 5224393941312387127, guid: de500f6b90f89bc4c87a6585b2dea01a,
     type: 3}
   itemSprite: {fileID: 21300000, guid: 60c25a45c67373046bc0ce23d3166adb, type: 3}
+  fishID: TroutCommon
   catchExp: 10
   escapeBonus: 1
   timeToEscape: 10
-  catchSegments: 3
+  catchSegments: 1
+  weight: 1
   uncaughtFishIcon: {fileID: 21300000, guid: 8f3060ac6b0ea794aada8fbe27ef0f49, type: 3}
   biomeType: 1

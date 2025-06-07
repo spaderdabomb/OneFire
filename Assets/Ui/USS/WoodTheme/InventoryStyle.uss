@@ -1,0 +1,242 @@
+.inventory-standard-label {
+    color: rgb(230, 230, 230);
+    -unity-font-style: bold;
+    font-size: 16px;
+}
+
+.inventory-slot-count-label {
+    color: rgb(230, 230, 230);
+    -unity-font-style: bold;
+    font-size: 14px;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(58, 37, 12);
+    -unity-font: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold.ttf?fileID=12800000&guid=a920e2e8ea812f34a9d19380151c1df9&type=3#Montserrat-Bold");
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    -unity-text-align: upper-right;
+}
+
+.inventory-slot-icon {
+    font-size: 16px;
+    background-image: url('bold');
+    width: 80%;
+    height: 80%;
+}
+
+.inventory-sorting-icon {
+    width: 34px;
+    height: 34px;
+}
+
+.inventory-slot {
+    background-image: none;
+    width: 70px;
+    height: 70px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-left-color: rgb(116, 78, 28);
+    border-right-color: rgb(116, 78, 28);
+    border-top-color: rgb(116, 78, 28);
+    border-bottom-color: rgb(116, 78, 28);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: rgba(161, 118, 53, 0.62);
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+}
+
+.inventory-slot:hover {
+    background-image: none;
+    width: 70px;
+    height: 70px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-left-color: rgba(109, 73, 27, 0.67);
+    border-right-color: rgba(109, 73, 27, 0.67);
+    border-top-color: rgba(109, 73, 27, 0.67);
+    border-bottom-color: rgba(109, 73, 27, 0.67);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: rgba(174, 142, 77, 0.65);
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+}
+
+.inventory-slot-selected {
+    width: 70px;
+    height: 70px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    align-items: auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(174, 142, 77);
+    border-left-color: rgba(255, 255, 255, 0.31);
+    border-right-color: rgba(255, 255, 255, 0.31);
+    border-top-color: rgba(255, 255, 255, 0.31);
+    border-bottom-color: rgba(255, 255, 255, 0.31);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+}
+
+.inventory.unity-scroll-view__content-container {
+    flex-direction: row;
+}
+
+.inventory-page-arrow {
+    width: 30px;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+.inventory-container {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: rgb(174, 142, 77);
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-left-color: rgb(136, 102, 51);
+    border-right-color: rgb(136, 102, 51);
+    border-top-color: rgb(136, 102, 51);
+    border-bottom-color: rgb(136, 102, 51);
+}
+
+.inventory-button:enabled {
+    background-color: rgb(174, 142, 77);
+    border-left-color: rgb(136, 102, 51);
+    border-right-color: rgb(136, 102, 51);
+    border-top-color: rgb(136, 102, 51);
+    border-bottom-color: rgb(136, 102, 51);
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.01);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 2px;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    margin-left: 4px;
+    padding-top: 10px;
+    padding-right: 12px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    align-self: center;
+}
+
+.inventory-button:hover:enabled {
+    background-color: rgb(195, 160, 88);
+    border-left-color: rgb(136, 102, 51);
+    border-right-color: rgb(136, 102, 51);
+    border-top-color: rgb(136, 102, 51);
+    border-bottom-color: rgb(136, 102, 51);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 2px;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    margin-left: 4px;
+    padding-top: 10px;
+    padding-right: 12px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    align-self: center;
+    color: rgb(255, 255, 255);
+    background-image: none;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.hotbar-container {
+    flex-grow: 0;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+    width: auto;
+    align-items: flex-end;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: auto;
+    margin-top: 5px;
+    background-color: rgba(119, 86, 38, 0.94);
+    border-left-color: rgba(99, 70, 28, 0.67);
+    border-right-color: rgba(99, 70, 28, 0.67);
+    border-top-color: rgba(99, 70, 28, 0.67);
+    border-bottom-color: rgba(99, 70, 28, 0.67);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.inventory-slot-backing-icon {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.29);
+}
