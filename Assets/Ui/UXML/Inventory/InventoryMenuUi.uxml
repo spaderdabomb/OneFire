@@ -4,10 +4,10 @@
     <Style src="project://database/Assets/Ui/USS/WoodTheme/InventoryStyle.uss?fileID=7433441132597879392&amp;guid=80f3de8a9fad61a40b8aebac3d91f734&amp;type=3#InventoryStyle" />
     <Style src="project://database/Assets/Ui/USS/WoodTheme/MenuOptionsWood.uss?fileID=7433441132597879392&amp;guid=16b72c728cd169e41aea1f8b3478c374&amp;type=3#MenuOptionsWood" />
     <Style src="project://database/Assets/Ui/USS/WoodTheme/MenusGeneral.uss?fileID=7433441132597879392&amp;guid=4704faa6888e33645806260e215547b5&amp;type=3#MenusGeneral" />
-    <ui:VisualElement name="InventoryMenuUiRoot" class="options-submenu-bg" style="margin-top: 0;">
+    <ui:VisualElement name="InventoryMenuUiRoot" class="options-submenu-bg">
         <ui:Label tabindex="-1" text="Inventory" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HeaderLabel" class="menu-header-label" />
         <ui:VisualElement name="HorizontalLayout" style="flex-grow: 1; flex-direction: row; justify-content: space-around; align-self: stretch; margin-left: 10px; margin-right: 10px;">
-            <ui:VisualElement name="LeftGroup" style="flex-grow: 1; flex-direction: row; align-self: stretch; justify-content: space-between; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;">
+            <ui:VisualElement name="LeftGroup" style="flex-grow: 1; flex-direction: row; align-self: stretch; justify-content: space-between;">
                 <ui:VisualElement name="PlayerSummary" class="options-menu-container">
                     <ui:VisualElement name="PlayerHLayout" style="flex-grow: 0; flex-direction: row; height: auto; align-self: stretch; justify-content: space-between; align-items: center;">
                         <ui:VisualElement name="PlayerIconLayout" style="justify-content: space-around; align-items: stretch; flex-grow: 1; align-self: stretch;">
@@ -47,7 +47,7 @@
                 </ui:VisualElement>
                 <ui:Instance template="EquipmentUi" name="EquipmentUi" />
             </ui:VisualElement>
-            <ui:VisualElement name="RightGroup" style="flex-grow: 1; align-self: center; align-items: stretch; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;">
+            <ui:VisualElement name="RightGroup" style="flex-grow: 1; align-self: center; align-items: stretch;">
                 <ui:VisualElement name="InventoryContainer" class="options-menu-container">
                     <ui:Label tabindex="-1" text="Backpack" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-label-standard" style="-unity-text-align: upper-center; font-size: 24px; margin-top: 20px;" />
                     <ui:Instance template="PlayerInventoryUi" name="PlayerInventory" style="flex-grow: 1;" />

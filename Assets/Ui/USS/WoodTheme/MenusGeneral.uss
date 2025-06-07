@@ -35,6 +35,11 @@
     background-image: url("project://database/Assets/Art/UI/UIMenus/OptionsMenu/OptionsBg_NoBorder.psd?fileID=2800000&guid=7f6951e58ba06be4b99e1733ddea9a7a&type=3#OptionsBg_NoBorder");
 }
 
+.submenu-container {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
 .menu-header-label {
     font-size: 26px;
     -unity-font-style: bold;
@@ -45,26 +50,35 @@
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
-    margin-top: 11px;
+    margin-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    margin-left: 11px;
-    margin-right: 11px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.menu-header-spacer {
+    flex-grow: 0;
+    background-color: rgb(58, 37, 12);
+    background-image: none;
+    width: 867px;
+    height: 3px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 .menu-header-container {
     margin-bottom: 20px;
     align-self: center;
-}
-
-.menu-header-spacer {
-    flex-grow: 0;
-    background-color: rgba(0, 0, 0, 0);
-    background-image: url("project://database/Assets/Art/UI/UIMenus/MenuGeneral/MenuHeaderSpacer.psd?fileID=2800000&guid=8e9051492b4671c41aa6fbc567713d1c&type=3#MenuHeaderSpacer");
-    width: 867px;
-    height: 11px;
 }
 
 .menu-label-standard {
@@ -91,18 +105,6 @@
     border-bottom-left-radius: 0;
 }
 
-.submenu-container {
-    background-image: url("project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/CollectionLog/SubheaderBg.psd?fileID=2800000&guid=f8f6248733ec0a744977fc39e754ead6&type=3#SubheaderBg");
-    -unity-slice-left: 60;
-    -unity-slice-top: 60;
-    -unity-slice-right: 60;
-    -unity-slice-bottom: 60;
-    align-self: center;
-    justify-content: center;
-    padding-left: 0;
-    padding-right: 20px;
-}
-
 .submenu-header {
     height: 40px;
     flex-grow: 0;
@@ -120,6 +122,8 @@
 }
 
 .menu-progress-bar {
+    align-items: stretch;
+    justify-content: center;
 }
 
 .menu-progress-bar .unity-progress-bar__progress {
@@ -132,16 +136,22 @@
     -unity-slice-top: 10;
     -unity-slice-right: 10;
     -unity-slice-bottom: 10;
-    left: 2px;
-    top: 2px;
+    left: 0;
+    top: 0;
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: auto;
 }
 
 .menu-progress-bar .unity-progress-bar__background {
-    background-image: url("project://database/Assets/Art/UI/UIMenus/PlayerInfoMenu/MissionsMenu/QuestProgressBarOutline.psd?fileID=2800000&guid=12eac36e6ea4ecc4dbc3fb1f18360b53&type=3#QuestProgressBarOutline");
+    background-image: none;
     width: 252px;
     height: 32px;
     max-height: 32px;
@@ -150,10 +160,18 @@
     -unity-slice-top: 10;
     -unity-slice-right: 10;
     -unity-slice-bottom: 10;
-    border-left-color: rgba(0, 0, 0, 0);
-    border-right-color: rgba(0, 0, 0, 0);
-    border-top-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
+    border-left-color: rgb(119, 86, 38);
+    border-right-color: rgb(119, 86, 38);
+    border-top-color: rgb(119, 86, 38);
+    border-bottom-color: rgb(119, 86, 38);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .menu-progress-bar .unity-progress-bar__container {

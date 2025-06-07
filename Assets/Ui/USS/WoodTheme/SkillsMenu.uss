@@ -1,0 +1,107 @@
+.level-container-even {
+    flex-grow: 0;
+    justify-content: center;
+}
+
+.level-container-odd {
+    flex-direction: column-reverse;
+}
+
+.level-node {
+    flex-grow: 0;
+    background-color: rgb(89, 58, 20);
+    rotate: 45deg;
+    width: 28px;
+    height: 28px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(58, 37, 12);
+    border-right-color: rgb(58, 37, 12);
+    border-top-color: rgb(58, 37, 12);
+    border-bottom-color: rgb(58, 37, 12);
+    -unity-text-align: upper-left;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    left: auto;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.level-node:hover:enabled {
+    flex-grow: 0;
+    background-color: rgb(80, 51, 17);
+    rotate: 45deg;
+    width: 28px;
+    height: 28px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(58, 37, 12);
+    border-right-color: rgb(58, 37, 12);
+    border-top-color: rgb(58, 37, 12);
+    border-bottom-color: rgb(58, 37, 12);
+    -unity-text-align: upper-left;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    left: auto;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.level-node:disabled {
+    flex-grow: 0;
+    background-color: rgb(80, 51, 17);
+    rotate: 45deg;
+    width: 28px;
+    height: 28px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(58, 37, 12);
+    border-right-color: rgb(58, 37, 12);
+    border-top-color: rgb(58, 37, 12);
+    border-bottom-color: rgb(58, 37, 12);
+    -unity-text-align: upper-left;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    left: auto;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.level-path-standard {
+    flex-grow: 0;
+    width: 4px;
+    height: 75px;
+    background-color: rgb(58, 37, 12);
+    left: auto;
+    top: auto;
+    align-self: center;
+    justify-content: flex-start;
+    align-items: center;
+}
