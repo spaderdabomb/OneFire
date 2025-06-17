@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False" gen-cs-file="8ba30940fe62c384691154b441ea8acd" gen-cs-namespace="GameUI">
+    <Style src="project://database/Assets/Ui/USS/WoodTheme/MenusGeneral.uss?fileID=7433441132597879392&amp;guid=4704faa6888e33645806260e215547b5&amp;type=3#MenusGeneral" />
+    <ui:VisualElement name="Vlayout" picking-mode="Ignore" style="flex-grow: 0; width: auto; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(58, 37, 12); border-right-color: rgb(58, 37, 12); border-top-color: rgb(58, 37, 12); border-bottom-color: rgb(58, 37, 12); border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; position: absolute; background-color: rgb(146, 99, 43); bottom: 0; left: 0; min-width: 320px;">
+        <ui:VisualElement name="RewardsHeader" picking-mode="Ignore" data-source-type="JetBrains.Diagnostics.Log+&lt;&gt;c, JetBrains.Rider.Unity.Editor.Plugin.Net46.Repacked" class="submenu-header" style="flex-grow: 1; width: auto; justify-content: space-between; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 0; border-bottom-left-radius: 0;">
+            <ui:Label text="Level 00" name="HeaderLabel" picking-mode="Ignore" />
+            <ui:VisualElement name="GiftBoxIcon" picking-mode="Ignore" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/Ui_2/UiIcons/RewardsIcon.psd?fileID=2800000&amp;guid=f69faa24a077c4c4bb36f906759fa5a7&amp;type=3#RewardsIcon&quot;); width: 30px; height: 30px;" />
+        </ui:VisualElement>
+        <ui:VisualElement picking-mode="Ignore" class="menu-header-spacer" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

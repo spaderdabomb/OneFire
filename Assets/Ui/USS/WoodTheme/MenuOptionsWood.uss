@@ -166,6 +166,15 @@
     margin-right: 10px;
 }
 
+.level-path-normal {
+    flex-grow: 0;
+    width: 90px;
+    height: 4px;
+    background-color: rgb(58, 37, 12);
+    left: 2px;
+    top: 11px;
+}
+
 .options-tab.qe-tab--unchecked:hover {
     font-size: 28px;
     -unity-font-style: bold;

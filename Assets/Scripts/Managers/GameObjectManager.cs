@@ -105,7 +105,7 @@ public class GameObjectManager : SerializedMonoBehaviour, IPersistentData
         Rigidbody newItemRb = newItemSpawned.GetComponent<Rigidbody>();
 
         newItemRb.angularVelocity = new Vector3(Random.Range(0f, angularSpeed), Random.Range(0f, angularSpeed), Random.Range(0f, angularSpeed));
-        newItemRb.velocity = new Vector3(
+        newItemRb.linearVelocity = new Vector3(
             speedScaleFactor * Mathf.Sign(playerCamera.transform.forward.x) * Random.Range(0f, Mathf.Abs(playerCamera.transform.forward.x)),
             Random.Range(0.5f, 2f),
             speedScaleFactor * Mathf.Sign(playerCamera.transform.forward.z) * Random.Range(0f, Mathf.Abs(playerCamera.transform.forward.z))

@@ -7,7 +7,7 @@
     <ui:VisualElement name="CraftingMenuRoot" class="dim-bg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
         <ui:VisualElement name="CraftingMenuContainer" class="menu-container" style="width: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
             <ui:Label tabindex="-1" text="Crafting Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-header-label" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-grow: 0; flex-shrink: 0;" />
-            <ui:VisualElement style="flex-grow: 0; height: 3px; background-color: rgb(58, 37, 12); color: rgba(27, 27, 27, 0); margin-bottom: 0; padding-top: 0;" />
+            <ui:VisualElement class="menu-header-spacer" />
             <QuickEye.UIToolkit.TabGroup class="menu-tab-group" style="flex-grow: 0; flex-shrink: 1; height: 50px; display: flex; align-self: auto; justify-content: flex-start;">
                 <QuickEye.UIToolkit.Tab text="Basic" is-reorderable="false" value="true" class="menu-tab" />
                 <QuickEye.UIToolkit.Tab text="Structures" is-reorderable="false" class="menu-tab" />
@@ -23,7 +23,7 @@
                         <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SlotPreviewLabel" class="menu-label-standard" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center; font-size: 20px;" />
                     </ui:VisualElement>
                     <ui:Label tabindex="-1" text="Required Materials" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RequiredMaterialsHeader" class="submenu-header" style="margin-top: 20px; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-grow: 0; flex-shrink: 0;" />
-                    <ui:VisualElement name="Shadow" style="flex-grow: 0; height: 3px; background-color: rgb(89, 58, 20); color: rgba(27, 27, 27, 0); margin-bottom: 0; padding-top: 0;" />
+                    <ui:VisualElement name="Shadow" class="menu-header-spacer" style="flex-grow: 0; height: 3px; background-color: rgb(89, 58, 20); color: rgba(27, 27, 27, 0); margin-bottom: 0; padding-top: 0;" />
                     <ui:VisualElement name="RequiredMaterialsContainer" style="flex-grow: 0; margin-top: 0; margin-right: 0; margin-bottom: 20px; margin-left: 0;" />
                     <ui:VisualElement name="CraftingButtonsContainer" style="flex-grow: 1; justify-content: flex-end; align-self: stretch;">
                         <ui:VisualElement name="SelectAmountContainer" style="flex-grow: 1; justify-content: space-around; align-self: stretch; flex-direction: row; align-items: flex-end; display: flex;">

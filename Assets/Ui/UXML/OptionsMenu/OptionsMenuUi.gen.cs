@@ -21,7 +21,7 @@ namespace OneFireUi
         private QuickEye.UIToolkit.Tab settingsTab;
         private TemplateContainer inventoryMenuUi;
         private VisualElement objectiveMenuUi;
-        private TemplateContainer skillsMenu;
+        private TemplateContainer skillsMenuUi;
         private TemplateContainer menuCollectionsUi;
         private VisualElement achievementsMenuUi;
         private VisualElement settingsMenuUi;
@@ -41,7 +41,7 @@ namespace OneFireUi
             settingsTab = root.Q<QuickEye.UIToolkit.Tab>("SettingsTab");
             inventoryMenuUi = root.Q<TemplateContainer>("InventoryMenuUi");
             objectiveMenuUi = root.Q<VisualElement>("ObjectiveMenuUi");
-            skillsMenu = root.Q<TemplateContainer>("SkillsMenu");
+            skillsMenuUi = root.Q<TemplateContainer>("SkillsMenuUi");
             menuCollectionsUi = root.Q<TemplateContainer>("MenuCollectionsUi");
             achievementsMenuUi = root.Q<VisualElement>("AchievementsMenuUi");
             settingsMenuUi = root.Q<VisualElement>("SettingsMenuUi");

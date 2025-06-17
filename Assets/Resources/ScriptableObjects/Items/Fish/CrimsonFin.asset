@@ -68,10 +68,13 @@ MonoBehaviour:
     type: 3}
   itemSprite: {fileID: 21300000, guid: ba25eac51a87b244c804a76ff4b0a08e, type: 3}
   fishID: CrimsonFinUncommon
-  catchExp: 50
+  catchExp: 120
   escapeBonus: 1
   timeToEscape: 10
   catchSegments: 1
   weight: 1
+  catchRate: 100
+  weightRangeLow: 1
+  weightRangeHigh: 10
   uncaughtFishIcon: {fileID: 21300000, guid: 8f3060ac6b0ea794aada8fbe27ef0f49, type: 3}
   biomeType: 2

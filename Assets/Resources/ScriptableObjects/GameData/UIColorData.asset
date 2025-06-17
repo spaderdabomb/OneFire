@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc80f745bbcf3e849b66788d681026c7, type: 3}
+  m_Name: UIColorData
+  m_EditorClassIdentifier: 
+  blueTextColor: {r: 0.49803922, g: 0.6745098, b: 0.91764706, a: 1}
+  blueButtonBorder: {r: 0.48235294, g: 0.654902, b: 0.8862745, a: 1}
+  blueButtonFace: {r: 0.3254902, g: 0.45490196, b: 0.62352943, a: 1}
+  blueButtonBorderHover: {r: 0.43137255, g: 0.5921569, b: 0.8117647, a: 1}
+  blueButtonFaceHover: {r: 0.3019608, g: 0.4117647, b: 0.5568628, a: 1}
+  redTextColor: {r: 1, g: 0.42123023, b: 0.35283017, a: 1}
+  redButtonBorder: {r: 0.87169814, g: 0.43973267, b: 0.38650766, a: 1}
+  redButtonFace: {r: 0.6226415, g: 0.29078472, b: 0.2901744, a: 1}
+  redButtonBorderHover: {r: 0.77254903, g: 0.3882353, b: 0.34117648, a: 1}
+  redButtonFaceHover: {r: 0.54901963, g: 0.2509804, b: 0.2509804, a: 1}
+  greenTextColor: {r: 0.50997514, g: 0.91764706, b: 0.49803922, a: 1}
+  greenButtonBorder: {r: 0.58304125, g: 0.8862745, b: 0.48235294, a: 1}
+  greenButtonFace: {r: 0.35961795, g: 0.62352943, b: 0.3254902, a: 1}
+  greenButtonBorderHover: {r: 0.48235294, g: 0.77254903, b: 0.38431373, a: 1}
+  greenButtonFaceHover: {r: 0.30741587, g: 0.5377358, b: 0.27647737, a: 1}
+  orangeTextColor: {r: 1, g: 0.6591243, b: 0.35283017, a: 1}
+  orangeButtonBorder: {r: 0.81886786, g: 0.54869103, b: 0.30746162, a: 1}
+  orangeButtonFace: {r: 0.6754716, g: 0.4212474, b: 0.1924457, a: 1}
+  orangeButtonBorderHover: {r: 0.7647059, g: 0.5058824, b: 0.27450982, a: 1}
+  orangeButtonFaceHover: {r: 0.6313726, g: 0.3882353, b: 0.16862746, a: 1}

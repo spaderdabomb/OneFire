@@ -1,7 +1,11 @@
+using System;
 using System.Collections.Generic;
 using QuickEye.UIToolkit;
 using UnityEngine.UIElements;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using Tab = QuickEye.UIToolkit.Tab;
+using GameUI;
 
 namespace OneFireUi
 {
@@ -11,6 +15,7 @@ namespace OneFireUi
         public VisualElement rootElement;
         public InventoryMenuUi inventoryMenu;
         public MenuCollections menuCollections;
+        public SkillsMenu skillsMenu;
 
         public List<Tab> playerInfoTabs = new();
         public int CurrentTabIndex { get; private set; } = 0;
@@ -19,14 +24,33 @@ namespace OneFireUi
 
         MenuType IGameMenu.MenuType { get; set; } = MenuType.Options;
 
+        public event Action<PointerMoveEvent> OnPointerMoveOptions;
+        public event Action OnOptionsHide;
+
         public OptionsMenuUi(VisualElement root)
         {
             AssignQueryResults(root);
 
             this.root = root;
             rootElement = optionsUiRoot;
-
+            
+            RegisterCallbacks();
             Init();
+        }
+
+        private void RegisterCallbacks()
+        {
+            root.RegisterCallback<PointerMoveEvent>(OnPointerMove);
+        }
+
+        private void UnRegisterCallbacks()
+        {
+            
+        }
+
+        private void OnPointerMove(PointerMoveEvent eventData)
+        {
+            OnPointerMoveOptions?.Invoke(eventData);
         }
 
         private void Init()
@@ -46,8 +70,9 @@ namespace OneFireUi
         {
             inventoryMenu = new InventoryMenuUi(inventoryMenuUi, 0);
             menuCollections = new MenuCollections(menuCollectionsUi, 1);
+            skillsMenu = new SkillsMenu(skillsMenuUi, 2);
             
-            tabMenus = new ITabMenu[] { inventoryMenu, menuCollections };
+            tabMenus = new ITabMenu[] { inventoryMenu, menuCollections, skillsMenu };
         }
 
         public VisualElement GetRootElement()
@@ -81,6 +106,7 @@ namespace OneFireUi
             }
             
             HideMenu();
+            OnOptionsHide?.Invoke();
             return false;
         }
         
@@ -91,6 +117,11 @@ namespace OneFireUi
             {
                 tabMenu.OnTabChanged(tabIndex);
             }
+        }
+
+        public void AddElementToRoot(VisualElement element)
+        {
+            root.Add(element);
         }
     }
 }

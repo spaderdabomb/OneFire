@@ -22,12 +22,13 @@ public class UiManager : SerializedMonoBehaviour
     public VisualTreeAsset collectionsBiomeTab;
     public VisualTreeAsset collectionSlot;
     public VisualTreeAsset raritySlotContainer;
+    public VisualTreeAsset levelNodeContainer;
+    public VisualTreeAsset rewardsItemUI;
+    public VisualTreeAsset skillsRewardsPopup;
 
-    [Header("UI Textures")]
-    public Texture2D questStatusIconDark;
-    public Texture2D questStatusIconLight;
-    public Texture2D statusLightLit;
-    public Texture2D statusLightUnlit;
+    [Header("UI Textures")] 
+    public UITextureLibrary uiTextureLibrary; 
+    public UIColorData uiColorData;
     public Dictionary<ItemRarity, Sprite> trophyTextures;  
     public Dictionary<ItemRarity, Sprite> trophyTexturesDark;  
 
@@ -57,6 +58,7 @@ public class UiManager : SerializedMonoBehaviour
 
     private void Start()
     {
+        print("Start from UIManager");
         uiGameManagerRoot = uiManagerDocument.rootVisualElement;
         uiGameManager.Init(uiGameManagerRoot);
     }

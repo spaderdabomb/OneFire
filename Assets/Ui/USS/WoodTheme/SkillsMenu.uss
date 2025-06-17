@@ -1,10 +1,35 @@
 .level-container-even {
     flex-grow: 0;
     justify-content: center;
+    align-items: flex-start;
 }
 
 .level-container-odd {
     flex-direction: column-reverse;
+    align-items: flex-start;
+}
+
+.level-node-container-right {
+    flex-grow: 0;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex-direction: row;
+}
+
+.level-node-container-standard {
+    flex-grow: 0;
+    align-items: center;
+    align-self: auto;
+    align-content: auto;
+}
+
+.level-node-standard {
+    flex-grow: 0;
+    width: 4px;
+    height: 75px;
+    background-color: rgb(58, 37, 12);
+    left: 12px;
+    top: 2px;
 }
 
 .level-node {
@@ -26,48 +51,21 @@
     align-self: center;
     align-items: center;
     left: auto;
-    margin-top: 0;
+    margin-top: 2px;
     margin-right: 0;
-    margin-bottom: 0;
+    margin-bottom: 1px;
     margin-left: 0;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-}
-
-.level-node:hover:enabled {
-    flex-grow: 0;
-    background-color: rgb(80, 51, 17);
-    rotate: 45deg;
-    width: 28px;
-    height: 28px;
-    border-top-width: 3px;
-    border-right-width: 3px;
-    border-bottom-width: 3px;
-    border-left-width: 3px;
-    border-left-color: rgb(58, 37, 12);
-    border-right-color: rgb(58, 37, 12);
-    border-top-color: rgb(58, 37, 12);
-    border-bottom-color: rgb(58, 37, 12);
-    -unity-text-align: upper-left;
-    justify-content: center;
-    align-self: center;
-    align-items: center;
-    left: auto;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
+    bottom: auto;
+    top: auto;
 }
 
 .level-node:disabled {
     flex-grow: 0;
-    background-color: rgb(80, 51, 17);
+    background-color: rgb(89, 58, 20);
     rotate: 45deg;
     width: 28px;
     height: 28px;
@@ -84,14 +82,56 @@
     align-self: center;
     align-items: center;
     left: auto;
-    margin-top: 0;
+    margin-top: 2px;
     margin-right: 0;
-    margin-bottom: 0;
+    margin-bottom: 1px;
     margin-left: 0;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
+    bottom: auto;
+    top: auto;
+}
+
+.level-node:hover:enabled {
+    flex-grow: 0;
+    background-color: rgb(116, 78, 28);
+    rotate: 45deg;
+    width: 28px;
+    height: 28px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(58, 37, 12);
+    border-right-color: rgb(58, 37, 12);
+    border-top-color: rgb(58, 37, 12);
+    border-bottom-color: rgb(58, 37, 12);
+    -unity-text-align: upper-left;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    left: auto;
+    margin-top: 2px;
+    margin-right: 0;
+    margin-bottom: 1px;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.level-path-right {
+    flex-grow: 0;
+    width: 75px;
+    height: 4px;
+    background-color: rgb(58, 37, 12);
+    left: 2px;
+    top: 14px;
+    margin-right: 4px;
+    margin-left: 3px;
 }
 
 .level-path-standard {
@@ -99,9 +139,191 @@
     width: 4px;
     height: 75px;
     background-color: rgb(58, 37, 12);
-    left: auto;
-    top: auto;
-    align-self: center;
-    justify-content: flex-start;
+    left: 12px;
+    top: 2px;
+    bottom: auto;
+    margin-bottom: 2px;
+}
+
+.level-node-container-reversed {
+    flex-grow: 0;
     align-items: center;
+    align-self: auto;
+    align-content: auto;
+    flex-direction: column-reverse;
+}
+
+.level-node-container-standard {
+    flex-grow: 0;
+    align-items: center;
+    align-self: auto;
+    align-content: auto;
+}
+
+.blue-box {
+    background-color: rgb(0, 112, 255);
+    border-left-color: rgb(255, 0, 0);
+    border-right-color: rgb(255, 0, 0);
+    border-top-color: rgb(255, 0, 0);
+    border-bottom-color: rgb(255, 0, 0);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+}
+
+.collect-rewards-button-fishing {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    border-left-color: rgb(123, 167, 226);
+    border-right-color: rgb(123, 167, 226);
+    border-top-color: rgb(123, 167, 226);
+    border-bottom-color: rgb(123, 167, 226);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+    background-color: rgb(83, 116, 159);
+}
+
+.collect-rewards-button-fishing:disabled {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    border-left-color: rgb(123, 167, 226);
+    border-right-color: rgb(123, 167, 226);
+    border-top-color: rgb(123, 167, 226);
+    border-bottom-color: rgb(123, 167, 226);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+    background-color: rgb(83, 116, 159);
+}
+
+.collect-rewards-button-fishing:hover:enabled {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    background-color: rgb(77, 105, 142);
+    border-left-color: rgb(110, 151, 207);
+    border-right-color: rgb(110, 151, 207);
+    border-top-color: rgb(110, 151, 207);
+    border-bottom-color: rgb(110, 151, 207);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+}
+
+.collect-rewards-button-forestry {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    border-left-color: rgb(149, 226, 123);
+    border-right-color: rgb(149, 226, 123);
+    border-top-color: rgb(149, 226, 123);
+    border-bottom-color: rgb(149, 226, 123);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+    background-color: rgb(92, 159, 83);
+}
+
+.collect-rewards-button-forestry:disabled {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    border-left-color: rgb(149, 226, 123);
+    border-right-color: rgb(149, 226, 123);
+    border-top-color: rgb(149, 226, 123);
+    border-bottom-color: rgb(149, 226, 123);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+    background-color: rgb(92, 159, 83);
+}
+
+.collect-rewards-button-forestry:hover:enabled {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    background-color: rgb(78, 137, 71);
+    border-left-color: rgb(123, 197, 98);
+    border-right-color: rgb(123, 197, 98);
+    border-top-color: rgb(123, 197, 98);
+    border-bottom-color: rgb(123, 197, 98);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+}
+
+.collect-rewards-button-mining {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    border-left-color: rgb(209, 140, 78);
+    border-right-color: rgb(209, 140, 78);
+    border-top-color: rgb(209, 140, 78);
+    border-bottom-color: rgb(209, 140, 78);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+    background-color: rgb(172, 107, 49);
+}
+
+.collect-rewards-button-mining:disabled {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    border-left-color: rgb(209, 140, 78);
+    border-right-color: rgb(209, 140, 78);
+    border-top-color: rgb(209, 140, 78);
+    border-bottom-color: rgb(209, 140, 78);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+    background-color: rgb(172, 107, 49);
+}
+
+.collect-rewards-button-mining:hover:enabled {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    background-color: rgb(161, 99, 43);
+    border-left-color: rgb(195, 129, 70);
+    border-right-color: rgb(195, 129, 70);
+    border-top-color: rgb(195, 129, 70);
+    border-bottom-color: rgb(195, 129, 70);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+}
+
+.collect-rewards-button-combat {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    border-left-color: rgb(222, 112, 99);
+    border-right-color: rgb(222, 112, 99);
+    border-top-color: rgb(222, 112, 99);
+    border-bottom-color: rgb(222, 112, 99);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+    background-color: rgb(159, 74, 74);
+}
+
+.collect-rewards-button-combat:disabled {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    border-left-color: rgb(222, 112, 99);
+    border-right-color: rgb(222, 112, 99);
+    border-top-color: rgb(222, 112, 99);
+    border-bottom-color: rgb(222, 112, 99);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
+    background-color: rgb(159, 74, 74);
+}
+
+.collect-rewards-button-combat:hover:enabled {
+    width: 200px;
+    -unity-font: initial;
+    -unity-font-definition: url("project://database/Assets/Ui/Fonts/Monserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&guid=fcd2efa225414a34591e647d6f8ee0ea&type=2#Montserrat-Bold SDF");
+    background-color: rgb(140, 64, 64);
+    border-left-color: rgb(197, 99, 87);
+    border-right-color: rgb(197, 99, 87);
+    border-top-color: rgb(197, 99, 87);
+    border-bottom-color: rgb(197, 99, 87);
+    -unity-font-style: normal;
+    color: rgb(230, 230, 230);
 }

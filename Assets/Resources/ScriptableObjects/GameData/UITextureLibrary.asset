@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bccf02349e16c147ac500bf3af45484, type: 3}
+  m_Name: UITextureLibrary
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: e34f2a2807047624d8bc9b33e3ef9bfe, type: 3}
+    - {fileID: 21300000, guid: 19b24b46fae85384aab48eec20f9c488, type: 3}
+    - {fileID: 21300000, guid: b2de65bca718b4243b1697123f280b99, type: 3}
+    - {fileID: 21300000, guid: 3e953e8c7f879c5429a25fc39a067fc3, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: skillIcons
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[SkillType, Assembly-CSharp],[UnityEngine.Sprite,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[SkillType, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  statBoostRewardIcon: {fileID: 2800000, guid: a483ec9d829d0ef4d944ff6acc7b4c68, type: 3}
+  itemRewardIcon: {fileID: 2800000, guid: 434a82a362d066c428495cb69b92b13e, type: 3}
+  currentRewardIcon: {fileID: 2800000, guid: 128c9bcc28a6ca54fac0f938e4fd3559, type: 3}
+  questStatusIconDark: {fileID: 2800000, guid: bf3a552ab2854584aa5c7211362b752f, type: 3}
+  questStatusIconLight: {fileID: 2800000, guid: 106f97e63ff7569489638ef5183ef775,
+    type: 3}
+  statusLightLit: {fileID: 2800000, guid: fc48acea22250d64eb420bc57a050c0c, type: 3}
+  statusLightUnlit: {fileID: 2800000, guid: dfbd7a568f789af46833e02780ff30f0, type: 3}

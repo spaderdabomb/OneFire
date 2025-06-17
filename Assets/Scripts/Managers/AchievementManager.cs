@@ -30,9 +30,8 @@ public class AchievementManager : MonoBehaviour
     private GameObject _activeText;
 
     private Queue<FishData> _fishTrophyQueue = new();
-    private bool _isAnimating = false;
+    private bool _isAnimating;
     
-    private float accumulatedTime = 0;
     [SerializeField] private FishData tempFishData;
     
     private void Awake()
@@ -49,17 +48,6 @@ public class AchievementManager : MonoBehaviour
     {
         FishingManager.Instance.OnNewFishCaught -= ShowNewFishCaught;
     }
-
-    // void Update()
-    // {
-    //     accumulatedTime += Time.deltaTime;
-    //     if (accumulatedTime >= 3f)
-    //     {
-    //         ShowNewFishCaught(tempFishData);
-    //         accumulatedTime = 0;
-    //     }
-    //
-    // }
 
     public void ShowNewFishCaught(FishData fishdata)
     {

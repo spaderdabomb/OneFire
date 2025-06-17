@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[DefaultExecutionOrder(-2)]
+[DefaultExecutionOrder(-4)]
 public class PersistentDataManager : MonoBehaviour
 {
     public static PersistentDataManager Instance;

@@ -1,0 +1,217 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0d5117712e9804eaa9069f80133dc1, type: 3}
+  m_Name: FishingRewardData
+  m_EditorClassIdentifier: 
+  skillType: 0
+  levelRewards:
+  - level: 1
+    rewards:
+    - rid: 1731097817939968215
+    unlockMessage: 
+  - level: 2
+    rewards:
+    - rid: 1731097817939968218
+    - rid: 1731097817939968219
+    unlockMessage: 
+  - level: 3
+    rewards:
+    - rid: 1731097817939968256
+    - rid: 1731097817939968257
+    - rid: 1731097817939968717
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  - level: 0
+    rewards: []
+    unlockMessage: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 1731097817939968215
+      type: {class: StatBonusRewardData, ns: RewardSystem, asm: Assembly-CSharp}
+      data:
+        type: 1
+        quantity: 1
+        statType: 1
+        bonusValue: 0.1
+        isPermanent: 1
+    - rid: 1731097817939968218
+      type: {class: StatBonusRewardData, ns: RewardSystem, asm: Assembly-CSharp}
+      data:
+        type: 1
+        quantity: 1
+        statType: 1
+        bonusValue: 0.1
+        isPermanent: 1
+    - rid: 1731097817939968219
+      type: {class: ItemRewardData, ns: RewardSystem, asm: Assembly-CSharp}
+      data:
+        type: 0
+        quantity: 1
+        item: {fileID: 11400000, guid: f53b76ea22552d74fb75538a6a10e300, type: 2}
+    - rid: 1731097817939968256
+      type: {class: CurrencyRewardData, ns: RewardSystem, asm: Assembly-CSharp}
+      data:
+        type: 0
+        quantity: 1
+        amount: 0
+    - rid: 1731097817939968257
+      type: {class: ItemRewardData, ns: RewardSystem, asm: Assembly-CSharp}
+      data:
+        type: 0
+        quantity: 1
+        item: {fileID: 11400000, guid: e180655eac367bd4990905c298f5aca7, type: 2}
+    - rid: 1731097817939968717
+      type: {class: StatBonusRewardData, ns: RewardSystem, asm: Assembly-CSharp}
+      data:
+        type: 1
+        quantity: 1
+        statType: 5
+        bonusValue: 0.5
+        isPermanent: 1

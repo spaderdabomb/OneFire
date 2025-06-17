@@ -676,5 +676,6 @@ MonoBehaviour:
   structurePreviewCollisionLayerMask:
     serializedVersion: 2
     m_Bits: 1025
+  skillCap: 50
   baseSpawnChance: 0.033333335
   whiteTextColor: {r: 0.9019608, g: 0.9019608, b: 0.9019608, a: 1}

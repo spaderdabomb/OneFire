@@ -240,3 +240,19 @@
     display: none;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0.29);
 }
+
+.menu-header-spacer {
+    flex-grow: 0;
+    background-color: rgb(58, 37, 12);
+    background-image: none;
+    width: auto;
+    height: 3px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}

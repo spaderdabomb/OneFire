@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False" gen-cs-file="7c58e242967c80b4d8de4e5c47350ced">
+    <Style src="project://database/Assets/Ui/USS/WoodTheme/SkillsMenu.uss?fileID=7433441132597879392&amp;guid=ce41e51ecfb521f4c91fcef18c55d393&amp;type=3#SkillsMenu" />
+    <Style src="project://database/Assets/Ui/USS/WoodTheme/MenusGeneral.uss?fileID=7433441132597879392&amp;guid=4704faa6888e33645806260e215547b5&amp;type=3#MenusGeneral" />
+    <ui:VisualElement name="LevelNodeContainer" class="level-node-container-standard">
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelNode" focusable="false" selectable="false" enabled="true" class="level-node" style="display: flex; visibility: visible;">
+            <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelNodeLabel" class="menu-label-standard" style="rotate: -45deg; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center; justify-content: center; align-items: center; -unity-text-align: middle-center; flex-grow: 0;" />
+        </ui:Button>
+        <ui:VisualElement name="LevelPath" class="level-path-standard" style="left: auto;" />
+    </ui:VisualElement>
+</ui:UXML>

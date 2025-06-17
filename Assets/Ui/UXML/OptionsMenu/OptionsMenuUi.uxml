@@ -5,7 +5,6 @@
     <ui:Template name="ExitButton" src="project://database/Assets/Ui/UXML/OptionsMenu/ExitButton.uxml?fileID=9197481963319205126&amp;guid=ac3d562c420e30545b9209d50be0708c&amp;type=3#ExitButton" />
     <Style src="project://database/Assets/Ui/USS/WoodTheme/MenusGeneral.uss?fileID=7433441132597879392&amp;guid=4704faa6888e33645806260e215547b5&amp;type=3#MenusGeneral" />
     <Style src="project://database/Assets/Ui/USS/WoodTheme/MenuOptionsWood.uss?fileID=7433441132597879392&amp;guid=16b72c728cd169e41aea1f8b3478c374&amp;type=3#MenuOptionsWood" />
-    <Style src="project://database/Assets/Ui/USS/WoodTheme/CustomTab.uss?fileID=7433441132597879392&amp;guid=eaa6568d29ee8004ba9f7effa26a4d8c&amp;type=3#CustomTab" />
     <ui:VisualElement name="OptionsUiRoot" class="dim-bg" style="align-self: stretch; align-items: center;">
         <ui:VisualElement name="OptionsUiBg" class="options-menu-bg" style="-unity-background-image-tint-color: rgb(255, 255, 255);">
             <QuickEye.UIToolkit.TabGroup name="OptionsTabGroup" style="flex-grow: 1; height: auto; align-items: flex-start; justify-content: flex-start; align-self: auto; background-color: rgba(0, 0, 0, 0); bottom: 727px; position: absolute; left: 154px; padding-bottom: 0; margin-bottom: 0; -unity-slice-scale: 10px; -unity-slice-left: 10; -unity-slice-top: 10; -unity-slice-right: 10; -unity-slice-bottom: 10; width: auto;">
@@ -15,25 +14,25 @@
                 <QuickEye.UIToolkit.Tab name="CollectionLogTab" value="false" tabindex="1" class="options-tab qe-tab--checked" style="align-items: flex-start;">
                     <ui:VisualElement style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/UI/UIMenus/OptionsMenu/CollectionLogIcon.png?fileID=2800000&amp;guid=05acb46ffe5f27d45949550a81b84f2c&amp;type=3#CollectionLogIcon&quot;); width: 75px; height: 75px; margin-top: 0;" />
                 </QuickEye.UIToolkit.Tab>
-                <QuickEye.UIToolkit.Tab name="SkillsTab" value="false" tabindex="1" class="options-tab" style="align-items: flex-start;">
+                <QuickEye.UIToolkit.Tab name="SkillsTab" value="false" tabindex="2" class="options-tab" style="align-items: flex-start;">
                     <ui:VisualElement style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/UI/UIMenus/OptionsMenu/SkillsIcon.png?fileID=2800000&amp;guid=1da4b456089f09540a24b00f3115c4a2&amp;type=3#SkillsIcon&quot;); width: 75px; height: 75px; margin-top: 0;" />
                 </QuickEye.UIToolkit.Tab>
-                <QuickEye.UIToolkit.Tab name="ObjectivesTab" value="false" tabindex="1" class="options-tab" style="align-items: flex-start;">
+                <QuickEye.UIToolkit.Tab name="ObjectivesTab" value="false" tabindex="3" class="options-tab" style="align-items: flex-start;">
                     <ui:VisualElement style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/UI/UIMenus/OptionsMenu/ObjectivesIcon.png?fileID=2800000&amp;guid=7a238af3e7236f342a30e85907ce7483&amp;type=3#ObjectivesIcon&quot;); width: 75px; height: 75px; margin-top: 0;" />
                 </QuickEye.UIToolkit.Tab>
-                <QuickEye.UIToolkit.Tab name="TrophiesTab" value="false" tabindex="1" class="options-tab" style="align-items: flex-start;">
+                <QuickEye.UIToolkit.Tab name="TrophiesTab" value="false" tabindex="4" class="options-tab" style="align-items: flex-start;">
                     <ui:VisualElement style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/UI/UIMenus/OptionsMenu/TrophiesIcon.png?fileID=2800000&amp;guid=77f74f04de59a7541a8eae71be48e62a&amp;type=3#TrophiesIcon&quot;); width: 75px; height: 75px; margin-top: 0;" />
                 </QuickEye.UIToolkit.Tab>
-                <QuickEye.UIToolkit.Tab name="MapTab" value="false" tabindex="1" class="options-tab" style="align-items: flex-start;">
+                <QuickEye.UIToolkit.Tab name="MapTab" value="false" tabindex="5" class="options-tab" style="align-items: flex-start;">
                     <ui:VisualElement style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/UI/UIMenus/OptionsMenu/MapIcon.png?fileID=2800000&amp;guid=c9be498a3ef908844a3bfd37ae0cb83a&amp;type=3#MapIcon&quot;); width: 75px; height: 75px; margin-top: 0;" />
                 </QuickEye.UIToolkit.Tab>
-                <QuickEye.UIToolkit.Tab name="SettingsTab" value="false" tabindex="1" class="options-tab" style="align-items: flex-start;">
+                <QuickEye.UIToolkit.Tab name="SettingsTab" value="false" tabindex="6" class="options-tab" style="align-items: flex-start;">
                     <ui:VisualElement style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/UI/UIMenus/OptionsMenu/SettingsIcon.png?fileID=2800000&amp;guid=1dd3fe54437729c499bd9dbfad3b3b64&amp;type=3#SettingsIcon&quot;); width: 75px; height: 75px; margin-top: 0;" />
                 </QuickEye.UIToolkit.Tab>
             </QuickEye.UIToolkit.TabGroup>
             <ui:Instance template="InventoryUi" name="InventoryMenuUi" style="flex-grow: 1; display: none;" />
             <ui:VisualElement name="ObjectiveMenuUi" style="flex-grow: 1; display: none;" />
-            <ui:Instance template="SkillsMenu" name="SkillsMenu" />
+            <ui:Instance template="SkillsMenu" name="SkillsMenuUi" />
             <ui:Instance template="MenuCollections" name="MenuCollectionsUi" style="display: none;" />
             <ui:VisualElement name="AchievementsMenuUi" style="flex-grow: 1; display: none;" />
             <ui:VisualElement name="SettingsMenuUi" style="flex-grow: 1; display: none;" />
